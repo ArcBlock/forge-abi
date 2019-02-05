@@ -56,6 +56,9 @@ defmodule ForgeAbi.TopicType do
   field :channel_state, 131
   field :forge_state, 132
   field :stake_state, 133
+
+  # note: this line is manually added. So everytime rebuild-protos is executed we shall added this back.
+  use ForgeAbi.EnumFields
 end
 
 defmodule ForgeAbi.KeyType do
