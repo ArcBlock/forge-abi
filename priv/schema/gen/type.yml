@@ -1,0 +1,332 @@
+- name: big_uint
+  type: output
+  fields:
+    - name: value
+      type: string
+  
+- name: big_sint
+  type: output
+  fields:
+    - name: value
+      type: string
+    - name: minus
+      type: boolean
+  
+- name: wallet_type
+  type: output
+  fields:
+    - name: pk
+      type: key_type
+    - name: hash
+      type: hash_type
+    - name: address
+      type: encoding_type
+    - name: role
+      type: role_type
+  
+- name: wallet_info
+  type: output
+  fields:
+    - name: type
+      type: wallet_type
+    - name: sk
+      type: string
+    - name: pk
+      type: string
+    - name: address
+      type: string
+  
+- name: chain_info
+  type: output
+  fields:
+    - name: id
+      type: string
+    - name: network
+      type: string
+    - name: moniker
+      type: string
+    - name: consensus_version
+      type: string
+    - name: synced
+      type: boolean
+    - name: app_hash
+      type: string
+    - name: block_hash
+      type: string
+    - name: block_height
+      type: int
+    - name: block_time
+      type: timestamp
+    - name: address
+      type: string
+    - name: voting_power
+      type: int
+    - name: total_txs
+      type: int
+    - name: version
+      type: string
+    - name: data_version
+      type: string
+    - name: forge_apps_version
+      type: [forge_apps_version_entry]
+    - name: supported_txs
+      type: [string]
+  
+- name: forge_apps_version_entry
+  type: output
+  fields:
+    - name: key
+      type: string
+    - name: value
+      type: string
+  
+- name: validator
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: power
+      type: int
+  
+- name: consensus_params
+  type: output
+  fields:
+    - name: max_bytes
+      type: int
+    - name: max_gas
+      type: int
+    - name: max_validators
+      type: int
+    - name: max_candidates
+      type: int
+    - name: pub_key_types
+      type: [string]
+    - name: validators
+      type: [validator]
+    - name: validator_changed
+      type: boolean
+    - name: param_changed
+      type: boolean
+  
+- name: upgrade_task
+  type: output
+  fields:
+    - name: type
+      type: upgrade_type
+    - name: data_hash
+      type: string
+    - name: actions
+      type: [upgrade_action]
+  
+- name: upgrade_tasks
+  type: output
+  fields:
+    - name: item
+      type: [upgrade_task]
+  
+- name: abci_context
+  type: output
+  fields:
+    - name: tx_hash
+      type: string
+    - name: block_height
+      type: int
+    - name: block_time
+      type: timestamp
+  
+- name: transaction
+  type: output
+  fields:
+    - name: from
+      type: string
+    - name: nonce
+      type: int
+    - name: signature
+      type: string
+    - name: chain_id
+      type: string
+    - name: signatures
+      type: [kv_pair]
+    - name: itx
+      type: any
+  
+- name: transaction_info
+  type: output
+  fields:
+    - name: tx
+      type: transaction
+    - name: height
+      type: int
+    - name: index
+      type: int
+    - name: hash
+      type: string
+    - name: tags
+      type: [kv_pair]
+  
+- name: block_info
+  type: output
+  fields:
+    - name: height
+      type: int
+    - name: num_txs
+      type: int
+    - name: time
+      type: timestamp
+    - name: app_hash
+      type: string
+    - name: proposer
+      type: string
+    - name: txs
+      type: [transaction]
+    - name: total_txs
+      type: int
+  
+- name: tx_status
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: hash
+      type: string
+  
+- name: circular_queue
+  type: output
+  fields:
+    - name: items
+      type: [string]
+    - name: type_url
+      type: string
+    - name: max_items
+      type: int
+    - name: circular
+      type: boolean
+    - name: fifo
+      type: boolean
+  
+- name: state_context
+  type: output
+  fields:
+    - name: genesis_tx
+      type: string
+    - name: renaissance_tx
+      type: string
+    - name: genesis_time
+      type: timestamp
+    - name: renaissance_time
+      type: timestamp
+  
+- name: stake_context
+  type: output
+  fields:
+    - name: total_stakes
+      type: string
+    - name: total_unstakes
+      type: string
+    - name: total_received_stakes
+      type: string
+    - name: recent_stakes
+      type: circular_queue
+    - name: recent_received_stakes
+      type: circular_queue
+  
+- name: stake_summary
+  type: output
+  fields:
+    - name: total_stakes
+      type: string
+    - name: total_unstakes
+      type: string
+    - name: context
+      type: state_context
+  
+- name: unconfirmed_txs
+  type: output
+  fields:
+    - name: n_txs
+      type: int
+    - name: txs
+      type: [transaction]
+  
+- name: net_info
+  type: output
+  fields:
+    - name: listening
+      type: boolean
+    - name: listeners
+      type: [string]
+    - name: n_peers
+      type: int
+    - name: peers
+      type: [peer_info]
+  
+- name: peer_info
+  type: output
+  fields:
+    - name: node_info
+      type: node_info
+  
+- name: node_info
+  type: output
+  fields:
+    - name: id
+      type: string
+    - name: network
+      type: string
+    - name: version
+      type: string
+    - name: moniker
+      type: string
+    - name: ip
+      type: string
+    - name: geo_info
+      type: geo_info
+  
+- name: geo_info
+  type: output
+  fields:
+    - name: city
+      type: string
+    - name: country
+      type: string
+    - name: latitude
+      type: float
+    - name: longitude
+      type: float
+  
+- name: validators_info
+  type: output
+  fields:
+    - name: block_height
+      type: int
+    - name: validators
+      type: [validator_info]
+  
+- name: validator_info
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: pub_key
+      type: pub_key
+    - name: voting_power
+      type: int
+    - name: proposer_priority
+      type: string
+    - name: name
+      type: string
+  
+- name: genesis_info
+  type: output
+  fields:
+    - name: genesis_time
+      type: string
+    - name: chain_id
+      type: string
+    - name: consensus_params
+      type: consensus_params
+    - name: validators
+      type: [validator_info]
+    - name: app_hash
+      type: string
+  

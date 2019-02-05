@@ -1,0 +1,13 @@
+---
+
+- name: state_context
+  type: output
+  fields:
+    - name: genesis_tx
+      type: transaction_info
+    - name: renaissance_tx
+      type: transaction_info
+    - name: genesis_time
+      type: timestamp
+    - name: renaissance_time
+      type: timestamp

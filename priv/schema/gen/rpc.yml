@@ -1,0 +1,459 @@
+- name: request_create_tx
+  type: input
+  fields:
+    - name: itx
+      type: any
+    - name: from
+      type: string
+    - name: nonce
+      type: int
+    - name: wallet
+      type: wallet_info
+    - name: token
+      type: string
+  
+- name: response_create_tx
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: tx
+      type: transaction
+  
+- name: request_multisig
+  type: input
+  fields:
+    - name: tx
+      type: transaction
+    - name: wallet
+      type: wallet_info
+    - name: token
+      type: string
+  
+- name: response_multisig
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: tx
+      type: transaction
+  
+- name: request_send_tx
+  type: input
+  fields:
+    - name: tx
+      type: transaction
+    - name: wallet
+      type: wallet_info
+    - name: token
+      type: string
+    - name: commit
+      type: boolean
+  
+- name: response_send_tx
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: hash
+      type: string
+  
+- name: request_get_tx
+  type: input
+  fields:
+    - name: hash
+      type: string
+  
+- name: response_get_tx
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: info
+      type: transaction_info
+  
+- name: request_get_block
+  type: input
+  fields:
+    - name: height
+      type: int
+  
+- name: response_get_block
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: block
+      type: block_info
+  
+- name: request_get_blocks
+  type: input
+  fields:
+    - name: min_height
+      type: int
+    - name: max_height
+      type: int
+  
+- name: response_get_blocks
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: blocks
+      type: [block_info]
+  
+- name: request_create_wallet
+  type: input
+  fields:
+    - name: passphrase
+      type: string
+    - name: type
+      type: wallet_type
+    - name: moniker
+      type: string
+  
+- name: response_create_wallet
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: token
+      type: string
+    - name: wallet
+      type: wallet_info
+  
+- name: request_load_wallet
+  type: input
+  fields:
+    - name: address
+      type: string
+    - name: passphrase
+      type: string
+  
+- name: response_load_wallet
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: token
+      type: string
+    - name: wallet
+      type: wallet_info
+  
+- name: request_recover_wallet
+  type: input
+  fields:
+    - name: data
+      type: string
+    - name: type
+      type: wallet_type
+    - name: passphrase
+      type: string
+    - name: moniker
+      type: string
+  
+- name: response_recover_wallet
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: token
+      type: string
+    - name: wallet
+      type: wallet_info
+  
+- name: request_list_wallet
+  type: input
+
+  fields: []
+
+- name: response_list_wallet
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: address
+      type: string
+  
+- name: request_remove_wallet
+  type: input
+  fields:
+    - name: address
+      type: string
+  
+- name: response_remove_wallet
+  type: output
+  fields:
+    - name: code
+      type: status_code
+  
+- name: request_declare_node
+  type: input
+  fields:
+    - name: validator
+      type: boolean
+  
+- name: response_declare_node
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: wallet
+      type: wallet_info
+  
+- name: request_get_account_state
+  type: input
+  fields:
+    - name: address
+      type: string
+    - name: keys
+      type: [string]
+    - name: app_hash
+      type: string
+  
+- name: response_get_account_state
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: state
+      type: account_state
+  
+- name: request_get_asset_state
+  type: input
+  fields:
+    - name: address
+      type: string
+    - name: keys
+      type: [string]
+    - name: app_hash
+      type: string
+  
+- name: response_get_asset_state
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: state
+      type: asset_state
+  
+- name: request_get_stake_state
+  type: input
+  fields:
+    - name: address
+      type: string
+    - name: keys
+      type: [string]
+    - name: app_hash
+      type: string
+  
+- name: response_get_stake_state
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: state
+      type: stake_state
+  
+- name: request_get_forge_state
+  type: input
+  fields:
+    - name: keys
+      type: [string]
+    - name: app_hash
+      type: string
+  
+- name: response_get_forge_state
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: state
+      type: forge_state
+  
+- name: request_store_file
+  type: input
+  fields:
+    - name: chunk
+      type: string
+  
+- name: response_store_file
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: hash
+      type: string
+  
+- name: request_load_file
+  type: input
+  fields:
+    - name: hash
+      type: string
+  
+- name: response_load_file
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: chunk
+      type: string
+  
+- name: request_pin_file
+  type: input
+  fields:
+    - name: hash
+      type: string
+  
+- name: response_pin_file
+  type: output
+  fields:
+    - name: code
+      type: status_code
+  
+- name: request_get_chain_info
+  type: input
+
+  fields: []
+
+- name: response_get_chain_info
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: info
+      type: chain_info
+  
+- name: request_search
+  type: input
+  fields:
+    - name: key
+      type: string
+    - name: value
+      type: string
+  
+- name: response_search
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: txs
+      type: [transaction_info]
+  
+- name: request_get_unconfirmed_txs
+  type: input
+  fields:
+    - name: limit
+      type: int
+  
+- name: response_get_unconfirmed_txs
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: unconfirmed_txs
+      type: unconfirmed_txs
+  
+- name: request_get_net_info
+  type: input
+
+  fields: []
+
+- name: response_get_net_info
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: net_info
+      type: net_info
+  
+- name: request_get_validators_info
+  type: input
+
+  fields: []
+
+- name: response_get_validators_info
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: validators_info
+      type: validators_info
+  
+- name: request_subscribe
+  type: input
+  fields:
+    - name: type
+      type: topic_type
+    - name: filter
+      type: string
+  
+- name: response_subscribe
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: topic
+      type: string
+    - name: transfer
+      type: transaction
+    - name: account_migrate
+      type: transaction
+    - name: confirm
+      type: transaction
+    - name: create_asset
+      type: transaction
+    - name: exchange
+      type: transaction
+    - name: revoke
+      type: transaction
+    - name: begin_block
+      type: request_begin_block
+    - name: end_block
+      type: request_end_block
+    - name: declare
+      type: transaction
+    - name: update_asset
+      type: transaction
+    - name: consensus_upgrade
+      type: transaction
+    - name: declare_file
+      type: transaction
+    - name: sys_upgrade
+      type: transaction
+    - name: stake
+      type: transaction
+    - name: account_state
+      type: transaction
+    - name: asset_state
+      type: transaction
+    - name: forge_state
+      type: transaction
+    - name: stake_state
+      type: transaction
+  
+- name: request_unsubscribe
+  type: input
+  fields:
+    - name: topic
+      type: string
+  
+- name: response_unsubscribe
+  type: output
+  fields:
+    - name: code
+      type: status_code
+  
+- name: request_get_config
+  type: input
+
+  fields: []
+
+- name: response_get_config
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: config
+      type: string
+  

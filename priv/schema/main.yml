@@ -1,0 +1,18 @@
+---
+- name: forge
+  types:
+    - _paginator.yml
+    - gen/enum.yml
+    - types/vendor.yml
+    - gen/type.yml
+    - types/general.yml
+    - gen/state.yml
+    - gen/tx.yml
+    - types/tx.yml
+    - gen/rpc.yml
+    - types/rpc.yml
+  apis:
+    - gen/service.yml
+    - apis/queries.yml
+    - apis/mutations.yml
+    - apis/subscription.yml

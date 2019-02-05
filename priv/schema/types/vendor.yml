@@ -1,0 +1,483 @@
+---
+- name: any
+  doc: type url and value of any data
+  fields:
+    - name: type_url
+      type: string
+      meta: null=false
+      doc: type url
+    - name: value
+      type: string
+      meta: null=false
+      doc: data of the type url
+
+
+
+- name: kv_pair
+  type: output
+  fields:
+    - name: key
+      type: string
+    - name: value
+      type: string
+
+- name: proof_op
+  type: output
+  fields:
+    - name: type
+      type: string
+    - name: key
+      type: string
+    - name: data
+      type: string
+
+- name: proof
+  type: output
+  fields:
+    - name: ops
+      type: [proof_op]
+
+- name: block_size_params
+  type: output
+  fields:
+    - name: max_bytes
+      type: int
+    - name: max_gas
+      type: int
+
+- name: evidence_params
+  type: output
+  fields:
+    - name: max_age
+      type: int
+
+- name: validator_params
+  type: output
+  fields:
+    - name: pub_key_types
+      type: [string]
+
+- name: consensus_params
+  type: output
+  fields:
+    - name: block_size
+      type: block_size_params
+    - name: evidence
+      type: evidence_params
+    - name: validator
+      type: validator_params
+
+- name: last_commit_info
+  type: output
+  fields:
+    - name: round
+      type: int
+    - name: votes
+      type: [vote_info]
+
+- name: version
+  type: output
+  fields:
+    - name: Block
+      type: int
+    - name: App
+      type: int
+
+- name: part_set_header
+  type: output
+  fields:
+    - name: total
+      type: int
+    - name: hash
+      type: string
+
+- name: block_id
+  type: output
+  fields:
+    - name: hash
+      type: string
+    - name: parts_header
+      type: part_set_header
+
+- name: validator
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: power
+      type: int
+
+- name: pub_key
+  type: output
+  fields:
+    - name: type
+      type: string
+    - name: data
+      type: string
+
+- name: validator_update
+  type: output
+  fields:
+    - name: pub_key
+      type: pub_key
+    - name: power
+      type: int
+
+- name: vote_info
+  type: output
+  fields:
+    - name: validator
+      type: validator
+    - name: signed_last_block
+      type: boolean
+
+- name: evidence
+  type: output
+  fields:
+    - name: type
+      type: string
+    - name: validator
+      type: validator
+    - name: height
+      type: int
+    - name: time
+      type: timestamp
+    - name: total_voting_power
+      type: int
+
+- name: header
+  type: output
+  fields:
+    - name: version
+      type: version
+    - name: chain_id
+      type: string
+    - name: height
+      type: int
+    - name: time
+      type: timestamp
+    - name: num_txs
+      type: int
+    - name: total_txs
+      type: int
+    - name: last_block_id
+      type: block_id
+    - name: last_commit_hash
+      type: string
+    - name: data_hash
+      type: string
+    - name: validators_hash
+      type: string
+    - name: next_validators_hash
+      type: string
+    - name: consensus_hash
+      type: string
+    - name: app_hash
+      type: string
+    - name: last_results_hash
+      type: string
+    - name: evidence_hash
+      type: string
+    - name: proposer_address
+      type: string
+
+- name: request_echo
+  type: output
+  fields:
+    - name: message
+      type: string
+
+- name: request_flush
+  type: output
+
+  fields: []
+
+- name: request_info
+  type: output
+  fields:
+    - name: version
+      type: string
+    - name: block_version
+      type: int
+    - name: p2p_version
+      type: int
+
+- name: request_set_option
+  type: output
+  fields:
+    - name: key
+      type: string
+    - name: value
+      type: string
+
+- name: request_init_chain
+  type: output
+  fields:
+    - name: time
+      type: timestamp
+    - name: chain_id
+      type: string
+    - name: consensus_params
+      type: consensus_params
+    - name: validators
+      type: [validator_update]
+    - name: app_state_bytes
+      type: string
+
+- name: request_query
+  type: output
+  fields:
+    - name: data
+      type: string
+    - name: path
+      type: string
+    - name: height
+      type: int
+    - name: prove
+      type: boolean
+
+- name: request_begin_block
+  type: output
+  fields:
+    - name: hash
+      type: string
+    - name: header
+      type: header
+    - name: last_commit_info
+      type: last_commit_info
+    - name: byzantine_validators
+      type: [evidence]
+
+- name: request_check_tx
+  type: output
+  fields:
+    - name: tx
+      type: string
+
+- name: request_deliver_tx
+  type: output
+  fields:
+    - name: tx
+      type: string
+
+- name: request_end_block
+  type: output
+  fields:
+    - name: height
+      type: int
+
+- name: request_commit
+  type: output
+
+  fields: []
+
+- name: request
+  type: output
+  fields:
+    - name: echo
+      type: request_echo
+    - name: flush
+      type: request_flush
+    - name: info
+      type: request_info
+    - name: set_option
+      type: request_set_option
+    - name: init_chain
+      type: request_init_chain
+    - name: query
+      type: request_query
+    - name: begin_block
+      type: request_begin_block
+    - name: check_tx
+      type: request_check_tx
+    - name: deliver_tx
+      type: request_deliver_tx
+    - name: end_block
+      type: request_end_block
+    - name: commit
+      type: request_commit
+
+- name: response_exception
+  type: output
+  fields:
+    - name: error
+      type: string
+
+- name: response_echo
+  type: output
+  fields:
+    - name: message
+      type: string
+
+- name: response_flush
+  type: output
+
+  fields: []
+
+- name: response_info
+  type: output
+  fields:
+    - name: data
+      type: string
+    - name: version
+      type: string
+    - name: app_version
+      type: int
+    - name: last_block_height
+      type: int
+    - name: last_block_app_hash
+      type: string
+
+- name: response_set_option
+  type: output
+  fields:
+    - name: code
+      type: int
+    - name: log
+      type: string
+    - name: info
+      type: string
+
+- name: response_init_chain
+  type: output
+  fields:
+    - name: consensus_params
+      type: consensus_params
+    - name: validators
+      type: [validator_update]
+
+- name: response_query
+  type: output
+  fields:
+    - name: code
+      type: int
+    - name: log
+      type: string
+    - name: info
+      type: string
+    - name: index
+      type: int
+    - name: key
+      type: string
+    - name: value
+      type: string
+    - name: proof
+      type: proof
+    - name: height
+      type: int
+    - name: codespace
+      type: string
+
+- name: response_begin_block
+  type: output
+  fields:
+    - name: tags
+      type: [kv_pair]
+
+- name: response_check_tx
+  type: output
+  fields:
+    - name: code
+      type: int
+    - name: data
+      type: string
+    - name: log
+      type: string
+    - name: info
+      type: string
+    - name: gas_wanted
+      type: int
+    - name: gas_used
+      type: int
+    - name: tags
+      type: [kv_pair]
+    - name: codespace
+      type: string
+
+- name: response_deliver_tx
+  type: output
+  fields:
+    - name: code
+      type: int
+    - name: data
+      type: string
+    - name: log
+      type: string
+    - name: info
+      type: string
+    - name: gas_wanted
+      type: int
+    - name: gas_used
+      type: int
+    - name: tags
+      type: [kv_pair]
+    - name: codespace
+      type: string
+
+- name: response_end_block
+  type: output
+  fields:
+    - name: validator_updates
+      type: [validator_update]
+    - name: consensus_param_updates
+      type: consensus_params
+    - name: tags
+      type: [kv_pair]
+
+- name: response_commit
+  type: output
+  fields:
+    - name: data
+      type: string
+
+- name: response
+  type: output
+  fields:
+    - name: exception
+      type: response_exception
+    - name: echo
+      type: response_echo
+    - name: flush
+      type: response_flush
+    - name: info
+      type: response_info
+    - name: set_option
+      type: response_set_option
+    - name: init_chain
+      type: response_init_chain
+    - name: query
+      type: response_query
+    - name: begin_block
+      type: response_begin_block
+    - name: check_tx
+      type: response_check_tx
+    - name: deliver_tx
+      type: response_deliver_tx
+    - name: end_block
+      type: response_end_block
+    - name: commit
+      type: response_commit
+
+- name: request_ping
+  type: output
+
+  fields: []
+
+- name: request_broadcast_tx
+  type: output
+  fields:
+    - name: tx
+      type: string
+
+- name: response_ping
+  type: output
+
+  fields: []
+
+- name: response_broadcast_tx
+  type: output
+  fields:
+    - name: check_tx
+      type: response_check_tx
+    - name: deliver_tx
+      type: response_deliver_tx

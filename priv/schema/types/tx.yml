@@ -1,0 +1,61 @@
+---
+- name: stake_data_type
+  doc: stake type
+  fields:
+    - name: type
+      type: string
+      doc: stake type
+- name: stake_tx
+  doc: stake tx
+  fields:
+    - name: data
+      type: stake_data_type
+      doc: stake data type
+    - name: message
+      type: string
+      doc: message for this stake
+    - name: to
+      type: string
+      doc: node address
+    - name: value
+      type: string
+      doc: value for this stake
+- name: itx
+  meta: type=union resolver=get_itx_type
+  doc: inner transaction
+  fields:
+    - type: account_migrate_tx
+    - type: consensus_upgrade_tx
+    - type: create_asset_tx
+    - type: declare_tx
+    - type: declare_file_tx
+    - type: exchange_tx
+    - type: stake_tx
+    - type: sys_upgrade_tx
+    - type: transfer_tx
+    - type: update_asset_tx
+- name: transaction
+  doc: transaction details
+  fields:
+    - name: from
+      type: string
+      meta: null=false
+      doc: sender address of the transaction
+    - name: nonce
+      type: integer
+      meta: null=false
+      doc: sender's nonce for this tx
+    - name: signature
+      type: string
+      doc: signature of the transaction
+    - name: chain_id
+      type: integer
+      meta: null=false
+      doc: the chain id of the transaction
+    - name: itx
+      type: itx
+      meta: null=false
+      doc: inner transaction
+    - name: signatures
+      type: [kv_pair]
+      doc: the list of extra signatures

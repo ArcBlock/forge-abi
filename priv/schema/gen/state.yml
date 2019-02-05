@@ -1,0 +1,100 @@
+- name: account_state
+  type: output
+  fields:
+    - name: balance
+      type: string
+    - name: nonce
+      type: int
+    - name: num_txs
+      type: int
+    - name: address
+      type: string
+    - name: pk
+      type: string
+    - name: type
+      type: wallet_type
+    - name: moniker
+      type: string
+    - name: context
+      type: state_context
+    - name: migrated_to
+      type: [string]
+    - name: migrated_from
+      type: [string]
+    - name: num_assets
+      type: int
+    - name: stake
+      type: stake_context
+    - name: pinned_files
+      type: circular_queue
+    - name: data
+      type: any
+  
+- name: asset_state
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: owner
+      type: string
+    - name: moniker
+      type: string
+    - name: readonly
+      type: boolean
+    - name: stake
+      type: stake_context
+    - name: context
+      type: state_context
+    - name: data
+      type: any
+  
+- name: forge_state
+  type: output
+  fields:
+    - name: consensus
+      type: consensus_params
+    - name: tasks
+      type: [tasks_entry]
+    - name: stake_summary
+      type: [stake_summary_entry]
+    - name: version
+      type: string
+    - name: data_version
+      type: string
+    - name: data
+      type: any
+  
+- name: tasks_entry
+  type: output
+  fields:
+    - name: key
+      type: int
+    - name: value
+      type: upgrade_tasks
+  
+- name: stake_summary_entry
+  type: output
+  fields:
+    - name: key
+      type: int
+    - name: value
+      type: stake_summary
+  
+- name: stake_state
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: from
+      type: string
+    - name: to
+      type: string
+    - name: balance
+      type: string
+    - name: message
+      type: string
+    - name: context
+      type: state_context
+    - name: data
+      type: any
+  

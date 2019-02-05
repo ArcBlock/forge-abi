@@ -1,0 +1,7 @@
+- name: response_list_wallet
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: address
+      type: [string]

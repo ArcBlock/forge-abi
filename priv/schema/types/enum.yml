@@ -1,0 +1,39 @@
+---
+- name: key_type
+  doc: public key type
+  type: enum
+  fields:
+    - type: ed25519
+      meta: value=0
+    - type: secp256k1
+      meta: value=1
+- name: hash_type
+  doc: hash type
+  type: enum
+  fields:
+    - type: keccak
+      meta: value=0
+    - type: sha3
+      meta: value=1
+    - type: sha2
+      meta: value=2
+    - type: keccak_384
+      meta: value=6
+    - type: sha3_384
+      meta: value=7
+    - type: sha2_384
+      meta: value=9
+    - type: keccak_512
+      meta: value=13
+    - type: sha3_512
+      meta: value=14
+    - type: sha2_512
+      meta: value=15
+- name: encoding_type
+  doc: encoding type
+  type: enum
+  fields:
+    - type: base16
+      meta: value=0
+    - type: base58
+      meta: value=1
