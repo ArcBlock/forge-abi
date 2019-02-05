@@ -58,3 +58,5 @@ prepare-vendor-proto:
 	@mkdir -p vendors
 	@curl --silent https://raw.githubusercontent.com/ArcBlock/ex_abci/master/lib/abci_protos/vendor.proto > ./vendors/vendor.proto
 	@echo "Vendor protobuf file fetched!"
+
+include .makefiles/*.mk
