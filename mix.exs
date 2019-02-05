@@ -22,6 +22,10 @@ defmodule ForgeAbi.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:jason, "~> 1.1"},
+      {:google_protos, "~> 0.1"},
+      {:grpc, "~> 0.3"}
+    ]
   end
 end
