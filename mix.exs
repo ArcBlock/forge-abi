@@ -11,12 +11,20 @@ defmodule ForgeAbi.MixProject do
       version: @version,
       elixir: @elixir_version,
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      dialyzer: [ignore_warnings: ".dialyzer_ignore.exs", plt_add_apps: []],
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.html": :test,
+        "coveralls.json": :test
+      ]
     ]
   end
 
   def application do
     [
+      mod: {ForgeAbi.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -25,7 +33,12 @@ defmodule ForgeAbi.MixProject do
     [
       {:jason, "~> 1.1"},
       {:google_protos, "~> 0.1"},
-      {:grpc, "~> 0.3"}
+      {:grpc, "~> 0.3"},
+      {:credo, "~> 1.0.0", only: [:dev, :test]},
+      {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.19.0", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.10", only: [:test]},
+      {:pre_commit_hook, "~> 1.2", only: [:dev, :test], runtime: false}
     ]
   end
 end

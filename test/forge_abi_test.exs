@@ -1,8 +1,6 @@
 defmodule ForgeAbiTest do
   use ExUnit.Case
-  doctest ForgeAbi
-
-  test "greets the world" do
-    assert ForgeAbi.hello() == :world
-  end
+  doctest ForgeAbi.Util.BigInt
+  doctest ForgeAbi.Util.TypeUrl
+  doctest ForgeAbi.Arc
 end
