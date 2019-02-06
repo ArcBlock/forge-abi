@@ -238,7 +238,8 @@ defmodule ForgeAbi.Util.TypeUrl do
 
   defp add(type_urls, state, extend? \\ false) do
     Enum.reduce(type_urls, state, fn {type, url, module} = type_url, acc ->
-      %{types: types, extended: extended, t1: t1, t2: t2} = acc
+      %{types: types, t1: t1, t2: t2} = acc
+      extended = Map.get(acc, :extended, [])
 
       result = %{
         acc
