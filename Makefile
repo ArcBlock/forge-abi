@@ -1,4 +1,5 @@
 TOP_DIR=.
+VERSION=$(strip $(shell cat version))
 BUILD_DIR=$(TOP_DIR)/_build
 PROTO_PATH=$(TOP_DIR)/lib/protobuf
 GRAPHQL_PATH=$(TOP_DIR)/priv/schema

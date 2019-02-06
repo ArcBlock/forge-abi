@@ -10,8 +10,12 @@ install:
 - mix local.rebar --force
 before_script: make travis-init
 script: make travis
-before_deploy: make travis-deploy
 deploy:
+  - provider: script
+    skip_cleanup: true
+    script: make travis-deploy
+    on:
+      branch: master
   - provider: releases
     skip_cleanup: true
     api_key:
