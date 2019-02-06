@@ -10,7 +10,7 @@ travis-init: dep
 
 travis-deploy:
 	@echo "Deploy the software by travis"
-
+	@make release
 
 precommit: pre-build build post-build test
 
