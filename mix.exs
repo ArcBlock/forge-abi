@@ -31,9 +31,10 @@ defmodule ForgeAbi.MixProject do
 
   defp deps do
     [
+      {:ex_abci_proto, "~> 0.7.6"},
       {:jason, "~> 1.1"},
-      {:google_protos, "~> 0.1"},
-      {:grpc, "~> 0.3"},
+
+      # dev and test
       {:credo, "~> 1.0.0", only: [:dev, :test]},
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
       {:ex_doc, "~> 0.19.0", only: [:dev, :test], runtime: false},

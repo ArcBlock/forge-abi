@@ -1,3 +1,6 @@
+## 1.1.5 (February 06, 2019)
+  - use ex_abci_proto
+
 ## 1.1.4 (February 05, 2019)
 	- move test cases to this repo
 

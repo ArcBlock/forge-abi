@@ -68,7 +68,7 @@ message ResponseGetBlock {
 message RequestGetBlocks {
   uint64 min_height = 1;
   uint64 max_height = 2;
- }
+}
 
 message ResponseGetBlocks {
   StatusCode code = 1;
@@ -129,9 +129,7 @@ message RequestRemoveWallet { string address = 1; }
 
 message ResponseRemoveWallet { StatusCode code = 1; }
 
-message RequestDeclareNode {
-  bool validator = 1;
-}
+message RequestDeclareNode { bool validator = 1; }
 
 message ResponseDeclareNode {
   StatusCode code = 1;
@@ -267,8 +265,8 @@ message ResponseSubscribe {
     Transaction exchange = 7;
     Transaction revoke = 8;
 
-    forge_vendor.RequestBeginBlock begin_block = 16;
-    forge_vendor.RequestEndBlock end_block = 17;
+    abci_vendor.RequestBeginBlock begin_block = 16;
+    abci_vendor.RequestEndBlock end_block = 17;
 
     Transaction declare = 19;
     Transaction update_asset = 20;

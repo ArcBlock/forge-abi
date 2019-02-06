@@ -94,7 +94,7 @@ message Transaction {
   string chain_id = 4;
   // we will support multiple signatures in case of certain tx need multiple
   // parties' signature.
-  repeated forge_vendor.KVPair signatures = 5;
+  repeated abci_vendor.KVPair signatures = 5;
   // at current version we don't have a VM to process byte
   // code so this should always be empty. Forge will reject
   // tx with non-empty byte_code
@@ -108,7 +108,7 @@ message TransactionInfo {
   uint64 height = 2;
   uint32 index = 3;
   string hash = 4;
-  repeated forge_vendor.KVPair tags = 5;
+  repeated abci_vendor.KVPair tags = 5;
 }
 
 message BlockInfo {
@@ -206,7 +206,7 @@ message ValidatorsInfo {
 
 message ValidatorInfo {
   string address = 1;
-  forge_vendor.PubKey pub_key = 2;
+  abci_vendor.PubKey pub_key = 2;
   uint64 voting_power = 3;
   string proposer_priority = 4;
   string name = 5;
@@ -215,7 +215,7 @@ message ValidatorInfo {
 message GenesisInfo {
   string genesis_time = 1;
   string chain_id = 2;
-  forge_vendor.ConsensusParams consensus_params = 3;
+  abci_vendor.ConsensusParams consensus_params = 3;
   repeated ValidatorInfo validators = 4;
   string app_hash = 5;
 }

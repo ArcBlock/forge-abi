@@ -685,8 +685,8 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :create_asset, 6, type: ForgeAbi.Transaction, oneof: 0
   field :exchange, 7, type: ForgeAbi.Transaction, oneof: 0
   field :revoke, 8, type: ForgeAbi.Transaction, oneof: 0
-  field :begin_block, 16, type: ForgeVendor.RequestBeginBlock, oneof: 0
-  field :end_block, 17, type: ForgeVendor.RequestEndBlock, oneof: 0
+  field :begin_block, 16, type: AbciVendor.RequestBeginBlock, oneof: 0
+  field :end_block, 17, type: AbciVendor.RequestEndBlock, oneof: 0
   field :declare, 19, type: ForgeAbi.Transaction, oneof: 0
   field :update_asset, 20, type: ForgeAbi.Transaction, oneof: 0
   field :consensus_upgrade, 21, type: ForgeAbi.Transaction, oneof: 0
