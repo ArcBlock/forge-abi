@@ -8,6 +8,7 @@ defmodule ForgeAbi do
   defdelegate encode_any(type, data), to: TypeUrl, as: :encode
   defdelegate encode_any!(type, data), to: TypeUrl, as: :encode!
   defdelegate decode_any(any), to: TypeUrl, as: :decode
+  defdelegate register_type_urls(urls), to: TypeUrl, as: :extend
 
   # arc related
   defdelegate one_token, to: ForgeAbi.Arc

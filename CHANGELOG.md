@@ -1,3 +1,6 @@
+## 1.1.6 (February 06, 2019)
+  - add register_type_urls public interface
+
 ## 1.1.5 (February 06, 2019)
   - use ex_abci_proto
 
