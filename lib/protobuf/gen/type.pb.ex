@@ -240,7 +240,7 @@ defmodule ForgeAbi.Transaction do
           nonce: non_neg_integer,
           signature: String.t(),
           chain_id: String.t(),
-          signatures: [ForgeVendor.KVPair.t()],
+          signatures: [AbciVendor.KVPair.t()],
           itx: Google.Protobuf.Any.t()
         }
   defstruct [:from, :nonce, :signature, :chain_id, :signatures, :itx]
@@ -249,7 +249,7 @@ defmodule ForgeAbi.Transaction do
   field :nonce, 2, type: :uint64
   field :signature, 3, type: :bytes
   field :chain_id, 4, type: :string
-  field :signatures, 5, repeated: true, type: ForgeVendor.KVPair
+  field :signatures, 5, repeated: true, type: AbciVendor.KVPair
   field :itx, 7, type: Google.Protobuf.Any
 end
 
@@ -262,7 +262,7 @@ defmodule ForgeAbi.TransactionInfo do
           height: non_neg_integer,
           index: non_neg_integer,
           hash: String.t(),
-          tags: [ForgeVendor.KVPair.t()]
+          tags: [AbciVendor.KVPair.t()]
         }
   defstruct [:tx, :height, :index, :hash, :tags]
 
@@ -270,7 +270,7 @@ defmodule ForgeAbi.TransactionInfo do
   field :height, 2, type: :uint64
   field :index, 3, type: :uint32
   field :hash, 4, type: :string
-  field :tags, 5, repeated: true, type: ForgeVendor.KVPair
+  field :tags, 5, repeated: true, type: AbciVendor.KVPair
 end
 
 defmodule ForgeAbi.BlockInfo do
@@ -495,7 +495,7 @@ defmodule ForgeAbi.ValidatorInfo do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          pub_key: ForgeVendor.PubKey.t(),
+          pub_key: AbciVendor.PubKey.t(),
           voting_power: non_neg_integer,
           proposer_priority: String.t(),
           name: String.t()
@@ -503,7 +503,7 @@ defmodule ForgeAbi.ValidatorInfo do
   defstruct [:address, :pub_key, :voting_power, :proposer_priority, :name]
 
   field :address, 1, type: :string
-  field :pub_key, 2, type: ForgeVendor.PubKey
+  field :pub_key, 2, type: AbciVendor.PubKey
   field :voting_power, 3, type: :uint64
   field :proposer_priority, 4, type: :string
   field :name, 5, type: :string
@@ -516,7 +516,7 @@ defmodule ForgeAbi.GenesisInfo do
   @type t :: %__MODULE__{
           genesis_time: String.t(),
           chain_id: String.t(),
-          consensus_params: ForgeVendor.ConsensusParams.t(),
+          consensus_params: AbciVendor.ConsensusParams.t(),
           validators: [ForgeAbi.ValidatorInfo.t()],
           app_hash: String.t()
         }
@@ -524,7 +524,7 @@ defmodule ForgeAbi.GenesisInfo do
 
   field :genesis_time, 1, type: :string
   field :chain_id, 2, type: :string
-  field :consensus_params, 3, type: ForgeVendor.ConsensusParams
+  field :consensus_params, 3, type: AbciVendor.ConsensusParams
   field :validators, 4, repeated: true, type: ForgeAbi.ValidatorInfo
   field :app_hash, 5, type: :string
 end

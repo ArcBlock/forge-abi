@@ -48,7 +48,6 @@ run:
 
 rebuild-proto: prepare-vendor-proto
 	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/*.proto
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen vendors/*.proto
 	@echo "recover enum.pb.ex. If you modified enum.proto, you may want to disable it."
 	@git checkout $(TOP_DIR)/lib/protobuf/gen/enum.pb.ex
 	@make rebuild-goldorin
@@ -76,7 +75,7 @@ rebuild-proto-json: prepare-vendor-proto
 prepare-vendor-proto:
 	@echo "Preparing vendor protobuf..."
 	@mkdir -p vendors
-	@curl --silent https://raw.githubusercontent.com/ArcBlock/ex_abci/master/lib/abci_protos/vendor.proto > ./vendors/vendor.proto
+	@curl --silent https://raw.githubusercontent.com/ArcBlock/ex_abci_proto/master/lib/protos/vendor.proto > ./vendors/vendor.proto
 	@echo "Vendor protobuf file fetched!"
 
 include .makefiles/*.mk
