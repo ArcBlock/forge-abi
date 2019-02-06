@@ -3,6 +3,24 @@ BUILD_DIR=$(TOP_DIR)/_build
 PROTO_PATH=$(TOP_DIR)/lib/protobuf
 GRAPHQL_PATH=$(TOP_DIR)/priv/schema
 
+
+travis-init: dep
+	@echo "Initialize software required for travis (normally ubuntu software)"
+
+travis-deploy:
+	@echo "Deploy the software by travis"
+
+
+precommit: pre-build build post-build test
+
+travis: precommit
+
+pre-build: dep
+	@echo "Running scripts before the build..."
+
+post-build:
+	@echo "Running scripts after the build is done..."
+
 build:
 	@echo "Building the software..."
 	@make format
@@ -24,11 +42,12 @@ dialyzer:
 
 run:
 	@echo "Running the software..."
-	@iex -S mix phx.server
+	@iex -S mix
 
 
 rebuild-proto: prepare-vendor-proto
 	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/*.proto
+	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen vendors/*.proto
 	@echo "recover enum.pb.ex. If you modified enum.proto, you may want to disable it."
 	@git checkout $(TOP_DIR)/lib/protobuf/gen/enum.pb.ex
 	@make rebuild-goldorin
@@ -60,3 +79,5 @@ prepare-vendor-proto:
 	@echo "Vendor protobuf file fetched!"
 
 include .makefiles/*.mk
+
+.PHONY: build init travis-init install dep test dialyzer doc precommit travis run
