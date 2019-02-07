@@ -59,6 +59,8 @@
       meta: value=35
     - type: invalid_tx_size
       meta: value=36
+    - type: invalid_signer_state
+      meta: value=37
     - type: forbidden
       meta: value=403
     - type: internal

@@ -31,6 +31,7 @@ defmodule ForgeAbi.StatusCode do
   field :banned_unstake, 34
   field :invalid_asset, 35
   field :invalid_tx_size, 36
+  field :invalid_signer_state, 37
   field :forbidden, 403
   field :internal, 500
 end
