@@ -222,13 +222,15 @@ defmodule ForgeAbi.AbciContext do
   @type t :: %__MODULE__{
           tx_hash: String.t(),
           block_height: non_neg_integer,
-          block_time: Google.Protobuf.Timestamp.t()
+          block_time: Google.Protobuf.Timestamp.t(),
+          total_txs: non_neg_integer
         }
-  defstruct [:tx_hash, :block_height, :block_time]
+  defstruct [:tx_hash, :block_height, :block_time, :total_txs]
 
   field :tx_hash, 1, type: :string
   field :block_height, 2, type: :uint64
   field :block_time, 3, type: Google.Protobuf.Timestamp
+  field :total_txs, 4, type: :uint64
 end
 
 defmodule ForgeAbi.Transaction do
@@ -527,4 +529,26 @@ defmodule ForgeAbi.GenesisInfo do
   field :consensus_params, 3, type: AbciVendor.ConsensusParams
   field :validators, 4, repeated: true, type: ForgeAbi.ValidatorInfo
   field :app_hash, 5, type: :string
+end
+
+defmodule ForgeAbi.ForgeStatistics do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          num_blocks: [non_neg_integer],
+          num_txs: [non_neg_integer],
+          num_accounts: [non_neg_integer],
+          num_assets: [non_neg_integer],
+          num_stakes: [ForgeAbi.BigUint.t()],
+          num_validators: [non_neg_integer]
+        }
+  defstruct [:num_blocks, :num_txs, :num_accounts, :num_assets, :num_stakes, :num_validators]
+
+  field :num_blocks, 2, repeated: true, type: :uint64
+  field :num_txs, 3, repeated: true, type: :uint64
+  field :num_accounts, 4, repeated: true, type: :uint32
+  field :num_assets, 5, repeated: true, type: :uint32
+  field :num_stakes, 6, repeated: true, type: ForgeAbi.BigUint
+  field :num_validators, 7, repeated: true, type: :uint32
 end

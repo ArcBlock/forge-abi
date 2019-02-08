@@ -61,3 +61,8 @@ service WalletRpc {
   rpc remove_wallet(RequestRemoveWallet) returns (ResponseRemoveWallet);
   rpc declare_node(RequestDeclareNode) returns (ResponseDeclareNode);
 }
+
+service StatisticRpc {
+  rpc get_forge_statistics(RequestGetForgeStatistics)
+      returns (ResponseGetForgeStatistics);
+}

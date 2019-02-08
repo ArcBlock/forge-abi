@@ -457,3 +457,33 @@
     - name: config
       type: string
   
+- name: by_day
+  type: output
+  fields:
+    - name: start_date
+      type: string
+    - name: end_date
+      type: string
+  
+- name: by_hour
+  type: output
+  fields:
+    - name: date
+      type: string
+  
+- name: request_get_forge_statistics
+  type: input
+  fields:
+    - name: day_info
+      type: by_day
+    - name: date
+      type: by_hour
+  
+- name: response_get_forge_statistics
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: forge_statistics
+      type: forge_statistics
+  

@@ -133,6 +133,8 @@
       type: int
     - name: block_time
       type: timestamp
+    - name: total_txs
+      type: int
   
 - name: transaction
   type: output
@@ -329,4 +331,20 @@
       type: [validator_info]
     - name: app_hash
       type: string
+  
+- name: forge_statistics
+  type: output
+  fields:
+    - name: num_blocks
+      type: [int]
+    - name: num_txs
+      type: [int]
+    - name: num_accounts
+      type: [int]
+    - name: num_assets
+      type: [int]
+    - name: num_stakes
+      type: [string]
+    - name: num_validators
+      type: [int]
   

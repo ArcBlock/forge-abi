@@ -743,3 +743,57 @@ defmodule ForgeAbi.ResponseGetConfig do
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :config, 2, type: :string
 end
+
+defmodule ForgeAbi.ByDay do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          start_date: String.t(),
+          end_date: String.t()
+        }
+  defstruct [:start_date, :end_date]
+
+  field :start_date, 1, type: :string
+  field :end_date, 2, type: :string
+end
+
+defmodule ForgeAbi.ByHour do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          date: String.t()
+        }
+  defstruct [:date]
+
+  field :date, 1, type: :string
+end
+
+defmodule ForgeAbi.RequestGetForgeStatistics do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          value: {atom, any}
+        }
+  defstruct [:value]
+
+  oneof :value, 0
+  field :day_info, 1, type: ForgeAbi.ByDay, oneof: 0
+  field :date, 2, type: ForgeAbi.ByHour, oneof: 0
+end
+
+defmodule ForgeAbi.ResponseGetForgeStatistics do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          forge_statistics: ForgeAbi.ForgeStatistics.t()
+        }
+  defstruct [:code, :forge_statistics]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :forge_statistics, 2, type: ForgeAbi.ForgeStatistics
+end

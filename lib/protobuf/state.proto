@@ -72,3 +72,12 @@ message StakeState {
   // forge app can extend this
   google.protobuf.Any data = 15;
 }
+
+message StatisticsState {
+  uint64 num_blocks = 2;
+  uint64 num_txs = 3;
+  uint32 num_accounts = 4;
+  uint32 num_assets = 5;
+  BigUint num_stakes = 6;
+  uint32 num_validators = 7;
+}
