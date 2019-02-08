@@ -148,3 +148,25 @@ defmodule ForgeAbi.StakeState do
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
 end
+
+defmodule ForgeAbi.StatisticsState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          num_blocks: non_neg_integer,
+          num_txs: non_neg_integer,
+          num_accounts: non_neg_integer,
+          num_assets: non_neg_integer,
+          num_stakes: ForgeAbi.BigUint.t(),
+          num_validators: non_neg_integer
+        }
+  defstruct [:num_blocks, :num_txs, :num_accounts, :num_assets, :num_stakes, :num_validators]
+
+  field :num_blocks, 2, type: :uint64
+  field :num_txs, 3, type: :uint64
+  field :num_accounts, 4, type: :uint32
+  field :num_assets, 5, type: :uint32
+  field :num_stakes, 6, type: ForgeAbi.BigUint
+  field :num_validators, 7, type: :uint32
+end

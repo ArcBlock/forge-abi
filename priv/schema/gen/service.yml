@@ -115,3 +115,9 @@
   type: mutation
   return: response_declare_node
   params: request_declare_node
+
+
+- name: get_forge_statistics
+  type: query
+  return: response_get_forge_statistics
+  params: request_get_forge_statistics

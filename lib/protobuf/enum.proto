@@ -16,7 +16,7 @@ enum StatusCode {
   invalid_tx = 8;
   unsupported_tx = 9;
   expired_tx = 10;
-  
+
   // 16 - 2047 various errors
   invalid_moniker = 16;
   invalid_passphrase = 17;
@@ -38,7 +38,7 @@ enum StatusCode {
   banned_unstake = 34;
   invalid_asset = 35;
   invalid_tx_size = 36;
-  
+
   forbidden = 403;
   internal = 500;
 
@@ -57,14 +57,14 @@ enum TopicType {
   update_asset = 4;
   stake = 5;
   account_migrate = 6;
-  
+
 
   // 7-15 reserved for future frequent forge tx
 
   // 16-2047 infrequently used event
   begin_block = 16;
   end_block = 17;
-  
+
   consensus_upgrade = 21;
   declare_file = 22;
   sys_upgrade = 23;
