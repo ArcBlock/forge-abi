@@ -51,6 +51,8 @@
 - name: forge_state
   type: output
   fields:
+    - name: address
+      type: string
     - name: consensus
       type: consensus_params
     - name: tasks

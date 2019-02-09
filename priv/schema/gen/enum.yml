@@ -27,10 +27,6 @@
       meta: value=16
     - type: invalid_passphrase
       meta: value=17
-    - type: invalid_channel
-      meta: value=18
-    - type: invalid_channel_waiting_data
-      meta: value=19
     - type: invalid_multisig
       meta: value=20
     - type: invalid_wallet
@@ -59,6 +55,10 @@
       meta: value=35
     - type: invalid_tx_size
       meta: value=36
+    - type: invalid_signer_state
+      meta: value=37
+    - type: invalid_forge_state
+      meta: value=38
     - type: forbidden
       meta: value=403
     - type: internal
@@ -95,12 +95,10 @@
       meta: value=129
     - type: asset_state
       meta: value=130
-    - type: channel_state
-      meta: value=131
     - type: forge_state
-      meta: value=132
+      meta: value=131
     - type: stake_state
-      meta: value=133
+      meta: value=132
 
 - name: key_type
   type: enum

@@ -40,8 +40,9 @@ defmodule ForgeAbi.Util.BigInt do
     iex> to_int(bigsint(-1)) === 1
     false
   """
-  @spec to_int(BigUint.t() | BigSint.t() | nil) :: integer()
+  @spec to_int(BigUint.t() | BigSint.t() | integer() | nil) :: integer()
   def to_int(nil), do: 0
+  def to_int(i) when is_integer(i), do: i
   def to_int(%BigSint{} = v), do: sign(v.minus) * to_unsigned(v.value)
   def to_int(%BigUint{} = v), do: to_unsigned(v.value)
 

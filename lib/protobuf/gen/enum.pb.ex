@@ -15,8 +15,6 @@ defmodule ForgeAbi.StatusCode do
   field :expired_tx, 10
   field :invalid_moniker, 16
   field :invalid_passphrase, 17
-  field :invalid_channel, 18
-  field :invalid_channel_waiting_data, 19
   field :invalid_multisig, 20
   field :invalid_wallet, 21
   field :invalid_chain_id, 22
@@ -31,6 +29,8 @@ defmodule ForgeAbi.StatusCode do
   field :banned_unstake, 34
   field :invalid_asset, 35
   field :invalid_tx_size, 36
+  field :invalid_signer_state, 37
+  field :invalid_forge_state, 38
   field :forbidden, 403
   field :internal, 500
 end
@@ -53,9 +53,8 @@ defmodule ForgeAbi.TopicType do
   field :sys_upgrade, 23
   field :account_state, 129
   field :asset_state, 130
-  field :channel_state, 131
-  field :forge_state, 132
-  field :stake_state, 133
+  field :forge_state, 131
+  field :stake_state, 132
 
   # note: this line is manually added. So everytime rebuild-protos is executed we shall added this back.
   use ForgeAbi.EnumFields

@@ -20,8 +20,7 @@ enum StatusCode {
   // 16 - 2047 various errors
   invalid_moniker = 16;
   invalid_passphrase = 17;
-  invalid_channel = 18;
-  invalid_channel_waiting_data = 19;
+
   invalid_multisig = 20;
   invalid_wallet = 21;
   invalid_chain_id = 22;
@@ -38,6 +37,8 @@ enum StatusCode {
   banned_unstake = 34;
   invalid_asset = 35;
   invalid_tx_size = 36;
+  invalid_signer_state = 37;
+  invalid_forge_state = 38;
 
   forbidden = 403;
   internal = 500;
@@ -58,7 +59,6 @@ enum TopicType {
   stake = 5;
   account_migrate = 6;
 
-
   // 7-15 reserved for future frequent forge tx
 
   // 16-2047 infrequently used event
@@ -73,9 +73,8 @@ enum TopicType {
 
   account_state = 129;
   asset_state = 130;
-  channel_state = 131;
-  forge_state = 132;
-  stake_state = 133;
+  forge_state = 131;
+  stake_state = 132;
 
   // user defined event type shall start from 256.
 }

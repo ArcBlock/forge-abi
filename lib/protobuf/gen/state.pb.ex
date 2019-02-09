@@ -80,6 +80,7 @@ defmodule ForgeAbi.ForgeState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
+          address: String.t(),
           consensus: ForgeAbi.ConsensusParams.t(),
           tasks: %{non_neg_integer => ForgeAbi.UpgradeTasks.t()},
           stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t()},
@@ -87,13 +88,14 @@ defmodule ForgeAbi.ForgeState do
           data_version: String.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [:consensus, :tasks, :stake_summary, :version, :data_version, :data]
+  defstruct [:address, :consensus, :tasks, :stake_summary, :version, :data_version, :data]
 
-  field :consensus, 1, type: ForgeAbi.ConsensusParams
-  field :tasks, 2, repeated: true, type: ForgeAbi.ForgeState.TasksEntry, map: true
-  field :stake_summary, 3, repeated: true, type: ForgeAbi.ForgeState.StakeSummaryEntry, map: true
-  field :version, 4, type: :string
-  field :data_version, 5, type: :string
+  field :address, 1, type: :string
+  field :consensus, 2, type: ForgeAbi.ConsensusParams
+  field :tasks, 3, repeated: true, type: ForgeAbi.ForgeState.TasksEntry, map: true
+  field :stake_summary, 4, repeated: true, type: ForgeAbi.ForgeState.StakeSummaryEntry, map: true
+  field :version, 5, type: :string
+  field :data_version, 6, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
 
