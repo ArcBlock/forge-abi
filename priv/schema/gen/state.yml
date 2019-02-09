@@ -100,3 +100,19 @@
     - name: data
       type: any
   
+- name: statistics_state
+  type: output
+  fields:
+    - name: num_blocks
+      type: int
+    - name: num_txs
+      type: int
+    - name: num_accounts
+      type: int
+    - name: num_assets
+      type: int
+    - name: num_stakes
+      type: string
+    - name: num_validators
+      type: int
+  

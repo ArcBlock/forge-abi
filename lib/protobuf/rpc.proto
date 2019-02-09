@@ -292,3 +292,25 @@ message ResponseGetConfig {
   StatusCode code = 1;
   string config = 2;
 }
+
+message ByDay {
+  string start_date = 1;
+  string end_date = 2;
+}
+
+message ByHour {
+  string date = 1;
+}
+
+
+message RequestGetForgeStatistics {
+  oneof value {
+    ByDay day_info = 1;
+    ByHour date = 2;
+  }
+}
+
+message ResponseGetForgeStatistics {
+  StatusCode code = 1;
+  ForgeStatistics forge_statistics = 2;
+}
