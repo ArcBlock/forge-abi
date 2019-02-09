@@ -75,10 +75,10 @@ message StakeState {
 }
 
 message StatisticsState {
-  uint64 num_blocks = 2;
-  uint64 num_txs = 3;
-  uint32 num_accounts = 4;
-  uint32 num_assets = 5;
-  BigUint num_stakes = 6;
-  uint32 num_validators = 7;
+  uint64 num_blocks = 1;
+  uint64 num_txs = 2;
+  uint32 num_accounts = 3;
+  uint32 num_assets = 4;
+  BigUint num_stakes = 5;
+  uint32 num_validators = 6;
 }

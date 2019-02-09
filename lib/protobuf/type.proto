@@ -223,10 +223,10 @@ message GenesisInfo {
 }
 
 message ForgeStatistics {
-  repeated uint64 num_blocks = 2;
-  repeated uint64 num_txs = 3;
-  repeated uint32 num_accounts = 4;
-  repeated uint32 num_assets = 5;
-  repeated BigUint num_stakes = 6;
-  repeated uint32 num_validators = 7;
+  repeated uint64 num_blocks = 1;
+  repeated uint64 num_txs = 2;
+  repeated uint32 num_accounts = 3;
+  repeated uint32 num_assets = 4;
+  repeated BigUint num_stakes = 5;
+  repeated uint32 num_validators = 6;
 }

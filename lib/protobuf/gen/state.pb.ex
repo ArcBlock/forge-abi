@@ -165,10 +165,10 @@ defmodule ForgeAbi.StatisticsState do
         }
   defstruct [:num_blocks, :num_txs, :num_accounts, :num_assets, :num_stakes, :num_validators]
 
-  field :num_blocks, 2, type: :uint64
-  field :num_txs, 3, type: :uint64
-  field :num_accounts, 4, type: :uint32
-  field :num_assets, 5, type: :uint32
-  field :num_stakes, 6, type: ForgeAbi.BigUint
-  field :num_validators, 7, type: :uint32
+  field :num_blocks, 1, type: :uint64
+  field :num_txs, 2, type: :uint64
+  field :num_accounts, 3, type: :uint32
+  field :num_assets, 4, type: :uint32
+  field :num_stakes, 5, type: ForgeAbi.BigUint
+  field :num_validators, 6, type: :uint32
 end
