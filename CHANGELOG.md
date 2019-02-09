@@ -1,3 +1,7 @@
+## 1.2.0 (February 08, 2019)
+  - add more status code (#5)
+  - add forge statistics rpcs and statistics state (#4)
+
 ## 1.1.6 (February 06, 2019)
   - add register_type_urls public interface
 
