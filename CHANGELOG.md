@@ -1,3 +1,8 @@
+## 1.2.1 (February 10, 2019)
+  - add address in statistics state.
+  - separate get forge statistics api into three apis
+  - update statistics messages
+
 ## 1.2.0 (February 08, 2019)
   - add more status code (#5)
   - add forge statistics rpcs and statistics state (#4)
