@@ -5,3 +5,22 @@
       type: status_code
     - name: address
       type: [string]
+
+- name: request_get_forge_statistics
+  type: input
+
+  fields: []
+
+- name: request_get_forge_statistics_by_hour
+  type: input
+  fields:
+    - name: date
+      type: string
+
+- name: request_get_forge_statistics_by_day
+  type: input
+  fields:
+    - name: start_date
+      type: string
+    - name: end_date
+      type: string
