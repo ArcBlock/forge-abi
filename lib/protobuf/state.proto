@@ -48,13 +48,15 @@ message AssetState {
 }
 
 message ForgeState {
-	string address = 1;
+  string address = 1;
   // consensus parameters, in future we shall be able to modify it
   ConsensusParams consensus = 2;
   map<uint64, UpgradeTasks> tasks = 3;
   map<uint32, StakeSummary> stake_summary = 4;
   string version = 5;
   string data_version = 6;
+  // app state returned by forge app
+  bytes forge_app_hash = 7;
 
   // 6-14 is reserved for future
 
@@ -75,7 +77,7 @@ message StakeState {
 }
 
 message StatisticsState {
-	string address = 1;
+  string address = 1;
   uint64 num_blocks = 2;
   uint64 num_txs = 3;
   uint32 num_accounts = 4;

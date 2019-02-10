@@ -86,9 +86,19 @@ defmodule ForgeAbi.ForgeState do
           stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t()},
           version: String.t(),
           data_version: String.t(),
+          forge_app_hash: String.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [:address, :consensus, :tasks, :stake_summary, :version, :data_version, :data]
+  defstruct [
+    :address,
+    :consensus,
+    :tasks,
+    :stake_summary,
+    :version,
+    :data_version,
+    :forge_app_hash,
+    :data
+  ]
 
   field :address, 1, type: :string
   field :consensus, 2, type: ForgeAbi.ConsensusParams
@@ -96,6 +106,7 @@ defmodule ForgeAbi.ForgeState do
   field :stake_summary, 4, repeated: true, type: ForgeAbi.ForgeState.StakeSummaryEntry, map: true
   field :version, 5, type: :string
   field :data_version, 6, type: :string
+  field :forge_app_hash, 7, type: :bytes
   field :data, 15, type: Google.Protobuf.Any
 end
 

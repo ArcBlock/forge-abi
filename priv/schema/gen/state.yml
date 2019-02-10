@@ -63,6 +63,8 @@
       type: string
     - name: data_version
       type: string
+    - name: forge_app_hash
+      type: string
     - name: data
       type: any
   
