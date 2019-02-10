@@ -156,6 +156,7 @@ defmodule ForgeAbi.StatisticsState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
+          address: String.t(),
           num_blocks: non_neg_integer,
           num_txs: non_neg_integer,
           num_accounts: non_neg_integer,
@@ -163,8 +164,17 @@ defmodule ForgeAbi.StatisticsState do
           num_stakes: ForgeAbi.BigUint.t(),
           num_validators: non_neg_integer
         }
-  defstruct [:num_blocks, :num_txs, :num_accounts, :num_assets, :num_stakes, :num_validators]
+  defstruct [
+    :address,
+    :num_blocks,
+    :num_txs,
+    :num_accounts,
+    :num_assets,
+    :num_stakes,
+    :num_validators
+  ]
 
+  field :address, 1, type: :string
   field :num_blocks, 2, type: :uint64
   field :num_txs, 3, type: :uint64
   field :num_accounts, 4, type: :uint32

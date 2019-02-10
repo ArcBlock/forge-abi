@@ -75,6 +75,7 @@ message StakeState {
 }
 
 message StatisticsState {
+	string address = 1;
   uint64 num_blocks = 2;
   uint64 num_txs = 3;
   uint32 num_accounts = 4;

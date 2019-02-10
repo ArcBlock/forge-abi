@@ -545,10 +545,10 @@ defmodule ForgeAbi.ForgeStatistics do
         }
   defstruct [:num_blocks, :num_txs, :num_accounts, :num_assets, :num_stakes, :num_validators]
 
-  field :num_blocks, 2, repeated: true, type: :uint64
-  field :num_txs, 3, repeated: true, type: :uint64
-  field :num_accounts, 4, repeated: true, type: :uint32
-  field :num_assets, 5, repeated: true, type: :uint32
-  field :num_stakes, 6, repeated: true, type: ForgeAbi.BigUint
-  field :num_validators, 7, repeated: true, type: :uint32
+  field :num_blocks, 1, repeated: true, type: :uint64
+  field :num_txs, 2, repeated: true, type: :uint64
+  field :num_accounts, 3, repeated: true, type: :uint32
+  field :num_assets, 4, repeated: true, type: :uint32
+  field :num_stakes, 5, repeated: true, type: ForgeAbi.BigUint
+  field :num_validators, 6, repeated: true, type: :uint32
 end

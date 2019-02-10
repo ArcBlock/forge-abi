@@ -103,6 +103,8 @@
 - name: statistics_state
   type: output
   fields:
+    - name: address
+      type: string
     - name: num_blocks
       type: int
     - name: num_txs
