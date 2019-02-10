@@ -1,3 +1,6 @@
+## 1.2.2 (February 10, 2019)
+  - added forge_app_hash in forge_state.
+
 ## 1.2.1 (February 10, 2019)
   - add address in statistics state.
   - separate get forge statistics api into three apis
