@@ -1,3 +1,6 @@
+## 1.2.3 (February 10, 2019)
+  - add app hash in info message
+
 ## 1.2.2 (February 10, 2019)
   - added forge_app_hash in forge_state.
 
