@@ -42,7 +42,10 @@ message ResponseUpdateState {
 
 message RequestInfo { string forge_version = 1; }
 
-message ResponseInfo { repeated string type_urls = 1; }
+message ResponseInfo {
+  repeated string type_urls = 1;
+  bytes app_hash = 2;
+}
 
 // Socket / GRPC API Request & Response (Forge acts as a client for Forge
 // server)
