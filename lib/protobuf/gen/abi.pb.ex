@@ -91,11 +91,13 @@ defmodule ForgeAbi.ResponseInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          type_urls: [String.t()]
+          type_urls: [String.t()],
+          app_hash: String.t()
         }
-  defstruct [:type_urls]
+  defstruct [:type_urls, :app_hash]
 
   field :type_urls, 1, repeated: true, type: :string
+  field :app_hash, 2, type: :bytes
 end
 
 defmodule ForgeAbi.Request do
