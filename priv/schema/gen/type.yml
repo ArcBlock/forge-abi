@@ -135,6 +135,8 @@
       type: timestamp
     - name: total_txs
       type: int
+    - name: tx_statistics
+      type: tx_statistics
   
 - name: transaction
   type: output
@@ -339,12 +341,52 @@
       type: [int]
     - name: num_txs
       type: [int]
-    - name: num_accounts
-      type: [int]
-    - name: num_assets
-      type: [int]
     - name: num_stakes
       type: [string]
     - name: num_validators
       type: [int]
+    - name: num_account_migrate_txs
+      type: [int]
+    - name: num_create_asset_txs
+      type: [int]
+    - name: num_consensus_upgrade_txs
+      type: [int]
+    - name: num_declare_txs
+      type: [int]
+    - name: num_declare_file_txs
+      type: [int]
+    - name: num_exchange_txs
+      type: [int]
+    - name: num_stake_txs
+      type: [int]
+    - name: num_sys_upgrade_txs
+      type: [int]
+    - name: num_transfer_txs
+      type: [int]
+    - name: num_update_asset_txs
+      type: [int]
+  
+- name: tx_statistics
+  type: output
+  fields:
+    - name: num_account_migrate_txs
+      type: int
+    - name: num_create_asset_txs
+      type: int
+    - name: num_consensus_upgrade_txs
+      type: int
+    - name: num_declare_txs
+      type: int
+    - name: num_declare_file_txs
+      type: int
+    - name: num_exchange_txs
+      type: int
+    - name: num_stake_txs
+      type: int
+    - name: num_sys_upgrade_txs
+      type: int
+    - name: num_transfer_txs
+      type: int
+    - name: num_update_asset_txs
+      type: int
   
