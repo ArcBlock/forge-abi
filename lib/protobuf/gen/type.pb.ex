@@ -575,7 +575,7 @@ defmodule ForgeAbi.ForgeStatistics do
   field :num_stakes, 3, repeated: true, type: ForgeAbi.BigUint
   field :num_validators, 4, repeated: true, type: :uint32
   field :num_account_migrate_txs, 5, repeated: true, type: :uint64
-  field :num_create_asset_txs, 6, repeated: true, type: :uint32
+  field :num_create_asset_txs, 6, repeated: true, type: :uint64
   field :num_consensus_upgrade_txs, 7, repeated: true, type: :uint32
   field :num_declare_txs, 8, repeated: true, type: :uint64
   field :num_declare_file_txs, 9, repeated: true, type: :uint64
@@ -583,7 +583,7 @@ defmodule ForgeAbi.ForgeStatistics do
   field :num_stake_txs, 11, repeated: true, type: :uint64
   field :num_sys_upgrade_txs, 12, repeated: true, type: :uint32
   field :num_transfer_txs, 13, repeated: true, type: :uint64
-  field :num_update_asset_txs, 14, repeated: true, type: :uint32
+  field :num_update_asset_txs, 14, repeated: true, type: :uint64
 end
 
 defmodule ForgeAbi.TxStatistics do
@@ -616,7 +616,7 @@ defmodule ForgeAbi.TxStatistics do
   ]
 
   field :num_account_migrate_txs, 1, type: :uint64
-  field :num_create_asset_txs, 2, type: :uint32
+  field :num_create_asset_txs, 2, type: :uint64
   field :num_consensus_upgrade_txs, 3, type: :uint32
   field :num_declare_txs, 4, type: :uint64
   field :num_declare_file_txs, 5, type: :uint64
@@ -624,5 +624,5 @@ defmodule ForgeAbi.TxStatistics do
   field :num_stake_txs, 7, type: :uint64
   field :num_sys_upgrade_txs, 8, type: :uint32
   field :num_transfer_txs, 9, type: :uint64
-  field :num_update_asset_txs, 10, type: :uint32
+  field :num_update_asset_txs, 10, type: :uint64
 end
