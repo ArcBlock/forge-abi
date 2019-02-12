@@ -223,14 +223,16 @@ defmodule ForgeAbi.AbciContext do
           tx_hash: String.t(),
           block_height: non_neg_integer,
           block_time: Google.Protobuf.Timestamp.t(),
-          total_txs: non_neg_integer
+          total_txs: non_neg_integer,
+          tx_statistics: ForgeAbi.TxStatistics.t()
         }
-  defstruct [:tx_hash, :block_height, :block_time, :total_txs]
+  defstruct [:tx_hash, :block_height, :block_time, :total_txs, :tx_statistics]
 
   field :tx_hash, 1, type: :string
   field :block_height, 2, type: :uint64
   field :block_time, 3, type: Google.Protobuf.Timestamp
   field :total_txs, 4, type: :uint64
+  field :tx_statistics, 5, type: ForgeAbi.TxStatistics
 end
 
 defmodule ForgeAbi.Transaction do
@@ -551,4 +553,18 @@ defmodule ForgeAbi.ForgeStatistics do
   field :num_assets, 4, repeated: true, type: :uint32
   field :num_stakes, 5, repeated: true, type: ForgeAbi.BigUint
   field :num_validators, 6, repeated: true, type: :uint32
+end
+
+defmodule ForgeAbi.TxStatistics do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          num_accounts: non_neg_integer,
+          num_assets: non_neg_integer
+        }
+  defstruct [:num_accounts, :num_assets]
+
+  field :num_accounts, 1, type: :uint32
+  field :num_assets, 2, type: :uint32
 end

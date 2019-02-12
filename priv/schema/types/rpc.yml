@@ -6,7 +6,7 @@
     - name: address
       type: [string]
 
-- name: request_get_forge_statistics
+- name: request_get_forge_statistics_real_time
   type: input
 
   fields: []

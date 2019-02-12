@@ -86,6 +86,8 @@ message AbciContext {
   google.protobuf.Timestamp block_time = 3;
   // the total txs of the chain.
   uint64 total_txs = 4;
+  // tx statistics
+  TxStatistics tx_statistics = 5;
 }
 
 message Transaction {
@@ -229,4 +231,9 @@ message ForgeStatistics {
   repeated uint32 num_assets = 4;
   repeated BigUint num_stakes = 5;
   repeated uint32 num_validators = 6;
+}
+
+message TxStatistics {
+  uint32 num_accounts = 1;
+  uint32 num_assets = 2;
 }

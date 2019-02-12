@@ -135,6 +135,8 @@
       type: timestamp
     - name: total_txs
       type: int
+    - name: tx_statistics
+      type: tx_statistics
   
 - name: transaction
   type: output
@@ -347,4 +349,12 @@
       type: [string]
     - name: num_validators
       type: [int]
+  
+- name: tx_statistics
+  type: output
+  fields:
+    - name: num_accounts
+      type: int
+    - name: num_assets
+      type: int
   
