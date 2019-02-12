@@ -45,6 +45,7 @@ defmodule ForgeAbi.Util.TypeUrl do
 
   # other
   alias ForgeAbi.{
+    Transaction,
     TransactionInfo,
     TxStatus
   }
