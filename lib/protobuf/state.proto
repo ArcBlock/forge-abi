@@ -80,8 +80,10 @@ message StatisticsState {
   string address = 1;
   uint64 num_blocks = 2;
   uint64 num_txs = 3;
-  uint32 num_accounts = 4;
+  uint64 num_accounts = 4;
   uint32 num_assets = 5;
   BigUint num_stakes = 6;
   uint32 num_validators = 7;
+  uint64 num_transfers = 8;
+  uint64 num_exchanges = 9;
 }

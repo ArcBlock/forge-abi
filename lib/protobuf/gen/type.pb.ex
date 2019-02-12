@@ -543,16 +543,29 @@ defmodule ForgeAbi.ForgeStatistics do
           num_accounts: [non_neg_integer],
           num_assets: [non_neg_integer],
           num_stakes: [ForgeAbi.BigUint.t()],
-          num_validators: [non_neg_integer]
+          num_validators: [non_neg_integer],
+          num_transfers: [non_neg_integer],
+          num_exchanges: [non_neg_integer]
         }
-  defstruct [:num_blocks, :num_txs, :num_accounts, :num_assets, :num_stakes, :num_validators]
+  defstruct [
+    :num_blocks,
+    :num_txs,
+    :num_accounts,
+    :num_assets,
+    :num_stakes,
+    :num_validators,
+    :num_transfers,
+    :num_exchanges
+  ]
 
   field :num_blocks, 1, repeated: true, type: :uint64
   field :num_txs, 2, repeated: true, type: :uint64
-  field :num_accounts, 3, repeated: true, type: :uint32
+  field :num_accounts, 3, repeated: true, type: :uint64
   field :num_assets, 4, repeated: true, type: :uint32
   field :num_stakes, 5, repeated: true, type: ForgeAbi.BigUint
   field :num_validators, 6, repeated: true, type: :uint32
+  field :num_transfers, 7, repeated: true, type: :uint64
+  field :num_exchanges, 8, repeated: true, type: :uint64
 end
 
 defmodule ForgeAbi.TxStatistics do
@@ -561,10 +574,14 @@ defmodule ForgeAbi.TxStatistics do
 
   @type t :: %__MODULE__{
           num_accounts: non_neg_integer,
-          num_assets: non_neg_integer
+          num_assets: non_neg_integer,
+          num_transfers: non_neg_integer,
+          num_exchanges: non_neg_integer
         }
-  defstruct [:num_accounts, :num_assets]
+  defstruct [:num_accounts, :num_assets, :num_transfers, :num_exchanges]
 
-  field :num_accounts, 1, type: :uint32
+  field :num_accounts, 1, type: :uint64
   field :num_assets, 2, type: :uint32
+  field :num_transfers, 3, type: :uint64
+  field :num_exchanges, 4, type: :uint64
 end

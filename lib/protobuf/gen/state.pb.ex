@@ -173,7 +173,9 @@ defmodule ForgeAbi.StatisticsState do
           num_accounts: non_neg_integer,
           num_assets: non_neg_integer,
           num_stakes: ForgeAbi.BigUint.t(),
-          num_validators: non_neg_integer
+          num_validators: non_neg_integer,
+          num_transfers: non_neg_integer,
+          num_exchanges: non_neg_integer
         }
   defstruct [
     :address,
@@ -182,14 +184,18 @@ defmodule ForgeAbi.StatisticsState do
     :num_accounts,
     :num_assets,
     :num_stakes,
-    :num_validators
+    :num_validators,
+    :num_transfers,
+    :num_exchanges
   ]
 
   field :address, 1, type: :string
   field :num_blocks, 2, type: :uint64
   field :num_txs, 3, type: :uint64
-  field :num_accounts, 4, type: :uint32
+  field :num_accounts, 4, type: :uint64
   field :num_assets, 5, type: :uint32
   field :num_stakes, 6, type: ForgeAbi.BigUint
   field :num_validators, 7, type: :uint32
+  field :num_transfers, 8, type: :uint64
+  field :num_exchanges, 9, type: :uint64
 end

@@ -119,4 +119,8 @@
       type: string
     - name: num_validators
       type: int
+    - name: num_transfers
+      type: int
+    - name: num_exchanges
+      type: int
   
