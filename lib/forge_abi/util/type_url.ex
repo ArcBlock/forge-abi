@@ -45,6 +45,7 @@ defmodule ForgeAbi.Util.TypeUrl do
 
   # other
   alias ForgeAbi.{
+    Transaction,
     TransactionInfo,
     TxStatus
   }
@@ -78,6 +79,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {:stake_for_chain, "fg:x:stake_chain", StakeForChain},
 
     # other type url
+    {:transaction, "fg:x:tx", Transaction},
     {:transaction_info, "fg:x:transaction_info", TransactionInfo},
     {:tx_status, "fg:x:tx_status", TxStatus},
     {:address, "fg:x:address", DummyCodec}
