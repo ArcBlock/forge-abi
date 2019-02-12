@@ -540,32 +540,50 @@ defmodule ForgeAbi.ForgeStatistics do
   @type t :: %__MODULE__{
           num_blocks: [non_neg_integer],
           num_txs: [non_neg_integer],
-          num_accounts: [non_neg_integer],
-          num_assets: [non_neg_integer],
           num_stakes: [ForgeAbi.BigUint.t()],
           num_validators: [non_neg_integer],
-          num_transfers: [non_neg_integer],
-          num_exchanges: [non_neg_integer]
+          num_account_migrate_txs: [non_neg_integer],
+          num_create_asset_txs: [non_neg_integer],
+          num_consensus_upgrade_txs: [non_neg_integer],
+          num_declare_txs: [non_neg_integer],
+          num_declare_file_txs: [non_neg_integer],
+          num_exchange_txs: [non_neg_integer],
+          num_stake_txs: [non_neg_integer],
+          num_sys_upgrade_txs: [non_neg_integer],
+          num_transfer_txs: [non_neg_integer],
+          num_update_asset_txs: [non_neg_integer]
         }
   defstruct [
     :num_blocks,
     :num_txs,
-    :num_accounts,
-    :num_assets,
     :num_stakes,
     :num_validators,
-    :num_transfers,
-    :num_exchanges
+    :num_account_migrate_txs,
+    :num_create_asset_txs,
+    :num_consensus_upgrade_txs,
+    :num_declare_txs,
+    :num_declare_file_txs,
+    :num_exchange_txs,
+    :num_stake_txs,
+    :num_sys_upgrade_txs,
+    :num_transfer_txs,
+    :num_update_asset_txs
   ]
 
   field :num_blocks, 1, repeated: true, type: :uint64
   field :num_txs, 2, repeated: true, type: :uint64
-  field :num_accounts, 3, repeated: true, type: :uint64
-  field :num_assets, 4, repeated: true, type: :uint32
-  field :num_stakes, 5, repeated: true, type: ForgeAbi.BigUint
-  field :num_validators, 6, repeated: true, type: :uint32
-  field :num_transfers, 7, repeated: true, type: :uint64
-  field :num_exchanges, 8, repeated: true, type: :uint64
+  field :num_stakes, 3, repeated: true, type: ForgeAbi.BigUint
+  field :num_validators, 4, repeated: true, type: :uint32
+  field :num_account_migrate_txs, 5, repeated: true, type: :uint64
+  field :num_create_asset_txs, 6, repeated: true, type: :uint32
+  field :num_consensus_upgrade_txs, 7, repeated: true, type: :uint32
+  field :num_declare_txs, 8, repeated: true, type: :uint64
+  field :num_declare_file_txs, 9, repeated: true, type: :uint64
+  field :num_exchange_txs, 10, repeated: true, type: :uint64
+  field :num_stake_txs, 11, repeated: true, type: :uint64
+  field :num_sys_upgrade_txs, 12, repeated: true, type: :uint32
+  field :num_transfer_txs, 13, repeated: true, type: :uint64
+  field :num_update_asset_txs, 14, repeated: true, type: :uint32
 end
 
 defmodule ForgeAbi.TxStatistics do
@@ -573,15 +591,38 @@ defmodule ForgeAbi.TxStatistics do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          num_accounts: non_neg_integer,
-          num_assets: non_neg_integer,
-          num_transfers: non_neg_integer,
-          num_exchanges: non_neg_integer
+          num_account_migrate_txs: non_neg_integer,
+          num_create_asset_txs: non_neg_integer,
+          num_consensus_upgrade_txs: non_neg_integer,
+          num_declare_txs: non_neg_integer,
+          num_declare_file_txs: non_neg_integer,
+          num_exchange_txs: non_neg_integer,
+          num_stake_txs: non_neg_integer,
+          num_sys_upgrade_txs: non_neg_integer,
+          num_transfer_txs: non_neg_integer,
+          num_update_asset_txs: non_neg_integer
         }
-  defstruct [:num_accounts, :num_assets, :num_transfers, :num_exchanges]
+  defstruct [
+    :num_account_migrate_txs,
+    :num_create_asset_txs,
+    :num_consensus_upgrade_txs,
+    :num_declare_txs,
+    :num_declare_file_txs,
+    :num_exchange_txs,
+    :num_stake_txs,
+    :num_sys_upgrade_txs,
+    :num_transfer_txs,
+    :num_update_asset_txs
+  ]
 
-  field :num_accounts, 1, type: :uint64
-  field :num_assets, 2, type: :uint32
-  field :num_transfers, 3, type: :uint64
-  field :num_exchanges, 4, type: :uint64
+  field :num_account_migrate_txs, 1, type: :uint64
+  field :num_create_asset_txs, 2, type: :uint32
+  field :num_consensus_upgrade_txs, 3, type: :uint32
+  field :num_declare_txs, 4, type: :uint64
+  field :num_declare_file_txs, 5, type: :uint64
+  field :num_exchange_txs, 6, type: :uint64
+  field :num_stake_txs, 7, type: :uint64
+  field :num_sys_upgrade_txs, 8, type: :uint32
+  field :num_transfer_txs, 9, type: :uint64
+  field :num_update_asset_txs, 10, type: :uint32
 end

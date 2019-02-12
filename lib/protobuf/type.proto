@@ -227,17 +227,29 @@ message GenesisInfo {
 message ForgeStatistics {
   repeated uint64 num_blocks = 1;
   repeated uint64 num_txs = 2;
-  repeated uint64 num_accounts = 3;
-  repeated uint32 num_assets = 4;
-  repeated BigUint num_stakes = 5;
-  repeated uint32 num_validators = 6;
-  repeated uint64 num_transfers = 7;
-  repeated uint64 num_exchanges = 8;
+  repeated BigUint num_stakes = 3;
+  repeated uint32 num_validators = 4;
+  repeated uint64  num_account_migrate_txs = 5;
+  repeated uint32  num_create_asset_txs = 6;
+  repeated uint32  num_consensus_upgrade_txs = 7;
+  repeated uint64  num_declare_txs = 8;
+  repeated uint64  num_declare_file_txs = 9;
+  repeated uint64  num_exchange_txs = 10;
+  repeated uint64  num_stake_txs = 11;
+  repeated uint32  num_sys_upgrade_txs = 12;
+  repeated uint64  num_transfer_txs = 13;
+  repeated uint32  num_update_asset_txs = 14;
 }
 
 message TxStatistics {
-  uint64 num_accounts = 1;
-  uint32 num_assets = 2;
-  uint64 num_transfers = 3;
-  uint64 num_exchanges = 4;
+  uint64  num_account_migrate_txs = 1;
+  uint32  num_create_asset_txs = 2;
+  uint32  num_consensus_upgrade_txs = 3;
+  uint64  num_declare_txs = 4;
+  uint64  num_declare_file_txs = 5;
+  uint64  num_exchange_txs = 6;
+  uint64  num_stake_txs = 7;
+  uint32  num_sys_upgrade_txs = 8;
+  uint64  num_transfer_txs = 9;
+  uint32  num_update_asset_txs = 10;
 }
