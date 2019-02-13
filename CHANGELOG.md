@@ -1,3 +1,9 @@
+## 1.2.4 (February 13, 2019)
+  - add status code in tx info (#12)
+  - add tx_index in abci context (#11)
+  - add transaction type url. (#10)
+  - add pipes to accumulate the statistics of tx and states (#9)
+
 ## 1.2.3 (February 10, 2019)
   - add app hash in info message
 
