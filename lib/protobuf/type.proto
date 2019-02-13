@@ -87,7 +87,8 @@ message AbciContext {
   // the total txs of the chain.
   uint64 total_txs = 4;
   // tx statistics
-  TxStatistics tx_statistics = 5;
+	TxStatistics tx_statistics = 5;
+	uint32 tx_index = 6;
 }
 
 message Transaction {

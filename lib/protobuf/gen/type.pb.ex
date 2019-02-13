@@ -224,15 +224,17 @@ defmodule ForgeAbi.AbciContext do
           block_height: non_neg_integer,
           block_time: Google.Protobuf.Timestamp.t(),
           total_txs: non_neg_integer,
-          tx_statistics: ForgeAbi.TxStatistics.t()
+          tx_statistics: ForgeAbi.TxStatistics.t(),
+          tx_index: non_neg_integer
         }
-  defstruct [:tx_hash, :block_height, :block_time, :total_txs, :tx_statistics]
+  defstruct [:tx_hash, :block_height, :block_time, :total_txs, :tx_statistics, :tx_index]
 
   field :tx_hash, 1, type: :string
   field :block_height, 2, type: :uint64
   field :block_time, 3, type: Google.Protobuf.Timestamp
   field :total_txs, 4, type: :uint64
   field :tx_statistics, 5, type: ForgeAbi.TxStatistics
+  field :tx_index, 6, type: :uint32
 end
 
 defmodule ForgeAbi.Transaction do
