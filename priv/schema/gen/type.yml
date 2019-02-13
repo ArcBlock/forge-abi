@@ -169,6 +169,8 @@
       type: string
     - name: tags
       type: [kv_pair]
+    - name: code
+      type: status_code
   
 - name: block_info
   type: output

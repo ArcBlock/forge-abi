@@ -268,15 +268,17 @@ defmodule ForgeAbi.TransactionInfo do
           height: non_neg_integer,
           index: non_neg_integer,
           hash: String.t(),
-          tags: [AbciVendor.KVPair.t()]
+          tags: [AbciVendor.KVPair.t()],
+          code: integer
         }
-  defstruct [:tx, :height, :index, :hash, :tags]
+  defstruct [:tx, :height, :index, :hash, :tags, :code]
 
   field :tx, 1, type: ForgeAbi.Transaction
   field :height, 2, type: :uint64
   field :index, 3, type: :uint32
   field :hash, 4, type: :string
   field :tags, 5, repeated: true, type: AbciVendor.KVPair
+  field :code, 6, type: ForgeAbi.StatusCode, enum: true
 end
 
 defmodule ForgeAbi.BlockInfo do
