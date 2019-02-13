@@ -137,6 +137,8 @@
       type: int
     - name: tx_statistics
       type: tx_statistics
+    - name: tx_index
+      type: int
   
 - name: transaction
   type: output

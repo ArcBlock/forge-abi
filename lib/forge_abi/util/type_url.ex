@@ -80,7 +80,7 @@ defmodule ForgeAbi.Util.TypeUrl do
 
     # other type url
     {:transaction, "fg:x:tx", Transaction},
-    {:transaction_info, "fg:x:transaction_info", TransactionInfo},
+    {:transaction_info, "fg:x:tx_info", TransactionInfo},
     {:tx_status, "fg:x:tx_status", TxStatus},
     {:address, "fg:x:address", DummyCodec}
   ]
