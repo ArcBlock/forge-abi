@@ -19,7 +19,7 @@
       type: string
     - name: type
       type: string
-  
+
 - name: page_input
   type: input
   fields:
@@ -29,13 +29,13 @@
       type: int
     - name: order
       type: [page_order]
-  
+
 - name: type_filter
   type: input
   fields:
     - name: types
       type: [string]
-  
+
 - name: time_filter
   type: input
   fields:
@@ -43,7 +43,7 @@
       type: string
     - name: end_date_time
       type: string
-  
+
 - name: address_filter
   type: input
   fields:
