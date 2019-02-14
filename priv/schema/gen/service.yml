@@ -47,6 +47,10 @@
   type: query
   return: response_get_config
   params: request_get_config
+- name: get_asset_address
+  type: query
+  return: response_get_asset_address
+  params: request_get_asset_address
 
 
 - name: subscribe

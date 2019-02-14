@@ -7,6 +7,7 @@ import "vendor.proto";
 import "enum.proto";
 import "type.proto";
 import "state.proto";
+import "tx.proto";
 
 // Request / Response message definition
 
@@ -326,4 +327,15 @@ message ResponseListTransactions {
   StatusCode code = 1;
   PageInfo page = 2;
   repeated IndexedTransaction transactions = 3;
+}
+
+message RequestGetAssetAddress {
+  string sender_address = 1;
+  CreateAssetTx itx = 2;
+  WalletType wallet_type = 3;
+}
+
+message ResponseGetAssetAddress {
+  StatusCode code = 1;
+  string asset_address = 2;
 }

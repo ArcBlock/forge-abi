@@ -831,3 +831,33 @@ defmodule ForgeAbi.ResponseListTransactions do
   field :page, 2, type: ForgeAbi.PageInfo
   field :transactions, 3, repeated: true, type: ForgeAbi.IndexedTransaction
 end
+
+defmodule ForgeAbi.RequestGetAssetAddress do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          sender_address: String.t(),
+          itx: ForgeAbi.CreateAssetTx.t(),
+          wallet_type: ForgeAbi.WalletType.t()
+        }
+  defstruct [:sender_address, :itx, :wallet_type]
+
+  field :sender_address, 1, type: :string
+  field :itx, 2, type: ForgeAbi.CreateAssetTx
+  field :wallet_type, 3, type: ForgeAbi.WalletType
+end
+
+defmodule ForgeAbi.ResponseGetAssetAddress do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          asset_address: String.t()
+        }
+  defstruct [:code, :asset_address]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :asset_address, 2, type: :string
+end
