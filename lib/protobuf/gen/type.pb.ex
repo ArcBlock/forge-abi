@@ -630,3 +630,111 @@ defmodule ForgeAbi.TxStatistics do
   field :num_transfer_txs, 9, type: :uint64
   field :num_update_asset_txs, 10, type: :uint64
 end
+
+defmodule ForgeAbi.PageOrder do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          field: String.t(),
+          type: String.t()
+        }
+  defstruct [:field, :type]
+
+  field :field, 1, type: :string
+  field :type, 2, type: :string
+end
+
+defmodule ForgeAbi.PageInput do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          cursor: String.t(),
+          size: non_neg_integer,
+          order: [ForgeAbi.PageOrder.t()]
+        }
+  defstruct [:cursor, :size, :order]
+
+  field :cursor, 1, type: :string
+  field :size, 2, type: :uint32
+  field :order, 3, repeated: true, type: ForgeAbi.PageOrder
+end
+
+defmodule ForgeAbi.TypeFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          types: [String.t()]
+        }
+  defstruct [:types]
+
+  field :types, 1, repeated: true, type: :string
+end
+
+defmodule ForgeAbi.TimeFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          start_date_time: String.t(),
+          end_date_time: String.t()
+        }
+  defstruct [:start_date_time, :end_date_time]
+
+  field :start_date_time, 1, type: :string
+  field :end_date_time, 2, type: :string
+end
+
+defmodule ForgeAbi.AddressFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          sender: String.t(),
+          receiver: String.t()
+        }
+  defstruct [:sender, :receiver]
+
+  field :sender, 1, type: :string
+  field :receiver, 2, type: :string
+end
+
+defmodule ForgeAbi.PageInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          cursor: String.t(),
+          next: boolean,
+          total: non_neg_integer
+        }
+  defstruct [:cursor, :next, :total]
+
+  field :cursor, 1, type: :string
+  field :next, 2, type: :bool
+  field :total, 3, type: :uint32
+end
+
+defmodule ForgeAbi.IndexedTransaction do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          hash: String.t(),
+          sender: String.t(),
+          receiver: String.t(),
+          time: String.t(),
+          type: String.t(),
+          data: String.t()
+        }
+  defstruct [:hash, :sender, :receiver, :time, :type, :data]
+
+  field :hash, 1, type: :string
+  field :sender, 2, type: :string
+  field :receiver, 3, type: :string
+  field :time, 4, type: :string
+  field :type, 5, type: :string
+  field :data, 6, type: :string
+end

@@ -487,3 +487,25 @@
     - name: forge_statistics
       type: forge_statistics
   
+- name: request_list_transactions
+  type: input
+  fields:
+    - name: paging
+      type: page_input
+    - name: time_filter
+      type: time_filter
+    - name: address_filter
+      type: address_filter
+    - name: type_filter
+      type: type_filter
+  
+- name: response_list_transactions
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: page
+      type: page_info
+    - name: transactions
+      type: [indexed_transaction]
+  

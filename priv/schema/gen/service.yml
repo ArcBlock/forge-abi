@@ -121,3 +121,7 @@
   type: query
   return: response_get_forge_statistics
   params: request_get_forge_statistics
+- name: list_transactions
+  type: query
+  return: response_list_transactions
+  params: request_list_transactions

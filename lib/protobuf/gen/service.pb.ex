@@ -96,6 +96,8 @@ defmodule ForgeAbi.StatisticRpc.Service do
   rpc :get_forge_statistics,
       ForgeAbi.RequestGetForgeStatistics,
       ForgeAbi.ResponseGetForgeStatistics
+
+  rpc :list_transactions, ForgeAbi.RequestListTransactions, ForgeAbi.ResponseListTransactions
 end
 
 defmodule ForgeAbi.StatisticRpc.Stub do
