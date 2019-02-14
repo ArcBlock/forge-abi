@@ -797,3 +797,37 @@ defmodule ForgeAbi.ResponseGetForgeStatistics do
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :forge_statistics, 2, type: ForgeAbi.ForgeStatistics
 end
+
+defmodule ForgeAbi.RequestListTransactions do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t(),
+          time_filter: ForgeAbi.TimeFilter.t(),
+          address_filter: ForgeAbi.AddressFilter.t(),
+          type_filter: ForgeAbi.TypeFilter.t()
+        }
+  defstruct [:paging, :time_filter, :address_filter, :type_filter]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :time_filter, 2, type: ForgeAbi.TimeFilter
+  field :address_filter, 3, type: ForgeAbi.AddressFilter
+  field :type_filter, 4, type: ForgeAbi.TypeFilter
+end
+
+defmodule ForgeAbi.ResponseListTransactions do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          page: ForgeAbi.PageInfo.t(),
+          transactions: [ForgeAbi.IndexedTransaction.t()]
+        }
+  defstruct [:code, :page, :transactions]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :transactions, 3, repeated: true, type: ForgeAbi.IndexedTransaction
+end

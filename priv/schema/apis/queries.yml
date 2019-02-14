@@ -13,3 +13,16 @@
   type: query
   return: response_get_forge_statistics
   params: request_get_forge_statistics_by_day
+
+- name: list_transactions
+  type: query
+  return: response_list_transactions
+  params:
+    - name: paging
+      type: page_input
+    - name: time_filter
+      type: time_filter
+    - name: address_filter
+      type: address_filter
+    - name: type_filter
+      type: type_filter

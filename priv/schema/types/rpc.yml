@@ -24,3 +24,9 @@
       type: string
     - name: end_date
       type: string
+
+- name: request_get_forge_statistics_by_hour
+  type: input
+  fields:
+    - name: date
+      type: string

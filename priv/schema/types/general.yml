@@ -11,3 +11,43 @@
       type: timestamp
     - name: renaissance_time
       type: timestamp
+
+- name: page_order
+  type: input
+  fields:
+    - name: field
+      type: string
+    - name: type
+      type: string
+  
+- name: page_input
+  type: input
+  fields:
+    - name: cursor
+      type: string
+    - name: size
+      type: int
+    - name: order
+      type: [page_order]
+  
+- name: type_filter
+  type: input
+  fields:
+    - name: types
+      type: [string]
+  
+- name: time_filter
+  type: input
+  fields:
+    - name: start_date_time
+      type: string
+    - name: end_date_time
+      type: string
+  
+- name: address_filter
+  type: input
+  fields:
+    - name: sender
+      type: string
+    - name: receiver
+      type: string
