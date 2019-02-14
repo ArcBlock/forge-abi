@@ -457,6 +457,6 @@
       type: string
     - name: type
       type: string
-    - name: data
-      type: string
+    - name: tx
+      type: transaction
   

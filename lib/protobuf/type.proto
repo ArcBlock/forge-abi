@@ -293,5 +293,5 @@ message IndexedTransaction {
   string receiver = 3;
   string time = 4;
   string type = 5;
-  string data = 6;
+  Transaction tx = 6;
 }

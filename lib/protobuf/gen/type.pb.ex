@@ -727,14 +727,14 @@ defmodule ForgeAbi.IndexedTransaction do
           receiver: String.t(),
           time: String.t(),
           type: String.t(),
-          data: String.t()
+          tx: ForgeAbi.Transaction.t()
         }
-  defstruct [:hash, :sender, :receiver, :time, :type, :data]
+  defstruct [:hash, :sender, :receiver, :time, :type, :tx]
 
   field :hash, 1, type: :string
   field :sender, 2, type: :string
   field :receiver, 3, type: :string
   field :time, 4, type: :string
   field :type, 5, type: :string
-  field :data, 6, type: :string
+  field :tx, 6, type: ForgeAbi.Transaction
 end
