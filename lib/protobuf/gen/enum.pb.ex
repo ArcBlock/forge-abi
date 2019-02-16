@@ -51,6 +51,7 @@ defmodule ForgeAbi.TopicType do
   field :consensus_upgrade, 21
   field :declare_file, 22
   field :sys_upgrade, 23
+  field :application, 24
   field :account_state, 129
   field :asset_state, 130
   field :forge_state, 131

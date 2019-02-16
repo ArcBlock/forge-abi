@@ -91,6 +91,8 @@
       meta: value=22
     - type: sys_upgrade
       meta: value=23
+    - type: application
+      meta: value=24
     - type: account_state
       meta: value=129
     - type: asset_state
