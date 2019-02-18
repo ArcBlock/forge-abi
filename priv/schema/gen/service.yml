@@ -51,6 +51,10 @@
   type: query
   return: response_get_asset_address
   params: request_get_asset_address
+- name: sign_data
+  type: query
+  return: response_sign_data
+  params: request_sign_data
 
 
 - name: subscribe

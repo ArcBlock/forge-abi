@@ -527,3 +527,21 @@
     - name: asset_address
       type: string
   
+- name: request_sign_data
+  type: input
+  fields:
+    - name: data
+      type: string
+    - name: wallet
+      type: wallet_info
+    - name: token
+      type: string
+  
+- name: response_sign_data
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: signed_data
+      type: string
+  

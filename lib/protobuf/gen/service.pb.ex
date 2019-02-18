@@ -15,6 +15,7 @@ defmodule ForgeAbi.ChainRpc.Service do
   rpc :get_validators_info, ForgeAbi.RequestGetValidatorsInfo, ForgeAbi.ResponseGetValidatorsInfo
   rpc :get_config, ForgeAbi.RequestGetConfig, ForgeAbi.ResponseGetConfig
   rpc :get_asset_address, ForgeAbi.RequestGetAssetAddress, ForgeAbi.ResponseGetAssetAddress
+  rpc :sign_data, ForgeAbi.RequestSignData, ForgeAbi.ResponseSignData
 end
 
 defmodule ForgeAbi.ChainRpc.Stub do

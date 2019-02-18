@@ -861,3 +861,33 @@ defmodule ForgeAbi.ResponseGetAssetAddress do
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :asset_address, 2, type: :string
 end
+
+defmodule ForgeAbi.RequestSignData do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          data: String.t(),
+          wallet: ForgeAbi.WalletInfo.t(),
+          token: String.t()
+        }
+  defstruct [:data, :wallet, :token]
+
+  field :data, 1, type: :bytes
+  field :wallet, 2, type: ForgeAbi.WalletInfo
+  field :token, 3, type: :string
+end
+
+defmodule ForgeAbi.ResponseSignData do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          signed_data: String.t()
+        }
+  defstruct [:code, :signed_data]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :signed_data, 2, type: :bytes
+end
