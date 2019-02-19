@@ -186,7 +186,7 @@
     - name: proposer
       type: string
     - name: txs
-      type: [transaction]
+      type: [transaction_info]
     - name: total_txs
       type: int
   
@@ -281,7 +281,7 @@
       type: string
     - name: network
       type: string
-    - name: version
+    - name: consensus_version
       type: string
     - name: moniker
       type: string

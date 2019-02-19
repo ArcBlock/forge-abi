@@ -291,7 +291,7 @@ defmodule ForgeAbi.BlockInfo do
           time: Google.Protobuf.Timestamp.t(),
           app_hash: String.t(),
           proposer: String.t(),
-          txs: [ForgeAbi.Transaction.t()],
+          txs: [ForgeAbi.TransactionInfo.t()],
           total_txs: non_neg_integer
         }
   defstruct [:height, :num_txs, :time, :app_hash, :proposer, :txs, :total_txs]
@@ -301,7 +301,7 @@ defmodule ForgeAbi.BlockInfo do
   field :time, 3, type: Google.Protobuf.Timestamp
   field :app_hash, 4, type: :string
   field :proposer, 5, type: :string
-  field :txs, 6, repeated: true, type: ForgeAbi.Transaction
+  field :txs, 6, repeated: true, type: ForgeAbi.TransactionInfo
   field :total_txs, 7, type: :uint64
 end
 
@@ -450,16 +450,16 @@ defmodule ForgeAbi.NodeInfo do
   @type t :: %__MODULE__{
           id: String.t(),
           network: String.t(),
-          version: String.t(),
+          consensus_version: String.t(),
           moniker: String.t(),
           ip: String.t(),
           geo_info: ForgeAbi.GeoInfo.t()
         }
-  defstruct [:id, :network, :version, :moniker, :ip, :geo_info]
+  defstruct [:id, :network, :consensus_version, :moniker, :ip, :geo_info]
 
   field :id, 1, type: :string
   field :network, 2, type: :string
-  field :version, 3, type: :string
+  field :consensus_version, 3, type: :string
   field :moniker, 4, type: :string
   field :ip, 5, type: :string
   field :geo_info, 6, type: ForgeAbi.GeoInfo
