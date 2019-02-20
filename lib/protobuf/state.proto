@@ -84,3 +84,4 @@ message StatisticsState {
   uint32 num_validators = 5;
   TxStatistics tx_statistics = 6;
 }
+

@@ -26,3 +26,28 @@
       type: address_filter
     - name: type_filter
       type: type_filter
+
+- name: get_assets
+  type: query
+  return: response_get_assets
+  params:
+    - name: paging
+      type: page_input
+    - name: owner_address
+      type: string
+
+- name: get_stakes
+  type: query
+  return: response_get_stakes
+  params:
+    - name: paging
+      type: page_input
+    - name: address_filter
+      type: address_filter
+
+- name: get_top_accounts
+  type: query
+  return: response_get_top_accounts
+  params:
+    - name: paging
+      type: page_input
