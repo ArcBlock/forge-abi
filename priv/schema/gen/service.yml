@@ -133,3 +133,15 @@
   type: query
   return: response_list_transactions
   params: request_list_transactions
+- name: get_assets
+  type: query
+  return: response_get_assets
+  params: request_get_assets
+- name: get_stakes
+  type: query
+  return: response_get_stakes
+  params: request_get_stakes
+- name: get_top_accounts
+  type: query
+  return: response_get_top_accounts
+  params: request_get_top_accounts

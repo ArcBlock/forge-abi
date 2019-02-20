@@ -1,0 +1,132 @@
+- name: page_order
+  type: output
+  fields:
+    - name: field
+      type: string
+    - name: type
+      type: string
+  
+- name: page_input
+  type: output
+  fields:
+    - name: cursor
+      type: string
+    - name: size
+      type: int
+    - name: order
+      type: [page_order]
+  
+- name: type_filter
+  type: output
+  fields:
+    - name: types
+      type: [string]
+  
+- name: time_filter
+  type: output
+  fields:
+    - name: start_date_time
+      type: string
+    - name: end_date_time
+      type: string
+  
+- name: address_filter
+  type: output
+  fields:
+    - name: sender
+      type: string
+    - name: receiver
+      type: string
+  
+- name: page_info
+  type: output
+  fields:
+    - name: cursor
+      type: string
+    - name: next
+      type: boolean
+    - name: total
+      type: int
+  
+- name: indexed_transaction
+  type: output
+  fields:
+    - name: hash
+      type: string
+    - name: sender
+      type: string
+    - name: receiver
+      type: string
+    - name: time
+      type: string
+    - name: type
+      type: string
+    - name: tx
+      type: transaction
+  
+- name: indexed_account_state
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: balance
+      type: string
+    - name: num_assets
+      type: int
+    - name: num_txs
+      type: int
+    - name: nonce
+      type: int
+    - name: genesis_time
+      type: string
+    - name: renaissance_time
+      type: string
+    - name: moniker
+      type: string
+    - name: migrated_from
+      type: string
+    - name: migrated_to
+      type: string
+    - name: total_received_stakes
+      type: string
+    - name: total_stakes
+      type: string
+    - name: total_unstakes
+      type: string
+  
+- name: indexed_asset_state
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: owner
+      type: string
+    - name: genesis_time
+      type: string
+    - name: renaissance_time
+      type: string
+    - name: moniker
+      type: string
+    - name: readonly
+      type: boolean
+  
+- name: indexed_stake_state
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: balance
+      type: string
+    - name: sender
+      type: string
+    - name: receiver
+      type: string
+    - name: genesis_time
+      type: string
+    - name: renaissance_time
+      type: string
+    - name: message
+      type: string
+    - name: type
+      type: int
+  

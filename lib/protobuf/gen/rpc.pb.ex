@@ -891,3 +891,91 @@ defmodule ForgeAbi.ResponseSignData do
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :signed_data, 2, type: :bytes
 end
+
+defmodule ForgeAbi.RequestGetAssets do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t(),
+          owner_address: String.t()
+        }
+  defstruct [:paging, :owner_address]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :owner_address, 2, type: :string
+end
+
+defmodule ForgeAbi.ResponseGetAssets do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          page: ForgeAbi.PageInfo.t(),
+          assets: [ForgeAbi.IndexedAssetState.t()]
+        }
+  defstruct [:code, :page, :assets]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :assets, 3, repeated: true, type: ForgeAbi.IndexedAssetState
+end
+
+defmodule ForgeAbi.RequestGetStakes do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t(),
+          address_filter: ForgeAbi.AddressFilter.t()
+        }
+  defstruct [:paging, :address_filter]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :address_filter, 2, type: ForgeAbi.AddressFilter
+end
+
+defmodule ForgeAbi.ResponseGetStakes do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          page: ForgeAbi.PageInfo.t(),
+          stakes: [ForgeAbi.IndexedStakeState.t()]
+        }
+  defstruct [:code, :page, :stakes]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :stakes, 3, repeated: true, type: ForgeAbi.IndexedStakeState
+end
+
+defmodule ForgeAbi.RequestGetTopAccounts do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t()
+        }
+  defstruct [:paging]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+end
+
+defmodule ForgeAbi.ResponseGetTopAccounts do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          page: ForgeAbi.PageInfo.t(),
+          accounts: [ForgeAbi.IndexedAccountState.t()]
+        }
+  defstruct [:code, :page, :accounts]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :accounts, 3, repeated: true, type: ForgeAbi.IndexedAccountState
+end
