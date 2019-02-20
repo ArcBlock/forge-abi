@@ -8,6 +8,7 @@ import "enum.proto";
 import "type.proto";
 import "state.proto";
 import "tx.proto";
+import "trace_type.proto";
 
 // Request / Response message definition
 
