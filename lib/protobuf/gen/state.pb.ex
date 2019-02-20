@@ -183,3 +183,110 @@ defmodule ForgeAbi.StatisticsState do
   field :num_validators, 5, type: :uint32
   field :tx_statistics, 6, type: ForgeAbi.TxStatistics
 end
+
+defmodule ForgeAbi.IndexedAccountState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          balance: ForgeAbi.BigUint.t(),
+          num_assets: non_neg_integer,
+          num_txs: non_neg_integer,
+          nonce: non_neg_integer,
+          genesis_time: String.t(),
+          renaissance_time: String.t(),
+          moniker: String.t(),
+          migrated_from: String.t(),
+          migrated_to: String.t(),
+          total_received_stakes: ForgeAbi.BigUint.t(),
+          total_stakes: ForgeAbi.BigUint.t(),
+          total_unstakes: ForgeAbi.BigUint.t()
+        }
+  defstruct [
+    :address,
+    :balance,
+    :num_assets,
+    :num_txs,
+    :nonce,
+    :genesis_time,
+    :renaissance_time,
+    :moniker,
+    :migrated_from,
+    :migrated_to,
+    :total_received_stakes,
+    :total_stakes,
+    :total_unstakes
+  ]
+
+  field :address, 1, type: :string
+  field :balance, 2, type: ForgeAbi.BigUint
+  field :num_assets, 3, type: :uint64
+  field :num_txs, 4, type: :uint64
+  field :nonce, 5, type: :uint64
+  field :genesis_time, 6, type: :string
+  field :renaissance_time, 7, type: :string
+  field :moniker, 8, type: :string
+  field :migrated_from, 9, type: :string
+  field :migrated_to, 10, type: :string
+  field :total_received_stakes, 11, type: ForgeAbi.BigUint
+  field :total_stakes, 12, type: ForgeAbi.BigUint
+  field :total_unstakes, 13, type: ForgeAbi.BigUint
+end
+
+defmodule ForgeAbi.IndexedAssetState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          owner: String.t(),
+          genesis_time: String.t(),
+          renaissance_time: String.t(),
+          moniker: String.t(),
+          readonly: boolean
+        }
+  defstruct [:address, :owner, :genesis_time, :renaissance_time, :moniker, :readonly]
+
+  field :address, 1, type: :string
+  field :owner, 2, type: :string
+  field :genesis_time, 3, type: :string
+  field :renaissance_time, 4, type: :string
+  field :moniker, 5, type: :string
+  field :readonly, 6, type: :bool
+end
+
+defmodule ForgeAbi.IndexedStakeState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          balance: ForgeAbi.BigUint.t(),
+          sender: String.t(),
+          receiver: String.t(),
+          genesis_time: String.t(),
+          renaissance_time: String.t(),
+          message: String.t(),
+          type: non_neg_integer
+        }
+  defstruct [
+    :address,
+    :balance,
+    :sender,
+    :receiver,
+    :genesis_time,
+    :renaissance_time,
+    :message,
+    :type
+  ]
+
+  field :address, 1, type: :string
+  field :balance, 2, type: ForgeAbi.BigUint
+  field :sender, 3, type: :string
+  field :receiver, 4, type: :string
+  field :genesis_time, 5, type: :string
+  field :renaissance_time, 6, type: :string
+  field :message, 7, type: :string
+  field :type, 8, type: :uint32
+end

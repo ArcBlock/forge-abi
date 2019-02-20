@@ -545,3 +545,55 @@
     - name: signed_data
       type: string
   
+- name: request_get_assets
+  type: input
+  fields:
+    - name: paging
+      type: page_input
+    - name: owner_address
+      type: string
+  
+- name: response_get_assets
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: page
+      type: page_info
+    - name: assets
+      type: [indexed_asset_state]
+  
+- name: request_get_stakes
+  type: input
+  fields:
+    - name: paging
+      type: page_input
+    - name: address_filter
+      type: address_filter
+  
+- name: response_get_stakes
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: page
+      type: page_info
+    - name: stakes
+      type: [indexed_stake_state]
+  
+- name: request_get_top_accounts
+  type: input
+  fields:
+    - name: paging
+      type: page_input
+  
+- name: response_get_top_accounts
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: page
+      type: page_info
+    - name: accounts
+      type: [indexed_account_state]
+  
