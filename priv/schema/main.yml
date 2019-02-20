@@ -5,6 +5,7 @@
     - gen/enum.yml
     - types/vendor.yml
     - gen/type.yml
+    - gen/trace_type.yml
     - types/general.yml
     - gen/state.yml
     - gen/tx.yml
