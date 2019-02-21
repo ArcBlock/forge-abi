@@ -24,3 +24,19 @@
       type: string
     - name: end_date
       type: string
+
+- name: request_create_tx_with_itx_type
+  type: input
+  fields:
+    - name: itx
+      type: string
+    - name: itx_type
+      type: string
+    - name: from
+      type: string
+    - name: nonce
+      type: int
+    - name: wallet
+      type: string
+    - name: token
+      type: string

@@ -15,3 +15,8 @@
       type: boolean
     - name: send
       type: string
+
+- name: create_tx
+  return: response_create_tx
+  type: mutation
+  params: request_create_tx_with_itx_type
