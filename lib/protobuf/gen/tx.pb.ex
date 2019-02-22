@@ -41,13 +41,15 @@ defmodule ForgeAbi.CreateAssetTx do
   @type t :: %__MODULE__{
           moniker: String.t(),
           data: Google.Protobuf.Any.t(),
-          readonly: boolean
+          readonly: boolean,
+          expired_at: Google.Protobuf.Timestamp.t()
         }
-  defstruct [:moniker, :data, :readonly]
+  defstruct [:moniker, :data, :readonly, :expired_at]
 
   field :moniker, 1, type: :string
   field :data, 2, type: Google.Protobuf.Any
   field :readonly, 3, type: :bool
+  field :expired_at, 4, type: Google.Protobuf.Timestamp
 end
 
 defmodule ForgeAbi.DeclareTx do
@@ -207,5 +209,19 @@ defmodule ForgeAbi.UpdateAssetTx do
 
   field :address, 1, type: :string
   field :moniker, 2, type: :string
-  field :data, 3, type: Google.Protobuf.Any
+  field :data, 15, type: Google.Protobuf.Any
+end
+
+defmodule ForgeAbi.ProveTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          data: Google.Protobuf.Any.t()
+        }
+  defstruct [:address, :data]
+
+  field :address, 1, type: :string
+  field :data, 15, type: Google.Protobuf.Any
 end

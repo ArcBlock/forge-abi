@@ -31,6 +31,8 @@
       type: any
     - name: readonly
       type: boolean
+    - name: expired_at
+      type: timestamp
   
 - name: declare_tx
   type: output
@@ -132,6 +134,14 @@
     - name: address
       type: string
     - name: moniker
+      type: string
+    - name: data
+      type: any
+  
+- name: prove_tx
+  type: output
+  fields:
+    - name: address
       type: string
     - name: data
       type: any

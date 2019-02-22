@@ -26,7 +26,8 @@ message CreateAssetTx {
   string moniker = 1;
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 2;
-  bool readonly = 3;
+	bool readonly = 3;
+	google.protobuf.Timestamp expired_at = 4;
 }
 
 message DeclareTx {
@@ -114,5 +115,12 @@ message UpdateAssetTx {
   string moniker = 2;
 
   // forge won't update data into state if app is interested in this tx.
-  google.protobuf.Any data = 3;
+  google.protobuf.Any data = 15;
 }
+
+message ProveTx {
+	string address = 1;
+
+  // forge won't update data into state if app is interested in this tx.
+  google.protobuf.Any data = 15;	
+} 

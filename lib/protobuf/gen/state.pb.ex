@@ -60,16 +60,33 @@ defmodule ForgeAbi.AssetState do
           owner: String.t(),
           moniker: String.t(),
           readonly: boolean,
+          proved: boolean,
+          transferable: boolean,
+          expired_at: Google.Protobuf.Timestamp.t(),
           stake: ForgeAbi.StakeContext.t(),
           context: ForgeAbi.StateContext.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [:address, :owner, :moniker, :readonly, :stake, :context, :data]
+  defstruct [
+    :address,
+    :owner,
+    :moniker,
+    :readonly,
+    :proved,
+    :transferable,
+    :expired_at,
+    :stake,
+    :context,
+    :data
+  ]
 
   field :address, 1, type: :string
   field :owner, 2, type: :string
   field :moniker, 3, type: :string
   field :readonly, 4, type: :bool
+  field :proved, 5, type: :bool
+  field :transferable, 6, type: :bool
+  field :expired_at, 7, type: Google.Protobuf.Timestamp
   field :stake, 13, type: ForgeAbi.StakeContext
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 50, type: Google.Protobuf.Any
@@ -87,6 +104,7 @@ defmodule ForgeAbi.ForgeState do
           version: String.t(),
           data_version: String.t(),
           forge_app_hash: String.t(),
+          root_hashes: ForgeAbi.StateRoot.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -97,6 +115,7 @@ defmodule ForgeAbi.ForgeState do
     :version,
     :data_version,
     :forge_app_hash,
+    :root_hashes,
     :data
   ]
 
@@ -107,6 +126,7 @@ defmodule ForgeAbi.ForgeState do
   field :version, 5, type: :string
   field :data_version, 6, type: :string
   field :forge_app_hash, 7, type: :bytes
+  field :root_hashes, 8, type: ForgeAbi.StateRoot
   field :data, 15, type: Google.Protobuf.Any
 end
 
