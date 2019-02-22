@@ -36,11 +36,10 @@ message AssetState {
   string address = 1;
   string owner = 2;
   string moniker = 3;
-	bool readonly = 4;
-	bool proved = 5;
-	bool transferable = 6;
-	google.protobuf.Timestamp expired_at = 7;
-
+  bool readonly = 4;
+  bool proved = 5;
+  bool transferable = 6;
+  google.protobuf.Timestamp expired_at = 7;
 
   // 5-8 is reserved
 
