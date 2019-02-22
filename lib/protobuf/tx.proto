@@ -118,7 +118,7 @@ message UpdateAssetTx {
   google.protobuf.Any data = 15;
 }
 
-message ProveTx {
+message ActivateTx {
   string address = 1;
 
   // forge won't update data into state if app is interested in this tx.

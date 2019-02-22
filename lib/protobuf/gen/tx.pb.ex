@@ -212,7 +212,7 @@ defmodule ForgeAbi.UpdateAssetTx do
   field :data, 15, type: Google.Protobuf.Any
 end
 
-defmodule ForgeAbi.ProveTx do
+defmodule ForgeAbi.ActivateTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
 

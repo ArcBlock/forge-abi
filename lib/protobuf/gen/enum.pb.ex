@@ -31,6 +31,9 @@ defmodule ForgeAbi.StatusCode do
   field :invalid_tx_size, 36
   field :invalid_signer_state, 37
   field :invalid_forge_state, 38
+  field :expired_asset, 39
+  field :untransferrable_asset, 40
+  field :readonly_asset, 41
   field :forbidden, 403
   field :internal, 500
 end
@@ -52,6 +55,7 @@ defmodule ForgeAbi.TopicType do
   field :declare_file, 22
   field :sys_upgrade, 23
   field :application, 24
+  field :activate, 25
   field :account_state, 129
   field :asset_state, 130
   field :forge_state, 131
