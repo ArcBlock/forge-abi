@@ -41,6 +41,12 @@
       type: string
     - name: readonly
       type: boolean
+    - name: proved
+      type: boolean
+    - name: transferable
+      type: boolean
+    - name: expired_at
+      type: timestamp
     - name: stake
       type: stake_context
     - name: context
@@ -65,6 +71,8 @@
       type: string
     - name: forge_app_hash
       type: string
+    - name: root_hashes
+      type: state_root
     - name: data
       type: any
   

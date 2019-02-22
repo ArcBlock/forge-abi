@@ -11,8 +11,8 @@ message AccountMigrateTx {
   WalletType type = 2; // new wallet type
 }
 
-message ConsensusUpgradeTx { 
-  repeated Validator validators = 1; 
+message ConsensusUpgradeTx {
+  repeated Validator validators = 1;
   uint64 max_bytes = 2;
   sint64 max_gas = 3;
   uint32 max_validators = 4;
@@ -27,6 +27,7 @@ message CreateAssetTx {
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 2;
   bool readonly = 3;
+  google.protobuf.Timestamp expired_at = 4;
 }
 
 message DeclareTx {
@@ -114,5 +115,12 @@ message UpdateAssetTx {
   string moniker = 2;
 
   // forge won't update data into state if app is interested in this tx.
-  google.protobuf.Any data = 3;
+  google.protobuf.Any data = 15;
+}
+
+message ProveTx {
+  string address = 1;
+
+  // forge won't update data into state if app is interested in this tx.
+  google.protobuf.Any data = 15;
 }
