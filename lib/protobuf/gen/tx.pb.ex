@@ -12,6 +12,22 @@ defmodule ForgeAbi.AccountMigrateTx do
   field :type, 2, type: ForgeAbi.WalletType
 end
 
+defmodule ForgeAbi.ActivateAssetTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          to: String.t(),
+          data: Google.Protobuf.Any.t()
+        }
+  defstruct [:address, :to, :data]
+
+  field :address, 1, type: :string
+  field :to, 2, type: :string
+  field :data, 15, type: Google.Protobuf.Any
+end
+
 defmodule ForgeAbi.ConsensusUpgradeTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -209,19 +225,5 @@ defmodule ForgeAbi.UpdateAssetTx do
 
   field :address, 1, type: :string
   field :moniker, 2, type: :string
-  field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.ActivateTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          address: String.t(),
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:address, :data]
-
-  field :address, 1, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
