@@ -256,10 +256,9 @@ message TxStatistics {
   uint64 num_update_asset_txs = 10;
 }
 
-
 // keep a list of state root for different dbs (column families).
 message StateRoot {
-	bytes account = 2;
-	bytes asset = 3;
-	bytes receipt = 4;
+  bytes account = 2;
+  bytes asset = 3;
+  bytes receipt = 4;
 }
