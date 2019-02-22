@@ -59,6 +59,12 @@
       meta: value=37
     - type: invalid_forge_state
       meta: value=38
+    - type: expired_asset
+      meta: value=39
+    - type: untransferrable_asset
+      meta: value=40
+    - type: readonly_asset
+      meta: value=41
     - type: forbidden
       meta: value=403
     - type: internal
@@ -93,6 +99,8 @@
       meta: value=23
     - type: application
       meta: value=24
+    - type: activate
+      meta: value=25
     - type: account_state
       meta: value=129
     - type: asset_state

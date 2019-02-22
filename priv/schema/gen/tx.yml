@@ -138,7 +138,7 @@
     - name: data
       type: any
   
-- name: prove_tx
+- name: activate_tx
   type: output
   fields:
     - name: address

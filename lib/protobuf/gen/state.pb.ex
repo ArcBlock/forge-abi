@@ -60,8 +60,7 @@ defmodule ForgeAbi.AssetState do
           owner: String.t(),
           moniker: String.t(),
           readonly: boolean,
-          proved: boolean,
-          transferable: boolean,
+          activated: boolean,
           expired_at: Google.Protobuf.Timestamp.t(),
           stake: ForgeAbi.StakeContext.t(),
           context: ForgeAbi.StateContext.t(),
@@ -72,8 +71,7 @@ defmodule ForgeAbi.AssetState do
     :owner,
     :moniker,
     :readonly,
-    :proved,
-    :transferable,
+    :activated,
     :expired_at,
     :stake,
     :context,
@@ -84,9 +82,8 @@ defmodule ForgeAbi.AssetState do
   field :owner, 2, type: :string
   field :moniker, 3, type: :string
   field :readonly, 4, type: :bool
-  field :proved, 5, type: :bool
-  field :transferable, 6, type: :bool
-  field :expired_at, 7, type: Google.Protobuf.Timestamp
+  field :activated, 5, type: :bool
+  field :expired_at, 6, type: Google.Protobuf.Timestamp
   field :stake, 13, type: ForgeAbi.StakeContext
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 50, type: Google.Protobuf.Any

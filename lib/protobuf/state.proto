@@ -37,11 +37,10 @@ message AssetState {
   string owner = 2;
   string moniker = 3;
   bool readonly = 4;
-  bool proved = 5;
-  bool transferable = 6;
-  google.protobuf.Timestamp expired_at = 7;
+  bool activated = 5; // once it is activated, it is untransferrable
+  google.protobuf.Timestamp expired_at = 6;
 
-  // 5-8 is reserved
+  // 7-12 is reserved
 
   StakeContext stake = 13;
   StateContext context = 14;

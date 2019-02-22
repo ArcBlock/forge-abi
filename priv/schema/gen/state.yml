@@ -41,9 +41,7 @@
       type: string
     - name: readonly
       type: boolean
-    - name: proved
-      type: boolean
-    - name: transferable
+    - name: activated
       type: boolean
     - name: expired_at
       type: timestamp
