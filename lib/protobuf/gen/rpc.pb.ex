@@ -151,13 +151,17 @@ defmodule ForgeAbi.RequestGetBlocks do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t(),
           min_height: non_neg_integer,
-          max_height: non_neg_integer
+          max_height: non_neg_integer,
+          empty_excluded: boolean
         }
-  defstruct [:min_height, :max_height]
+  defstruct [:paging, :min_height, :max_height, :empty_excluded]
 
-  field :min_height, 1, type: :uint64
-  field :max_height, 2, type: :uint64
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :min_height, 2, type: :uint64
+  field :max_height, 3, type: :uint64
+  field :empty_excluded, 4, type: :bool
 end
 
 defmodule ForgeAbi.ResponseGetBlocks do
@@ -166,12 +170,14 @@ defmodule ForgeAbi.ResponseGetBlocks do
 
   @type t :: %__MODULE__{
           code: integer,
+          page: ForgeAbi.PageInfo.t(),
           blocks: [ForgeAbi.BlockInfo.t()]
         }
-  defstruct [:code, :blocks]
+  defstruct [:code, :page, :blocks]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :blocks, 2, repeated: true, type: ForgeAbi.BlockInfo
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :blocks, 3, repeated: true, type: ForgeAbi.BlockInfo
 end
 
 defmodule ForgeAbi.RequestCreateWallet do
