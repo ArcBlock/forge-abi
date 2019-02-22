@@ -51,3 +51,16 @@
   params:
     - name: paging
       type: page_input
+
+- name: get_blocks
+  type: query
+  return: response_get_blocks
+  params:
+    - name: paging
+      type: page_input
+    - name: min_height
+      type: int
+    - name: max_height
+      type: int
+    - name: empty_excluded
+      type: boolean
