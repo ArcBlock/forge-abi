@@ -89,16 +89,22 @@
 - name: request_get_blocks
   type: input
   fields:
+    - name: paging
+      type: page_input
     - name: min_height
       type: int
     - name: max_height
       type: int
+    - name: empty_excluded
+      type: boolean
   
 - name: response_get_blocks
   type: output
   fields:
     - name: code
       type: status_code
+    - name: page
+      type: page_info
     - name: blocks
       type: [block_info]
   
