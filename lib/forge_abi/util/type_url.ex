@@ -207,8 +207,12 @@ defmodule ForgeAbi.Util.TypeUrl do
   def handle_call({:decode, %{type_url: type_url, value: value}}, _from, state) do
     decoded =
       case get_key(type_url, state) do
-        {:error, reason} -> {:error, reason}
-        {type, mod} -> {type, mod.decode(value)}
+        {:error, reason} ->
+          Logger.info("Failed to find #{type_url}. Reason: #{inspect(reason)}.")
+          {:error, reason}
+
+        {type, mod} ->
+          {type, mod.decode(value)}
       end
 
     {:reply, decoded, state}
@@ -221,8 +225,12 @@ defmodule ForgeAbi.Util.TypeUrl do
   def handle_call({:encode, type, data}, _from, state) do
     encoded =
       case get_key(type, state) do
-        {:error, reason} -> {:error, reason}
-        {type_url, mod} -> {:ok, %Any{type_url: type_url, value: mod.encode(data)}}
+        {:error, reason} ->
+          Logger.info("Failed to find #{type} in TypeUrl server. Reason: #{inspect(reason)}.")
+          {:error, reason}
+
+        {type_url, mod} ->
+          {:ok, %Any{type_url: type_url, value: mod.encode(data)}}
       end
 
     {:reply, encoded, state}
