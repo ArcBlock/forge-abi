@@ -139,6 +139,8 @@
       type: tx_statistics
     - name: tx_index
       type: int
+    - name: last_block_time
+      type: timestamp
   
 - name: transaction
   type: output
