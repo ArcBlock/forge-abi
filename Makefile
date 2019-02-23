@@ -49,7 +49,7 @@ run:
 rebuild-proto: prepare-vendor-proto
 	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/*.proto
 	@echo "recover enum.pb.ex. If you modified enum.proto, you may want to disable it."
-	# @git checkout $(TOP_DIR)/lib/protobuf/gen/enum.pb.ex
+	@git checkout $(TOP_DIR)/lib/protobuf/gen/enum.pb.ex
 	@make rebuild-goldorin
 	@echo "New protobuf files for elixir created."
 
