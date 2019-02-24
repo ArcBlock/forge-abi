@@ -25,12 +25,12 @@
     - name: end_date
       type: string
 
-- name: request_create_tx_with_itx_type
+- name: request_create_tx_with_type_url
   type: input
   fields:
     - name: itx
       type: string
-    - name: itx_type
+    - name: type_url
       type: string
     - name: from
       type: string

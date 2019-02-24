@@ -548,7 +548,7 @@
   fields:
     - name: code
       type: status_code
-    - name: signed_data
+    - name: signature
       type: string
   
 - name: request_get_assets
