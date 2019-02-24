@@ -1,3 +1,20 @@
+## 1.2.5 (February 23, 2019)
+  - add more logger.
+  - add last block time (#27)
+  - rename to activate asset tx (#26)
+  - activate is a better name for the use ticket use case. Rename it (#24)
+  - add prove tx (#22)
+  - add pagination get blocks (#23)
+  - fix resolve create and send tx (#21)
+  - support index state db related apis (#19)
+  - add data field for txs (#18)
+  - replace transaction with transactioninfo in blockinfo (#17)
+  - add grpc for signing data with wallet and token (#16)
+  - add more event topic
+  - add get_asset_address grpc (#15)
+  - add transaction field in indexed_transaction (#14)
+  - add list transaction grpc and graphql apis (#13)
+
 ## 1.2.4 (February 13, 2019)
   - add status code in tx info (#12)
   - add tx_index in abci context (#11)
