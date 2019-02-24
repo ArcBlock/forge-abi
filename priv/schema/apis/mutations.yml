@@ -19,4 +19,4 @@
 - name: create_tx
   return: response_create_tx
   type: mutation
-  params: request_create_tx_with_itx_type
+  params: request_create_tx_with_type_url

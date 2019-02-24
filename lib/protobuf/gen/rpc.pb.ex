@@ -890,12 +890,12 @@ defmodule ForgeAbi.ResponseSignData do
 
   @type t :: %__MODULE__{
           code: integer,
-          signed_data: String.t()
+          signature: String.t()
         }
-  defstruct [:code, :signed_data]
+  defstruct [:code, :signature]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :signed_data, 2, type: :bytes
+  field :signature, 2, type: :bytes
 end
 
 defmodule ForgeAbi.RequestGetAssets do
