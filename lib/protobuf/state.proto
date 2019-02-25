@@ -60,11 +60,21 @@ message ForgeState {
   string data_version = 6;
   // app state returned by forge app
   bytes forge_app_hash = 7;
-  StateRoot root_hashes = 8;
 
-  // 6-14 is reserved for future
+  // 8-14 is reserved for future
 
   google.protobuf.Any data = 15; // forge app can define their ow app state
+}
+
+// keep a list of state root for different dbs (column families).
+// RootState will be stored in the default column family, and we return the
+// root hash for default column family, thus our app_state would contain all
+// hashes from different column families.
+message RootState {
+  string address = 1;
+  bytes account = 2;
+  bytes asset = 3;
+  bytes receipt = 4;
 }
 
 message StakeState {

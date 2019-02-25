@@ -69,8 +69,6 @@
       type: string
     - name: forge_app_hash
       type: string
-    - name: root_hashes
-      type: state_root
     - name: data
       type: any
   
@@ -89,6 +87,18 @@
       type: int
     - name: value
       type: stake_summary
+  
+- name: root_state
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: account
+      type: string
+    - name: asset
+      type: string
+    - name: receipt
+      type: string
   
 - name: stake_state
   type: output

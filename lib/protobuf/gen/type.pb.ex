@@ -640,19 +640,3 @@ defmodule ForgeAbi.TxStatistics do
   field :num_transfer_txs, 9, type: :uint64
   field :num_update_asset_txs, 10, type: :uint64
 end
-
-defmodule ForgeAbi.StateRoot do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          account: String.t(),
-          asset: String.t(),
-          receipt: String.t()
-        }
-  defstruct [:account, :asset, :receipt]
-
-  field :account, 2, type: :bytes
-  field :asset, 3, type: :bytes
-  field :receipt, 4, type: :bytes
-end
