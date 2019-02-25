@@ -32,6 +32,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     AccountState,
     AssetState,
     ForgeState,
+    RootState,
     StakeState,
     StatisticsState
   }
@@ -74,6 +75,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {:forge_state, "fg:s:forge", ForgeState},
     {:stake_state, "fg:s:stake", StakeState},
     {:statistics_state, "fg:s:statistics", StatisticsState},
+    {:root_state, "fg:s:root", RootState},
 
     # forge tx stake
     {:stake_for_node, "fg:x:stake_node", StakeForNode},

@@ -354,13 +354,13 @@ defmodule ForgeAbi.RequestGetAccountState do
   @type t :: %__MODULE__{
           address: String.t(),
           keys: [String.t()],
-          app_hash: String.t()
+          height: non_neg_integer
         }
-  defstruct [:address, :keys, :app_hash]
+  defstruct [:address, :keys, :height]
 
   field :address, 1, type: :string
   field :keys, 2, repeated: true, type: :string
-  field :app_hash, 3, type: :string
+  field :height, 3, type: :uint64
 end
 
 defmodule ForgeAbi.ResponseGetAccountState do
@@ -384,13 +384,13 @@ defmodule ForgeAbi.RequestGetAssetState do
   @type t :: %__MODULE__{
           address: String.t(),
           keys: [String.t()],
-          app_hash: String.t()
+          height: non_neg_integer
         }
-  defstruct [:address, :keys, :app_hash]
+  defstruct [:address, :keys, :height]
 
   field :address, 1, type: :string
   field :keys, 2, repeated: true, type: :string
-  field :app_hash, 3, type: :string
+  field :height, 3, type: :uint64
 end
 
 defmodule ForgeAbi.ResponseGetAssetState do
@@ -414,13 +414,13 @@ defmodule ForgeAbi.RequestGetStakeState do
   @type t :: %__MODULE__{
           address: String.t(),
           keys: [String.t()],
-          app_hash: String.t()
+          height: non_neg_integer
         }
-  defstruct [:address, :keys, :app_hash]
+  defstruct [:address, :keys, :height]
 
   field :address, 1, type: :string
   field :keys, 2, repeated: true, type: :string
-  field :app_hash, 3, type: :string
+  field :height, 3, type: :uint64
 end
 
 defmodule ForgeAbi.ResponseGetStakeState do
@@ -443,12 +443,12 @@ defmodule ForgeAbi.RequestGetForgeState do
 
   @type t :: %__MODULE__{
           keys: [String.t()],
-          app_hash: String.t()
+          height: non_neg_integer
         }
-  defstruct [:keys, :app_hash]
+  defstruct [:keys, :height]
 
   field :keys, 1, repeated: true, type: :string
-  field :app_hash, 2, type: :string
+  field :height, 3, type: :uint64
 end
 
 defmodule ForgeAbi.ResponseGetForgeState do

@@ -396,13 +396,3 @@
     - name: num_update_asset_txs
       type: int
   
-- name: state_root
-  type: output
-  fields:
-    - name: account
-      type: string
-    - name: asset
-      type: string
-    - name: receipt
-      type: string
-  

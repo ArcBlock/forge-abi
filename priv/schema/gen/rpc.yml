@@ -214,8 +214,8 @@
       type: string
     - name: keys
       type: [string]
-    - name: app_hash
-      type: string
+    - name: height
+      type: int
   
 - name: response_get_account_state
   type: output
@@ -232,8 +232,8 @@
       type: string
     - name: keys
       type: [string]
-    - name: app_hash
-      type: string
+    - name: height
+      type: int
   
 - name: response_get_asset_state
   type: output
@@ -250,8 +250,8 @@
       type: string
     - name: keys
       type: [string]
-    - name: app_hash
-      type: string
+    - name: height
+      type: int
   
 - name: response_get_stake_state
   type: output
@@ -266,8 +266,8 @@
   fields:
     - name: keys
       type: [string]
-    - name: app_hash
-      type: string
+    - name: height
+      type: int
   
 - name: response_get_forge_state
   type: output

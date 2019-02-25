@@ -101,7 +101,6 @@ defmodule ForgeAbi.ForgeState do
           version: String.t(),
           data_version: String.t(),
           forge_app_hash: String.t(),
-          root_hashes: ForgeAbi.StateRoot.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -112,7 +111,6 @@ defmodule ForgeAbi.ForgeState do
     :version,
     :data_version,
     :forge_app_hash,
-    :root_hashes,
     :data
   ]
 
@@ -123,7 +121,6 @@ defmodule ForgeAbi.ForgeState do
   field :version, 5, type: :string
   field :data_version, 6, type: :string
   field :forge_app_hash, 7, type: :bytes
-  field :root_hashes, 8, type: ForgeAbi.StateRoot
   field :data, 15, type: Google.Protobuf.Any
 end
 
@@ -153,6 +150,24 @@ defmodule ForgeAbi.ForgeState.StakeSummaryEntry do
 
   field :key, 1, type: :uint32
   field :value, 2, type: ForgeAbi.StakeSummary
+end
+
+defmodule ForgeAbi.RootState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          account: String.t(),
+          asset: String.t(),
+          receipt: String.t()
+        }
+  defstruct [:address, :account, :asset, :receipt]
+
+  field :address, 1, type: :string
+  field :account, 2, type: :bytes
+  field :asset, 3, type: :bytes
+  field :receipt, 4, type: :bytes
 end
 
 defmodule ForgeAbi.StakeState do
