@@ -98,7 +98,7 @@ defmodule ForgeAbi.ForgeState do
           consensus: ForgeAbi.ConsensusParams.t(),
           tasks: %{non_neg_integer => ForgeAbi.UpgradeTasks.t()},
           stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t()},
-          version: String.t(),
+          forge_version: String.t(),
           data_version: String.t(),
           forge_app_hash: String.t(),
           data: Google.Protobuf.Any.t()
@@ -108,7 +108,7 @@ defmodule ForgeAbi.ForgeState do
     :consensus,
     :tasks,
     :stake_summary,
-    :version,
+    :forge_version,
     :data_version,
     :forge_app_hash,
     :data
@@ -118,7 +118,7 @@ defmodule ForgeAbi.ForgeState do
   field :consensus, 2, type: ForgeAbi.ConsensusParams
   field :tasks, 3, repeated: true, type: ForgeAbi.ForgeState.TasksEntry, map: true
   field :stake_summary, 4, repeated: true, type: ForgeAbi.ForgeState.StakeSummaryEntry, map: true
-  field :version, 5, type: :string
+  field :forge_version, 5, type: :string
   field :data_version, 6, type: :string
   field :forge_app_hash, 7, type: :bytes
   field :data, 15, type: Google.Protobuf.Any

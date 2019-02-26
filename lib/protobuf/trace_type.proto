@@ -25,9 +25,16 @@ message TimeFilter {
   string end_date_time = 2;
 }
 
+enum Direction {
+  mutual = 0;
+  one_way = 1;
+  union = 2;
+}
+
 message AddressFilter {
   string sender = 1;
   string receiver = 2;
+  Direction direction = 3;
 }
 
 message PageInfo {

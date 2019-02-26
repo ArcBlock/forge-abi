@@ -60,7 +60,7 @@ defmodule ForgeAbi.WalletInfo do
   field :address, 4, type: :string
 end
 
-defmodule ForgeAbi.ChainInfo do
+defmodule ForgeAbi.NodeInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -77,10 +77,12 @@ defmodule ForgeAbi.ChainInfo do
           address: String.t(),
           voting_power: non_neg_integer,
           total_txs: non_neg_integer,
-          version: String.t(),
+          forge_version: String.t(),
           data_version: String.t(),
           forge_apps_version: %{String.t() => String.t()},
-          supported_txs: [String.t()]
+          supported_txs: [String.t()],
+          ip: String.t(),
+          geo_info: ForgeAbi.GeoInfo.t()
         }
   defstruct [
     :id,
@@ -95,10 +97,12 @@ defmodule ForgeAbi.ChainInfo do
     :address,
     :voting_power,
     :total_txs,
-    :version,
+    :forge_version,
     :data_version,
     :forge_apps_version,
-    :supported_txs
+    :supported_txs,
+    :ip,
+    :geo_info
   ]
 
   field :id, 1, type: :string
@@ -113,18 +117,20 @@ defmodule ForgeAbi.ChainInfo do
   field :address, 10, type: :string
   field :voting_power, 11, type: :uint64
   field :total_txs, 12, type: :uint64
-  field :version, 13, type: :string
+  field :forge_version, 13, type: :string
   field :data_version, 14, type: :string
 
   field :forge_apps_version, 15,
     repeated: true,
-    type: ForgeAbi.ChainInfo.ForgeAppsVersionEntry,
+    type: ForgeAbi.NodeInfo.ForgeAppsVersionEntry,
     map: true
 
   field :supported_txs, 16, repeated: true, type: :string
+  field :ip, 17, type: :string
+  field :geo_info, 18, type: ForgeAbi.GeoInfo
 end
 
-defmodule ForgeAbi.ChainInfo.ForgeAppsVersionEntry do
+defmodule ForgeAbi.NodeInfo.ForgeAppsVersionEntry do
   @moduledoc false
   use Protobuf, map: true, syntax: :proto3
 
@@ -441,19 +447,25 @@ defmodule ForgeAbi.NetInfo do
   field :peers, 4, repeated: true, type: ForgeAbi.PeerInfo
 end
 
-defmodule ForgeAbi.PeerInfo do
+defmodule ForgeAbi.GeoInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          node_info: ForgeAbi.NodeInfo.t()
+          city: String.t(),
+          country: String.t(),
+          latitude: float,
+          longitude: float
         }
-  defstruct [:node_info]
+  defstruct [:city, :country, :latitude, :longitude]
 
-  field :node_info, 1, type: ForgeAbi.NodeInfo
+  field :city, 1, type: :string
+  field :country, 2, type: :string
+  field :latitude, 3, type: :float
+  field :longitude, 4, type: :float
 end
 
-defmodule ForgeAbi.NodeInfo do
+defmodule ForgeAbi.PeerInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -473,24 +485,6 @@ defmodule ForgeAbi.NodeInfo do
   field :moniker, 4, type: :string
   field :ip, 5, type: :string
   field :geo_info, 6, type: ForgeAbi.GeoInfo
-end
-
-defmodule ForgeAbi.GeoInfo do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          city: String.t(),
-          country: String.t(),
-          latitude: float,
-          longitude: float
-        }
-  defstruct [:city, :country, :latitude, :longitude]
-
-  field :city, 1, type: :string
-  field :country, 2, type: :string
-  field :latitude, 3, type: :float
-  field :longitude, 4, type: :float
 end
 
 defmodule ForgeAbi.ValidatorsInfo do

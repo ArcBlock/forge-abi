@@ -28,7 +28,7 @@ message WalletInfo {
   string address = 4;
 }
 
-message ChainInfo {
+message NodeInfo {
   string id = 1;                // node id.
   string network = 2;           // which network the node belongs to.
   string moniker = 3;           // name of the node.
@@ -41,10 +41,12 @@ message ChainInfo {
   string address = 10;                      // the address of the node.
   uint64 voting_power = 11; // the voting power of the node, in integer.
   uint64 total_txs = 12;    // total number of txs up to the latest block
-  string version = 13;
-  string data_version = 14;
+  string forge_version = 13; // current forge version
+  string data_version = 14;  // current data version
   map<string, string> forge_apps_version = 15;
   repeated string supported_txs = 16;
+  string ip = 17;                // self node ip
+  GeoInfo geo_info = 18;         // self node geo info
 }
 
 message Validator {
@@ -188,22 +190,20 @@ message NetInfo {
   repeated PeerInfo peers = 4;
 }
 
-message PeerInfo { NodeInfo node_info = 1; }
+message GeoInfo {
+  string city = 1;
+  string country = 2;
+  float latitude = 3;
+  float longitude = 4;
+}
 
-message NodeInfo {
+message PeerInfo {
   string id = 1;
   string network = 2;
   string consensus_version = 3;
   string moniker = 4;
   string ip = 5;
   GeoInfo geo_info = 6;
-}
-
-message GeoInfo {
-  string city = 1;
-  string country = 2;
-  float latitude = 3;
-  float longitude = 4;
 }
 
 message ValidatorsInfo {

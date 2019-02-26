@@ -541,25 +541,25 @@ defmodule ForgeAbi.ResponsePinFile do
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
 end
 
-defmodule ForgeAbi.RequestGetChainInfo do
+defmodule ForgeAbi.RequestGetNodeInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   defstruct []
 end
 
-defmodule ForgeAbi.ResponseGetChainInfo do
+defmodule ForgeAbi.ResponseGetNodeInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
           code: integer,
-          info: ForgeAbi.ChainInfo.t()
+          info: ForgeAbi.NodeInfo.t()
         }
   defstruct [:code, :info]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :info, 2, type: ForgeAbi.ChainInfo
+  field :info, 2, type: ForgeAbi.NodeInfo
 end
 
 defmodule ForgeAbi.RequestSearch do

@@ -60,12 +60,14 @@ defmodule ForgeAbi.AddressFilter do
 
   @type t :: %__MODULE__{
           sender: String.t(),
-          receiver: String.t()
+          receiver: String.t(),
+          direction: integer
         }
-  defstruct [:sender, :receiver]
+  defstruct [:sender, :receiver, :direction]
 
   field :sender, 1, type: :string
   field :receiver, 2, type: :string
+  field :direction, 3, type: ForgeAbi.Direction, enum: true
 end
 
 defmodule ForgeAbi.PageInfo do
@@ -211,4 +213,13 @@ defmodule ForgeAbi.IndexedStakeState do
   field :renaissance_time, 6, type: :string
   field :message, 7, type: :string
   field :type, 8, type: :uint32
+end
+
+defmodule ForgeAbi.Direction do
+  @moduledoc false
+  use Protobuf, enum: true, syntax: :proto3
+
+  field :mutual, 0
+  field :one_way, 1
+  field :union, 2
 end

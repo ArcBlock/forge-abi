@@ -21,7 +21,7 @@ service ChainRpc {
   rpc get_unconfirmed_txs(RequestGetUnconfirmedTxs)
       returns (ResponseGetUnconfirmedTxs);
   // utility
-  rpc get_chain_info(RequestGetChainInfo) returns (ResponseGetChainInfo);
+  rpc get_node_info(RequestGetNodeInfo) returns (ResponseGetNodeInfo);
   rpc search(RequestSearch) returns (ResponseSearch);
   rpc get_net_info(RequestGetNetInfo) returns (ResponseGetNetInfo);
   rpc get_validators_info(RequestGetValidatorsInfo)

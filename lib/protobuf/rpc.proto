@@ -210,12 +210,12 @@ message RequestPinFile { string hash = 1; }
 
 message ResponsePinFile { StatusCode code = 1; }
 
-// get_chain_info(): retrieve the current chain information
-message RequestGetChainInfo {}
+// get_node_info(): retrieve the current node information
+message RequestGetNodeInfo {}
 
-message ResponseGetChainInfo {
+message ResponseGetNodeInfo {
   StatusCode code = 1;
-  ChainInfo info = 2;
+  NodeInfo info = 2;
 }
 
 // search(term): retrieve related transactions by a search term (prefix match)

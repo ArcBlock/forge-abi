@@ -36,7 +36,7 @@
     - name: address
       type: string
   
-- name: chain_info
+- name: node_info
   type: output
   fields:
     - name: id
@@ -63,7 +63,7 @@
       type: int
     - name: total_txs
       type: int
-    - name: version
+    - name: forge_version
       type: string
     - name: data_version
       type: string
@@ -71,6 +71,10 @@
       type: [forge_apps_version_entry]
     - name: supported_txs
       type: [string]
+    - name: ip
+      type: string
+    - name: geo_info
+      type: geo_info
   
 - name: forge_apps_version_entry
   type: output
@@ -270,13 +274,19 @@
     - name: peers
       type: [peer_info]
   
-- name: peer_info
+- name: geo_info
   type: output
   fields:
-    - name: node_info
-      type: node_info
+    - name: city
+      type: string
+    - name: country
+      type: string
+    - name: latitude
+      type: float
+    - name: longitude
+      type: float
   
-- name: node_info
+- name: peer_info
   type: output
   fields:
     - name: id
@@ -291,18 +301,6 @@
       type: string
     - name: geo_info
       type: geo_info
-  
-- name: geo_info
-  type: output
-  fields:
-    - name: city
-      type: string
-    - name: country
-      type: string
-    - name: latitude
-      type: float
-    - name: longitude
-      type: float
   
 - name: validators_info
   type: output
