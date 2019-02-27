@@ -562,6 +562,27 @@ defmodule ForgeAbi.ResponseGetChainInfo do
   field :info, 2, type: ForgeAbi.ChainInfo
 end
 
+defmodule ForgeAbi.RequestGetNodeInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  defstruct []
+end
+
+defmodule ForgeAbi.ResponseGetNodeInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          info: ForgeAbi.NodeInfo.t()
+        }
+  defstruct [:code, :info]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :info, 2, type: ForgeAbi.NodeInfo
+end
+
 defmodule ForgeAbi.RequestSearch do
   @moduledoc false
   use Protobuf, syntax: :proto3

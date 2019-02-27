@@ -218,6 +218,14 @@ message ResponseGetChainInfo {
   ChainInfo info = 2;
 }
 
+// get_node_info(): retrieve the current node information
+message RequestGetNodeInfo {}
+
+message ResponseGetNodeInfo {
+  StatusCode code = 1;
+  NodeInfo info = 2;
+}
+
 // search(term): retrieve related transactions by a search term (prefix match)
 message RequestSearch {
   string key = 1;

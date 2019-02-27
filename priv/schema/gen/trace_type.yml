@@ -37,6 +37,8 @@
       type: string
     - name: receiver
       type: string
+    - name: direction
+      type: direction
   
 - name: page_info
   type: output
@@ -130,3 +132,12 @@
     - name: type
       type: int
   
+- name: direction
+  type: enum
+  fields:
+    - type: mutual
+      meta: value=0
+    - type: one_way
+      meta: value=1
+    - type: union
+      meta: value=2

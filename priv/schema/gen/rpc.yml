@@ -330,6 +330,19 @@
     - name: info
       type: chain_info
   
+- name: request_get_node_info
+  type: input
+
+  fields: []
+
+- name: response_get_node_info
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: info
+      type: node_info
+  
 - name: request_search
   type: input
   fields:

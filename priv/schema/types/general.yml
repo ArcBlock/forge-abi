@@ -1,5 +1,4 @@
 ---
-
 - name: state_context
   type: output
   fields:
@@ -51,3 +50,5 @@
       type: string
     - name: receiver
       type: string
+    - name: direction
+      type: direction
