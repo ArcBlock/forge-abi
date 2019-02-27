@@ -317,6 +317,19 @@
     - name: code
       type: status_code
   
+- name: request_get_chain_info
+  type: input
+
+  fields: []
+
+- name: response_get_chain_info
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: info
+      type: chain_info
+  
 - name: request_get_node_info
   type: input
 

@@ -36,6 +36,50 @@
     - name: address
       type: string
   
+- name: chain_info
+  type: output
+  fields:
+    - name: id
+      type: string
+    - name: network
+      type: string
+    - name: moniker
+      type: string
+    - name: consensus_version
+      type: string
+    - name: synced
+      type: boolean
+    - name: app_hash
+      type: string
+    - name: block_hash
+      type: string
+    - name: block_height
+      type: int
+    - name: block_time
+      type: timestamp
+    - name: address
+      type: string
+    - name: voting_power
+      type: int
+    - name: total_txs
+      type: int
+    - name: forge_version
+      type: string
+    - name: data_version
+      type: string
+    - name: forge_apps_version
+      type: [forge_apps_version_entry]
+    - name: supported_txs
+      type: [string]
+  
+- name: forge_apps_version_entry
+  type: output
+  fields:
+    - name: key
+      type: string
+    - name: value
+      type: string
+  
 - name: node_info
   type: output
   fields:

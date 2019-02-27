@@ -9,6 +9,7 @@ defmodule ForgeAbi.ChainRpc.Service do
   rpc :get_block, stream(ForgeAbi.RequestGetBlock), stream(ForgeAbi.ResponseGetBlock)
   rpc :get_blocks, ForgeAbi.RequestGetBlocks, ForgeAbi.ResponseGetBlocks
   rpc :get_unconfirmed_txs, ForgeAbi.RequestGetUnconfirmedTxs, ForgeAbi.ResponseGetUnconfirmedTxs
+  rpc :get_chain_info, ForgeAbi.RequestGetChainInfo, ForgeAbi.ResponseGetChainInfo
   rpc :get_node_info, ForgeAbi.RequestGetNodeInfo, ForgeAbi.ResponseGetNodeInfo
   rpc :search, ForgeAbi.RequestSearch, ForgeAbi.ResponseSearch
   rpc :get_net_info, ForgeAbi.RequestGetNetInfo, ForgeAbi.ResponseGetNetInfo

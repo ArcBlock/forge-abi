@@ -28,6 +28,25 @@ message WalletInfo {
   string address = 4;
 }
 
+message ChainInfo {
+  string id = 1;                // node id.
+  string network = 2;           // which network the node belongs to.
+  string moniker = 3;           // name of the node.
+  string consensus_version = 4; // consensus engine version for this node.
+  bool synced = 5;              // indicate if this node is fully synced.
+  bytes app_hash = 6;           // current application hash.
+  bytes block_hash = 7;         // current block hash.
+  uint64 block_height = 8;      // latest block height, in integer.
+  google.protobuf.Timestamp block_time = 9; // latest block time.
+  string address = 10;                      // the address of the node.
+  uint64 voting_power = 11; // the voting power of the node, in integer.
+  uint64 total_txs = 12;    // total number of txs up to the latest block
+  string forge_version = 13; // current forge version
+  string data_version = 14; // current data version
+  map<string, string> forge_apps_version = 15;
+  repeated string supported_txs = 16;
+}
+
 message NodeInfo {
   string id = 1;                // node id.
   string network = 2;           // which network the node belongs to.

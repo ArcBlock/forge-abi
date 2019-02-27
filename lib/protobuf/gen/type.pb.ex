@@ -60,6 +60,84 @@ defmodule ForgeAbi.WalletInfo do
   field :address, 4, type: :string
 end
 
+defmodule ForgeAbi.ChainInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          id: String.t(),
+          network: String.t(),
+          moniker: String.t(),
+          consensus_version: String.t(),
+          synced: boolean,
+          app_hash: String.t(),
+          block_hash: String.t(),
+          block_height: non_neg_integer,
+          block_time: Google.Protobuf.Timestamp.t(),
+          address: String.t(),
+          voting_power: non_neg_integer,
+          total_txs: non_neg_integer,
+          forge_version: String.t(),
+          data_version: String.t(),
+          forge_apps_version: %{String.t() => String.t()},
+          supported_txs: [String.t()]
+        }
+  defstruct [
+    :id,
+    :network,
+    :moniker,
+    :consensus_version,
+    :synced,
+    :app_hash,
+    :block_hash,
+    :block_height,
+    :block_time,
+    :address,
+    :voting_power,
+    :total_txs,
+    :forge_version,
+    :data_version,
+    :forge_apps_version,
+    :supported_txs
+  ]
+
+  field :id, 1, type: :string
+  field :network, 2, type: :string
+  field :moniker, 3, type: :string
+  field :consensus_version, 4, type: :string
+  field :synced, 5, type: :bool
+  field :app_hash, 6, type: :bytes
+  field :block_hash, 7, type: :bytes
+  field :block_height, 8, type: :uint64
+  field :block_time, 9, type: Google.Protobuf.Timestamp
+  field :address, 10, type: :string
+  field :voting_power, 11, type: :uint64
+  field :total_txs, 12, type: :uint64
+  field :forge_version, 13, type: :string
+  field :data_version, 14, type: :string
+
+  field :forge_apps_version, 15,
+    repeated: true,
+    type: ForgeAbi.ChainInfo.ForgeAppsVersionEntry,
+    map: true
+
+  field :supported_txs, 16, repeated: true, type: :string
+end
+
+defmodule ForgeAbi.ChainInfo.ForgeAppsVersionEntry do
+  @moduledoc false
+  use Protobuf, map: true, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          key: String.t(),
+          value: String.t()
+        }
+  defstruct [:key, :value]
+
+  field :key, 1, type: :string
+  field :value, 2, type: :string
+end
+
 defmodule ForgeAbi.NodeInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3

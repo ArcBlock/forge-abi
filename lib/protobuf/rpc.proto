@@ -210,6 +210,14 @@ message RequestPinFile { string hash = 1; }
 
 message ResponsePinFile { StatusCode code = 1; }
 
+// get_chain_info(): retrieve the current chain information
+message RequestGetChainInfo {}
+
+message ResponseGetChainInfo {
+  StatusCode code = 1;
+  ChainInfo info = 2;
+}
+
 // get_node_info(): retrieve the current node information
 message RequestGetNodeInfo {}
 

@@ -27,6 +27,10 @@
   type: query
   return: response_get_unconfirmed_txs
   params: request_get_unconfirmed_txs
+- name: get_chain_info
+  type: query
+  return: response_get_chain_info
+  params: request_get_chain_info
 - name: get_node_info
   type: query
   return: response_get_node_info
