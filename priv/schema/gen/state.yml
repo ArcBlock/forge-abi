@@ -63,7 +63,7 @@
       type: [tasks_entry]
     - name: stake_summary
       type: [stake_summary_entry]
-    - name: forge_version
+    - name: version
       type: string
     - name: data_version
       type: string

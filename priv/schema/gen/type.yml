@@ -63,7 +63,7 @@
       type: int
     - name: total_txs
       type: int
-    - name: forge_version
+    - name: version
       type: string
     - name: data_version
       type: string
@@ -107,7 +107,7 @@
       type: int
     - name: total_txs
       type: int
-    - name: forge_version
+    - name: version
       type: string
     - name: data_version
       type: string
