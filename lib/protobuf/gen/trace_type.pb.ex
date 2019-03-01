@@ -125,7 +125,8 @@ defmodule ForgeAbi.IndexedAccountState do
           migrated_to: String.t(),
           total_received_stakes: ForgeAbi.BigUint.t(),
           total_stakes: ForgeAbi.BigUint.t(),
-          total_unstakes: ForgeAbi.BigUint.t()
+          total_unstakes: ForgeAbi.BigUint.t(),
+          recent_num_txs: [non_neg_integer]
         }
   defstruct [
     :address,
@@ -140,7 +141,8 @@ defmodule ForgeAbi.IndexedAccountState do
     :migrated_to,
     :total_received_stakes,
     :total_stakes,
-    :total_unstakes
+    :total_unstakes,
+    :recent_num_txs
   ]
 
   field :address, 1, type: :string
@@ -156,6 +158,7 @@ defmodule ForgeAbi.IndexedAccountState do
   field :total_received_stakes, 11, type: ForgeAbi.BigUint
   field :total_stakes, 12, type: ForgeAbi.BigUint
   field :total_unstakes, 13, type: ForgeAbi.BigUint
+  field :recent_num_txs, 14, repeated: true, type: :uint64
 end
 
 defmodule ForgeAbi.IndexedAssetState do
