@@ -261,6 +261,7 @@ message ForgeStatistics {
   repeated uint32 num_sys_upgrade_txs = 12;
   repeated uint64 num_transfer_txs = 13;
   repeated uint64 num_update_asset_txs = 14;
+  repeated uint64 num_activate_asset_txs = 15;
 }
 
 message TxStatistics {
@@ -274,4 +275,5 @@ message TxStatistics {
   uint32 num_sys_upgrade_txs = 8;
   uint64 num_transfer_txs = 9;
   uint64 num_update_asset_txs = 10;
+  uint64 num_activate_asset_txs = 11;
 }

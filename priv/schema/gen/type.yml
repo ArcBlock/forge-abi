@@ -413,6 +413,8 @@
       type: [int]
     - name: num_update_asset_txs
       type: [int]
+    - name: num_activate_asset_txs
+      type: [int]
   
 - name: tx_statistics
   type: output
@@ -436,5 +438,7 @@
     - name: num_transfer_txs
       type: int
     - name: num_update_asset_txs
+      type: int
+    - name: num_activate_asset_txs
       type: int
   

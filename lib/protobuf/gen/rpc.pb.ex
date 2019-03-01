@@ -1006,3 +1006,33 @@ defmodule ForgeAbi.ResponseGetTopAccounts do
   field :page, 2, type: ForgeAbi.PageInfo
   field :accounts, 3, repeated: true, type: ForgeAbi.IndexedAccountState
 end
+
+defmodule ForgeAbi.RequestListAssetTransactions do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t(),
+          address: String.t()
+        }
+  defstruct [:paging, :address]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :address, 2, type: :string
+end
+
+defmodule ForgeAbi.ResponseListAssetTransactions do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          page: ForgeAbi.PageInfo.t(),
+          transactions: [ForgeAbi.IndexedTransaction.t()]
+        }
+  defstruct [:code, :page, :transactions]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :transactions, 3, repeated: true, type: ForgeAbi.IndexedTransaction
+end

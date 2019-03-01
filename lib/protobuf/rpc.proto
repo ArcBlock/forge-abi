@@ -363,7 +363,7 @@ message ResponseSignData {
   bytes signature = 2;
 }
 
-message RequestGetAssets{
+message RequestGetAssets {
   PageInput paging = 1;
   string owner_address = 2;
 }
@@ -374,7 +374,7 @@ message ResponseGetAssets {
   repeated IndexedAssetState assets = 3;
 }
 
-message RequestGetStakes{
+message RequestGetStakes {
   PageInput paging = 1;
   AddressFilter address_filter = 2;
 }
@@ -385,7 +385,7 @@ message ResponseGetStakes {
   repeated IndexedStakeState stakes = 3;
 }
 
-message RequestGetTopAccounts{
+message RequestGetTopAccounts {
   PageInput paging = 1;
 }
 
@@ -393,4 +393,15 @@ message ResponseGetTopAccounts {
   StatusCode code = 1;
   PageInfo page = 2;
   repeated IndexedAccountState accounts = 3;
+}
+
+message RequestListAssetTransactions {
+  PageInput paging = 1;
+  string address = 2;
+}
+
+message ResponseListAssetTransactions {
+  StatusCode code = 1;
+  PageInfo page = 2;
+  repeated IndexedTransaction transactions = 3;
 }

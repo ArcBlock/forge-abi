@@ -64,3 +64,12 @@
       type: int
     - name: empty_excluded
       type: boolean
+
+- name: list_asset_transactions
+  type: query
+  return: response_list_asset_transactions
+  params:
+    - name: paging
+      type: page_input
+    - name: address
+      type: string
