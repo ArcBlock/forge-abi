@@ -95,6 +95,8 @@
       type: string
     - name: total_unstakes
       type: string
+    - name: recent_num_txs
+      type: [int]
   
 - name: indexed_asset_state
   type: output

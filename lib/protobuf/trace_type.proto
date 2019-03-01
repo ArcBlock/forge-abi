@@ -66,6 +66,7 @@ message IndexedAccountState {
   BigUint total_received_stakes = 11;
   BigUint total_stakes = 12;
   BigUint total_unstakes = 13;
+  repeated uint64 recent_num_txs = 14;
 }
 
 message IndexedAssetState {

@@ -104,6 +104,10 @@ defmodule ForgeAbi.StatisticRpc.Service do
   rpc :get_assets, ForgeAbi.RequestGetAssets, ForgeAbi.ResponseGetAssets
   rpc :get_stakes, ForgeAbi.RequestGetStakes, ForgeAbi.ResponseGetStakes
   rpc :get_top_accounts, ForgeAbi.RequestGetTopAccounts, ForgeAbi.ResponseGetTopAccounts
+
+  rpc :list_asset_transactions,
+      ForgeAbi.RequestListAssetTransactions,
+      ForgeAbi.ResponseListAssetTransactions
 end
 
 defmodule ForgeAbi.StatisticRpc.Stub do

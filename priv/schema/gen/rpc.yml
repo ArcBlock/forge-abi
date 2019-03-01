@@ -616,3 +616,21 @@
     - name: accounts
       type: [indexed_account_state]
   
+- name: request_list_asset_transactions
+  type: input
+  fields:
+    - name: paging
+      type: page_input
+    - name: address
+      type: string
+  
+- name: response_list_asset_transactions
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: page
+      type: page_info
+    - name: transactions
+      type: [indexed_transaction]
+  
