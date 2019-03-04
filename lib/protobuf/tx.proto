@@ -11,11 +11,24 @@ message AccountMigrateTx {
   WalletType type = 2; // new wallet type
 }
 
-message ActivateAssetTx {
-  string address = 1;
-  // who shall be able to activate this tx - if empty we use the address of 1st
-  // signature in the signatures field of tx.
-  string to = 2;
+message ConsumeAssetTx {
+  // `issuer` could be the same as `from`, or different, depending on use case.
+  // when this tx is being mutisigned by the asset holder, the wallet could
+  // check if the issuer is the issuer of the ticket, otherwise wallet shall
+  // refuse signing it. when it goes into the chain, at verify state stage, we
+  // shall check `from` of this tx:
+  //  a. the same as the issuer
+  //  b. `from.issuer == issuer`
+  // For example, a museum issued a ticket and Alice bought it. At the
+  // door (doorman) of the meseum, Alice need to consume the asset, which she
+  // scan a QR code with a prepolulated ConsumeAssetTx. Most of the time, this
+  // prepopulated tx shall be signed by the account of the door (doorman) so
+  // that we can trace where and how Alice consumed this asset, however we don't
+  // want anyone to be able to create this tx to allure Alice to consume the
+  // asset, thus the door (doorman) shall be an account that issued by the
+  // museum. The chain will make sure only accounts that has this issuer would
+  // be able to successfully sign this tx.
+  string issuer = 1;
 
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 15;
@@ -37,7 +50,10 @@ message CreateAssetTx {
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 2;
   bool readonly = 3;
-  google.protobuf.Timestamp expired_at = 4;
+  bool transferrable = 4;
+
+  // ttl for the asset after first consumption. 0 means unlimited.
+  uint32 ttl = 5;
 }
 
 message DeclareTx {

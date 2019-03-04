@@ -112,6 +112,11 @@ message AbciContext {
   // the deterministic time of the last block.
   google.protobuf.Timestamp last_block_time = 7;
 }
+message Multisig {
+	string signer = 1;
+	bytes signature = 2;
+	google.protobuf.Any data = 3;
+}
 
 message Transaction {
   string from = 1;
@@ -121,7 +126,7 @@ message Transaction {
   string chain_id = 4;
   // we will support multiple signatures in case of certain tx need multiple
   // parties' signature.
-  repeated abci_vendor.KVPair signatures = 5;
+  repeated Multisig signatures = 5;
   // at current version we don't have a VM to process byte
   // code so this should always be empty. Forge will reject
   // tx with non-empty byte_code
