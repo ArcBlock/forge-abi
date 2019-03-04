@@ -6,16 +6,6 @@
     - name: type
       type: wallet_type
   
-- name: activate_asset_tx
-  type: output
-  fields:
-    - name: address
-      type: string
-    - name: to
-      type: string
-    - name: data
-      type: any
-  
 - name: consensus_upgrade_tx
   type: output
   fields:
@@ -32,6 +22,16 @@
     - name: data
       type: any
   
+- name: consume_asset_tx
+  type: output
+  fields:
+    - name: issuer
+      type: string
+    - name: address
+      type: string
+    - name: data
+      type: any
+  
 - name: create_asset_tx
   type: output
   fields:
@@ -41,8 +41,12 @@
       type: any
     - name: readonly
       type: boolean
-    - name: expired_at
-      type: timestamp
+    - name: transferrable
+      type: boolean
+    - name: ttl
+      type: int
+    - name: parent
+      type: string
   
 - name: declare_tx
   type: output
@@ -53,6 +57,8 @@
       type: string
     - name: type
       type: wallet_type
+    - name: issuer
+      type: string
     - name: data
       type: any
   

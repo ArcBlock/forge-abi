@@ -11,6 +11,17 @@ message AccountMigrateTx {
   WalletType type = 2; // new wallet type
 }
 
+message ConsensusUpgradeTx {
+  repeated Validator validators = 1;
+  uint64 max_bytes = 2;
+  sint64 max_gas = 3;
+  uint32 max_validators = 4;
+  uint32 max_candidates = 5;
+
+  // forge won't touch this field. Only forge app shall handle it.
+  google.protobuf.Any data = 15;
+}
+
 message ConsumeAssetTx {
   // `issuer` could be the same as `from`, or different, depending on use case.
   // when this tx is being mutisigned by the asset holder, the wallet could
@@ -29,19 +40,12 @@ message ConsumeAssetTx {
   // museum. The chain will make sure only accounts that has this issuer would
   // be able to successfully sign this tx.
   string issuer = 1;
+  // an asset might belong to another asset, for example a ticket belongs to a
+  // specific concert or movie asset. If this is provided, besides issuer we
+  // will verify if the parent address of the asset equals to this address.
+  string address = 2;
 
   // forge won't update data into state if app is interested in this tx.
-  google.protobuf.Any data = 15;
-}
-
-message ConsensusUpgradeTx {
-  repeated Validator validators = 1;
-  uint64 max_bytes = 2;
-  sint64 max_gas = 3;
-  uint32 max_validators = 4;
-  uint32 max_candidates = 5;
-
-  // forge won't touch this field. Only forge app shall handle it.
   google.protobuf.Any data = 15;
 }
 
@@ -51,15 +55,16 @@ message CreateAssetTx {
   google.protobuf.Any data = 2;
   bool readonly = 3;
   bool transferrable = 4;
-
   // ttl for the asset after first consumption. 0 means unlimited.
   uint32 ttl = 5;
+  string parent = 6;
 }
 
 message DeclareTx {
   string moniker = 1;
   bytes pk = 2;
   WalletType type = 3;
+  string issuer = 4;
 
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 15;

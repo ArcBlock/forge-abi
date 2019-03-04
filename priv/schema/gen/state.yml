@@ -17,6 +17,8 @@
       type: string
     - name: context
       type: state_context
+    - name: issuer
+      type: string
     - name: migrated_to
       type: [string]
     - name: migrated_from
@@ -41,10 +43,14 @@
       type: string
     - name: readonly
       type: boolean
-    - name: activated
+    - name: transferrable
       type: boolean
-    - name: expired_at
+    - name: ttl
+      type: int
+    - name: activated_time
       type: timestamp
+    - name: issuer
+      type: string
     - name: stake
       type: stake_context
     - name: context

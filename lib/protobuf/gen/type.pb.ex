@@ -331,6 +331,22 @@ defmodule ForgeAbi.AbciContext do
   field :last_block_time, 7, type: Google.Protobuf.Timestamp
 end
 
+defmodule ForgeAbi.Multisig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          signer: String.t(),
+          signature: String.t(),
+          data: Google.Protobuf.Any.t()
+        }
+  defstruct [:signer, :signature, :data]
+
+  field :signer, 1, type: :string
+  field :signature, 2, type: :bytes
+  field :data, 3, type: Google.Protobuf.Any
+end
+
 defmodule ForgeAbi.Transaction do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -340,7 +356,7 @@ defmodule ForgeAbi.Transaction do
           nonce: non_neg_integer,
           signature: String.t(),
           chain_id: String.t(),
-          signatures: [AbciVendor.KVPair.t()],
+          signatures: [ForgeAbi.Multisig.t()],
           itx: Google.Protobuf.Any.t()
         }
   defstruct [:from, :nonce, :signature, :chain_id, :signatures, :itx]
@@ -349,7 +365,7 @@ defmodule ForgeAbi.Transaction do
   field :nonce, 2, type: :uint64
   field :signature, 3, type: :bytes
   field :chain_id, 4, type: :string
-  field :signatures, 5, repeated: true, type: AbciVendor.KVPair
+  field :signatures, 5, repeated: true, type: ForgeAbi.Multisig
   field :itx, 7, type: Google.Protobuf.Any
 end
 

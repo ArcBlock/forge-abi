@@ -25,6 +25,8 @@
   fields:
     - name: tx
       type: transaction
+    - name: data
+      type: any
     - name: wallet
       type: wallet_info
     - name: token

@@ -11,6 +11,7 @@ defmodule ForgeAbi.AccountState do
           type: ForgeAbi.WalletType.t(),
           moniker: String.t(),
           context: ForgeAbi.StateContext.t(),
+          issuer: String.t(),
           migrated_to: [String.t()],
           migrated_from: [String.t()],
           num_assets: non_neg_integer,
@@ -27,6 +28,7 @@ defmodule ForgeAbi.AccountState do
     :type,
     :moniker,
     :context,
+    :issuer,
     :migrated_to,
     :migrated_from,
     :num_assets,
@@ -43,6 +45,7 @@ defmodule ForgeAbi.AccountState do
   field :type, 6, type: ForgeAbi.WalletType
   field :moniker, 7, type: :string
   field :context, 8, type: ForgeAbi.StateContext
+  field :issuer, 9, type: :string
   field :migrated_to, 13, repeated: true, type: :string
   field :migrated_from, 14, repeated: true, type: :string
   field :num_assets, 15, type: :uint64
@@ -60,8 +63,10 @@ defmodule ForgeAbi.AssetState do
           owner: String.t(),
           moniker: String.t(),
           readonly: boolean,
-          activated: boolean,
-          expired_at: Google.Protobuf.Timestamp.t(),
+          transferrable: boolean,
+          ttl: non_neg_integer,
+          activated_time: Google.Protobuf.Timestamp.t(),
+          issuer: String.t(),
           stake: ForgeAbi.StakeContext.t(),
           context: ForgeAbi.StateContext.t(),
           data: Google.Protobuf.Any.t()
@@ -71,8 +76,10 @@ defmodule ForgeAbi.AssetState do
     :owner,
     :moniker,
     :readonly,
-    :activated,
-    :expired_at,
+    :transferrable,
+    :ttl,
+    :activated_time,
+    :issuer,
     :stake,
     :context,
     :data
@@ -82,8 +89,10 @@ defmodule ForgeAbi.AssetState do
   field :owner, 2, type: :string
   field :moniker, 3, type: :string
   field :readonly, 4, type: :bool
-  field :activated, 5, type: :bool
-  field :expired_at, 6, type: Google.Protobuf.Timestamp
+  field :transferrable, 5, type: :bool
+  field :ttl, 6, type: :uint32
+  field :activated_time, 7, type: Google.Protobuf.Timestamp
+  field :issuer, 8, type: :string
   field :stake, 13, type: ForgeAbi.StakeContext
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 50, type: Google.Protobuf.Any
