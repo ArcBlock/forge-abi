@@ -190,6 +190,16 @@
     - name: last_block_time
       type: timestamp
   
+- name: multisig
+  type: output
+  fields:
+    - name: signer
+      type: string
+    - name: signature
+      type: string
+    - name: data
+      type: any
+  
 - name: transaction
   type: output
   fields:
@@ -202,7 +212,7 @@
     - name: chain_id
       type: string
     - name: signatures
-      type: [kv_pair]
+      type: [multisig]
     - name: itx
       type: any
   
@@ -413,7 +423,7 @@
       type: [int]
     - name: num_update_asset_txs
       type: [int]
-    - name: num_activate_asset_txs
+    - name: num_consume_asset_txs
       type: [int]
   
 - name: tx_statistics
@@ -439,6 +449,6 @@
       type: int
     - name: num_update_asset_txs
       type: int
-    - name: num_activate_asset_txs
+    - name: num_consume_asset_txs
       type: int
   

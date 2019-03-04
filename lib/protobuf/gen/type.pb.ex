@@ -331,6 +331,22 @@ defmodule ForgeAbi.AbciContext do
   field :last_block_time, 7, type: Google.Protobuf.Timestamp
 end
 
+defmodule ForgeAbi.Multisig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          signer: String.t(),
+          signature: String.t(),
+          data: Google.Protobuf.Any.t()
+        }
+  defstruct [:signer, :signature, :data]
+
+  field :signer, 1, type: :string
+  field :signature, 2, type: :bytes
+  field :data, 3, type: Google.Protobuf.Any
+end
+
 defmodule ForgeAbi.Transaction do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -340,7 +356,7 @@ defmodule ForgeAbi.Transaction do
           nonce: non_neg_integer,
           signature: String.t(),
           chain_id: String.t(),
-          signatures: [AbciVendor.KVPair.t()],
+          signatures: [ForgeAbi.Multisig.t()],
           itx: Google.Protobuf.Any.t()
         }
   defstruct [:from, :nonce, :signature, :chain_id, :signatures, :itx]
@@ -349,7 +365,7 @@ defmodule ForgeAbi.Transaction do
   field :nonce, 2, type: :uint64
   field :signature, 3, type: :bytes
   field :chain_id, 4, type: :string
-  field :signatures, 5, repeated: true, type: AbciVendor.KVPair
+  field :signatures, 5, repeated: true, type: ForgeAbi.Multisig
   field :itx, 7, type: Google.Protobuf.Any
 end
 
@@ -638,7 +654,7 @@ defmodule ForgeAbi.ForgeStatistics do
           num_sys_upgrade_txs: [non_neg_integer],
           num_transfer_txs: [non_neg_integer],
           num_update_asset_txs: [non_neg_integer],
-          num_activate_asset_txs: [non_neg_integer]
+          num_consume_asset_txs: [non_neg_integer]
         }
   defstruct [
     :num_blocks,
@@ -655,7 +671,7 @@ defmodule ForgeAbi.ForgeStatistics do
     :num_sys_upgrade_txs,
     :num_transfer_txs,
     :num_update_asset_txs,
-    :num_activate_asset_txs
+    :num_consume_asset_txs
   ]
 
   field :num_blocks, 1, repeated: true, type: :uint64
@@ -672,7 +688,7 @@ defmodule ForgeAbi.ForgeStatistics do
   field :num_sys_upgrade_txs, 12, repeated: true, type: :uint32
   field :num_transfer_txs, 13, repeated: true, type: :uint64
   field :num_update_asset_txs, 14, repeated: true, type: :uint64
-  field :num_activate_asset_txs, 15, repeated: true, type: :uint64
+  field :num_consume_asset_txs, 15, repeated: true, type: :uint64
 end
 
 defmodule ForgeAbi.TxStatistics do
@@ -690,7 +706,7 @@ defmodule ForgeAbi.TxStatistics do
           num_sys_upgrade_txs: non_neg_integer,
           num_transfer_txs: non_neg_integer,
           num_update_asset_txs: non_neg_integer,
-          num_activate_asset_txs: non_neg_integer
+          num_consume_asset_txs: non_neg_integer
         }
   defstruct [
     :num_account_migrate_txs,
@@ -703,7 +719,7 @@ defmodule ForgeAbi.TxStatistics do
     :num_sys_upgrade_txs,
     :num_transfer_txs,
     :num_update_asset_txs,
-    :num_activate_asset_txs
+    :num_consume_asset_txs
   ]
 
   field :num_account_migrate_txs, 1, type: :uint64
@@ -716,5 +732,5 @@ defmodule ForgeAbi.TxStatistics do
   field :num_sys_upgrade_txs, 8, type: :uint32
   field :num_transfer_txs, 9, type: :uint64
   field :num_update_asset_txs, 10, type: :uint64
-  field :num_activate_asset_txs, 11, type: :uint64
+  field :num_consume_asset_txs, 11, type: :uint64
 end

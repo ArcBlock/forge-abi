@@ -28,9 +28,12 @@ message ResponseCreateTx {
 
 // multisig(tx, wallet, token)
 message RequestMultisig {
-  Transaction tx = 1;
-  WalletInfo wallet = 2;
-  string token = 3;
+	Transaction tx = 1;
+	// extra data for multisig
+	google.protobuf.Any data = 2;
+  WalletInfo wallet = 3;
+	string token = 4;
+	
 }
 
 message ResponseMultisig {

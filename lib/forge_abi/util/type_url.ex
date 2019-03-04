@@ -15,8 +15,8 @@ defmodule ForgeAbi.Util.TypeUrl do
   # tx
   alias ForgeAbi.{
     AccountMigrateTx,
-    ActivateAssetTx,
     ConsensusUpgradeTx,
+    ConsumeAssetTx,
     CreateAssetTx,
     DeclareFileTx,
     DeclareTx,
@@ -58,7 +58,7 @@ defmodule ForgeAbi.Util.TypeUrl do
   @base_types [
     # forge tx
     {:account_migrate, "fg:t:account_migrate", AccountMigrateTx},
-    {:activate_asset, "fg:t:activate_asset", ActivateAssetTx},
+    {:consume_asset, "fg:t:consume_asset", ConsumeAssetTx},
     {:create_asset, "fg:t:create_asset", CreateAssetTx},
     {:consensus_upgrade, "fg:t:consensus_upgrade", ConsensusUpgradeTx},
     {:declare, "fg:t:declare", DeclareTx},

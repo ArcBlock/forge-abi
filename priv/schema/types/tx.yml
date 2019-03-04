@@ -26,6 +26,7 @@
   fields:
     - type: account_migrate_tx
     - type: consensus_upgrade_tx
+    - type: consume_asset_tx
     - type: create_asset_tx
     - type: declare_tx
     - type: declare_file_tx

@@ -12,22 +12,6 @@ defmodule ForgeAbi.AccountMigrateTx do
   field :type, 2, type: ForgeAbi.WalletType
 end
 
-defmodule ForgeAbi.ActivateAssetTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          address: String.t(),
-          to: String.t(),
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:address, :to, :data]
-
-  field :address, 1, type: :string
-  field :to, 2, type: :string
-  field :data, 15, type: Google.Protobuf.Any
-end
-
 defmodule ForgeAbi.ConsensusUpgradeTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -50,6 +34,22 @@ defmodule ForgeAbi.ConsensusUpgradeTx do
   field :data, 15, type: Google.Protobuf.Any
 end
 
+defmodule ForgeAbi.ConsumeAssetTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          issuer: String.t(),
+          address: String.t(),
+          data: Google.Protobuf.Any.t()
+        }
+  defstruct [:issuer, :address, :data]
+
+  field :issuer, 1, type: :string
+  field :address, 2, type: :string
+  field :data, 15, type: Google.Protobuf.Any
+end
+
 defmodule ForgeAbi.CreateAssetTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -58,14 +58,18 @@ defmodule ForgeAbi.CreateAssetTx do
           moniker: String.t(),
           data: Google.Protobuf.Any.t(),
           readonly: boolean,
-          expired_at: Google.Protobuf.Timestamp.t()
+          transferrable: boolean,
+          ttl: non_neg_integer,
+          parent: String.t()
         }
-  defstruct [:moniker, :data, :readonly, :expired_at]
+  defstruct [:moniker, :data, :readonly, :transferrable, :ttl, :parent]
 
   field :moniker, 1, type: :string
   field :data, 2, type: Google.Protobuf.Any
   field :readonly, 3, type: :bool
-  field :expired_at, 4, type: Google.Protobuf.Timestamp
+  field :transferrable, 4, type: :bool
+  field :ttl, 5, type: :uint32
+  field :parent, 6, type: :string
 end
 
 defmodule ForgeAbi.DeclareTx do
@@ -76,13 +80,15 @@ defmodule ForgeAbi.DeclareTx do
           moniker: String.t(),
           pk: String.t(),
           type: ForgeAbi.WalletType.t(),
+          issuer: String.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [:moniker, :pk, :type, :data]
+  defstruct [:moniker, :pk, :type, :issuer, :data]
 
   field :moniker, 1, type: :string
   field :pk, 2, type: :bytes
   field :type, 3, type: ForgeAbi.WalletType
+  field :issuer, 4, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
 

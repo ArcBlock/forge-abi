@@ -65,7 +65,7 @@
       meta: value=40
     - type: readonly_asset
       meta: value=41
-    - type: activated_asset
+    - type: consumed_asset
       meta: value=42
     - type: forbidden
       meta: value=403
@@ -101,7 +101,7 @@
       meta: value=23
     - type: application
       meta: value=24
-    - type: activate_asset
+    - type: consume_asset
       meta: value=25
     - type: account_state
       meta: value=129
