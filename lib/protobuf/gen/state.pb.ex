@@ -65,7 +65,7 @@ defmodule ForgeAbi.AssetState do
           readonly: boolean,
           transferrable: boolean,
           ttl: non_neg_integer,
-          activated_time: Google.Protobuf.Timestamp.t(),
+          consumed_time: Google.Protobuf.Timestamp.t(),
           issuer: String.t(),
           stake: ForgeAbi.StakeContext.t(),
           context: ForgeAbi.StateContext.t(),
@@ -78,7 +78,7 @@ defmodule ForgeAbi.AssetState do
     :readonly,
     :transferrable,
     :ttl,
-    :activated_time,
+    :consumed_time,
     :issuer,
     :stake,
     :context,
@@ -91,7 +91,7 @@ defmodule ForgeAbi.AssetState do
   field :readonly, 4, type: :bool
   field :transferrable, 5, type: :bool
   field :ttl, 6, type: :uint32
-  field :activated_time, 7, type: Google.Protobuf.Timestamp
+  field :consumed_time, 7, type: Google.Protobuf.Timestamp
   field :issuer, 8, type: :string
   field :stake, 13, type: ForgeAbi.StakeContext
   field :context, 14, type: ForgeAbi.StateContext

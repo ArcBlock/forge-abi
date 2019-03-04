@@ -40,8 +40,8 @@ message AssetState {
   bool readonly = 4;
   bool transferrable = 5;
   uint32 ttl = 6;
-  // once it is activated, it is untransferrable
-  google.protobuf.Timestamp activated_time = 7;
+  // once it is consumed, it is untransferrable
+  google.protobuf.Timestamp consumed_time = 7;
   // who issued the asset
   string issuer = 8;
 

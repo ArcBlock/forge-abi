@@ -47,7 +47,7 @@
       type: boolean
     - name: ttl
       type: int
-    - name: activated_time
+    - name: consumed_time
       type: timestamp
     - name: issuer
       type: string

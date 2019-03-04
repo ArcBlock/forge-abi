@@ -654,7 +654,7 @@ defmodule ForgeAbi.ForgeStatistics do
           num_sys_upgrade_txs: [non_neg_integer],
           num_transfer_txs: [non_neg_integer],
           num_update_asset_txs: [non_neg_integer],
-          num_activate_asset_txs: [non_neg_integer]
+          num_consume_asset_txs: [non_neg_integer]
         }
   defstruct [
     :num_blocks,
@@ -671,7 +671,7 @@ defmodule ForgeAbi.ForgeStatistics do
     :num_sys_upgrade_txs,
     :num_transfer_txs,
     :num_update_asset_txs,
-    :num_activate_asset_txs
+    :num_consume_asset_txs
   ]
 
   field :num_blocks, 1, repeated: true, type: :uint64
@@ -688,7 +688,7 @@ defmodule ForgeAbi.ForgeStatistics do
   field :num_sys_upgrade_txs, 12, repeated: true, type: :uint32
   field :num_transfer_txs, 13, repeated: true, type: :uint64
   field :num_update_asset_txs, 14, repeated: true, type: :uint64
-  field :num_activate_asset_txs, 15, repeated: true, type: :uint64
+  field :num_consume_asset_txs, 15, repeated: true, type: :uint64
 end
 
 defmodule ForgeAbi.TxStatistics do
@@ -706,7 +706,7 @@ defmodule ForgeAbi.TxStatistics do
           num_sys_upgrade_txs: non_neg_integer,
           num_transfer_txs: non_neg_integer,
           num_update_asset_txs: non_neg_integer,
-          num_activate_asset_txs: non_neg_integer
+          num_consume_asset_txs: non_neg_integer
         }
   defstruct [
     :num_account_migrate_txs,
@@ -719,7 +719,7 @@ defmodule ForgeAbi.TxStatistics do
     :num_sys_upgrade_txs,
     :num_transfer_txs,
     :num_update_asset_txs,
-    :num_activate_asset_txs
+    :num_consume_asset_txs
   ]
 
   field :num_account_migrate_txs, 1, type: :uint64
@@ -732,5 +732,5 @@ defmodule ForgeAbi.TxStatistics do
   field :num_sys_upgrade_txs, 8, type: :uint32
   field :num_transfer_txs, 9, type: :uint64
   field :num_update_asset_txs, 10, type: :uint64
-  field :num_activate_asset_txs, 11, type: :uint64
+  field :num_consume_asset_txs, 11, type: :uint64
 end
