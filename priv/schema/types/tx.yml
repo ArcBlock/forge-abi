@@ -58,5 +58,5 @@
       meta: null=false
       doc: inner transaction
     - name: signatures
-      type: [kv_pair]
+      type: [multisig]
       doc: the list of extra signatures
