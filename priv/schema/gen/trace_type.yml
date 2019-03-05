@@ -65,6 +65,8 @@
       type: string
     - name: tx
       type: transaction
+    - name: asset_address
+      type: string
   
 - name: indexed_account_state
   type: output

@@ -142,6 +142,7 @@ message TransactionInfo {
   string hash = 4;
   repeated abci_vendor.KVPair tags = 5;
   StatusCode code = 6;
+  google.protobuf.Timestamp time = 7;
 }
 
 message BlockInfo {
@@ -152,6 +153,9 @@ message BlockInfo {
   string proposer = 5;
   repeated TransactionInfo txs = 6;
   uint64 total_txs = 7;
+  repeated TransactionInfo invalid_txs = 8;
+  repeated string txs_hashes = 9;
+  repeated string invalid_txs_hashes = 10;
 }
 
 message TxStatus {

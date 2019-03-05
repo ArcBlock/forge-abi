@@ -91,6 +91,7 @@ defmodule ForgeAbi.IndexedTransaction do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
+          value: {atom, any},
           hash: String.t(),
           sender: String.t(),
           receiver: String.t(),
@@ -98,14 +99,16 @@ defmodule ForgeAbi.IndexedTransaction do
           type: String.t(),
           tx: ForgeAbi.Transaction.t()
         }
-  defstruct [:hash, :sender, :receiver, :time, :type, :tx]
+  defstruct [:value, :hash, :sender, :receiver, :time, :type, :tx]
 
+  oneof :value, 0
   field :hash, 1, type: :string
   field :sender, 2, type: :string
   field :receiver, 3, type: :string
   field :time, 4, type: :string
   field :type, 5, type: :string
   field :tx, 6, type: ForgeAbi.Transaction
+  field :asset_address, 7, type: :string, oneof: 0
 end
 
 defmodule ForgeAbi.IndexedAccountState do

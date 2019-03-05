@@ -50,6 +50,9 @@ message IndexedTransaction {
   string time = 4;
   string type = 5;
   Transaction tx = 6;
+  oneof value {
+    string asset_address = 7;
+  }
 }
 
 message IndexedAccountState {
