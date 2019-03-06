@@ -379,9 +379,10 @@ defmodule ForgeAbi.TransactionInfo do
           index: non_neg_integer,
           hash: String.t(),
           tags: [AbciVendor.KVPair.t()],
-          code: integer
+          code: integer,
+          time: Google.Protobuf.Timestamp.t()
         }
-  defstruct [:tx, :height, :index, :hash, :tags, :code]
+  defstruct [:tx, :height, :index, :hash, :tags, :code, :time]
 
   field :tx, 1, type: ForgeAbi.Transaction
   field :height, 2, type: :uint64
@@ -389,6 +390,7 @@ defmodule ForgeAbi.TransactionInfo do
   field :hash, 4, type: :string
   field :tags, 5, repeated: true, type: AbciVendor.KVPair
   field :code, 6, type: ForgeAbi.StatusCode, enum: true
+  field :time, 7, type: Google.Protobuf.Timestamp
 end
 
 defmodule ForgeAbi.BlockInfo do
@@ -402,9 +404,23 @@ defmodule ForgeAbi.BlockInfo do
           app_hash: String.t(),
           proposer: String.t(),
           txs: [ForgeAbi.TransactionInfo.t()],
-          total_txs: non_neg_integer
+          total_txs: non_neg_integer,
+          invalid_txs: [ForgeAbi.TransactionInfo.t()],
+          txs_hashes: [String.t()],
+          invalid_txs_hashes: [String.t()]
         }
-  defstruct [:height, :num_txs, :time, :app_hash, :proposer, :txs, :total_txs]
+  defstruct [
+    :height,
+    :num_txs,
+    :time,
+    :app_hash,
+    :proposer,
+    :txs,
+    :total_txs,
+    :invalid_txs,
+    :txs_hashes,
+    :invalid_txs_hashes
+  ]
 
   field :height, 1, type: :uint64
   field :num_txs, 2, type: :uint32
@@ -413,6 +429,9 @@ defmodule ForgeAbi.BlockInfo do
   field :proposer, 5, type: :string
   field :txs, 6, repeated: true, type: ForgeAbi.TransactionInfo
   field :total_txs, 7, type: :uint64
+  field :invalid_txs, 8, repeated: true, type: ForgeAbi.TransactionInfo
+  field :txs_hashes, 9, repeated: true, type: :string
+  field :invalid_txs_hashes, 10, repeated: true, type: :string
 end
 
 defmodule ForgeAbi.TxStatus do

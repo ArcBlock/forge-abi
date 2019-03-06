@@ -231,6 +231,8 @@
       type: [kv_pair]
     - name: code
       type: status_code
+    - name: time
+      type: timestamp
   
 - name: block_info
   type: output
@@ -249,6 +251,12 @@
       type: [transaction_info]
     - name: total_txs
       type: int
+    - name: invalid_txs
+      type: [transaction_info]
+    - name: txs_hashes
+      type: [string]
+    - name: invalid_txs_hashes
+      type: [string]
   
 - name: tx_status
   type: output

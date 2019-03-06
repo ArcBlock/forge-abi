@@ -65,6 +65,16 @@
       type: string
     - name: tx
       type: transaction
+    - name: consume_asset
+      type: indexed_consume_asset
+    - name: create_asset
+      type: indexed_create_asset
+    - name: exchange
+      type: indexed_exchange
+    - name: transfer
+      type: indexed_transfer
+    - name: update_asset
+      type: indexed_update_asset
   
 - name: indexed_account_state
   type: output
@@ -133,6 +143,38 @@
       type: string
     - name: type
       type: int
+  
+- name: indexed_consume_asset
+  type: output
+  fields:
+    - name: asset
+      type: string
+  
+- name: indexed_create_asset
+  type: output
+  fields:
+    - name: asset
+      type: string
+  
+- name: indexed_exchange
+  type: output
+  fields:
+    - name: sender_assets
+      type: [string]
+    - name: receiver_assets
+      type: [string]
+  
+- name: indexed_transfer
+  type: output
+  fields:
+    - name: assets
+      type: [string]
+  
+- name: indexed_update_asset
+  type: output
+  fields:
+    - name: asset
+      type: string
   
 - name: direction
   type: enum

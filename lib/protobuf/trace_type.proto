@@ -50,6 +50,13 @@ message IndexedTransaction {
   string time = 4;
   string type = 5;
   Transaction tx = 6;
+  oneof value {
+    IndexedConsumeAsset consume_asset = 7;
+    IndexedCreateAsset create_asset = 8;
+    IndexedExchange exchange = 9;
+    IndexedTransfer transfer =  10;
+    IndexedUpdateAsset update_asset = 11;
+  }
 }
 
 message IndexedAccountState {
@@ -87,4 +94,25 @@ message IndexedStakeState {
   string renaissance_time = 6;
   string message = 7;
   uint32 type = 8;
+}
+
+message IndexedConsumeAsset {
+  string asset = 1;
+}
+
+message IndexedCreateAsset {
+  string asset = 1;
+}
+
+message IndexedExchange {
+  repeated string sender_assets = 1;
+  repeated string receiver_assets = 2;
+}
+
+message IndexedTransfer {
+  repeated string assets = 1;
+}
+
+message IndexedUpdateAsset {
+  string asset = 1;
 }
