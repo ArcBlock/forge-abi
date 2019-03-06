@@ -75,6 +75,8 @@
       type: string
     - name: forge_app_hash
       type: string
+    - name: token
+      type: forge_token
     - name: data
       type: any
   

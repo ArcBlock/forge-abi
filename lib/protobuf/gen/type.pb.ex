@@ -753,3 +753,41 @@ defmodule ForgeAbi.TxStatistics do
   field :num_update_asset_txs, 10, type: :uint64
   field :num_consume_asset_txs, 11, type: :uint64
 end
+
+defmodule ForgeAbi.ForgeToken do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          name: String.t(),
+          symbol: String.t(),
+          unit: String.t(),
+          description: String.t(),
+          icon: String.t(),
+          decimal: non_neg_integer,
+          initial_supply: non_neg_integer,
+          total_supply: non_neg_integer,
+          inflation_rate: float
+        }
+  defstruct [
+    :name,
+    :symbol,
+    :unit,
+    :description,
+    :icon,
+    :decimal,
+    :initial_supply,
+    :total_supply,
+    :inflation_rate
+  ]
+
+  field :name, 1, type: :string
+  field :symbol, 2, type: :string
+  field :unit, 3, type: :string
+  field :description, 4, type: :string
+  field :icon, 5, type: :bytes
+  field :decimal, 6, type: :uint32
+  field :initial_supply, 7, type: :uint64
+  field :total_supply, 8, type: :uint64
+  field :inflation_rate, 9, type: :float
+end
