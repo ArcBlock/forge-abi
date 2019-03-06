@@ -1,0 +1,68 @@
+syntax = "proto3";
+package forge_abi;
+// import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+// import "type.proto";
+import "tx.proto";
+
+message PollNoop {}
+
+message PollOption {
+	string description = 1;
+	oneof action {
+		forge_abi.ConsensusUpgradeTx consensus_upgrade = 2;
+    PollNoop noop = 3;
+  }	
+}
+
+message PollInfo {
+  // synopsis of the poll
+  string title = 1;
+  // detailed description, could be in markdown
+  string description = 2;
+  // poll start time. Anyone can stake before this time.
+  google.protobuf.Timestamp start_time = 3;
+  // poll end time. Anyone with mininum stakes could send vote tx before this
+  // time.
+  google.protobuf.Timestamp end_time = 4;
+  // poll execute time. The action defined in the poll will be executed right
+  // after this time.
+  google.protobuf.Timestamp execute_time = 5;
+  // minimum stakes required for this pool. If 0, no stake is required
+  uint64 minimum_stake = 6;
+  // maximum stakes could be used for this pool. If user stake more than this
+  // value, only this value will be counted. If 0, no upper limit.
+  uint64 maximum_stake = 7;
+
+  // minimum total stakes to be able to start the vote. If after start_time no
+  // enough stakes are gathered the poll will be terminated
+  uint64 mininum_total_stake = 8;
+
+  // an expression indicating how we treat an action of the poll as the winner.
+  // e.g. "total_voters > 50%" or "total_votes > 60%"
+	string success_criteria = 9;
+	
+	// the options for people to vote
+  repeated PollOption options = 10;
+}
+
+// tx
+
+message VoteTx {
+  // poll address
+  string address = 1;
+  // option index to choose
+  uint32 index = 2;
+}
+
+// state
+
+message AssetPollState {
+	PollInfo info = 1;
+	uint64 total_stakes = 2;
+	uint64 total_votes = 3;
+	repeated uint64 votes_for_options = 4;
+	uint32 winner_idx = 5;
+}
+
+

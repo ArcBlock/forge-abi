@@ -55,7 +55,7 @@ rebuild-proto: prepare-vendor-proto
 
 rebuild-goldorin:
 	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH)/gen ./vendors/vendor.proto
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH)/gen $(PROTO_PATH)/{enum,type,state,tx,rpc,trace_type}.proto
+	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH)/gen $(PROTO_PATH)/{enum,type,state,tx,rpc,trace_type,poll}.proto
 	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH)/gen $(PROTO_PATH)/service.proto
 
 rebuild-proto-js: prepare-vendor-proto

@@ -1,0 +1,61 @@
+- name: poll_noop
+  type: output
+
+  fields: []
+
+- name: poll_option
+  type: output
+  fields:
+    - name: description
+      type: string
+    - name: consensus_upgrade
+      type: consensus_upgrade_tx
+    - name: noop
+      type: poll_noop
+  
+- name: poll_info
+  type: output
+  fields:
+    - name: title
+      type: string
+    - name: description
+      type: string
+    - name: start_time
+      type: timestamp
+    - name: end_time
+      type: timestamp
+    - name: execute_time
+      type: timestamp
+    - name: minimum_stake
+      type: int
+    - name: maximum_stake
+      type: int
+    - name: mininum_total_stake
+      type: int
+    - name: success_criteria
+      type: string
+    - name: options
+      type: [poll_option]
+  
+- name: vote_tx
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: index
+      type: int
+  
+- name: asset_poll_state
+  type: output
+  fields:
+    - name: info
+      type: poll_info
+    - name: total_stakes
+      type: int
+    - name: total_votes
+      type: int
+    - name: votes_for_options
+      type: [int]
+    - name: winner_idx
+      type: int
+  
