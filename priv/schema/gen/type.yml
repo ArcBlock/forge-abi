@@ -460,3 +460,25 @@
     - name: num_consume_asset_txs
       type: int
   
+- name: forge_token
+  type: output
+  fields:
+    - name: name
+      type: string
+    - name: symbol
+      type: string
+    - name: unit
+      type: string
+    - name: description
+      type: string
+    - name: icon
+      type: string
+    - name: decimal
+      type: int
+    - name: initial_supply
+      type: int
+    - name: total_supply
+      type: int
+    - name: inflation_rate
+      type: int
+  

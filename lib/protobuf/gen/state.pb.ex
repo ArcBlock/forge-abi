@@ -110,6 +110,7 @@ defmodule ForgeAbi.ForgeState do
           version: String.t(),
           data_version: String.t(),
           forge_app_hash: String.t(),
+          token: ForgeAbi.ForgeToken.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -120,6 +121,7 @@ defmodule ForgeAbi.ForgeState do
     :version,
     :data_version,
     :forge_app_hash,
+    :token,
     :data
   ]
 
@@ -130,6 +132,7 @@ defmodule ForgeAbi.ForgeState do
   field :version, 5, type: :string
   field :data_version, 6, type: :string
   field :forge_app_hash, 7, type: :bytes
+  field :token, 8, type: ForgeAbi.ForgeToken
   field :data, 15, type: Google.Protobuf.Any
 end
 
