@@ -296,5 +296,5 @@ message ForgeToken {
   uint32 decimal = 6;           // token decimal
   uint64 initial_supply = 7;    // token initial supply amount
   uint64 total_supply = 8;      // token total supply amount
-  float inflation_rate = 9;     // token inflation rate in float
+  uint32 inflation_rate = 9;    // token inflation rate in integer
 }

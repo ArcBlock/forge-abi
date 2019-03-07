@@ -767,7 +767,7 @@ defmodule ForgeAbi.ForgeToken do
           decimal: non_neg_integer,
           initial_supply: non_neg_integer,
           total_supply: non_neg_integer,
-          inflation_rate: float
+          inflation_rate: non_neg_integer
         }
   defstruct [
     :name,
@@ -789,5 +789,5 @@ defmodule ForgeAbi.ForgeToken do
   field :decimal, 6, type: :uint32
   field :initial_supply, 7, type: :uint64
   field :total_supply, 8, type: :uint64
-  field :inflation_rate, 9, type: :float
+  field :inflation_rate, 9, type: :uint32
 end
