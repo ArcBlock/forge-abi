@@ -46,9 +46,9 @@ defmodule ForgeAbi.Arc do
   def token_to_arc(n), do: new_arc(round(n * one_token()))
 
   @spec arc_to_token(BigUint.t() | non_neg_integer()) :: number()
-  def arc_to_token(i) when is_integer(i), do: i / one_token()
+  def arc_to_token(i) when is_integer(i), do: div(i, one_token())
 
   def arc_to_token(v) do
-    BigInt.to_int(v) / one_token()
+    div(BigInt.to_int(v), one_token())
   end
 end
