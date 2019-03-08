@@ -35,8 +35,6 @@ defmodule ForgeAbi.StatusCode do
   field :untransferrable_asset, 40
   field :readonly_asset, 41
   field :consumed_asset, 42
-  field :daily_poke_all_sent, 43
-  field :total_poke_all_sent, 44
   field :forbidden, 403
   field :internal, 500
 end
