@@ -21,6 +21,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     DeclareFileTx,
     DeclareTx,
     ExchangeTx,
+    PokeTx,
     StakeTx,
     SysUpgradeTx,
     TransferTx,
@@ -58,6 +59,7 @@ defmodule ForgeAbi.Util.TypeUrl do
   @base_types [
     # forge tx
     {:account_migrate, "fg:t:account_migrate", AccountMigrateTx},
+    {:poke, "fg:t:poke", PokeTx},
     {:consume_asset, "fg:t:consume_asset", ConsumeAssetTx},
     {:create_asset, "fg:t:create_asset", CreateAssetTx},
     {:consensus_upgrade, "fg:t:consensus_upgrade", ConsensusUpgradeTx},

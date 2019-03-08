@@ -67,6 +67,10 @@
       meta: value=41
     - type: consumed_asset
       meta: value=42
+    - type: daily_poke_all_sent
+      meta: value=43
+    - type: total_poke_all_sent
+      meta: value=44
     - type: forbidden
       meta: value=403
     - type: internal
@@ -103,6 +107,8 @@
       meta: value=24
     - type: consume_asset
       meta: value=25
+    - type: poke
+      meta: value=26
     - type: account_state
       meta: value=129
     - type: asset_state

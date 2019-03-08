@@ -149,3 +149,9 @@ message UpdateAssetTx {
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 15;
 }
+
+message PokeTx {
+  // type url: fg:x:poke
+  string date = 1;
+  string address = 2;
+}

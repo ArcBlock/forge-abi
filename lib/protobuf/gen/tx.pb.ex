@@ -233,3 +233,17 @@ defmodule ForgeAbi.UpdateAssetTx do
   field :moniker, 2, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
+
+defmodule ForgeAbi.PokeTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          date: String.t(),
+          address: String.t()
+        }
+  defstruct [:date, :address]
+
+  field :date, 1, type: :string
+  field :address, 2, type: :string
+end

@@ -43,6 +43,8 @@ enum StatusCode {
   untransferrable_asset = 40;
   readonly_asset = 41;
   consumed_asset = 42;
+  daily_poke_all_sent = 43;
+  total_poke_all_sent = 44;
 
   forbidden = 403;
   internal = 500;
@@ -74,6 +76,7 @@ enum TopicType {
   sys_upgrade = 23;
   application = 24;
   consume_asset = 25;
+  poke = 26;
 
   // 24-128 reserved for future infrequent forge tx
 
