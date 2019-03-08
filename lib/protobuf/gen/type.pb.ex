@@ -809,7 +809,7 @@ defmodule ForgeAbi.PokeInfo do
         }
   defstruct [:daily_limit, :leftover, :amount]
 
-  field :daily_limit, 2, type: ForgeAbi.BigUint
-  field :leftover, 3, type: ForgeAbi.BigUint
-  field :amount, 4, type: ForgeAbi.BigUint
+  field :daily_limit, 1, type: ForgeAbi.BigUint
+  field :leftover, 2, type: ForgeAbi.BigUint
+  field :amount, 3, type: ForgeAbi.BigUint
 end
