@@ -302,7 +302,7 @@ message ForgeToken {
 }
 
 message PokeInfo {
-  BigUint daily_limit = 2;     //poke daily supply amount
-  BigUint leftover = 3;        //remaining poke daily supply amount
-  BigUint amount = 4;          //poke once supply amount
+  BigUint daily_limit = 1;     //poke daily supply amount
+  BigUint leftover = 2;        //remaining poke daily supply amount
+  BigUint amount = 3;          //poke once supply amount
 }
