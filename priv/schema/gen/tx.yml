@@ -154,3 +154,11 @@
     - name: data
       type: any
   
+- name: poke_tx
+  type: output
+  fields:
+    - name: date
+      type: string
+    - name: address
+      type: string
+  

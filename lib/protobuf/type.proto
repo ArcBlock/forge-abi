@@ -1,8 +1,8 @@
 syntax = "proto3";
 package forge_abi;
+
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/any.proto";
-
 import "vendor.proto";
 import "enum.proto";
 
@@ -271,6 +271,7 @@ message ForgeStatistics {
   repeated uint64 num_transfer_txs = 13;
   repeated uint64 num_update_asset_txs = 14;
   repeated uint64 num_consume_asset_txs = 15;
+  repeated uint64 num_poke_txs = 16;
 }
 
 message TxStatistics {
@@ -285,4 +286,23 @@ message TxStatistics {
   uint64 num_transfer_txs = 9;
   uint64 num_update_asset_txs = 10;
   uint64 num_consume_asset_txs = 11;
+  uint64 num_poke_txs = 12;
+}
+
+message ForgeToken {
+  string name = 1;              // token name
+  string symbol = 2;            // token symbol
+  string unit = 3;              // token smallest unit
+  string description = 4;       // token description
+  bytes icon = 5;               // token icon file in bytes
+  uint32 decimal = 6;           // token decimal
+  uint64 initial_supply = 7;    // token initial supply amount
+  uint64 total_supply = 8;      // token total supply amount
+  uint32 inflation_rate = 9;    // token inflation rate in integer
+}
+
+message PokeInfo {
+  BigUint daily_limit = 1;     //poke daily supply amount
+  BigUint leftover = 2;        //remaining poke daily supply amount
+  BigUint amount = 3;          //poke once supply amount
 }

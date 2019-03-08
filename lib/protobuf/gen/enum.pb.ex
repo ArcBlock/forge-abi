@@ -57,6 +57,7 @@ defmodule ForgeAbi.TopicType do
   field :sys_upgrade, 23
   field :application, 24
   field :consume_asset, 25
+  field :poke, 26
   field :account_state, 129
   field :asset_state, 130
   field :forge_state, 131

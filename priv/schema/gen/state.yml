@@ -29,6 +29,8 @@
       type: stake_context
     - name: pinned_files
       type: circular_queue
+    - name: poke
+      type: poke_info
     - name: data
       type: any
   
@@ -75,6 +77,8 @@
       type: string
     - name: forge_app_hash
       type: string
+    - name: token
+      type: forge_token
     - name: data
       type: any
   

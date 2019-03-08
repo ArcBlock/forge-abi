@@ -103,6 +103,8 @@
       meta: value=24
     - type: consume_asset
       meta: value=25
+    - type: poke
+      meta: value=26
     - type: account_state
       meta: value=129
     - type: asset_state
