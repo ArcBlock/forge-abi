@@ -35,7 +35,6 @@ defmodule ForgeAbi.StatusCode do
   field :untransferrable_asset, 40
   field :readonly_asset, 41
   field :consumed_asset, 42
-  field :insufficient_balance, 43
   field :forbidden, 403
   field :internal, 500
 end
@@ -63,9 +62,6 @@ defmodule ForgeAbi.TopicType do
   field :asset_state, 130
   field :forge_state, 131
   field :stake_state, 132
-
-  # note: this line is manually added. So everytime rebuild-protos is executed we shall added this back.
-  use ForgeAbi.EnumFields
 end
 
 defmodule ForgeAbi.KeyType do

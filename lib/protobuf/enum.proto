@@ -43,7 +43,6 @@ enum StatusCode {
   untransferrable_asset = 40;
   readonly_asset = 41;
   consumed_asset = 42;
-  insufficient_balance = 43;
 
   forbidden = 403;
   internal = 500;
