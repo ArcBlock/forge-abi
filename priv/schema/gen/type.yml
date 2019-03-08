@@ -433,6 +433,8 @@
       type: [int]
     - name: num_consume_asset_txs
       type: [int]
+    - name: num_poke_txs
+      type: [int]
   
 - name: tx_statistics
   type: output
@@ -459,6 +461,8 @@
       type: int
     - name: num_consume_asset_txs
       type: int
+    - name: num_poke_txs
+      type: int
   
 - name: forge_token
   type: output
@@ -481,4 +485,16 @@
       type: int
     - name: inflation_rate
       type: int
+  
+- name: poke_info
+  type: output
+  fields:
+    - name: balance
+      type: string
+    - name: daily_limit
+      type: string
+    - name: leftover
+      type: string
+    - name: amount
+      type: string
   

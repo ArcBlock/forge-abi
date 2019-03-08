@@ -17,6 +17,7 @@ defmodule ForgeAbi.AccountState do
           num_assets: non_neg_integer,
           stake: ForgeAbi.StakeContext.t(),
           pinned_files: ForgeAbi.CircularQueue.t(),
+          poke: ForgeAbi.PokeInfo.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -34,6 +35,7 @@ defmodule ForgeAbi.AccountState do
     :num_assets,
     :stake,
     :pinned_files,
+    :poke,
     :data
   ]
 
@@ -51,6 +53,7 @@ defmodule ForgeAbi.AccountState do
   field :num_assets, 15, type: :uint64
   field :stake, 16, type: ForgeAbi.StakeContext
   field :pinned_files, 17, type: ForgeAbi.CircularQueue
+  field :poke, 18, type: ForgeAbi.PokeInfo
   field :data, 50, type: Google.Protobuf.Any
 end
 

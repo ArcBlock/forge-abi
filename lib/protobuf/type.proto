@@ -271,6 +271,7 @@ message ForgeStatistics {
   repeated uint64 num_transfer_txs = 13;
   repeated uint64 num_update_asset_txs = 14;
   repeated uint64 num_consume_asset_txs = 15;
+  repeated uint64 num_poke_txs = 16;
 }
 
 message TxStatistics {
@@ -285,6 +286,7 @@ message TxStatistics {
   uint64 num_transfer_txs = 9;
   uint64 num_update_asset_txs = 10;
   uint64 num_consume_asset_txs = 11;
+  uint64 num_poke_txs = 12;
 }
 
 message ForgeToken {
@@ -297,4 +299,11 @@ message ForgeToken {
   uint64 initial_supply = 7;    // token initial supply amount
   uint64 total_supply = 8;      // token total supply amount
   uint32 inflation_rate = 9;    // token inflation rate in integer
+}
+
+message PokeInfo {
+  BigUint balance = 1;         //poke total supply amount
+  BigUint daily_limit = 2;     //poke daily supply amount
+  BigUint leftover = 3;        //remaining poke daily supply amount
+  BigUint amount = 4;          //poke once supply amount
 }

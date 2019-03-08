@@ -29,6 +29,7 @@ message AccountState {
 
   StakeContext stake = 16;
   CircularQueue pinned_files = 17;
+  PokeInfo poke = 18;
 
   google.protobuf.Any data = 50;
 }

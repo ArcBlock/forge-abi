@@ -25,6 +25,7 @@
   doc: inner transaction
   fields:
     - type: account_migrate_tx
+    - type: poke_tx
     - type: consensus_upgrade_tx
     - type: consume_asset_tx
     - type: create_asset_tx
