@@ -803,14 +803,12 @@ defmodule ForgeAbi.PokeInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          balance: ForgeAbi.BigUint.t(),
           daily_limit: ForgeAbi.BigUint.t(),
           leftover: ForgeAbi.BigUint.t(),
           amount: ForgeAbi.BigUint.t()
         }
-  defstruct [:balance, :daily_limit, :leftover, :amount]
+  defstruct [:daily_limit, :leftover, :amount]
 
-  field :balance, 1, type: ForgeAbi.BigUint
   field :daily_limit, 2, type: ForgeAbi.BigUint
   field :leftover, 3, type: ForgeAbi.BigUint
   field :amount, 4, type: ForgeAbi.BigUint

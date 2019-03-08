@@ -489,8 +489,6 @@
 - name: poke_info
   type: output
   fields:
-    - name: balance
-      type: string
     - name: daily_limit
       type: string
     - name: leftover
