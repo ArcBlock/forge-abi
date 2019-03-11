@@ -374,6 +374,7 @@ defmodule ForgeAbi.TransactionInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
+          value: {atom, any},
           tx: ForgeAbi.Transaction.t(),
           height: non_neg_integer,
           index: non_neg_integer,
@@ -382,8 +383,9 @@ defmodule ForgeAbi.TransactionInfo do
           code: integer,
           time: Google.Protobuf.Timestamp.t()
         }
-  defstruct [:tx, :height, :index, :hash, :tags, :code, :time]
+  defstruct [:value, :tx, :height, :index, :hash, :tags, :code, :time]
 
+  oneof :value, 0
   field :tx, 1, type: ForgeAbi.Transaction
   field :height, 2, type: :uint64
   field :index, 3, type: :uint32
@@ -391,6 +393,8 @@ defmodule ForgeAbi.TransactionInfo do
   field :tags, 5, repeated: true, type: AbciVendor.KVPair
   field :code, 6, type: ForgeAbi.StatusCode, enum: true
   field :time, 7, type: Google.Protobuf.Timestamp
+  field :create_asset, 8, type: ForgeAbi.ExtraCreateAsset, oneof: 0
+  field :account_migrate, 9, type: ForgeAbi.ExtraAccountMigrate, oneof: 0
 end
 
 defmodule ForgeAbi.BlockInfo do
@@ -812,4 +816,28 @@ defmodule ForgeAbi.PokeInfo do
   field :daily_limit, 1, type: ForgeAbi.BigUint
   field :leftover, 2, type: ForgeAbi.BigUint
   field :amount, 3, type: ForgeAbi.BigUint
+end
+
+defmodule ForgeAbi.ExtraCreateAsset do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          asset: String.t()
+        }
+  defstruct [:asset]
+
+  field :asset, 1, type: :string
+end
+
+defmodule ForgeAbi.ExtraAccountMigrate do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t()
+        }
+  defstruct [:address]
+
+  field :address, 1, type: :string
 end

@@ -143,6 +143,10 @@ message TransactionInfo {
   repeated abci_vendor.KVPair tags = 5;
   StatusCode code = 6;
   google.protobuf.Timestamp time = 7;
+  oneof value {
+    ExtraCreateAsset create_asset = 8;
+    ExtraAccountMigrate account_migrate = 9;
+  }
 }
 
 message BlockInfo {
@@ -305,4 +309,12 @@ message PokeInfo {
   BigUint daily_limit = 1;     //poke daily supply amount
   BigUint leftover = 2;        //remaining poke daily supply amount
   BigUint amount = 3;          //poke once supply amount
+}
+
+message ExtraCreateAsset {
+  string asset = 1;
+}
+
+message ExtraAccountMigrate {
+  string address = 1;
 }
