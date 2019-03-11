@@ -46,6 +46,7 @@ enum StatusCode {
 
   forbidden = 403;
   internal = 500;
+  timeout = 504;
 
   // user defined status code shall start from 600
 }
