@@ -233,6 +233,10 @@
       type: status_code
     - name: time
       type: timestamp
+    - name: create_asset
+      type: extra_create_asset
+    - name: account_migrate
+      type: extra_account_migrate
   
 - name: block_info
   type: output
@@ -494,5 +498,17 @@
     - name: leftover
       type: string
     - name: amount
+      type: string
+  
+- name: extra_create_asset
+  type: output
+  fields:
+    - name: asset
+      type: string
+  
+- name: extra_account_migrate
+  type: output
+  fields:
+    - name: address
       type: string
   
