@@ -37,6 +37,7 @@ defmodule ForgeAbi.StatusCode do
   field :consumed_asset, 42
   field :forbidden, 403
   field :internal, 500
+  field :timeout, 504
 end
 
 defmodule ForgeAbi.TopicType do

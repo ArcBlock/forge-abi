@@ -71,6 +71,8 @@
       meta: value=403
     - type: internal
       meta: value=500
+    - type: timeout
+      meta: value=504
 
 - name: topic_type
   type: enum
