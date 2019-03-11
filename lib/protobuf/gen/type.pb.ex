@@ -374,7 +374,7 @@ defmodule ForgeAbi.TransactionInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          value: {atom, any},
+          extra_meta: {atom, any},
           tx: ForgeAbi.Transaction.t(),
           height: non_neg_integer,
           index: non_neg_integer,
@@ -383,9 +383,9 @@ defmodule ForgeAbi.TransactionInfo do
           code: integer,
           time: Google.Protobuf.Timestamp.t()
         }
-  defstruct [:value, :tx, :height, :index, :hash, :tags, :code, :time]
+  defstruct [:extra_meta, :tx, :height, :index, :hash, :tags, :code, :time]
 
-  oneof :value, 0
+  oneof :extra_meta, 0
   field :tx, 1, type: ForgeAbi.Transaction
   field :height, 2, type: :uint64
   field :index, 3, type: :uint32

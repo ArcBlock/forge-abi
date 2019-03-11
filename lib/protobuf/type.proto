@@ -143,7 +143,7 @@ message TransactionInfo {
   repeated abci_vendor.KVPair tags = 5;
   StatusCode code = 6;
   google.protobuf.Timestamp time = 7;
-  oneof value {
+  oneof extra_meta {
     ExtraCreateAsset create_asset = 8;
     ExtraAccountMigrate account_migrate = 9;
   }
