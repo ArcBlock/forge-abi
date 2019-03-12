@@ -23,6 +23,8 @@
       meta: value=9
     - type: expired_tx
       meta: value=10
+    - type: too_many_txs
+      meta: value=11
     - type: invalid_moniker
       meta: value=16
     - type: invalid_passphrase
