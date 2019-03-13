@@ -457,12 +457,12 @@
       type: [int]
     - name: num_poke_txs
       type: [int]
-    - name: current_tps
-      type: [float]
+    - name: tps
+      type: [int]
     - name: max_tps
-      type: [float]
+      type: int
     - name: avg_tps
-      type: [float]
+      type: int
   
 - name: tx_statistics
   type: output
@@ -491,16 +491,6 @@
       type: int
     - name: num_poke_txs
       type: int
-  
-- name: tps_statistics
-  type: output
-  fields:
-    - name: current_tps
-      type: float
-    - name: max_tps
-      type: float
-    - name: avg_tps
-      type: float
   
 - name: forge_token
   type: output

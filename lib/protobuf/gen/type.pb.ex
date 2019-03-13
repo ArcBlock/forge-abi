@@ -706,9 +706,9 @@ defmodule ForgeAbi.ForgeStatistics do
           num_update_asset_txs: [non_neg_integer],
           num_consume_asset_txs: [non_neg_integer],
           num_poke_txs: [non_neg_integer],
-          current_tps: [float],
-          max_tps: [float],
-          avg_tps: [float]
+          tps: [non_neg_integer],
+          max_tps: non_neg_integer,
+          avg_tps: non_neg_integer
         }
   defstruct [
     :num_blocks,
@@ -727,7 +727,7 @@ defmodule ForgeAbi.ForgeStatistics do
     :num_update_asset_txs,
     :num_consume_asset_txs,
     :num_poke_txs,
-    :current_tps,
+    :tps,
     :max_tps,
     :avg_tps
   ]
@@ -748,9 +748,9 @@ defmodule ForgeAbi.ForgeStatistics do
   field :num_update_asset_txs, 14, repeated: true, type: :uint64
   field :num_consume_asset_txs, 15, repeated: true, type: :uint64
   field :num_poke_txs, 16, repeated: true, type: :uint64
-  field :current_tps, 17, repeated: true, type: :float
-  field :max_tps, 18, repeated: true, type: :float
-  field :avg_tps, 19, repeated: true, type: :float
+  field :tps, 17, repeated: true, type: :uint32
+  field :max_tps, 18, type: :uint32
+  field :avg_tps, 19, type: :uint32
 end
 
 defmodule ForgeAbi.TxStatistics do
@@ -798,22 +798,6 @@ defmodule ForgeAbi.TxStatistics do
   field :num_update_asset_txs, 10, type: :uint64
   field :num_consume_asset_txs, 11, type: :uint64
   field :num_poke_txs, 12, type: :uint64
-end
-
-defmodule ForgeAbi.TpsStatistics do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          current_tps: float,
-          max_tps: float,
-          avg_tps: float
-        }
-  defstruct [:current_tps, :max_tps, :avg_tps]
-
-  field :current_tps, 1, type: :float
-  field :max_tps, 2, type: :float
-  field :avg_tps, 3, type: :float
 end
 
 defmodule ForgeAbi.ForgeToken do
