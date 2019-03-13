@@ -285,9 +285,9 @@ message ForgeStatistics {
   repeated uint64 num_update_asset_txs = 14;
   repeated uint64 num_consume_asset_txs = 15;
   repeated uint64 num_poke_txs = 16;
-  repeated float current_tps = 17;
-  repeated float max_tps = 18;
-  repeated float avg_tps = 19;
+  repeated uint32 tps = 17;
+  uint32 max_tps = 18;
+  uint32 avg_tps = 19;
 }
 
 message TxStatistics {
@@ -303,12 +303,6 @@ message TxStatistics {
   uint64 num_update_asset_txs = 10;
   uint64 num_consume_asset_txs = 11;
   uint64 num_poke_txs = 12;
-}
-
-message TpsStatistics {
-  float current_tps = 1;
-  float max_tps = 2;
-  float avg_tps = 3;
 }
 
 message ForgeToken {
