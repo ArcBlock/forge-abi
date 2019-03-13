@@ -1038,3 +1038,48 @@ defmodule ForgeAbi.ResponseListAssetTransactions do
   field :page, 2, type: ForgeAbi.PageInfo
   field :transactions, 3, repeated: true, type: ForgeAbi.IndexedTransaction
 end
+
+defmodule ForgeAbi.RequestListBlocks do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t(),
+          proposer: String.t(),
+          time_filter: ForgeAbi.TimeFilter.t(),
+          height_filter: ForgeAbi.HeightFilter.t(),
+          num_txs_filter: ForgeAbi.NumTxsFilter.t(),
+          num_invalid_txs_filter: ForgeAbi.NumInvalidTxsFilter.t()
+        }
+  defstruct [
+    :paging,
+    :proposer,
+    :time_filter,
+    :height_filter,
+    :num_txs_filter,
+    :num_invalid_txs_filter
+  ]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :proposer, 2, type: :string
+  field :time_filter, 3, type: ForgeAbi.TimeFilter
+  field :height_filter, 4, type: ForgeAbi.HeightFilter
+  field :num_txs_filter, 5, type: ForgeAbi.NumTxsFilter
+  field :num_invalid_txs_filter, 6, type: ForgeAbi.NumInvalidTxsFilter
+end
+
+defmodule ForgeAbi.ResponseListBlocks do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          page: ForgeAbi.PageInfo.t(),
+          blocks: [ForgeAbi.IndexedBlock.t()]
+        }
+  defstruct [:code, :page, :blocks]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :blocks, 3, repeated: true, type: ForgeAbi.IndexedBlock
+end

@@ -261,6 +261,24 @@
       type: [string]
     - name: invalid_txs_hashes
       type: [string]
+    - name: consensus_hash
+      type: string
+    - name: data_hash
+      type: string
+    - name: evidence_hash
+      type: string
+    - name: last_commit_hash
+      type: string
+    - name: last_results_hash
+      type: string
+    - name: next_validators_hash
+      type: string
+    - name: validators_hash
+      type: string
+    - name: version
+      type: version
+    - name: last_block_id
+      type: block_id
   
 - name: tx_status
   type: output
@@ -439,6 +457,12 @@
       type: [int]
     - name: num_poke_txs
       type: [int]
+    - name: current_tps
+      type: [float]
+    - name: max_tps
+      type: [float]
+    - name: avg_tps
+      type: [float]
   
 - name: tx_statistics
   type: output
@@ -467,6 +491,16 @@
       type: int
     - name: num_poke_txs
       type: int
+  
+- name: tps_statistics
+  type: output
+  fields:
+    - name: current_tps
+      type: float
+    - name: max_tps
+      type: float
+    - name: avg_tps
+      type: float
   
 - name: forge_token
   type: output

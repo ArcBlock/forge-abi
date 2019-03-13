@@ -73,3 +73,20 @@
       type: page_input
     - name: address
       type: string
+
+- name: list_blocks
+  type: query
+  return: response_list_blocks
+  params:
+    - name: paging
+      type: page_input
+    - name: proposer
+      type: string
+    - name: time_filter
+      type: time_filter
+    - name: height_filter
+      type: height_filter
+    - name: num_txs_filter
+      type: num_txs_filter
+    - name: num_invalid_txs_filter
+      type: num_invalid_txs_filter

@@ -32,7 +32,7 @@ message RequestMultisig {
 	google.protobuf.Any data = 2;
   WalletInfo wallet = 3;
 	string token = 4;
-	
+
 }
 
 message ResponseMultisig {
@@ -406,4 +406,19 @@ message ResponseListAssetTransactions {
   StatusCode code = 1;
   PageInfo page = 2;
   repeated IndexedTransaction transactions = 3;
+}
+
+message RequestListBlocks {
+  PageInput paging = 1;
+  string proposer = 2;
+  TimeFilter time_filter = 3;
+  HeightFilter height_filter = 4;
+  NumTxsFilter num_txs_filter = 5;
+  NumInvalidTxsFilter num_invalid_txs_filter = 6;
+}
+
+message ResponseListBlocks {
+  StatusCode code = 1;
+  PageInfo page = 2;
+  repeated IndexedBlock blocks = 3;
 }

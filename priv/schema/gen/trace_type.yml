@@ -176,6 +176,44 @@
     - name: asset
       type: string
   
+- name: height_filter
+  type: output
+  fields:
+    - name: from_height
+      type: int
+    - name: to_height
+      type: int
+  
+- name: num_txs_filter
+  type: output
+  fields:
+    - name: min_num_txs
+      type: int
+    - name: max_num_txs
+      type: int
+  
+- name: num_invalid_txs_filter
+  type: output
+  fields:
+    - name: min_num_invalid_txs
+      type: int
+    - name: max_num_invalid_txs
+      type: int
+  
+- name: indexed_block
+  type: output
+  fields:
+    - name: height
+      type: int
+    - name: time
+      type: string
+    - name: proposer
+      type: string
+    - name: num_txs
+      type: int
+    - name: num_invalid_txs
+      type: int
+  
 - name: direction
   type: enum
   fields:

@@ -153,3 +153,7 @@
   type: query
   return: response_list_asset_transactions
   params: request_list_asset_transactions
+- name: list_blocks
+  type: query
+  return: response_list_blocks
+  params: request_list_blocks

@@ -411,7 +411,16 @@ defmodule ForgeAbi.BlockInfo do
           total_txs: non_neg_integer,
           invalid_txs: [ForgeAbi.TransactionInfo.t()],
           txs_hashes: [String.t()],
-          invalid_txs_hashes: [String.t()]
+          invalid_txs_hashes: [String.t()],
+          consensus_hash: String.t(),
+          data_hash: String.t(),
+          evidence_hash: String.t(),
+          last_commit_hash: String.t(),
+          last_results_hash: String.t(),
+          next_validators_hash: String.t(),
+          validators_hash: String.t(),
+          version: AbciVendor.Version.t(),
+          last_block_id: AbciVendor.BlockID.t()
         }
   defstruct [
     :height,
@@ -423,19 +432,37 @@ defmodule ForgeAbi.BlockInfo do
     :total_txs,
     :invalid_txs,
     :txs_hashes,
-    :invalid_txs_hashes
+    :invalid_txs_hashes,
+    :consensus_hash,
+    :data_hash,
+    :evidence_hash,
+    :last_commit_hash,
+    :last_results_hash,
+    :next_validators_hash,
+    :validators_hash,
+    :version,
+    :last_block_id
   ]
 
   field :height, 1, type: :uint64
   field :num_txs, 2, type: :uint32
   field :time, 3, type: Google.Protobuf.Timestamp
-  field :app_hash, 4, type: :string
-  field :proposer, 5, type: :string
+  field :app_hash, 4, type: :bytes
+  field :proposer, 5, type: :bytes
   field :txs, 6, repeated: true, type: ForgeAbi.TransactionInfo
   field :total_txs, 7, type: :uint64
   field :invalid_txs, 8, repeated: true, type: ForgeAbi.TransactionInfo
   field :txs_hashes, 9, repeated: true, type: :string
   field :invalid_txs_hashes, 10, repeated: true, type: :string
+  field :consensus_hash, 11, type: :bytes
+  field :data_hash, 12, type: :bytes
+  field :evidence_hash, 13, type: :bytes
+  field :last_commit_hash, 14, type: :bytes
+  field :last_results_hash, 15, type: :bytes
+  field :next_validators_hash, 16, type: :bytes
+  field :validators_hash, 17, type: :bytes
+  field :version, 18, type: AbciVendor.Version
+  field :last_block_id, 19, type: AbciVendor.BlockID
 end
 
 defmodule ForgeAbi.TxStatus do
@@ -678,7 +705,10 @@ defmodule ForgeAbi.ForgeStatistics do
           num_transfer_txs: [non_neg_integer],
           num_update_asset_txs: [non_neg_integer],
           num_consume_asset_txs: [non_neg_integer],
-          num_poke_txs: [non_neg_integer]
+          num_poke_txs: [non_neg_integer],
+          current_tps: [float],
+          max_tps: [float],
+          avg_tps: [float]
         }
   defstruct [
     :num_blocks,
@@ -696,7 +726,10 @@ defmodule ForgeAbi.ForgeStatistics do
     :num_transfer_txs,
     :num_update_asset_txs,
     :num_consume_asset_txs,
-    :num_poke_txs
+    :num_poke_txs,
+    :current_tps,
+    :max_tps,
+    :avg_tps
   ]
 
   field :num_blocks, 1, repeated: true, type: :uint64
@@ -715,6 +748,9 @@ defmodule ForgeAbi.ForgeStatistics do
   field :num_update_asset_txs, 14, repeated: true, type: :uint64
   field :num_consume_asset_txs, 15, repeated: true, type: :uint64
   field :num_poke_txs, 16, repeated: true, type: :uint64
+  field :current_tps, 17, repeated: true, type: :float
+  field :max_tps, 18, repeated: true, type: :float
+  field :avg_tps, 19, repeated: true, type: :float
 end
 
 defmodule ForgeAbi.TxStatistics do
@@ -762,6 +798,22 @@ defmodule ForgeAbi.TxStatistics do
   field :num_update_asset_txs, 10, type: :uint64
   field :num_consume_asset_txs, 11, type: :uint64
   field :num_poke_txs, 12, type: :uint64
+end
+
+defmodule ForgeAbi.TpsStatistics do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          current_tps: float,
+          max_tps: float,
+          avg_tps: float
+        }
+  defstruct [:current_tps, :max_tps, :avg_tps]
+
+  field :current_tps, 1, type: :float
+  field :max_tps, 2, type: :float
+  field :avg_tps, 3, type: :float
 end
 
 defmodule ForgeAbi.ForgeToken do
