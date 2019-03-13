@@ -636,3 +636,29 @@
     - name: transactions
       type: [indexed_transaction]
   
+- name: request_list_blocks
+  type: input
+  fields:
+    - name: paging
+      type: page_input
+    - name: proposer
+      type: string
+    - name: time_filter
+      type: time_filter
+    - name: height_filter
+      type: height_filter
+    - name: num_txs_filter
+      type: num_txs_filter
+    - name: num_invalid_txs_filter
+      type: num_invalid_txs_filter
+  
+- name: response_list_blocks
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: page
+      type: page_info
+    - name: blocks
+      type: [indexed_block]
+  

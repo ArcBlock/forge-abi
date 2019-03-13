@@ -287,6 +287,68 @@ defmodule ForgeAbi.IndexedUpdateAsset do
   field :asset, 1, type: :string
 end
 
+defmodule ForgeAbi.HeightFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          from_height: non_neg_integer,
+          to_height: non_neg_integer
+        }
+  defstruct [:from_height, :to_height]
+
+  field :from_height, 1, type: :uint64
+  field :to_height, 2, type: :uint64
+end
+
+defmodule ForgeAbi.NumTxsFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          min_num_txs: non_neg_integer,
+          max_num_txs: non_neg_integer
+        }
+  defstruct [:min_num_txs, :max_num_txs]
+
+  field :min_num_txs, 1, type: :uint64
+  field :max_num_txs, 2, type: :uint64
+end
+
+defmodule ForgeAbi.NumInvalidTxsFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          min_num_invalid_txs: non_neg_integer,
+          max_num_invalid_txs: non_neg_integer
+        }
+  defstruct [:min_num_invalid_txs, :max_num_invalid_txs]
+
+  field :min_num_invalid_txs, 1, type: :uint64
+  field :max_num_invalid_txs, 2, type: :uint64
+end
+
+defmodule ForgeAbi.IndexedBlock do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          height: non_neg_integer,
+          time: String.t(),
+          proposer: String.t(),
+          num_txs: non_neg_integer,
+          num_invalid_txs: non_neg_integer
+        }
+  defstruct [:height, :time, :proposer, :num_txs, :num_invalid_txs]
+
+  field :height, 1, type: :uint64
+  field :time, 2, type: :string
+  field :proposer, 3, type: :string
+  field :num_txs, 4, type: :uint64
+  field :num_invalid_txs, 5, type: :uint64
+end
+
 defmodule ForgeAbi.Direction do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3

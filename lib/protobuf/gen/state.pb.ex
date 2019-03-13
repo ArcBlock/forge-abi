@@ -219,9 +219,18 @@ defmodule ForgeAbi.StatisticsState do
           num_txs: non_neg_integer,
           num_stakes: ForgeAbi.BigUint.t(),
           num_validators: non_neg_integer,
-          tx_statistics: ForgeAbi.TxStatistics.t()
+          tx_statistics: ForgeAbi.TxStatistics.t(),
+          tps_statistics: ForgeAbi.TpsStatistics.t()
         }
-  defstruct [:address, :num_blocks, :num_txs, :num_stakes, :num_validators, :tx_statistics]
+  defstruct [
+    :address,
+    :num_blocks,
+    :num_txs,
+    :num_stakes,
+    :num_validators,
+    :tx_statistics,
+    :tps_statistics
+  ]
 
   field :address, 1, type: :string
   field :num_blocks, 2, type: :uint64
@@ -229,4 +238,5 @@ defmodule ForgeAbi.StatisticsState do
   field :num_stakes, 4, type: ForgeAbi.BigUint
   field :num_validators, 5, type: :uint32
   field :tx_statistics, 6, type: ForgeAbi.TxStatistics
+  field :tps_statistics, 7, type: ForgeAbi.TpsStatistics
 end

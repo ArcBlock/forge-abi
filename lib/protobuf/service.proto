@@ -75,4 +75,5 @@ service StatisticRpc {
   rpc get_stakes(RequestGetStakes) returns (ResponseGetStakes);
   rpc get_top_accounts(RequestGetTopAccounts) returns (ResponseGetTopAccounts);
   rpc list_asset_transactions(RequestListAssetTransactions) returns (ResponseListAssetTransactions);
+  rpc list_blocks(RequestListBlocks) returns (ResponseListBlocks);
 }

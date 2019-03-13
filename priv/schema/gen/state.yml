@@ -143,4 +143,6 @@
       type: int
     - name: tx_statistics
       type: tx_statistics
+    - name: tps_statistics
+      type: tps_statistics
   

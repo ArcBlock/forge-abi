@@ -116,3 +116,26 @@ message IndexedTransfer {
 message IndexedUpdateAsset {
   string asset = 1;
 }
+
+message HeightFilter {
+  uint64 from_height = 1;
+  uint64 to_height = 2;
+}
+
+message NumTxsFilter {
+  uint64 min_num_txs = 1;
+  uint64 max_num_txs = 2;
+}
+
+message NumInvalidTxsFilter {
+  uint64 min_num_invalid_txs = 1;
+  uint64 max_num_invalid_txs = 2;
+}
+
+message IndexedBlock {
+  uint64 height = 1;
+  string time = 2;
+  string proposer = 3;
+  uint64 num_txs = 4;
+  uint64 num_invalid_txs = 5;
+}

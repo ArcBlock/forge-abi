@@ -153,13 +153,22 @@ message BlockInfo {
   uint64 height = 1;
   uint32 num_txs = 2;
   google.protobuf.Timestamp time = 3;
-  string app_hash = 4;
-  string proposer = 5;
+  bytes app_hash = 4;
+  bytes proposer = 5;
   repeated TransactionInfo txs = 6;
   uint64 total_txs = 7;
   repeated TransactionInfo invalid_txs = 8;
   repeated string txs_hashes = 9;
   repeated string invalid_txs_hashes = 10;
+  bytes consensus_hash = 11;
+  bytes data_hash = 12;
+  bytes evidence_hash = 13;
+  bytes last_commit_hash = 14;
+  bytes last_results_hash = 15;
+  bytes next_validators_hash = 16;
+  bytes validators_hash = 17;
+  abci_vendor.Version version = 18;
+  abci_vendor.BlockID last_block_id = 19;
 }
 
 message TxStatus {
@@ -276,6 +285,9 @@ message ForgeStatistics {
   repeated uint64 num_update_asset_txs = 14;
   repeated uint64 num_consume_asset_txs = 15;
   repeated uint64 num_poke_txs = 16;
+  repeated float current_tps = 17;
+  repeated float max_tps = 18;
+  repeated float avg_tps = 19;
 }
 
 message TxStatistics {
@@ -291,6 +303,12 @@ message TxStatistics {
   uint64 num_update_asset_txs = 10;
   uint64 num_consume_asset_txs = 11;
   uint64 num_poke_txs = 12;
+}
+
+message TpsStatistics {
+  float current_tps = 1;
+  float max_tps = 2;
+  float avg_tps = 3;
 }
 
 message ForgeToken {

@@ -104,4 +104,5 @@ message StatisticsState {
   BigUint num_stakes = 4;
   uint32 num_validators = 5;
   TxStatistics tx_statistics = 6;
+  TpsStatistics tps_statistics = 7;
 }
