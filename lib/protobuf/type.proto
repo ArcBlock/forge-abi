@@ -149,6 +149,13 @@ message TransactionInfo {
   }
 }
 
+message TransactionConfig {
+  uint32 max_asset_size = 1;
+  uint32 max_list_size = 2;
+  uint32 max_multisig = 3;
+  uint64 minimum_stake = 4;
+}
+
 message BlockInfo {
   uint64 height = 1;
   uint32 num_txs = 2;
@@ -217,6 +224,11 @@ message StakeSummary {
   BigUint total_stakes = 1;
   BigUint total_unstakes = 2;
   StateContext context = 3;
+}
+
+message StakeTimeoutConfig {
+  uint32 general = 1;
+  uint32 stake_for_node = 2;
 }
 
 message UnconfirmedTxs {
@@ -321,6 +333,13 @@ message PokeInfo {
   BigUint daily_limit = 1;     //poke daily supply amount
   BigUint leftover = 2;        //remaining poke daily supply amount
   BigUint amount = 3;          //poke once supply amount
+}
+
+message PokeConfig {
+  string address = 1;
+  uint64 daily_limit = 2;
+  uint64 balance = 3;
+  uint64 amount = 4;
 }
 
 message ExtraCreateAsset {

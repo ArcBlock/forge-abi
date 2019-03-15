@@ -397,6 +397,24 @@ defmodule ForgeAbi.TransactionInfo do
   field :account_migrate, 9, type: ForgeAbi.ExtraAccountMigrate, oneof: 0
 end
 
+defmodule ForgeAbi.TransactionConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          max_asset_size: non_neg_integer,
+          max_list_size: non_neg_integer,
+          max_multisig: non_neg_integer,
+          minimum_stake: non_neg_integer
+        }
+  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake]
+
+  field :max_asset_size, 1, type: :uint32
+  field :max_list_size, 2, type: :uint32
+  field :max_multisig, 3, type: :uint32
+  field :minimum_stake, 4, type: :uint64
+end
+
 defmodule ForgeAbi.BlockInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -557,6 +575,20 @@ defmodule ForgeAbi.StakeSummary do
   field :total_stakes, 1, type: ForgeAbi.BigUint
   field :total_unstakes, 2, type: ForgeAbi.BigUint
   field :context, 3, type: ForgeAbi.StateContext
+end
+
+defmodule ForgeAbi.StakeTimeoutConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          general: non_neg_integer,
+          stake_for_node: non_neg_integer
+        }
+  defstruct [:general, :stake_for_node]
+
+  field :general, 1, type: :uint32
+  field :stake_for_node, 2, type: :uint32
 end
 
 defmodule ForgeAbi.UnconfirmedTxs do
@@ -852,6 +884,24 @@ defmodule ForgeAbi.PokeInfo do
   field :daily_limit, 1, type: ForgeAbi.BigUint
   field :leftover, 2, type: ForgeAbi.BigUint
   field :amount, 3, type: ForgeAbi.BigUint
+end
+
+defmodule ForgeAbi.PokeConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          daily_limit: non_neg_integer,
+          balance: non_neg_integer,
+          amount: non_neg_integer
+        }
+  defstruct [:address, :daily_limit, :balance, :amount]
+
+  field :address, 1, type: :string
+  field :daily_limit, 2, type: :uint64
+  field :balance, 3, type: :uint64
+  field :amount, 4, type: :uint64
 end
 
 defmodule ForgeAbi.ExtraCreateAsset do

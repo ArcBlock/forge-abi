@@ -238,6 +238,18 @@
     - name: account_migrate
       type: extra_account_migrate
   
+- name: transaction_config
+  type: output
+  fields:
+    - name: max_asset_size
+      type: int
+    - name: max_list_size
+      type: int
+    - name: max_multisig
+      type: int
+    - name: minimum_stake
+      type: int
+  
 - name: block_info
   type: output
   fields:
@@ -337,6 +349,14 @@
       type: string
     - name: context
       type: state_context
+  
+- name: stake_timeout_config
+  type: output
+  fields:
+    - name: general
+      type: int
+    - name: stake_for_node
+      type: int
   
 - name: unconfirmed_txs
   type: output
@@ -523,6 +543,18 @@
       type: string
     - name: amount
       type: string
+  
+- name: poke_config
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: daily_limit
+      type: int
+    - name: balance
+      type: int
+    - name: amount
+      type: int
   
 - name: extra_create_asset
   type: output
