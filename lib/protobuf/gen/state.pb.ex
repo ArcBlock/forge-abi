@@ -114,6 +114,9 @@ defmodule ForgeAbi.ForgeState do
           data_version: String.t(),
           forge_app_hash: String.t(),
           token: ForgeAbi.ForgeToken.t(),
+          tx_config: ForgeAbi.TransactionConfig.t(),
+          stake_timeout_config: ForgeAbi.StakeTimeoutConfig.t(),
+          poke_config: ForgeAbi.PokeConfig.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -125,6 +128,9 @@ defmodule ForgeAbi.ForgeState do
     :data_version,
     :forge_app_hash,
     :token,
+    :tx_config,
+    :stake_timeout_config,
+    :poke_config,
     :data
   ]
 
@@ -136,6 +142,9 @@ defmodule ForgeAbi.ForgeState do
   field :data_version, 6, type: :string
   field :forge_app_hash, 7, type: :bytes
   field :token, 8, type: ForgeAbi.ForgeToken
+  field :tx_config, 9, type: ForgeAbi.TransactionConfig
+  field :stake_timeout_config, 10, type: ForgeAbi.StakeTimeoutConfig
+  field :poke_config, 11, type: ForgeAbi.PokeConfig
   field :data, 15, type: Google.Protobuf.Any
 end
 
