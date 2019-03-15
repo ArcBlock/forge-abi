@@ -96,8 +96,9 @@ enum KeyType {
 enum HashType {
   keccak = 0;
   sha3 = 1;
+  sha2 = 2;
 
-  // 2-5 reserved
+  // 3-5 reserved
 
   keccak_384 = 6;
   sha3_384 = 7;
