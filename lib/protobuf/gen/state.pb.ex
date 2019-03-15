@@ -115,7 +115,7 @@ defmodule ForgeAbi.ForgeState do
           forge_app_hash: String.t(),
           token: ForgeAbi.ForgeToken.t(),
           tx_config: ForgeAbi.TransactionConfig.t(),
-          stake_timeout_config: ForgeAbi.StakeTimeoutConfig.t(),
+          stake_config: ForgeAbi.StakeConfig.t(),
           poke_config: ForgeAbi.PokeConfig.t(),
           data: Google.Protobuf.Any.t()
         }
@@ -129,7 +129,7 @@ defmodule ForgeAbi.ForgeState do
     :forge_app_hash,
     :token,
     :tx_config,
-    :stake_timeout_config,
+    :stake_config,
     :poke_config,
     :data
   ]
@@ -143,7 +143,7 @@ defmodule ForgeAbi.ForgeState do
   field :forge_app_hash, 7, type: :bytes
   field :token, 8, type: ForgeAbi.ForgeToken
   field :tx_config, 9, type: ForgeAbi.TransactionConfig
-  field :stake_timeout_config, 10, type: ForgeAbi.StakeTimeoutConfig
+  field :stake_config, 10, type: ForgeAbi.StakeConfig
   field :poke_config, 11, type: ForgeAbi.PokeConfig
   field :data, 15, type: Google.Protobuf.Any
 end

@@ -350,12 +350,12 @@
     - name: context
       type: state_context
   
-- name: stake_timeout_config
+- name: stake_config
   type: output
   fields:
-    - name: general
+    - name: timeout_general
       type: int
-    - name: stake_for_node
+    - name: timeout_stake_for_node
       type: int
   
 - name: unconfirmed_txs

@@ -577,18 +577,18 @@ defmodule ForgeAbi.StakeSummary do
   field :context, 3, type: ForgeAbi.StateContext
 end
 
-defmodule ForgeAbi.StakeTimeoutConfig do
+defmodule ForgeAbi.StakeConfig do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          general: non_neg_integer,
-          stake_for_node: non_neg_integer
+          timeout_general: non_neg_integer,
+          timeout_stake_for_node: non_neg_integer
         }
-  defstruct [:general, :stake_for_node]
+  defstruct [:timeout_general, :timeout_stake_for_node]
 
-  field :general, 1, type: :uint32
-  field :stake_for_node, 2, type: :uint32
+  field :timeout_general, 1, type: :uint32
+  field :timeout_stake_for_node, 2, type: :uint32
 end
 
 defmodule ForgeAbi.UnconfirmedTxs do

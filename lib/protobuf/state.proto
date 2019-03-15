@@ -70,7 +70,7 @@ message ForgeState {
   // 8-14 is reserved for future
   ForgeToken token = 8;
   TransactionConfig tx_config = 9;
-  StakeTimeoutConfig stake_timeout_config = 10;
+  StakeConfig stake_config = 10;
   PokeConfig poke_config = 11;
 
   google.protobuf.Any data = 15; // forge app can define their own app state

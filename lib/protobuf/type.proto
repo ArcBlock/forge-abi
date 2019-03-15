@@ -226,9 +226,9 @@ message StakeSummary {
   StateContext context = 3;
 }
 
-message StakeTimeoutConfig {
-  uint32 general = 1;
-  uint32 stake_for_node = 2;
+message StakeConfig {
+  uint32 timeout_general = 1;
+  uint32 timeout_stake_for_node = 2;
 }
 
 message UnconfirmedTxs {
