@@ -119,6 +119,8 @@
       type: string
     - name: geo_info
       type: geo_info
+    - name: p2p_address
+      type: string
   
 - name: forge_apps_version_entry
   type: output
