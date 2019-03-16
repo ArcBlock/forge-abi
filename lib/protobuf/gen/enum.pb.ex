@@ -83,6 +83,7 @@ defmodule ForgeAbi.HashType do
 
   field :keccak, 0
   field :sha3, 1
+  field :sha2, 2
   field :keccak_384, 6
   field :sha3_384, 7
   field :keccak_512, 13

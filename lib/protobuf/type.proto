@@ -65,7 +65,8 @@ message NodeInfo {
   map<string, string> forge_apps_version = 15;
   repeated string supported_txs = 16;
   string ip = 17;        // self node ip
-  GeoInfo geo_info = 18; // self node geo info
+	GeoInfo geo_info = 18; // self node geo info
+	string p2p_address = 19; // id@ip:port
 }
 
 message Validator {

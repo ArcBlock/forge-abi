@@ -133,6 +133,8 @@
       meta: value=0
     - type: sha3
       meta: value=1
+    - type: sha2
+      meta: value=2
     - type: keccak_384
       meta: value=6
     - type: sha3_384

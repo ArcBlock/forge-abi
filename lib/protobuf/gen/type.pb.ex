@@ -160,7 +160,8 @@ defmodule ForgeAbi.NodeInfo do
           forge_apps_version: %{String.t() => String.t()},
           supported_txs: [String.t()],
           ip: String.t(),
-          geo_info: ForgeAbi.GeoInfo.t()
+          geo_info: ForgeAbi.GeoInfo.t(),
+          p2p_address: String.t()
         }
   defstruct [
     :id,
@@ -180,7 +181,8 @@ defmodule ForgeAbi.NodeInfo do
     :forge_apps_version,
     :supported_txs,
     :ip,
-    :geo_info
+    :geo_info,
+    :p2p_address
   ]
 
   field :id, 1, type: :string
@@ -206,6 +208,7 @@ defmodule ForgeAbi.NodeInfo do
   field :supported_txs, 16, repeated: true, type: :string
   field :ip, 17, type: :string
   field :geo_info, 18, type: ForgeAbi.GeoInfo
+  field :p2p_address, 19, type: :string
 end
 
 defmodule ForgeAbi.NodeInfo.ForgeAppsVersionEntry do
