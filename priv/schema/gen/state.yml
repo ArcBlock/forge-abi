@@ -79,6 +79,12 @@
       type: string
     - name: token
       type: forge_token
+    - name: tx_config
+      type: transaction_config
+    - name: stake_config
+      type: stake_config
+    - name: poke_config
+      type: poke_config
     - name: data
       type: any
   
