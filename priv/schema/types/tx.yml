@@ -51,7 +51,7 @@
       type: string
       doc: signature of the transaction
     - name: chain_id
-      type: integer
+      type: string
       meta: null=false
       doc: the chain id of the transaction
     - name: itx
