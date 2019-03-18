@@ -91,13 +91,13 @@ defmodule ForgeAbi.Util.BigInt do
   Generate a BigSint with a regular integer
 
     iex> use ForgeAbi.Util.BigInt
-    iex> to_arc(-1234)
+    iex> to_unit(-1234)
     %ForgeAbi.BigSint{minus: true, value: <<171, 64, 124, 158, 176, 82, 0, 0>>}
-    iex> to_arc(200)
+    iex> to_unit(200)
     %ForgeAbi.BigSint{minus: false, value: <<27, 193, 109, 103, 78, 200, 0, 0>>}
   """
-  @spec to_arc(integer(), non_neg_integer()) :: BigSint.t()
-  def to_arc(v, decimal \\ 0), do: bigsint(v * one_token(decimal))
+  @spec to_unit(integer(), non_neg_integer()) :: BigSint.t()
+  def to_unit(v, decimal \\ 0), do: bigsint(v * one_token(decimal))
 
   @spec one_token(non_neg_integer()) :: non_neg_integer()
   def one_token(decimal \\ 0), do: decimal_to_int(decimal)

@@ -10,8 +10,8 @@ defmodule ForgeAbi do
   defdelegate decode_any(any), to: TypeUrl, as: :decode
   defdelegate register_type_urls(urls), to: TypeUrl, as: :extend
 
-  # arc related
-  defdelegate one_token, to: ForgeAbi.Arc
-  defdelegate token_to_arc(num), to: ForgeAbi.Arc
-  defdelegate arc_to_token(arc), to: ForgeAbi.Arc
+  # unit related
+  defdelegate one_token, to: ForgeAbi.Unit
+  defdelegate token_to_unit(num), to: ForgeAbi.Unit
+  defdelegate unit_to_token(unit), to: ForgeAbi.Unit
 end
