@@ -5,6 +5,8 @@
       type: string
     - name: type
       type: wallet_type
+    - name: data
+      type: any
   
 - name: consensus_upgrade_tx
   type: output
