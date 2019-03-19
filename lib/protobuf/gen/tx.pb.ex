@@ -240,10 +240,12 @@ defmodule ForgeAbi.PokeTx do
 
   @type t :: %__MODULE__{
           date: String.t(),
-          address: String.t()
+          address: String.t(),
+          data: Google.Protobuf.Any.t()
         }
-  defstruct [:date, :address]
+  defstruct [:date, :address, :data]
 
   field :date, 1, type: :string
   field :address, 2, type: :string
+  field :data, 15, type: Google.Protobuf.Any
 end
