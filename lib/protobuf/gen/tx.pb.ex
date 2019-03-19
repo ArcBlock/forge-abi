@@ -4,12 +4,14 @@ defmodule ForgeAbi.AccountMigrateTx do
 
   @type t :: %__MODULE__{
           pk: String.t(),
-          type: ForgeAbi.WalletType.t()
+          type: ForgeAbi.WalletType.t(),
+          data: Google.Protobuf.Any.t()
         }
-  defstruct [:pk, :type]
+  defstruct [:pk, :type, :data]
 
   field :pk, 1, type: :bytes
   field :type, 2, type: ForgeAbi.WalletType
+  field :data, 15, type: Google.Protobuf.Any
 end
 
 defmodule ForgeAbi.ConsensusUpgradeTx do
