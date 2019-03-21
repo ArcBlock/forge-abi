@@ -110,6 +110,7 @@ defmodule ForgeAbi.StatisticRpc.Service do
       ForgeAbi.ResponseListAssetTransactions
 
   rpc :list_blocks, ForgeAbi.RequestListBlocks, ForgeAbi.ResponseListBlocks
+  rpc :list_assets, ForgeAbi.RequestListAssets, ForgeAbi.ResponseListAssets
 end
 
 defmodule ForgeAbi.StatisticRpc.Stub do
