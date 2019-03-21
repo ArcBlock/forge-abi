@@ -662,3 +662,23 @@
     - name: blocks
       type: [indexed_block]
   
+- name: request_list_assets
+  type: input
+  fields:
+    - name: paging
+      type: page_input
+    - name: owner_address
+      type: string
+  
+- name: response_list_assets
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: page
+      type: page_info
+    - name: account
+      type: indexed_account_state
+    - name: assets
+      type: [indexed_asset_state]
+  

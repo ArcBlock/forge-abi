@@ -1083,3 +1083,35 @@ defmodule ForgeAbi.ResponseListBlocks do
   field :page, 2, type: ForgeAbi.PageInfo
   field :blocks, 3, repeated: true, type: ForgeAbi.IndexedBlock
 end
+
+defmodule ForgeAbi.RequestListAssets do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t(),
+          owner_address: String.t()
+        }
+  defstruct [:paging, :owner_address]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :owner_address, 2, type: :string
+end
+
+defmodule ForgeAbi.ResponseListAssets do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          page: ForgeAbi.PageInfo.t(),
+          account: ForgeAbi.IndexedAccountState.t(),
+          assets: [ForgeAbi.IndexedAssetState.t()]
+        }
+  defstruct [:code, :page, :account, :assets]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :account, 3, type: ForgeAbi.IndexedAccountState
+  field :assets, 4, repeated: true, type: ForgeAbi.IndexedAssetState
+end
