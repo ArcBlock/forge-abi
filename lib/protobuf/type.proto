@@ -271,6 +271,7 @@ message ValidatorInfo {
   uint64 voting_power = 3;
   string proposer_priority = 4;
   string name = 5;
+  GeoInfo geo_info = 6; // validator geo info
 }
 
 message GenesisInfo {

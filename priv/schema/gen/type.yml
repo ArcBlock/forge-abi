@@ -429,6 +429,8 @@
       type: string
     - name: name
       type: string
+    - name: geo_info
+      type: geo_info
   
 - name: genesis_info
   type: output

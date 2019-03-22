@@ -689,15 +689,17 @@ defmodule ForgeAbi.ValidatorInfo do
           pub_key: AbciVendor.PubKey.t(),
           voting_power: non_neg_integer,
           proposer_priority: String.t(),
-          name: String.t()
+          name: String.t(),
+          geo_info: ForgeAbi.GeoInfo.t()
         }
-  defstruct [:address, :pub_key, :voting_power, :proposer_priority, :name]
+  defstruct [:address, :pub_key, :voting_power, :proposer_priority, :name, :geo_info]
 
   field :address, 1, type: :string
   field :pub_key, 2, type: AbciVendor.PubKey
   field :voting_power, 3, type: :uint64
   field :proposer_priority, 4, type: :string
   field :name, 5, type: :string
+  field :geo_info, 6, type: ForgeAbi.GeoInfo
 end
 
 defmodule ForgeAbi.GenesisInfo do
