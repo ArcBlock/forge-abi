@@ -22,7 +22,7 @@
     - name: ops
       type: [proof_op]
   
-- name: block_size_params
+- name: block_params
   type: output
   fields:
     - name: max_bytes
@@ -45,8 +45,8 @@
 - name: consensus_params
   type: output
   fields:
-    - name: block_size
-      type: block_size_params
+    - name: block
+      type: block_params
     - name: evidence
       type: evidence_params
     - name: validator
@@ -68,14 +68,6 @@
     - name: App
       type: int
   
-- name: part_set_header
-  type: output
-  fields:
-    - name: total
-      type: int
-    - name: hash
-      type: string
-  
 - name: block_id
   type: output
   fields:
@@ -84,6 +76,14 @@
     - name: parts_header
       type: part_set_header
   
+- name: part_set_header
+  type: output
+  fields:
+    - name: total
+      type: int
+    - name: hash
+      type: string
+  
 - name: validator
   type: output
   fields:
@@ -91,14 +91,6 @@
       type: string
     - name: power
       type: int
-  
-- name: pub_key
-  type: output
-  fields:
-    - name: type
-      type: string
-    - name: data
-      type: string
   
 - name: validator_update
   type: output
@@ -115,6 +107,14 @@
       type: validator
     - name: signed_last_block
       type: boolean
+  
+- name: pub_key
+  type: output
+  fields:
+    - name: type
+      type: string
+    - name: data
+      type: string
   
 - name: evidence
   type: output
