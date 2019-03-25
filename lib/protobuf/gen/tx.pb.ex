@@ -80,17 +80,13 @@ defmodule ForgeAbi.DeclareTx do
 
   @type t :: %__MODULE__{
           moniker: String.t(),
-          pk: String.t(),
-          type: ForgeAbi.WalletType.t(),
           issuer: String.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [:moniker, :pk, :type, :issuer, :data]
+  defstruct [:moniker, :issuer, :data]
 
   field :moniker, 1, type: :string
-  field :pk, 2, type: :bytes
-  field :type, 3, type: ForgeAbi.WalletType
-  field :issuer, 4, type: :string
+  field :issuer, 2, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
 
