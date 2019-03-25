@@ -1,3 +1,6 @@
+## 1.4.0 (March 25, 2019)
+  - do not check state in check tx pipeline (#58)
+
 ## 1.3.0 (March 23, 2019)
   - upgrade abci proto to 0.8 (#56)
   - add validator mock location info (#55)
