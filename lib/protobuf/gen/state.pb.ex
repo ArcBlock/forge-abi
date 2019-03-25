@@ -239,3 +239,15 @@ defmodule ForgeAbi.StatisticsState do
   field :num_validators, 5, type: :uint32
   field :tx_statistics, 6, type: ForgeAbi.TxStatistics
 end
+
+defmodule ForgeAbi.BlacklistState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: [String.t()]
+        }
+  defstruct [:address]
+
+  field :address, 1, repeated: true, type: :string
+end
