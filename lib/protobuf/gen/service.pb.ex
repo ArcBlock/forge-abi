@@ -111,6 +111,7 @@ defmodule ForgeAbi.StatisticRpc.Service do
 
   rpc :list_blocks, ForgeAbi.RequestListBlocks, ForgeAbi.ResponseListBlocks
   rpc :list_assets, ForgeAbi.RequestListAssets, ForgeAbi.ResponseListAssets
+  rpc :get_health_status, ForgeAbi.RequestGetHealthStatus, ForgeAbi.ResponseGetHealthStatus
 end
 
 defmodule ForgeAbi.StatisticRpc.Stub do

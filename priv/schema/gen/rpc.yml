@@ -682,3 +682,16 @@
     - name: assets
       type: [indexed_asset_state]
   
+- name: request_get_health_status
+  type: input
+
+  fields: []
+
+- name: response_get_health_status
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: health_status
+      type: health_status
+  

@@ -434,3 +434,10 @@ message ResponseListAssets {
   IndexedAccountState account = 3;
   repeated IndexedAssetState assets = 4;
 }
+
+message RequestGetHealthStatus {}
+
+message ResponseGetHealthStatus {
+  StatusCode code = 1;
+  HealthStatus health_status = 2;
+}
