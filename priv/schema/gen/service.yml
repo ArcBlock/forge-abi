@@ -161,3 +161,7 @@
   type: query
   return: response_list_assets
   params: request_list_assets
+- name: get_health_status
+  type: query
+  return: response_get_health_status
+  params: request_get_health_status

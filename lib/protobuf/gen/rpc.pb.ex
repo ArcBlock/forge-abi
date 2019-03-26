@@ -1115,3 +1115,24 @@ defmodule ForgeAbi.ResponseListAssets do
   field :account, 3, type: ForgeAbi.IndexedAccountState
   field :assets, 4, repeated: true, type: ForgeAbi.IndexedAssetState
 end
+
+defmodule ForgeAbi.RequestGetHealthStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  defstruct []
+end
+
+defmodule ForgeAbi.ResponseGetHealthStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          health_status: ForgeAbi.HealthStatus.t()
+        }
+  defstruct [:code, :health_status]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :health_status, 2, type: ForgeAbi.HealthStatus
+end

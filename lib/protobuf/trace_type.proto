@@ -139,3 +139,45 @@ message IndexedBlock {
   uint64 num_txs = 4;
   uint64 num_invalid_txs = 5;
 }
+
+message HealthStatus {
+  ConsensusStatus consensus = 1;
+  NetworkStatus network = 2;
+  StorageStatus storage = 3;
+  ForgeStatus forge = 4;
+}
+
+message ConsensusStatus{
+  bool health = 1;
+  bool synced = 2;
+  uint64 block_height = 3;
+}
+
+message NetworkStatus{
+  bool health = 1;
+  uint32 num_peers = 2;
+}
+
+message StorageStatus{
+  bool health = 1;
+  string indexer_server = 2;
+  string state_db = 3;
+  DiskSpaceStatus disk_space = 4;
+}
+
+message DiskSpaceStatus {
+  string forge_usage = 1;
+  string total = 2;
+}
+
+message ForgeStatus{
+  bool health = 1;
+  string abi_server = 2;
+  string forge_web = 3;
+  AbciServerStatus abci_server = 4;
+}
+
+message AbciServerStatus{
+  string abci_consensus = 1;
+  string abci_info = 2;
+}

@@ -349,6 +349,118 @@ defmodule ForgeAbi.IndexedBlock do
   field :num_invalid_txs, 5, type: :uint64
 end
 
+defmodule ForgeAbi.HealthStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          consensus: ForgeAbi.ConsensusStatus.t(),
+          network: ForgeAbi.NetworkStatus.t(),
+          storage: ForgeAbi.StorageStatus.t(),
+          forge: ForgeAbi.ForgeStatus.t()
+        }
+  defstruct [:consensus, :network, :storage, :forge]
+
+  field :consensus, 1, type: ForgeAbi.ConsensusStatus
+  field :network, 2, type: ForgeAbi.NetworkStatus
+  field :storage, 3, type: ForgeAbi.StorageStatus
+  field :forge, 4, type: ForgeAbi.ForgeStatus
+end
+
+defmodule ForgeAbi.ConsensusStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          health: boolean,
+          synced: boolean,
+          block_height: non_neg_integer
+        }
+  defstruct [:health, :synced, :block_height]
+
+  field :health, 1, type: :bool
+  field :synced, 2, type: :bool
+  field :block_height, 3, type: :uint64
+end
+
+defmodule ForgeAbi.NetworkStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          health: boolean,
+          num_peers: non_neg_integer
+        }
+  defstruct [:health, :num_peers]
+
+  field :health, 1, type: :bool
+  field :num_peers, 2, type: :uint32
+end
+
+defmodule ForgeAbi.StorageStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          health: boolean,
+          indexer_server: String.t(),
+          state_db: String.t(),
+          disk_space: ForgeAbi.DiskSpaceStatus.t()
+        }
+  defstruct [:health, :indexer_server, :state_db, :disk_space]
+
+  field :health, 1, type: :bool
+  field :indexer_server, 2, type: :string
+  field :state_db, 3, type: :string
+  field :disk_space, 4, type: ForgeAbi.DiskSpaceStatus
+end
+
+defmodule ForgeAbi.DiskSpaceStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          forge_usage: String.t(),
+          total: String.t()
+        }
+  defstruct [:forge_usage, :total]
+
+  field :forge_usage, 1, type: :string
+  field :total, 2, type: :string
+end
+
+defmodule ForgeAbi.ForgeStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          health: boolean,
+          abi_server: String.t(),
+          forge_web: String.t(),
+          abci_server: ForgeAbi.AbciServerStatus.t()
+        }
+  defstruct [:health, :abi_server, :forge_web, :abci_server]
+
+  field :health, 1, type: :bool
+  field :abi_server, 2, type: :string
+  field :forge_web, 3, type: :string
+  field :abci_server, 4, type: ForgeAbi.AbciServerStatus
+end
+
+defmodule ForgeAbi.AbciServerStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          abci_consensus: String.t(),
+          abci_info: String.t()
+        }
+  defstruct [:abci_consensus, :abci_info]
+
+  field :abci_consensus, 1, type: :string
+  field :abci_info, 2, type: :string
+end
+
 defmodule ForgeAbi.Direction do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
