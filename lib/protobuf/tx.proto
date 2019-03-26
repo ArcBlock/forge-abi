@@ -66,9 +66,7 @@ message CreateAssetTx {
 
 message DeclareTx {
   string moniker = 1;
-  bytes pk = 2;
-  WalletType type = 3;
-  string issuer = 4;
+  string issuer = 2;
 
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 15;

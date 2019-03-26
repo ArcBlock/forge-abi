@@ -197,6 +197,8 @@
   fields:
     - name: signer
       type: string
+    - name: pk
+      type: string
     - name: signature
       type: string
     - name: data
@@ -209,9 +211,11 @@
       type: string
     - name: nonce
       type: int
-    - name: signature
-      type: string
     - name: chain_id
+      type: string
+    - name: pk
+      type: string
+    - name: signature
       type: string
     - name: signatures
       type: [multisig]

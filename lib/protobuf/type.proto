@@ -64,9 +64,9 @@ message NodeInfo {
   string data_version = 14; // current data version
   map<string, string> forge_apps_version = 15;
   repeated string supported_txs = 16;
-  string ip = 17;        // self node ip
-	GeoInfo geo_info = 18; // self node geo info
-	string p2p_address = 19; // id@ip:port
+  string ip = 17;          // self node ip
+  GeoInfo geo_info = 18;   // self node geo info
+  string p2p_address = 19; // id@ip:port
 }
 
 message Validator {
@@ -114,26 +114,34 @@ message AbciContext {
   google.protobuf.Timestamp last_block_time = 7;
 }
 message Multisig {
+  // signer address
   string signer = 1;
-  bytes signature = 2;
-  google.protobuf.Any data = 3;
+  // public key for signer
+  bytes pk = 2;
+  // signature
+  bytes signature = 3;
+
+  // extra data
+  google.protobuf.Any data = 15;
 }
 
 message Transaction {
   string from = 1;
   uint64 nonce = 2;
-  bytes signature = 3;
+
   // use DID for the chain. "did:" prefix is omitted
-  string chain_id = 4;
+  string chain_id = 3;
+  // public key of the sender
+  bytes pk = 4;
+
+  // signature of the transaction
+  bytes signature = 13;
   // we will support multiple signatures in case of certain tx need multiple
   // parties' signature.
-  repeated Multisig signatures = 5;
-  // at current version we don't have a VM to process byte
-  // code so this should always be empty. Forge will reject
-  // tx with non-empty byte_code
-  // bytes byte_code = 6;
 
-  google.protobuf.Any itx = 7;
+  repeated Multisig signatures = 14;
+
+  google.protobuf.Any itx = 15;
 }
 
 message TransactionInfo {
@@ -320,21 +328,21 @@ message TxStatistics {
 }
 
 message ForgeToken {
-  string name = 1;              // token name
-  string symbol = 2;            // token symbol
-  string unit = 3;              // token smallest unit
-  string description = 4;       // token description
-  bytes icon = 5;               // token icon file in bytes
-  uint32 decimal = 6;           // token decimal
-  uint64 initial_supply = 7;    // token initial supply amount
-  uint64 total_supply = 8;      // token total supply amount
-  uint32 inflation_rate = 9;    // token inflation rate in integer
+  string name = 1;           // token name
+  string symbol = 2;         // token symbol
+  string unit = 3;           // token smallest unit
+  string description = 4;    // token description
+  bytes icon = 5;            // token icon file in bytes
+  uint32 decimal = 6;        // token decimal
+  uint64 initial_supply = 7; // token initial supply amount
+  uint64 total_supply = 8;   // token total supply amount
+  uint32 inflation_rate = 9; // token inflation rate in integer
 }
 
 message PokeInfo {
-  BigUint daily_limit = 1;     //poke daily supply amount
-  BigUint leftover = 2;        //remaining poke daily supply amount
-  BigUint amount = 3;          //poke once supply amount
+  BigUint daily_limit = 1; // poke daily supply amount
+  BigUint leftover = 2;    // remaining poke daily supply amount
+  BigUint amount = 3;      // poke once supply amount
 }
 
 message PokeConfig {
@@ -344,10 +352,6 @@ message PokeConfig {
   uint64 amount = 4;
 }
 
-message ExtraCreateAsset {
-  string asset = 1;
-}
+message ExtraCreateAsset { string asset = 1; }
 
-message ExtraAccountMigrate {
-  string address = 1;
-}
+message ExtraAccountMigrate { string address = 1; }

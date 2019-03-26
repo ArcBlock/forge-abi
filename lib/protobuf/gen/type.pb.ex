@@ -340,14 +340,16 @@ defmodule ForgeAbi.Multisig do
 
   @type t :: %__MODULE__{
           signer: String.t(),
+          pk: String.t(),
           signature: String.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [:signer, :signature, :data]
+  defstruct [:signer, :pk, :signature, :data]
 
   field :signer, 1, type: :string
-  field :signature, 2, type: :bytes
-  field :data, 3, type: Google.Protobuf.Any
+  field :pk, 2, type: :bytes
+  field :signature, 3, type: :bytes
+  field :data, 15, type: Google.Protobuf.Any
 end
 
 defmodule ForgeAbi.Transaction do
@@ -357,19 +359,21 @@ defmodule ForgeAbi.Transaction do
   @type t :: %__MODULE__{
           from: String.t(),
           nonce: non_neg_integer,
-          signature: String.t(),
           chain_id: String.t(),
+          pk: String.t(),
+          signature: String.t(),
           signatures: [ForgeAbi.Multisig.t()],
           itx: Google.Protobuf.Any.t()
         }
-  defstruct [:from, :nonce, :signature, :chain_id, :signatures, :itx]
+  defstruct [:from, :nonce, :chain_id, :pk, :signature, :signatures, :itx]
 
   field :from, 1, type: :string
   field :nonce, 2, type: :uint64
-  field :signature, 3, type: :bytes
-  field :chain_id, 4, type: :string
-  field :signatures, 5, repeated: true, type: ForgeAbi.Multisig
-  field :itx, 7, type: Google.Protobuf.Any
+  field :chain_id, 3, type: :string
+  field :pk, 4, type: :bytes
+  field :signature, 13, type: :bytes
+  field :signatures, 14, repeated: true, type: ForgeAbi.Multisig
+  field :itx, 15, type: Google.Protobuf.Any
 end
 
 defmodule ForgeAbi.TransactionInfo do
