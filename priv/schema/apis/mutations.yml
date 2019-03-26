@@ -20,3 +20,13 @@
   return: response_create_tx
   type: mutation
   params: request_create_tx_with_type_url
+
+- name: start_simulator
+  return: response_start_simulator
+  type: mutation
+  params: request_start_simulator
+
+- name: stop_simulator
+  return: response_stop_simulator
+  type: mutation
+  params: request_stop_simulator

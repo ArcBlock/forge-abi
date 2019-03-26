@@ -59,6 +59,18 @@
   type: query
   return: response_sign_data
   params: request_sign_data
+- name: start_simulator
+  type: query
+  return: response_start_simulator
+  params: request_start_simulator
+- name: stop_simulator
+  type: query
+  return: response_stop_simulator
+  params: request_stop_simulator
+- name: get_simulator_status
+  type: query
+  return: response_get_simulator_status
+  params: request_get_simulator_status
 
 
 - name: subscribe
