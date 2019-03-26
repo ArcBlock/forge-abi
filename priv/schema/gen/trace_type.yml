@@ -214,6 +214,76 @@
     - name: num_invalid_txs
       type: int
   
+- name: health_status
+  type: output
+  fields:
+    - name: consensus
+      type: consensus_status
+    - name: network
+      type: network_status
+    - name: storage
+      type: storage_status
+    - name: forge
+      type: forge_status
+  
+- name: consensus_status
+  type: output
+  fields:
+    - name: health
+      type: boolean
+    - name: synced
+      type: boolean
+    - name: block_height
+      type: int
+  
+- name: network_status
+  type: output
+  fields:
+    - name: health
+      type: boolean
+    - name: num_peers
+      type: int
+  
+- name: storage_status
+  type: output
+  fields:
+    - name: health
+      type: boolean
+    - name: indexer_server
+      type: string
+    - name: state_db
+      type: string
+    - name: disk_space
+      type: disk_space_status
+  
+- name: disk_space_status
+  type: output
+  fields:
+    - name: forge_usage
+      type: string
+    - name: total
+      type: string
+  
+- name: forge_status
+  type: output
+  fields:
+    - name: health
+      type: boolean
+    - name: abi_server
+      type: string
+    - name: forge_web
+      type: string
+    - name: abci_server
+      type: abci_server_status
+  
+- name: abci_server_status
+  type: output
+  fields:
+    - name: abci_consensus
+      type: string
+    - name: abci_info
+      type: string
+  
 - name: direction
   type: enum
   fields:
