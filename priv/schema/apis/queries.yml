@@ -26,6 +26,8 @@
       type: address_filter
     - name: type_filter
       type: type_filter
+    - name: validity_filter
+      type: validity_filter
 
 - name: get_assets
   type: query
