@@ -835,14 +835,16 @@ defmodule ForgeAbi.RequestListTransactions do
           paging: ForgeAbi.PageInput.t(),
           time_filter: ForgeAbi.TimeFilter.t(),
           address_filter: ForgeAbi.AddressFilter.t(),
-          type_filter: ForgeAbi.TypeFilter.t()
+          type_filter: ForgeAbi.TypeFilter.t(),
+          validity_filter: ForgeAbi.ValidityFilter.t()
         }
-  defstruct [:paging, :time_filter, :address_filter, :type_filter]
+  defstruct [:paging, :time_filter, :address_filter, :type_filter, :validity_filter]
 
   field :paging, 1, type: ForgeAbi.PageInput
   field :time_filter, 2, type: ForgeAbi.TimeFilter
   field :address_filter, 3, type: ForgeAbi.AddressFilter
   field :type_filter, 4, type: ForgeAbi.TypeFilter
+  field :validity_filter, 5, type: ForgeAbi.ValidityFilter
 end
 
 defmodule ForgeAbi.ResponseListTransactions do

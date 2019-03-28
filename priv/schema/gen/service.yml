@@ -60,11 +60,11 @@
   return: response_sign_data
   params: request_sign_data
 - name: start_simulator
-  type: query
+  type: mutation
   return: response_start_simulator
   params: request_start_simulator
 - name: stop_simulator
-  type: query
+  type: mutation
   return: response_stop_simulator
   params: request_stop_simulator
 - name: get_simulator_status

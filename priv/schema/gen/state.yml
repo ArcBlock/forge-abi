@@ -33,7 +33,7 @@
       type: poke_info
     - name: data
       type: any
-
+  
 - name: asset_state
   type: output
   fields:
@@ -59,7 +59,7 @@
       type: state_context
     - name: data
       type: any
-
+  
 - name: forge_state
   type: output
   fields:
@@ -87,7 +87,7 @@
       type: poke_config
     - name: data
       type: any
-
+  
 - name: tasks_entry
   type: output
   fields:
@@ -95,7 +95,7 @@
       type: int
     - name: value
       type: upgrade_tasks
-
+  
 - name: stake_summary_entry
   type: output
   fields:
@@ -103,7 +103,7 @@
       type: int
     - name: value
       type: stake_summary
-
+  
 - name: root_state
   type: output
   fields:
@@ -115,7 +115,7 @@
       type: string
     - name: receipt
       type: string
-
+  
 - name: stake_state
   type: output
   fields:
@@ -133,7 +133,7 @@
       type: state_context
     - name: data
       type: any
-
+  
 - name: statistics_state
   type: output
   fields:
@@ -149,9 +149,10 @@
       type: int
     - name: tx_statistics
       type: tx_statistics
-
+  
 - name: blacklist_state
   type: output
   fields:
     - name: address
       type: [string]
+  

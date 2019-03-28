@@ -84,3 +84,9 @@
       type: int
     - name: app
       type: int
+
+- name: validity_filter
+  type: input
+  fields:
+    - name: validity
+      type: validity

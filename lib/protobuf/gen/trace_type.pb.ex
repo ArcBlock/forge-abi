@@ -97,9 +97,11 @@ defmodule ForgeAbi.IndexedTransaction do
           receiver: String.t(),
           time: String.t(),
           type: String.t(),
-          tx: ForgeAbi.Transaction.t()
+          tx: ForgeAbi.Transaction.t(),
+          valid: boolean,
+          code: integer
         }
-  defstruct [:value, :hash, :sender, :receiver, :time, :type, :tx]
+  defstruct [:value, :hash, :sender, :receiver, :time, :type, :tx, :valid, :code]
 
   oneof :value, 0
   field :hash, 1, type: :string
@@ -113,6 +115,8 @@ defmodule ForgeAbi.IndexedTransaction do
   field :exchange, 9, type: ForgeAbi.IndexedExchange, oneof: 0
   field :transfer, 10, type: ForgeAbi.IndexedTransfer, oneof: 0
   field :update_asset, 11, type: ForgeAbi.IndexedUpdateAsset, oneof: 0
+  field :valid, 20, type: :bool
+  field :code, 21, type: ForgeAbi.StatusCode, enum: true
 end
 
 defmodule ForgeAbi.IndexedAccountState do
@@ -461,6 +465,18 @@ defmodule ForgeAbi.AbciServerStatus do
   field :abci_info, 2, type: :string
 end
 
+defmodule ForgeAbi.ValidityFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          validity: integer
+        }
+  defstruct [:validity]
+
+  field :validity, 1, type: ForgeAbi.Validity, enum: true
+end
+
 defmodule ForgeAbi.Direction do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
@@ -468,4 +484,13 @@ defmodule ForgeAbi.Direction do
   field :mutual, 0
   field :one_way, 1
   field :union, 2
+end
+
+defmodule ForgeAbi.Validity do
+  @moduledoc false
+  use Protobuf, enum: true, syntax: :proto3
+
+  field :both, 0
+  field :valid, 1
+  field :invalid, 2
 end

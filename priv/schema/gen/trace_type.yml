@@ -75,6 +75,10 @@
       type: indexed_transfer
     - name: update_asset
       type: indexed_update_asset
+    - name: valid
+      type: boolean
+    - name: code
+      type: status_code
   
 - name: indexed_account_state
   type: output
@@ -284,6 +288,12 @@
     - name: abci_info
       type: string
   
+- name: validity_filter
+  type: output
+  fields:
+    - name: validity
+      type: validity
+  
 - name: direction
   type: enum
   fields:
@@ -292,4 +302,14 @@
     - type: one_way
       meta: value=1
     - type: union
+      meta: value=2
+
+- name: validity
+  type: enum
+  fields:
+    - type: both
+      meta: value=0
+    - type: valid
+      meta: value=1
+    - type: invalid
       meta: value=2

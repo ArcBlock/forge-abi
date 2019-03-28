@@ -335,6 +335,7 @@ message RequestListTransactions {
   TimeFilter time_filter = 2;
   AddressFilter address_filter = 3;
   TypeFilter type_filter = 4;
+  ValidityFilter validity_filter = 5;
 }
 
 message ResponseListTransactions {
