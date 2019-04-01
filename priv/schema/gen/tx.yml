@@ -66,6 +66,22 @@
     - name: hash
       type: string
   
+- name: deploy_tx
+  type: output
+  fields:
+    - name: name
+      type: string
+    - name: address
+      type: string
+    - name: description
+      type: string
+    - name: proto
+      type: string
+    - name: pipeline
+      type: string
+    - name: code
+      type: string
+  
 - name: exchange_info
   type: output
   fields:

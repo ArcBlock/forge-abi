@@ -74,6 +74,21 @@ message DeclareTx {
 
 message DeclareFileTx { string hash = 1; }
 
+message DeployTx {
+  // human readable name of the transaction, shall only contains alphabat
+  string name = 1;
+  // address of the tx
+  string address = 2;
+  // human readable description on what the tx is about, limited to 256 chars.
+  string description = 3;
+  // the protobuf definition for the tx.
+  string proto = 4;
+  // the pipeline of the tx, in yaml format.
+  string pipeline = 5;
+  // the source code for the tx.
+  string code = 6;
+}
+
 message ExchangeInfo {
   BigUint value = 1;
   repeated string assets = 2;

@@ -102,6 +102,28 @@ defmodule ForgeAbi.DeclareFileTx do
   field :hash, 1, type: :string
 end
 
+defmodule ForgeAbi.DeployTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          name: String.t(),
+          address: String.t(),
+          description: String.t(),
+          proto: String.t(),
+          pipeline: String.t(),
+          code: String.t()
+        }
+  defstruct [:name, :address, :description, :proto, :pipeline, :code]
+
+  field :name, 1, type: :string
+  field :address, 2, type: :string
+  field :description, 3, type: :string
+  field :proto, 4, type: :string
+  field :pipeline, 5, type: :string
+  field :code, 6, type: :string
+end
+
 defmodule ForgeAbi.ExchangeInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
