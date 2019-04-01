@@ -491,6 +491,8 @@
       type: int
     - name: avg_tps
       type: int
+    - name: avg_block_time
+      type: float
   
 - name: tx_statistics
   type: output

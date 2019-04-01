@@ -749,7 +749,8 @@ defmodule ForgeAbi.ForgeStatistics do
           num_poke_txs: [non_neg_integer],
           tps: [non_neg_integer],
           max_tps: non_neg_integer,
-          avg_tps: non_neg_integer
+          avg_tps: non_neg_integer,
+          avg_block_time: float
         }
   defstruct [
     :num_blocks,
@@ -770,7 +771,8 @@ defmodule ForgeAbi.ForgeStatistics do
     :num_poke_txs,
     :tps,
     :max_tps,
-    :avg_tps
+    :avg_tps,
+    :avg_block_time
   ]
 
   field :num_blocks, 1, repeated: true, type: :uint64
@@ -792,6 +794,7 @@ defmodule ForgeAbi.ForgeStatistics do
   field :tps, 17, repeated: true, type: :uint32
   field :max_tps, 18, type: :uint32
   field :avg_tps, 19, type: :uint32
+  field :avg_block_time, 20, type: :float
 end
 
 defmodule ForgeAbi.TxStatistics do
