@@ -66,21 +66,27 @@
     - name: hash
       type: string
   
-- name: deploy_tx
+- name: deploy_protocol
   type: output
   fields:
-    - name: name
-      type: string
     - name: address
       type: string
+    - name: name
+      type: string
+    - name: version
+      type: int
     - name: description
       type: string
     - name: proto
       type: string
     - name: pipeline
       type: string
-    - name: code
+    - name: source
       type: string
+    - name: bin
+      type: [string]
+    - name: data
+      type: any
   
 - name: exchange_info
   type: output

@@ -156,3 +156,27 @@
     - name: address
       type: [string]
   
+- name: tx_protocol_state
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: name
+      type: string
+    - name: version
+      type: int
+    - name: description
+      type: string
+    - name: proto
+      type: string
+    - name: pipeline
+      type: string
+    - name: source
+      type: string
+    - name: bin
+      type: [string]
+    - name: root_hash
+      type: string
+    - name: data
+      type: any
+  

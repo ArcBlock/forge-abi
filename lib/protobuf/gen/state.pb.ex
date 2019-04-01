@@ -251,3 +251,44 @@ defmodule ForgeAbi.BlacklistState do
 
   field :address, 1, repeated: true, type: :string
 end
+
+defmodule ForgeAbi.TxProtocolState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          name: String.t(),
+          version: non_neg_integer,
+          description: String.t(),
+          proto: String.t(),
+          pipeline: String.t(),
+          source: String.t(),
+          bin: [String.t()],
+          root_hash: String.t(),
+          data: Google.Protobuf.Any.t()
+        }
+  defstruct [
+    :address,
+    :name,
+    :version,
+    :description,
+    :proto,
+    :pipeline,
+    :source,
+    :bin,
+    :root_hash,
+    :data
+  ]
+
+  field :address, 1, type: :string
+  field :name, 2, type: :string
+  field :version, 3, type: :uint32
+  field :description, 4, type: :string
+  field :proto, 5, type: :string
+  field :pipeline, 6, type: :string
+  field :source, 7, type: :string
+  field :bin, 8, repeated: true, type: :bytes
+  field :root_hash, 9, type: :bytes
+  field :data, 15, type: Google.Protobuf.Any
+end

@@ -74,19 +74,26 @@ message DeclareTx {
 
 message DeclareFileTx { string hash = 1; }
 
-message DeployTx {
+message DeployProtocol {
+	// address of the tx protocol
+  string address = 1;
   // human readable name of the transaction, shall only contains alphabat
-  string name = 1;
-  // address of the tx
-  string address = 2;
+	string name = 2;
+	// version of the tx protocol. If version is 0, this is a genesis installation.
+	uint32 version = 3;
   // human readable description on what the tx is about, limited to 256 chars.
-  string description = 3;
-  // the protobuf definition for the tx.
-  string proto = 4;
-  // the pipeline of the tx, in yaml format.
-  string pipeline = 5;
-  // the source code for the tx.
-  string code = 6;
+  string description = 4;
+  // the protobuf definition for the tx protocol.
+  string proto = 5;
+  // the pipeline of the tx protocol, in yaml format.
+  string pipeline = 6;
+  // the source code for the tx protocol, in elixir.
+  string source = 7;
+  // the binary of the tx protocol, compressed with gzip
+  repeated bytes bin = 8;
+
+  // forge won't update data into state if app is interested in this tx.
+  google.protobuf.Any data = 15;
 }
 
 message ExchangeInfo {

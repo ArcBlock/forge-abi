@@ -109,6 +109,19 @@ message StatisticsState {
   TxStatistics tx_statistics = 6;
 }
 
-message BlacklistState {
-  repeated string address = 1;
+message BlacklistState { repeated string address = 1; }
+
+message TxProtocolState {
+  string address = 1;
+  string name = 2;
+  uint32 version = 3;
+  string description = 4;
+  string proto = 5;
+  string pipeline = 6;
+  string source = 7;
+  repeated bytes bin = 8;
+  // root hash of the MPT of this tx protocol
+  bytes root_hash = 9;
+
+  google.protobuf.Any data = 15; // forge app can define their own app state
 }
