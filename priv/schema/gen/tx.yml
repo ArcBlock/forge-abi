@@ -75,6 +75,8 @@
       type: string
     - name: version
       type: int
+    - name: namespace
+      type: string
     - name: description
       type: string
     - name: proto
