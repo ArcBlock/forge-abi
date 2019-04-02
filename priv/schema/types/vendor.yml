@@ -6,10 +6,10 @@
       type: string
       meta: null=false
       doc: type url
-    - name: value
+    - name: encoded_value
       type: string
       meta: null=false
-      doc: data of the type url
+      doc: Base-64-url-safe encoded data of the type url
 
 
 
