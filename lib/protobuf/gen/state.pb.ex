@@ -252,7 +252,7 @@ defmodule ForgeAbi.BlacklistState do
   field :address, 1, repeated: true, type: :string
 end
 
-defmodule ForgeAbi.TxProtocolState do
+defmodule ForgeAbi.ProtocolState do
   @moduledoc false
   use Protobuf, syntax: :proto3
 

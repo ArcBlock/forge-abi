@@ -156,7 +156,7 @@
     - name: address
       type: [string]
   
-- name: tx_protocol_state
+- name: protocol_state
   type: output
   fields:
     - name: address

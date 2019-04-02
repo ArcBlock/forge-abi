@@ -20,6 +20,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     CreateAssetTx,
     DeclareFileTx,
     DeclareTx,
+    DeployProtocolTx,
     ExchangeTx,
     PokeTx,
     StakeTx,
@@ -34,6 +35,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     AssetState,
     BlacklistState,
     ForgeState,
+    ProtocolState,
     RootState,
     StakeState,
     StatisticsState
@@ -66,6 +68,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {:consensus_upgrade, "fg:t:consensus_upgrade", ConsensusUpgradeTx},
     {:declare, "fg:t:declare", DeclareTx},
     {:declare_file, "fg:t:declare_file", DeclareFileTx},
+    {:deploy_protocol, "fg:t:deploy_protocol", DeclareFileTx},
     {:exchange, "fg:t:exchange", ExchangeTx},
     {:stake, "fg:t:stake", StakeTx},
     {:sys_upgrade, "fg:t:sys_upgrade", SysUpgradeTx},
@@ -75,11 +78,12 @@ defmodule ForgeAbi.Util.TypeUrl do
     # forge state
     {:account_state, "fg:s:account", AccountState},
     {:asset_state, "fg:s:asset", AssetState},
+    {:blacklist_state, "fg:s:blacklist", BlacklistState},
     {:forge_state, "fg:s:forge", ForgeState},
     {:stake_state, "fg:s:stake", StakeState},
     {:statistics_state, "fg:s:statistics", StatisticsState},
+    {:protocol_state, "fg:s:protocol", ProtocolState},
     {:root_state, "fg:s:root", RootState},
-    {:blacklist_state, "fg:s:blacklist", BlacklistState},
 
     # forge tx stake
     {:stake_for_node, "fg:x:stake_node", StakeForNode},

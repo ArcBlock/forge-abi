@@ -111,7 +111,7 @@ message StatisticsState {
 
 message BlacklistState { repeated string address = 1; }
 
-message TxProtocolState {
+message ProtocolState {
   string address = 1;
   string name = 2;
   uint32 version = 3;
