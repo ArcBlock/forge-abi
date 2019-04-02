@@ -123,6 +123,9 @@ message ProtocolState {
   // root hash of the MPT of this tx protocol
   bytes root_hash = 9;
 
+  repeated string migrated_to = 12;
+  repeated string migrated_from = 13;
+
   StateContext context = 14;
   google.protobuf.Any data = 15; // forge app can define their own app state
 }

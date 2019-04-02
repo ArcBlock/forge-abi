@@ -177,6 +177,10 @@
       type: [string]
     - name: root_hash
       type: string
+    - name: migrated_to
+      type: [string]
+    - name: migrated_from
+      type: [string]
     - name: context
       type: state_context
     - name: data

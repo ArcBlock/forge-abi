@@ -266,6 +266,8 @@ defmodule ForgeAbi.ProtocolState do
           source: String.t(),
           bin: [String.t()],
           root_hash: String.t(),
+          migrated_to: [String.t()],
+          migrated_from: [String.t()],
           context: ForgeAbi.StateContext.t(),
           data: Google.Protobuf.Any.t()
         }
@@ -279,6 +281,8 @@ defmodule ForgeAbi.ProtocolState do
     :source,
     :bin,
     :root_hash,
+    :migrated_to,
+    :migrated_from,
     :context,
     :data
   ]
@@ -292,6 +296,8 @@ defmodule ForgeAbi.ProtocolState do
   field :source, 7, type: :string
   field :bin, 8, repeated: true, type: :bytes
   field :root_hash, 9, type: :bytes
+  field :migrated_to, 12, repeated: true, type: :string
+  field :migrated_from, 13, repeated: true, type: :string
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
 end
