@@ -105,14 +105,18 @@
   type: query
   return: response_get_asset_state
   params: request_get_asset_state
-- name: get_stake_state
-  type: query
-  return: response_get_stake_state
-  params: request_get_stake_state
 - name: get_forge_state
   type: query
   return: response_get_forge_state
   params: request_get_forge_state
+- name: get_protocol_state
+  type: query
+  return: response_get_protocol_state
+  params: request_get_protocol_state
+- name: get_stake_state
+  type: query
+  return: response_get_stake_state
+  params: request_get_stake_state
 
 
 - name: create_wallet

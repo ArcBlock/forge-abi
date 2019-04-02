@@ -20,7 +20,7 @@ service ChainRpc {
   rpc get_blocks(RequestGetBlocks) returns (ResponseGetBlocks);
   rpc get_unconfirmed_txs(RequestGetUnconfirmedTxs)
       returns (ResponseGetUnconfirmedTxs);
-   // utility
+  // utility
   rpc get_chain_info(RequestGetChainInfo) returns (ResponseGetChainInfo);
   rpc get_node_info(RequestGetNodeInfo) returns (ResponseGetNodeInfo);
   rpc search(RequestSearch) returns (ResponseSearch);
@@ -33,7 +33,8 @@ service ChainRpc {
   rpc sign_data(RequestSignData) returns (ResponseSignData);
   rpc start_simulator(RequestStartSimulator) returns (ResponseStartSimulator);
   rpc stop_simulator(RequestStopSimulator) returns (ResponseStopSimulator);
-  rpc get_simulator_status(RequestGetSimulatorStatus) returns (ResponseGetSimulatorStatus);
+  rpc get_simulator_status(RequestGetSimulatorStatus)
+      returns (ResponseGetSimulatorStatus);
 }
 
 service EventRpc {
@@ -54,9 +55,11 @@ service StateRpc {
       returns (stream ResponseGetAccountState);
   rpc get_asset_state(stream RequestGetAssetState)
       returns (stream ResponseGetAssetState);
+  rpc get_forge_state(RequestGetForgeState) returns (ResponseGetForgeState);
+  rpc get_protocol_state(stream RequestGetProtocolState)
+      returns (stream ResponseGetProtocolState);
   rpc get_stake_state(stream RequestGetStakeState)
       returns (stream ResponseGetStakeState);
-  rpc get_forge_state(RequestGetForgeState) returns (ResponseGetForgeState);
 }
 
 service WalletRpc {
@@ -77,8 +80,10 @@ service StatisticRpc {
   rpc get_assets(RequestGetAssets) returns (ResponseGetAssets);
   rpc get_stakes(RequestGetStakes) returns (ResponseGetStakes);
   rpc get_top_accounts(RequestGetTopAccounts) returns (ResponseGetTopAccounts);
-  rpc list_asset_transactions(RequestListAssetTransactions) returns (ResponseListAssetTransactions);
+  rpc list_asset_transactions(RequestListAssetTransactions)
+      returns (ResponseListAssetTransactions);
   rpc list_blocks(RequestListBlocks) returns (ResponseListBlocks);
   rpc list_assets(RequestListAssets) returns (ResponseListAssets);
-  rpc get_health_status(RequestGetHealthStatus) returns (ResponseGetHealthStatus);
+  rpc get_health_status(RequestGetHealthStatus)
+      returns (ResponseGetHealthStatus);
 }

@@ -69,11 +69,15 @@ defmodule ForgeAbi.StateRpc.Service do
       stream(ForgeAbi.RequestGetAssetState),
       stream(ForgeAbi.ResponseGetAssetState)
 
+  rpc :get_forge_state, ForgeAbi.RequestGetForgeState, ForgeAbi.ResponseGetForgeState
+
+  rpc :get_protocol_state,
+      stream(ForgeAbi.RequestGetProtocolState),
+      stream(ForgeAbi.ResponseGetProtocolState)
+
   rpc :get_stake_state,
       stream(ForgeAbi.RequestGetStakeState),
       stream(ForgeAbi.ResponseGetStakeState)
-
-  rpc :get_forge_state, ForgeAbi.RequestGetForgeState, ForgeAbi.ResponseGetForgeState
 end
 
 defmodule ForgeAbi.StateRpc.Stub do
