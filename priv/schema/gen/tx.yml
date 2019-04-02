@@ -7,7 +7,9 @@
       type: wallet_type
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: consensus_upgrade_tx
   type: output
   fields:
@@ -23,7 +25,9 @@
       type: int
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: consume_asset_tx
   type: output
   fields:
@@ -33,7 +37,9 @@
       type: string
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: create_asset_tx
   type: output
   fields:
@@ -41,6 +47,7 @@
       type: string
     - name: data
       type: any
+      meta: resolver=google_protobuf_any 
     - name: readonly
       type: boolean
     - name: transferrable
@@ -49,7 +56,8 @@
       type: int
     - name: parent
       type: string
-  
+
+
 - name: declare_tx
   type: output
   fields:
@@ -59,13 +67,16 @@
       type: string
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: declare_file_tx
   type: output
   fields:
     - name: hash
       type: string
-  
+
+
 - name: exchange_info
   type: output
   fields:
@@ -73,7 +84,8 @@
       type: string
     - name: assets
       type: [string]
-  
+
+
 - name: exchange_tx
   type: output
   fields:
@@ -87,25 +99,23 @@
       type: timestamp
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: stake_for_asset
   type: output
-
   fields: []
 
 - name: stake_for_chain
   type: output
-
   fields: []
 
 - name: stake_for_node
   type: output
-
   fields: []
 
 - name: stake_for_user
   type: output
-
   fields: []
 
 - name: stake_tx
@@ -119,7 +129,9 @@
       type: string
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: sys_upgrade_tx
   type: output
   fields:
@@ -129,7 +141,9 @@
       type: int
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: transfer_tx
   type: output
   fields:
@@ -141,7 +155,9 @@
       type: [string]
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: update_asset_tx
   type: output
   fields:
@@ -151,7 +167,9 @@
       type: string
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: poke_tx
   type: output
   fields:
@@ -161,4 +179,5 @@
       type: string
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+

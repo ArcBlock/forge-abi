@@ -3,7 +3,8 @@
   fields:
     - name: value
       type: string
-  
+
+
 - name: big_sint
   type: output
   fields:
@@ -11,7 +12,8 @@
       type: string
     - name: minus
       type: boolean
-  
+
+
 - name: wallet_type
   type: output
   fields:
@@ -23,7 +25,8 @@
       type: encoding_type
     - name: role
       type: role_type
-  
+
+
 - name: wallet_info
   type: output
   fields:
@@ -35,7 +38,8 @@
       type: string
     - name: address
       type: string
-  
+
+
 - name: chain_info
   type: output
   fields:
@@ -71,7 +75,8 @@
       type: [forge_apps_version_entry]
     - name: supported_txs
       type: [string]
-  
+
+
 - name: forge_apps_version_entry
   type: output
   fields:
@@ -79,7 +84,8 @@
       type: string
     - name: value
       type: string
-  
+
+
 - name: node_info
   type: output
   fields:
@@ -121,7 +127,8 @@
       type: geo_info
     - name: p2p_address
       type: string
-  
+
+
 - name: forge_apps_version_entry
   type: output
   fields:
@@ -129,7 +136,8 @@
       type: string
     - name: value
       type: string
-  
+
+
 - name: validator
   type: output
   fields:
@@ -137,7 +145,8 @@
       type: string
     - name: power
       type: int
-  
+
+
 - name: consensus_params
   type: output
   fields:
@@ -157,7 +166,8 @@
       type: boolean
     - name: param_changed
       type: boolean
-  
+
+
 - name: upgrade_task
   type: output
   fields:
@@ -167,13 +177,15 @@
       type: string
     - name: actions
       type: [upgrade_action]
-  
+
+
 - name: upgrade_tasks
   type: output
   fields:
     - name: item
       type: [upgrade_task]
-  
+
+
 - name: abci_context
   type: output
   fields:
@@ -191,7 +203,8 @@
       type: int
     - name: last_block_time
       type: timestamp
-  
+
+
 - name: multisig
   type: output
   fields:
@@ -203,7 +216,9 @@
       type: string
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: transaction
   type: output
   fields:
@@ -221,7 +236,9 @@
       type: [multisig]
     - name: itx
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: transaction_info
   type: output
   fields:
@@ -243,7 +260,8 @@
       type: extra_create_asset
     - name: account_migrate
       type: extra_account_migrate
-  
+
+
 - name: transaction_config
   type: output
   fields:
@@ -255,7 +273,8 @@
       type: int
     - name: minimum_stake
       type: int
-  
+
+
 - name: block_info
   type: output
   fields:
@@ -297,7 +316,8 @@
       type: version
     - name: last_block_id
       type: block_id
-  
+
+
 - name: tx_status
   type: output
   fields:
@@ -305,7 +325,8 @@
       type: status_code
     - name: hash
       type: string
-  
+
+
 - name: circular_queue
   type: output
   fields:
@@ -319,7 +340,8 @@
       type: boolean
     - name: fifo
       type: boolean
-  
+
+
 - name: state_context
   type: output
   fields:
@@ -331,7 +353,8 @@
       type: timestamp
     - name: renaissance_time
       type: timestamp
-  
+
+
 - name: stake_context
   type: output
   fields:
@@ -345,7 +368,8 @@
       type: circular_queue
     - name: recent_received_stakes
       type: circular_queue
-  
+
+
 - name: stake_summary
   type: output
   fields:
@@ -355,7 +379,8 @@
       type: string
     - name: context
       type: state_context
-  
+
+
 - name: stake_config
   type: output
   fields:
@@ -363,7 +388,8 @@
       type: int
     - name: timeout_stake_for_node
       type: int
-  
+
+
 - name: unconfirmed_txs
   type: output
   fields:
@@ -371,7 +397,8 @@
       type: int
     - name: txs
       type: [transaction]
-  
+
+
 - name: net_info
   type: output
   fields:
@@ -383,7 +410,8 @@
       type: int
     - name: peers
       type: [peer_info]
-  
+
+
 - name: geo_info
   type: output
   fields:
@@ -395,7 +423,8 @@
       type: float
     - name: longitude
       type: float
-  
+
+
 - name: peer_info
   type: output
   fields:
@@ -411,7 +440,8 @@
       type: string
     - name: geo_info
       type: geo_info
-  
+
+
 - name: validators_info
   type: output
   fields:
@@ -419,7 +449,8 @@
       type: int
     - name: validators
       type: [validator_info]
-  
+
+
 - name: validator_info
   type: output
   fields:
@@ -435,7 +466,8 @@
       type: string
     - name: geo_info
       type: geo_info
-  
+
+
 - name: genesis_info
   type: output
   fields:
@@ -449,7 +481,8 @@
       type: [validator_info]
     - name: app_hash
       type: string
-  
+
+
 - name: forge_statistics
   type: output
   fields:
@@ -493,7 +526,8 @@
       type: int
     - name: avg_block_time
       type: float
-  
+
+
 - name: tx_statistics
   type: output
   fields:
@@ -521,7 +555,8 @@
       type: int
     - name: num_poke_txs
       type: int
-  
+
+
 - name: forge_token
   type: output
   fields:
@@ -543,7 +578,8 @@
       type: int
     - name: inflation_rate
       type: int
-  
+
+
 - name: poke_info
   type: output
   fields:
@@ -553,7 +589,8 @@
       type: string
     - name: amount
       type: string
-  
+
+
 - name: poke_config
   type: output
   fields:
@@ -565,16 +602,18 @@
       type: int
     - name: amount
       type: int
-  
+
+
 - name: extra_create_asset
   type: output
   fields:
     - name: asset
       type: string
-  
+
+
 - name: extra_account_migrate
   type: output
   fields:
     - name: address
       type: string
-  
+

@@ -5,7 +5,8 @@
       type: string
     - name: value
       type: string
-  
+
+
 - name: proof_op
   type: output
   fields:
@@ -15,13 +16,15 @@
       type: string
     - name: data
       type: string
-  
+
+
 - name: proof
   type: output
   fields:
     - name: ops
       type: [proof_op]
-  
+
+
 - name: block_params
   type: output
   fields:
@@ -29,19 +32,22 @@
       type: int
     - name: max_gas
       type: int
-  
+
+
 - name: evidence_params
   type: output
   fields:
     - name: max_age
       type: int
-  
+
+
 - name: validator_params
   type: output
   fields:
     - name: pub_key_types
       type: [string]
-  
+
+
 - name: consensus_params
   type: output
   fields:
@@ -51,7 +57,8 @@
       type: evidence_params
     - name: validator
       type: validator_params
-  
+
+
 - name: last_commit_info
   type: output
   fields:
@@ -59,7 +66,8 @@
       type: int
     - name: votes
       type: [vote_info]
-  
+
+
 - name: version
   type: output
   fields:
@@ -67,7 +75,8 @@
       type: int
     - name: App
       type: int
-  
+
+
 - name: block_id
   type: output
   fields:
@@ -75,7 +84,8 @@
       type: string
     - name: parts_header
       type: part_set_header
-  
+
+
 - name: part_set_header
   type: output
   fields:
@@ -83,7 +93,8 @@
       type: int
     - name: hash
       type: string
-  
+
+
 - name: validator
   type: output
   fields:
@@ -91,7 +102,8 @@
       type: string
     - name: power
       type: int
-  
+
+
 - name: validator_update
   type: output
   fields:
@@ -99,7 +111,8 @@
       type: pub_key
     - name: power
       type: int
-  
+
+
 - name: vote_info
   type: output
   fields:
@@ -107,7 +120,8 @@
       type: validator
     - name: signed_last_block
       type: boolean
-  
+
+
 - name: pub_key
   type: output
   fields:
@@ -115,7 +129,8 @@
       type: string
     - name: data
       type: string
-  
+
+
 - name: evidence
   type: output
   fields:
@@ -129,7 +144,8 @@
       type: timestamp
     - name: total_voting_power
       type: int
-  
+
+
 - name: header
   type: output
   fields:
@@ -165,16 +181,17 @@
       type: string
     - name: proposer_address
       type: string
-  
+
+
 - name: request_echo
   type: input
   fields:
     - name: message
       type: string
-  
+
+
 - name: request_flush
   type: input
-
   fields: []
 
 - name: request_info
@@ -186,7 +203,8 @@
       type: int
     - name: p2p_version
       type: int
-  
+
+
 - name: request_set_option
   type: input
   fields:
@@ -194,7 +212,8 @@
       type: string
     - name: value
       type: string
-  
+
+
 - name: request_init_chain
   type: input
   fields:
@@ -208,7 +227,8 @@
       type: [validator_update]
     - name: app_state_bytes
       type: string
-  
+
+
 - name: request_query
   type: input
   fields:
@@ -220,7 +240,8 @@
       type: int
     - name: prove
       type: boolean
-  
+
+
 - name: request_begin_block
   type: input
   fields:
@@ -232,28 +253,31 @@
       type: last_commit_info
     - name: byzantine_validators
       type: [evidence]
-  
+
+
 - name: request_check_tx
   type: input
   fields:
     - name: tx
       type: string
-  
+
+
 - name: request_deliver_tx
   type: input
   fields:
     - name: tx
       type: string
-  
+
+
 - name: request_end_block
   type: input
   fields:
     - name: height
       type: int
-  
+
+
 - name: request_commit
   type: input
-
   fields: []
 
 - name: request
@@ -281,22 +305,24 @@
       type: request_end_block
     - name: commit
       type: request_commit
-  
+
+
 - name: response_exception
   type: output
   fields:
     - name: error
       type: string
-  
+
+
 - name: response_echo
   type: output
   fields:
     - name: message
       type: string
-  
+
+
 - name: response_flush
   type: output
-
   fields: []
 
 - name: response_info
@@ -312,7 +338,8 @@
       type: int
     - name: last_block_app_hash
       type: string
-  
+
+
 - name: response_set_option
   type: output
   fields:
@@ -322,7 +349,8 @@
       type: string
     - name: info
       type: string
-  
+
+
 - name: response_init_chain
   type: output
   fields:
@@ -330,7 +358,8 @@
       type: consensus_params
     - name: validators
       type: [validator_update]
-  
+
+
 - name: response_query
   type: output
   fields:
@@ -352,13 +381,15 @@
       type: int
     - name: codespace
       type: string
-  
+
+
 - name: response_begin_block
   type: output
   fields:
     - name: tags
       type: [kv_pair]
-  
+
+
 - name: response_check_tx
   type: output
   fields:
@@ -378,7 +409,8 @@
       type: [kv_pair]
     - name: codespace
       type: string
-  
+
+
 - name: response_deliver_tx
   type: output
   fields:
@@ -398,7 +430,8 @@
       type: [kv_pair]
     - name: codespace
       type: string
-  
+
+
 - name: response_end_block
   type: output
   fields:
@@ -408,13 +441,15 @@
       type: consensus_params
     - name: tags
       type: [kv_pair]
-  
+
+
 - name: response_commit
   type: output
   fields:
     - name: data
       type: string
-  
+
+
 - name: response
   type: output
   fields:
@@ -442,10 +477,10 @@
       type: response_end_block
     - name: commit
       type: response_commit
-  
+
+
 - name: request_ping
   type: input
-
   fields: []
 
 - name: request_broadcast_tx
@@ -453,10 +488,10 @@
   fields:
     - name: tx
       type: string
-  
+
+
 - name: response_ping
   type: output
-
   fields: []
 
 - name: response_broadcast_tx
@@ -466,7 +501,8 @@
       type: response_check_tx
     - name: deliver_tx
       type: response_deliver_tx
-  
+
+
 
 - name: Echo
   type: query
