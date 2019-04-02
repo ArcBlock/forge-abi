@@ -409,6 +409,36 @@ defmodule ForgeAbi.ResponseGetAssetState do
   field :state, 2, type: ForgeAbi.AssetState
 end
 
+defmodule ForgeAbi.RequestGetProtocolState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          keys: [String.t()],
+          height: non_neg_integer
+        }
+  defstruct [:address, :keys, :height]
+
+  field :address, 1, type: :string
+  field :keys, 2, repeated: true, type: :string
+  field :height, 3, type: :uint64
+end
+
+defmodule ForgeAbi.ResponseGetProtocolState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          state: ForgeAbi.ProtocolState.t()
+        }
+  defstruct [:code, :state]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :state, 2, type: ForgeAbi.ProtocolState
+end
+
 defmodule ForgeAbi.RequestGetStakeState do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -722,10 +752,11 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :declare_file, 22, type: ForgeAbi.Transaction, oneof: 0
   field :sys_upgrade, 23, type: ForgeAbi.Transaction, oneof: 0
   field :stake, 24, type: ForgeAbi.Transaction, oneof: 0
-  field :account_state, 129, type: ForgeAbi.Transaction, oneof: 0
-  field :asset_state, 130, type: ForgeAbi.Transaction, oneof: 0
-  field :forge_state, 131, type: ForgeAbi.Transaction, oneof: 0
-  field :stake_state, 132, type: ForgeAbi.Transaction, oneof: 0
+  field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
+  field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
+  field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0
+  field :stake_state, 132, type: ForgeAbi.StakeState, oneof: 0
+  field :protocol_state, 133, type: ForgeAbi.ProtocolState, oneof: 0
 end
 
 defmodule ForgeAbi.RequestUnsubscribe do

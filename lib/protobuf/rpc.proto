@@ -27,12 +27,11 @@ message ResponseCreateTx {
 
 // multisig(tx, wallet, token)
 message RequestMultisig {
-	Transaction tx = 1;
-	// extra data for multisig
-	google.protobuf.Any data = 2;
+  Transaction tx = 1;
+  // extra data for multisig
+  google.protobuf.Any data = 2;
   WalletInfo wallet = 3;
-	string token = 4;
-
+  string token = 4;
 }
 
 message ResponseMultisig {
@@ -168,6 +167,17 @@ message ResponseGetAssetState {
   AssetState state = 2;
 }
 
+message RequestGetProtocolState {
+  string address = 1;
+  repeated string keys = 2;
+  uint64 height = 3;
+}
+
+message ResponseGetProtocolState {
+  StatusCode code = 1;
+  ProtocolState state = 2;
+}
+
 message RequestGetStakeState {
   string address = 1;
   repeated string keys = 2;
@@ -290,10 +300,11 @@ message ResponseSubscribe {
     Transaction sys_upgrade = 23;
     Transaction stake = 24;
 
-    Transaction account_state = 129;
-    Transaction asset_state = 130;
-    Transaction forge_state = 131;
-    Transaction stake_state = 132;
+    AccountState account_state = 129;
+    AssetState asset_state = 130;
+    ForgeState forge_state = 131;
+    StakeState stake_state = 132;
+    ProtocolState protocol_state = 133;
   }
 }
 
@@ -313,10 +324,7 @@ message ByDay {
   string end_date = 2;
 }
 
-message ByHour {
-  string date = 1;
-}
-
+message ByHour { string date = 1; }
 
 message RequestGetForgeStatistics {
   oneof value {
@@ -388,9 +396,7 @@ message ResponseGetStakes {
   repeated IndexedStakeState stakes = 3;
 }
 
-message RequestGetTopAccounts {
-  PageInput paging = 1;
-}
+message RequestGetTopAccounts { PageInput paging = 1; }
 
 message ResponseGetTopAccounts {
   StatusCode code = 1;
