@@ -69,7 +69,7 @@
 - name: code_info
   type: output
   fields:
-    - name: name
+    - name: checksum
       type: string
     - name: binary
       type: string

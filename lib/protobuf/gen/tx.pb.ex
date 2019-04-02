@@ -107,12 +107,12 @@ defmodule ForgeAbi.CodeInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          name: String.t(),
+          checksum: String.t(),
           binary: String.t()
         }
-  defstruct [:name, :binary]
+  defstruct [:checksum, :binary]
 
-  field :name, 1, type: :string
+  field :checksum, 1, type: :bytes
   field :binary, 2, type: :bytes
 end
 
