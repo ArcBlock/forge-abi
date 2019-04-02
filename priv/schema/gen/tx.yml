@@ -71,7 +71,7 @@
   fields:
     - name: name
       type: string
-    - name: code
+    - name: binary
       type: string
   
 - name: deploy_protocol_tx

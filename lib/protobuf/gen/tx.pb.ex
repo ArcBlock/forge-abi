@@ -108,12 +108,12 @@ defmodule ForgeAbi.CodeInfo do
 
   @type t :: %__MODULE__{
           name: String.t(),
-          code: String.t()
+          binary: String.t()
         }
-  defstruct [:name, :code]
+  defstruct [:name, :binary]
 
   field :name, 1, type: :string
-  field :code, 2, type: :bytes
+  field :binary, 2, type: :bytes
 end
 
 defmodule ForgeAbi.DeployProtocolTx do

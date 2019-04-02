@@ -78,7 +78,7 @@ message CodeInfo {
   // module name
   string name = 1;
   // gzipped binary
-  bytes code = 2;
+  bytes binary = 2;
 }
 
 message DeployProtocolTx {
