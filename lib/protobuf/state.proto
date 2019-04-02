@@ -3,6 +3,7 @@ package forge_abi;
 
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
+import "enum.proto";
 import "type.proto";
 
 // State definition
@@ -121,7 +122,8 @@ message ProtocolState {
   string source = 7;
   repeated bytes bin = 8;
   // root hash of the MPT of this tx protocol
-  bytes root_hash = 9;
+	bytes root_hash = 9;
+	ProtocolStatus status = 10;
 
   repeated string migrated_to = 12;
   repeated string migrated_from = 13;

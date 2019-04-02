@@ -177,6 +177,8 @@
       type: [string]
     - name: root_hash
       type: string
+    - name: status
+      type: protocol_status
     - name: migrated_to
       type: [string]
     - name: migrated_from

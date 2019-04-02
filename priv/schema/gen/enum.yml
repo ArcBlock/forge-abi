@@ -117,6 +117,8 @@
       meta: value=131
     - type: stake_state
       meta: value=132
+    - type: protocol_state
+      meta: value=133
 
 - name: key_type
   type: enum
@@ -253,3 +255,13 @@
       meta: value=2
     - type: stake_chain
       meta: value=3
+
+- name: protocol_status
+  type: enum
+  fields:
+    - type: running
+      meta: value=0
+    - type: paused
+      meta: value=1
+    - type: terminated
+      meta: value=2
