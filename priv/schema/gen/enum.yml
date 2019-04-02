@@ -173,6 +173,8 @@
       meta: value=7
     - type: role_validator
       meta: value=8
+    - type: role_tx
+      meta: value=9
 
 - name: upgrade_type
   type: enum

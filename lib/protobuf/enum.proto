@@ -123,7 +123,8 @@ enum RoleType {
   role_bot = 5;
   role_asset = 6;
   role_stake = 7;
-  role_validator = 8;
+	role_validator = 8;
+	role_tx = 9;
 }
 
 enum UpgradeType {
