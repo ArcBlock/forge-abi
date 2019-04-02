@@ -177,6 +177,8 @@
       type: [string]
     - name: root_hash
       type: string
+    - name: context
+      type: state_context
     - name: data
       type: any
   

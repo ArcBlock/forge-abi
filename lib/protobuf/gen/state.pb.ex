@@ -266,6 +266,7 @@ defmodule ForgeAbi.ProtocolState do
           source: String.t(),
           bin: [String.t()],
           root_hash: String.t(),
+          context: ForgeAbi.StateContext.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -278,6 +279,7 @@ defmodule ForgeAbi.ProtocolState do
     :source,
     :bin,
     :root_hash,
+    :context,
     :data
   ]
 
@@ -290,5 +292,6 @@ defmodule ForgeAbi.ProtocolState do
   field :source, 7, type: :string
   field :bin, 8, repeated: true, type: :bytes
   field :root_hash, 9, type: :bytes
+  field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
 end
