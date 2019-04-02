@@ -102,6 +102,20 @@ defmodule ForgeAbi.DeclareFileTx do
   field :hash, 1, type: :string
 end
 
+defmodule ForgeAbi.CodeInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          name: String.t(),
+          code: String.t()
+        }
+  defstruct [:name, :code]
+
+  field :name, 1, type: :string
+  field :code, 2, type: :bytes
+end
+
 defmodule ForgeAbi.DeployProtocolTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -115,7 +129,7 @@ defmodule ForgeAbi.DeployProtocolTx do
           proto: String.t(),
           pipeline: String.t(),
           source: String.t(),
-          bin: [String.t()],
+          code: [ForgeAbi.CodeInfo.t()],
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -127,7 +141,7 @@ defmodule ForgeAbi.DeployProtocolTx do
     :proto,
     :pipeline,
     :source,
-    :bin,
+    :code,
     :data
   ]
 
@@ -139,7 +153,7 @@ defmodule ForgeAbi.DeployProtocolTx do
   field :proto, 6, type: :string
   field :pipeline, 7, type: :string
   field :source, 8, type: :string
-  field :bin, 9, repeated: true, type: :bytes
+  field :code, 9, repeated: true, type: ForgeAbi.CodeInfo
   field :data, 15, type: Google.Protobuf.Any
 end
 

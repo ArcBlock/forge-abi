@@ -74,6 +74,13 @@ message DeclareTx {
 
 message DeclareFileTx { string hash = 1; }
 
+message CodeInfo {
+  // module name
+  string name = 1;
+  // gzipped binary
+  bytes code = 2;
+}
+
 message DeployProtocolTx {
   // address of the tx protocol
   string address = 1;
@@ -95,8 +102,8 @@ message DeployProtocolTx {
   string pipeline = 7;
   // the source code for the tx protocol, in elixir.
   string source = 8;
-  // the binary of the tx protocol, compressed with gzip
-  repeated bytes bin = 9;
+  // the compressed code of the protocol
+  repeated CodeInfo code = 9;
 
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 15;

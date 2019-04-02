@@ -66,6 +66,14 @@
     - name: hash
       type: string
   
+- name: code_info
+  type: output
+  fields:
+    - name: name
+      type: string
+    - name: code
+      type: string
+  
 - name: deploy_protocol_tx
   type: output
   fields:
@@ -85,8 +93,8 @@
       type: string
     - name: source
       type: string
-    - name: bin
-      type: [string]
+    - name: code
+      type: [code_info]
     - name: data
       type: any
   
