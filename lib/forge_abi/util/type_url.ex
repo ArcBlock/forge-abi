@@ -68,7 +68,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {:consensus_upgrade, "fg:t:consensus_upgrade", ConsensusUpgradeTx},
     {:declare, "fg:t:declare", DeclareTx},
     {:declare_file, "fg:t:declare_file", DeclareFileTx},
-    {:deploy_protocol, "fg:t:deploy_protocol", DeclareFileTx},
+    {:deploy_protocol, "fg:t:deploy_protocol", DeployProtocolTx},
     {:exchange, "fg:t:exchange", ExchangeTx},
     {:stake, "fg:t:stake", StakeTx},
     {:sys_upgrade, "fg:t:sys_upgrade", SysUpgradeTx},
