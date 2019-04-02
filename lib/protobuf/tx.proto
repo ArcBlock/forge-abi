@@ -75,14 +75,18 @@ message DeclareTx {
 message DeclareFileTx { string hash = 1; }
 
 message DeployProtocolTx {
-	// address of the tx protocol
+  // address of the tx protocol
   string address = 1;
-  // human readable name of the transaction, shall only contains alphabat
-	string name = 2;
-	// version of the tx protocol. If version is 0, this is a genesis installation.
-	uint32 version = 3;
-	// namespace of the tx protocol.
-	string namespace = 4;
+  // human readable name of the transaction, shall only contains alphabat and
+  // underscore. It shall be compatible with existing definition in
+  // type_url.ex..
+  string name = 2;
+  // version of the tx protocol. If version is 0, this is a genesis
+  // installation.
+  uint32 version = 3;
+  // namespace of the tx protocol. If namespace is CoreTx, it will use
+  // "fg:t:#{name}" as type_url, this is for backward compatibility.
+  string namespace = 4;
   // human readable description on what the tx is about, limited to 256 chars.
   string description = 5;
   // the protobuf definition for the tx protocol.
