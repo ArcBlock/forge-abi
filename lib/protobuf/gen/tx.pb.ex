@@ -102,7 +102,7 @@ defmodule ForgeAbi.DeclareFileTx do
   field :hash, 1, type: :string
 end
 
-defmodule ForgeAbi.DeployProtocol do
+defmodule ForgeAbi.DeployProtocolTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
 

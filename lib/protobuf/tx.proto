@@ -74,7 +74,7 @@ message DeclareTx {
 
 message DeclareFileTx { string hash = 1; }
 
-message DeployProtocol {
+message DeployProtocolTx {
 	// address of the tx protocol
   string address = 1;
   // human readable name of the transaction, shall only contains alphabat
