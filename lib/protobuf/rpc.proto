@@ -6,7 +6,6 @@ import "vendor.proto";
 import "enum.proto";
 import "type.proto";
 import "state.proto";
-import "tx.proto";
 import "trace_type.proto";
 
 // Request / Response message definition
@@ -354,7 +353,7 @@ message ResponseListTransactions {
 
 message RequestGetAssetAddress {
   string sender_address = 1;
-  CreateAssetTx itx = 2;
+  // CreateAssetTx itx = 2;
   WalletType wallet_type = 3;
 }
 

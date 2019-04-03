@@ -557,8 +557,6 @@
   fields:
     - name: sender_address
       type: string
-    - name: itx
-      type: create_asset_tx
     - name: wallet_type
       type: wallet_type
   

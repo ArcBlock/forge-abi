@@ -900,13 +900,11 @@ defmodule ForgeAbi.RequestGetAssetAddress do
 
   @type t :: %__MODULE__{
           sender_address: String.t(),
-          itx: ForgeAbi.CreateAssetTx.t(),
           wallet_type: ForgeAbi.WalletType.t()
         }
-  defstruct [:sender_address, :itx, :wallet_type]
+  defstruct [:sender_address, :wallet_type]
 
   field :sender_address, 1, type: :string
-  field :itx, 2, type: ForgeAbi.CreateAssetTx
   field :wallet_type, 3, type: ForgeAbi.WalletType
 end
 
