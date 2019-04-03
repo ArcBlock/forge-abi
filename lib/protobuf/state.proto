@@ -131,3 +131,8 @@ message ProtocolState {
   StateContext context = 14;
   google.protobuf.Any data = 15; // forge app can define their own app state
 }
+
+// cache core protocols so that it could be pre loaded upon node startup
+message ProtocolListState {
+	 repeated string addresses = 1;
+}

@@ -304,3 +304,15 @@ defmodule ForgeAbi.ProtocolState do
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
 end
+
+defmodule ForgeAbi.ProtocolListState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          addresses: [String.t()]
+        }
+  defstruct [:addresses]
+
+  field :addresses, 1, repeated: true, type: :string
+end
