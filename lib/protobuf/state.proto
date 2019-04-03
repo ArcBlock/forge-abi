@@ -73,6 +73,7 @@ message ForgeState {
   TransactionConfig tx_config = 9;
   StakeConfig stake_config = 10;
   PokeConfig poke_config = 11;
+  repeated string protocol_addresses = 12;
 
   google.protobuf.Any data = 15; // forge app can define their own app state
 }
@@ -122,17 +123,12 @@ message ProtocolState {
   string source = 7;
   repeated bytes bin = 8;
   // root hash of the MPT of this tx protocol
-	bytes root_hash = 9;
-	ProtocolStatus status = 10;
+  bytes root_hash = 9;
+  ProtocolStatus status = 10;
 
   repeated string migrated_to = 12;
   repeated string migrated_from = 13;
 
   StateContext context = 14;
   google.protobuf.Any data = 15; // forge app can define their own app state
-}
-
-// cache core protocols so that it could be pre loaded upon node startup
-message ProtocolListState {
-	 repeated string addresses = 1;
 }

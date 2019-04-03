@@ -85,6 +85,8 @@
       type: stake_config
     - name: poke_config
       type: poke_config
+    - name: protocol_addresses
+      type: [string]
     - name: data
       type: any
   
@@ -187,10 +189,4 @@
       type: state_context
     - name: data
       type: any
-  
-- name: protocol_list_state
-  type: output
-  fields:
-    - name: addresses
-      type: [string]
   

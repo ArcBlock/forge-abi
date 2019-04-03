@@ -117,6 +117,7 @@ defmodule ForgeAbi.ForgeState do
           tx_config: ForgeAbi.TransactionConfig.t(),
           stake_config: ForgeAbi.StakeConfig.t(),
           poke_config: ForgeAbi.PokeConfig.t(),
+          protocol_addresses: [String.t()],
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -131,6 +132,7 @@ defmodule ForgeAbi.ForgeState do
     :tx_config,
     :stake_config,
     :poke_config,
+    :protocol_addresses,
     :data
   ]
 
@@ -145,6 +147,7 @@ defmodule ForgeAbi.ForgeState do
   field :tx_config, 9, type: ForgeAbi.TransactionConfig
   field :stake_config, 10, type: ForgeAbi.StakeConfig
   field :poke_config, 11, type: ForgeAbi.PokeConfig
+  field :protocol_addresses, 12, repeated: true, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
 
@@ -303,16 +306,4 @@ defmodule ForgeAbi.ProtocolState do
   field :migrated_from, 13, repeated: true, type: :string
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.ProtocolListState do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          addresses: [String.t()]
-        }
-  defstruct [:addresses]
-
-  field :addresses, 1, repeated: true, type: :string
 end
