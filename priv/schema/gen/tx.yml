@@ -66,38 +66,6 @@
     - name: hash
       type: string
   
-- name: code_info
-  type: output
-  fields:
-    - name: checksum
-      type: string
-    - name: binary
-      type: string
-  
-- name: deploy_protocol_tx
-  type: output
-  fields:
-    - name: address
-      type: string
-    - name: name
-      type: string
-    - name: version
-      type: int
-    - name: namespace
-      type: string
-    - name: description
-      type: string
-    - name: proto
-      type: string
-    - name: pipeline
-      type: string
-    - name: source
-      type: string
-    - name: code
-      type: [code_info]
-    - name: data
-      type: any
-  
 - name: exchange_info
   type: output
   fields:

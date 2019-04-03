@@ -102,61 +102,6 @@ defmodule ForgeAbi.DeclareFileTx do
   field :hash, 1, type: :string
 end
 
-defmodule ForgeAbi.CodeInfo do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          checksum: String.t(),
-          binary: String.t()
-        }
-  defstruct [:checksum, :binary]
-
-  field :checksum, 1, type: :bytes
-  field :binary, 2, type: :bytes
-end
-
-defmodule ForgeAbi.DeployProtocolTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          address: String.t(),
-          name: String.t(),
-          version: non_neg_integer,
-          namespace: String.t(),
-          description: String.t(),
-          proto: String.t(),
-          pipeline: String.t(),
-          source: String.t(),
-          code: [ForgeAbi.CodeInfo.t()],
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [
-    :address,
-    :name,
-    :version,
-    :namespace,
-    :description,
-    :proto,
-    :pipeline,
-    :source,
-    :code,
-    :data
-  ]
-
-  field :address, 1, type: :string
-  field :name, 2, type: :string
-  field :version, 3, type: :uint32
-  field :namespace, 4, type: :string
-  field :description, 5, type: :string
-  field :proto, 6, type: :string
-  field :pipeline, 7, type: :string
-  field :source, 8, type: :string
-  field :code, 9, repeated: true, type: ForgeAbi.CodeInfo
-  field :data, 15, type: Google.Protobuf.Any
-end
-
 defmodule ForgeAbi.ExchangeInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
