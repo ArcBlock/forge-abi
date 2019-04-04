@@ -120,8 +120,8 @@ message ProtocolState {
   string description = 4;
   string proto = 5;
   string pipeline = 6;
-  string source = 7;
-  repeated bytes bin = 8;
+  repeated string sources = 7;
+  repeated bytes code = 8;
   // root hash of the MPT of this tx protocol
   bytes root_hash = 9;
   ProtocolStatus status = 10;

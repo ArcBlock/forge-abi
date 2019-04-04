@@ -44,7 +44,7 @@ message DeployProtocolTx {
   // the source code for the tx protocol, in elixir.
   repeated string sources = 8;
   // the compressed code of the protocol
-  repeated CodeInfo info = 9;
+  repeated CodeInfo code = 9;
 
   // forge won't update data into state if app is interested in this tx.
   google.protobuf.Any data = 15;

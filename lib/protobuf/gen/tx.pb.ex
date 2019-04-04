@@ -41,7 +41,7 @@ defmodule ForgeAbi.DeployProtocolTx do
           proto: String.t(),
           pipeline: String.t(),
           sources: [String.t()],
-          info: [ForgeAbi.CodeInfo.t()],
+          code: [ForgeAbi.CodeInfo.t()],
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -53,7 +53,7 @@ defmodule ForgeAbi.DeployProtocolTx do
     :proto,
     :pipeline,
     :sources,
-    :info,
+    :code,
     :data
   ]
 
@@ -65,7 +65,7 @@ defmodule ForgeAbi.DeployProtocolTx do
   field :proto, 6, type: :string
   field :pipeline, 7, type: :string
   field :sources, 8, repeated: true, type: :string
-  field :info, 9, repeated: true, type: ForgeAbi.CodeInfo
+  field :code, 9, repeated: true, type: ForgeAbi.CodeInfo
   field :data, 15, type: Google.Protobuf.Any
 end
 

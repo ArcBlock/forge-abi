@@ -173,9 +173,9 @@
       type: string
     - name: pipeline
       type: string
-    - name: source
-      type: string
-    - name: bin
+    - name: sources
+      type: [string]
+    - name: code
       type: [string]
     - name: root_hash
       type: string
