@@ -1,3 +1,45 @@
+- name: declare_tx
+  type: output
+  fields:
+    - name: moniker
+      type: string
+    - name: issuer
+      type: string
+    - name: data
+      type: any
+  
+- name: code_info
+  type: output
+  fields:
+    - name: checksum
+      type: string
+    - name: binary
+      type: string
+  
+- name: deploy_protocol_tx
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: name
+      type: string
+    - name: version
+      type: int
+    - name: namespace
+      type: string
+    - name: description
+      type: string
+    - name: proto
+      type: string
+    - name: pipeline
+      type: string
+    - name: sources
+      type: [string]
+    - name: info
+      type: [code_info]
+    - name: data
+      type: any
+  
 - name: consensus_upgrade_tx
   type: output
   fields:
