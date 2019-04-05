@@ -14,6 +14,10 @@ defmodule ForgeAbi.Util.TypeUrl do
 
   @table_name :forge_abi
   @base_types [
+    # forge tx
+    {"fg:t:declare", ForgeAbi.DeclareTx},
+    {"fg:t:deploy_protocol", ForgeAbi.DeployProtocolTx},
+
     # forge state
     {"fg:s:account", ForgeAbi.AccountState},
     {"fg:s:asset", ForgeAbi.AssetState},
@@ -122,7 +126,7 @@ defmodule ForgeAbi.Util.TypeUrl do
   def decode(%{type_url: type_url, value: value}) do
     case get(type_url) do
       nil ->
-        Logger.info("Failed to find #{type_url}.")
+        Logger.debug("Failed to find #{type_url}.")
         {:error, :noent}
 
       mod ->
@@ -156,7 +160,7 @@ defmodule ForgeAbi.Util.TypeUrl do
 
     case get(type) do
       nil ->
-        Logger.info("Failed to find #{inspect(type)}.")
+        Logger.debug("Failed to find #{inspect(type)}.")
         {:error, :noent}
 
       type_url ->
@@ -171,7 +175,7 @@ defmodule ForgeAbi.Util.TypeUrl do
   def encode(data, type_url) do
     case get(type_url) do
       nil ->
-        Logger.info("Failed to find #{type_url}.")
+        Logger.warn("Failed to find #{type_url}.")
         {:error, :noent}
 
       mod ->
@@ -190,7 +194,7 @@ defmodule ForgeAbi.Util.TypeUrl do
   def encode!(data, type_url \\ nil) do
     case encode(data, type_url) do
       {:ok, result} -> result
-      {:error, reason} -> raise reason
+      {:error, reason} -> raise "#{inspect(reason)}"
     end
   end
 end
