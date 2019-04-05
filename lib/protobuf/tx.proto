@@ -59,21 +59,21 @@ message DeployProtocolTx {
 
 // not implemented yet
 
-message ConsensusUpgradeTx {
-  repeated Validator validators = 1;
-  uint64 max_bytes = 2;
-  sint64 max_gas = 3;
-  uint32 max_validators = 4;
-  uint32 max_candidates = 5;
+// message ConsensusUpgradeTx {
+//   repeated Validator validators = 1;
+//   uint64 max_bytes = 2;
+//   sint64 max_gas = 3;
+//   uint32 max_validators = 4;
+//   uint32 max_candidates = 5;
 
-  // forge won't touch this field. Only forge app shall handle it.
-  google.protobuf.Any data = 15;
-}
+//   // forge won't touch this field. Only forge app shall handle it.
+//   google.protobuf.Any data = 15;
+// }
 
-message SysUpgradeTx {
-  UpgradeTask task = 1;
-  uint64 grace_period = 2; // wait for how many blocks to take the operation
+// message SysUpgradeTx {
+//   UpgradeTask task = 1;
+//   uint64 grace_period = 2; // wait for how many blocks to take the operation
 
-  // forge won't touch this field. Only forge app shall handle it.
-  google.protobuf.Any data = 15;
-}
+//   // forge won't touch this field. Only forge app shall handle it.
+//   google.protobuf.Any data = 15;
+// }
