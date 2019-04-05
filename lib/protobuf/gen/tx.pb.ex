@@ -28,6 +28,20 @@ defmodule ForgeAbi.CodeInfo do
   field :binary, 2, type: :bytes
 end
 
+defmodule ForgeAbi.TypeUrls do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          url: String.t(),
+          module: String.t()
+        }
+  defstruct [:url, :module]
+
+  field :url, 1, type: :string
+  field :module, 2, type: :string
+end
+
 defmodule ForgeAbi.DeployProtocolTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -38,6 +52,7 @@ defmodule ForgeAbi.DeployProtocolTx do
           version: non_neg_integer,
           namespace: String.t(),
           description: String.t(),
+          type_urls: [ForgeAbi.TypeUrls.t()],
           proto: String.t(),
           pipeline: String.t(),
           sources: [String.t()],
@@ -50,6 +65,7 @@ defmodule ForgeAbi.DeployProtocolTx do
     :version,
     :namespace,
     :description,
+    :type_urls,
     :proto,
     :pipeline,
     :sources,
@@ -62,10 +78,11 @@ defmodule ForgeAbi.DeployProtocolTx do
   field :version, 3, type: :uint32
   field :namespace, 4, type: :string
   field :description, 5, type: :string
-  field :proto, 6, type: :string
-  field :pipeline, 7, type: :string
-  field :sources, 8, repeated: true, type: :string
-  field :code, 9, repeated: true, type: ForgeAbi.CodeInfo
+  field :type_urls, 6, repeated: true, type: ForgeAbi.TypeUrls
+  field :proto, 7, type: :string
+  field :pipeline, 8, type: :string
+  field :sources, 9, repeated: true, type: :string
+  field :code, 10, repeated: true, type: ForgeAbi.CodeInfo
   field :data, 15, type: Google.Protobuf.Any
 end
 

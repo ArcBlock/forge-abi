@@ -16,6 +16,14 @@
     - name: binary
       type: string
   
+- name: type_urls
+  type: output
+  fields:
+    - name: url
+      type: string
+    - name: module
+      type: string
+  
 - name: deploy_protocol_tx
   type: output
   fields:
@@ -29,6 +37,8 @@
       type: string
     - name: description
       type: string
+    - name: type_urls
+      type: [type_urls]
     - name: proto
       type: string
     - name: pipeline
