@@ -5,7 +5,8 @@
       type: string
     - name: type
       type: string
-  
+
+
 - name: page_input
   type: output
   fields:
@@ -15,13 +16,15 @@
       type: int
     - name: order
       type: [page_order]
-  
+
+
 - name: type_filter
   type: output
   fields:
     - name: types
       type: [string]
-  
+
+
 - name: time_filter
   type: output
   fields:
@@ -29,7 +32,8 @@
       type: string
     - name: end_date_time
       type: string
-  
+
+
 - name: address_filter
   type: output
   fields:
@@ -39,7 +43,8 @@
       type: string
     - name: direction
       type: direction
-  
+
+
 - name: page_info
   type: output
   fields:
@@ -49,7 +54,8 @@
       type: boolean
     - name: total
       type: int
-  
+
+
 - name: indexed_transaction
   type: output
   fields:
@@ -79,7 +85,8 @@
       type: boolean
     - name: code
       type: status_code
-  
+
+
 - name: indexed_account_state
   type: output
   fields:
@@ -111,7 +118,8 @@
       type: string
     - name: recent_num_txs
       type: [int]
-  
+
+
 - name: indexed_asset_state
   type: output
   fields:
@@ -127,7 +135,8 @@
       type: string
     - name: readonly
       type: boolean
-  
+
+
 - name: indexed_stake_state
   type: output
   fields:
@@ -147,19 +156,22 @@
       type: string
     - name: type
       type: int
-  
+
+
 - name: indexed_consume_asset
   type: output
   fields:
     - name: asset
       type: string
-  
+
+
 - name: indexed_create_asset
   type: output
   fields:
     - name: asset
       type: string
-  
+
+
 - name: indexed_exchange
   type: output
   fields:
@@ -167,19 +179,22 @@
       type: [string]
     - name: receiver_assets
       type: [string]
-  
+
+
 - name: indexed_transfer
   type: output
   fields:
     - name: assets
       type: [string]
-  
+
+
 - name: indexed_update_asset
   type: output
   fields:
     - name: asset
       type: string
-  
+
+
 - name: height_filter
   type: output
   fields:
@@ -187,7 +202,8 @@
       type: int
     - name: to_height
       type: int
-  
+
+
 - name: num_txs_filter
   type: output
   fields:
@@ -195,7 +211,8 @@
       type: int
     - name: max_num_txs
       type: int
-  
+
+
 - name: num_invalid_txs_filter
   type: output
   fields:
@@ -203,7 +220,8 @@
       type: int
     - name: max_num_invalid_txs
       type: int
-  
+
+
 - name: indexed_block
   type: output
   fields:
@@ -217,7 +235,8 @@
       type: int
     - name: num_invalid_txs
       type: int
-  
+
+
 - name: health_status
   type: output
   fields:
@@ -229,7 +248,8 @@
       type: storage_status
     - name: forge
       type: forge_status
-  
+
+
 - name: consensus_status
   type: output
   fields:
@@ -239,7 +259,8 @@
       type: boolean
     - name: block_height
       type: int
-  
+
+
 - name: network_status
   type: output
   fields:
@@ -247,7 +268,8 @@
       type: boolean
     - name: num_peers
       type: int
-  
+
+
 - name: storage_status
   type: output
   fields:
@@ -259,7 +281,8 @@
       type: string
     - name: disk_space
       type: disk_space_status
-  
+
+
 - name: disk_space_status
   type: output
   fields:
@@ -267,7 +290,8 @@
       type: string
     - name: total
       type: string
-  
+
+
 - name: forge_status
   type: output
   fields:
@@ -279,7 +303,8 @@
       type: string
     - name: abci_server
       type: abci_server_status
-  
+
+
 - name: abci_server_status
   type: output
   fields:
@@ -287,13 +312,15 @@
       type: string
     - name: abci_info
       type: string
-  
+
+
 - name: validity_filter
   type: output
   fields:
     - name: validity
       type: validity
-  
+
+
 - name: direction
   type: enum
   fields:

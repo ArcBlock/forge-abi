@@ -442,4 +442,3 @@ message ResponseGetHealthStatus {
   StatusCode code = 1;
   HealthStatus health_status = 2;
 }
-

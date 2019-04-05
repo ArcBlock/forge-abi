@@ -318,6 +318,45 @@
       type: block_id
 
 
+- name: block_info_simple
+  type: output
+  fields:
+    - name: height
+      type: int
+    - name: num_txs
+      type: int
+    - name: time
+      type: timestamp
+    - name: app_hash
+      type: string
+    - name: proposer
+      type: string
+    - name: total_txs
+      type: int
+    - name: txs_hashes
+      type: [string]
+    - name: invalid_txs_hashes
+      type: [string]
+    - name: consensus_hash
+      type: string
+    - name: data_hash
+      type: string
+    - name: evidence_hash
+      type: string
+    - name: last_commit_hash
+      type: string
+    - name: last_results_hash
+      type: string
+    - name: next_validators_hash
+      type: string
+    - name: validators_hash
+      type: string
+    - name: version
+      type: version
+    - name: last_block_id
+      type: block_id
+
+
 - name: tx_status
   type: output
   fields:
