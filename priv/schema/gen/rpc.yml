@@ -154,22 +154,6 @@
       type: forge_state
 
 
-- name: request_load_file
-  type: input
-  fields:
-    - name: hash
-      type: string
-
-
-- name: response_load_file
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: chunk
-      type: string
-
-
 - name: request_get_chain_info
   type: input
   fields: []

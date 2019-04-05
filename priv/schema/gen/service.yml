@@ -51,10 +51,6 @@
   params: request_unsubscribe
 
 
-- name: load_file
-  type: query
-  return: response_load_file
-  params: request_load_file
 
 
 - name: get_account_state
