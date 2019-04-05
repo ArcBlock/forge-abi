@@ -43,22 +43,23 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Add a type url or a list of type urls to the table
   """
-  @spec add([{String.t(), module()}]) :: boolean()
+  @spec add([{String.t(), module()}]) :: :ok
   def add(items) when is_list(items), do: Enum.each(items, &add/1)
 
-  @spec add({String.t(), module()}) :: boolean()
+  @spec add({String.t(), module()}) :: :ok
   def add({type_url, mod}), do: add(type_url, mod)
 
-  @spec add(String.t(), module()) :: boolean()
+  @spec add(String.t(), module()) :: :ok
   def add(type_url, mod) do
     :ets.insert(@table_name, {type_url, mod})
     :ets.insert(@table_name, {mod, type_url})
+    :ok
   end
 
   @doc """
   Initialize the table with prepopulated data
   """
-  @spec init() :: boolean()
+  @spec init() :: :ok
   def init do
     :ets.new(@table_name, [:named_table, :public, read_concurrency: true])
     add(@base_types)
@@ -67,9 +68,10 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Remove a type_url from the table
   """
-  @spec remove(String.t()) :: boolean()
+  @spec remove(String.t()) :: :ok
   def remove(type_url) do
     :ets.delete(@table_name, type_url)
+    :ok
   end
 
   @doc """
@@ -96,7 +98,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     ForgeAbi.DeclareTx
 
     iex> ForgeAbi.Util.TypeUrl.add("fg:s:account", ForgeAbi.AccountState)
-    iex> ForgeAbi.Util.TypeUrl.get(:account_state)
+    iex> ForgeAbi.Util.TypeUrl.get("fg:s:account")
     ForgeAbi.AccountState
   """
   @spec get(String.t() | module() | nil) :: module() | String.t() | nil
