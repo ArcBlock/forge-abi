@@ -1,11 +1,3 @@
-- name: response_list_wallet
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: address
-      type: [string]
-
 - name: request_get_forge_statistics_real_time
   type: input
 
@@ -23,22 +15,6 @@
     - name: start_date
       type: string
     - name: end_date
-      type: string
-
-- name: request_create_tx_with_type_url
-  type: input
-  fields:
-    - name: itx
-      type: string
-    - name: type_url
-      type: string
-    - name: from
-      type: string
-    - name: nonce
-      type: int
-    - name: wallet
-      type: string
-    - name: token
       type: string
 
 - name: request_start_simulator

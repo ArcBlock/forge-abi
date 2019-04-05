@@ -1,49 +1,3 @@
-- name: request_create_tx
-  type: input
-  fields:
-    - name: itx
-      type: any
-    - name: from
-      type: string
-    - name: nonce
-      type: int
-    - name: wallet
-      type: wallet_info
-    - name: token
-      type: string
-
-
-- name: response_create_tx
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: tx
-      type: transaction
-
-
-- name: request_multisig
-  type: input
-  fields:
-    - name: tx
-      type: transaction
-    - name: data
-      type: any
-    - name: wallet
-      type: wallet_info
-    - name: token
-      type: string
-
-
-- name: response_multisig
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: tx
-      type: transaction
-
-
 - name: request_send_tx
   type: input
   fields:
@@ -119,116 +73,7 @@
     - name: page
       type: page_info
     - name: blocks
-      type: [block_info]
-
-
-- name: request_create_wallet
-  type: input
-  fields:
-    - name: passphrase
-      type: string
-    - name: type
-      type: wallet_type
-    - name: moniker
-      type: string
-
-
-- name: response_create_wallet
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: token
-      type: string
-    - name: wallet
-      type: wallet_info
-
-
-- name: request_load_wallet
-  type: input
-  fields:
-    - name: address
-      type: string
-    - name: passphrase
-      type: string
-
-
-- name: response_load_wallet
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: token
-      type: string
-    - name: wallet
-      type: wallet_info
-
-
-- name: request_recover_wallet
-  type: input
-  fields:
-    - name: data
-      type: string
-    - name: type
-      type: wallet_type
-    - name: passphrase
-      type: string
-    - name: moniker
-      type: string
-
-
-- name: response_recover_wallet
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: token
-      type: string
-    - name: wallet
-      type: wallet_info
-
-
-- name: request_list_wallet
-  type: input
-  fields: []
-
-- name: response_list_wallet
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: address
-      type: string
-
-
-- name: request_remove_wallet
-  type: input
-  fields:
-    - name: address
-      type: string
-
-
-- name: response_remove_wallet
-  type: output
-  fields:
-    - name: code
-      type: status_code
-
-
-- name: request_declare_node
-  type: input
-  fields:
-    - name: validator
-      type: boolean
-
-
-- name: response_declare_node
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: wallet
-      type: wallet_info
+      type: [block_info_simple]
 
 
 - name: request_get_account_state
@@ -309,22 +154,6 @@
       type: forge_state
 
 
-- name: request_store_file
-  type: input
-  fields:
-    - name: chunk
-      type: string
-
-
-- name: response_store_file
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: hash
-      type: string
-
-
 - name: request_load_file
   type: input
   fields:
@@ -339,20 +168,6 @@
       type: status_code
     - name: chunk
       type: string
-
-
-- name: request_pin_file
-  type: input
-  fields:
-    - name: hash
-      type: string
-
-
-- name: response_pin_file
-  type: output
-  fields:
-    - name: code
-      type: status_code
 
 
 - name: request_get_chain_info
@@ -379,24 +194,6 @@
       type: status_code
     - name: info
       type: node_info
-
-
-- name: request_search
-  type: input
-  fields:
-    - name: key
-      type: string
-    - name: value
-      type: string
-
-
-- name: response_search
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: txs
-      type: [transaction_info]
 
 
 - name: request_get_unconfirmed_txs
@@ -582,46 +379,6 @@
       type: [indexed_transaction]
 
 
-- name: request_get_asset_address
-  type: input
-  fields:
-    - name: sender_address
-      type: string
-    - name: itx
-      type: create_asset_tx
-    - name: wallet_type
-      type: wallet_type
-
-
-- name: response_get_asset_address
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: asset_address
-      type: string
-
-
-- name: request_sign_data
-  type: input
-  fields:
-    - name: data
-      type: string
-    - name: wallet
-      type: wallet_info
-    - name: token
-      type: string
-
-
-- name: response_sign_data
-  type: output
-  fields:
-    - name: code
-      type: status_code
-    - name: signature
-      type: string
-
-
 - name: request_get_assets
   type: input
   fields:
@@ -761,3 +518,4 @@
       type: status_code
     - name: health_status
       type: health_status
+
