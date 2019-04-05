@@ -15,26 +15,26 @@ defmodule ForgeAbi.Util.TypeUrl do
   @table_name :forge_abi
   @base_types [
     # forge state
-    {"fg:s:account", AccountState},
-    {"fg:s:asset", AssetState},
-    {"fg:s:blacklist", BlacklistState},
-    {"fg:s:forge", ForgeState},
-    {"fg:s:stake", StakeState},
-    {"fg:s:statistics", StatisticsState},
-    {"fg:s:protocol", ProtocolState},
-    {"fg:s:root", RootState},
+    {"fg:s:account", ForgeAbi.AccountState},
+    {"fg:s:asset", ForgeAbi.AssetState},
+    {"fg:s:blacklist", ForgeAbi.BlacklistState},
+    {"fg:s:forge", ForgeAbi.ForgeState},
+    {"fg:s:stake", ForgeAbi.StakeState},
+    {"fg:s:statistics", ForgeAbi.StatisticsState},
+    {"fg:s:protocol", ForgeAbi.ProtocolState},
+    {"fg:s:root", ForgeAbi.RootState},
 
     # forge tx stake
-    {"fg:x:stake_node", StakeForNode},
-    {"fg:x:stake_user", StakeForUser},
-    {"fg:x:stake_asset", StakeForAsset},
-    {"fg:x:stake_chain", StakeForChain},
+    # {"fg:x:stake_node", StakeForNode},
+    # {"fg:x:stake_user", StakeForUser},
+    # {"fg:x:stake_asset", StakeForAsset},
+    # {"fg:x:stake_chain", StakeForChain},
 
     # other type url
-    {"fg:x:block_info", BlockInfo},
-    {"fg:x:tx", Transaction},
-    {"fg:x:tx_info", TransactionInfo},
-    {"fg:x:tx_status", TxStatus},
+    {"fg:x:block_info", ForgeAbi.BlockInfo},
+    {"fg:x:tx", ForgeAbi.Transaction},
+    {"fg:x:tx_info", ForgeAbi.TransactionInfo},
+    {"fg:x:tx_status", ForgeAbi.TxStatus},
 
     # dummy codec
     {"fg:x:address", DummyCodec}
@@ -52,6 +52,7 @@ defmodule ForgeAbi.Util.TypeUrl do
   @spec add(String.t(), module()) :: boolean()
   def add(type_url, mod) do
     :ets.insert(@table_name, {type_url, mod})
+    :ets.insert(@table_name, {mod, type_url})
   end
 
   @doc """
@@ -98,7 +99,9 @@ defmodule ForgeAbi.Util.TypeUrl do
     iex> ForgeAbi.Util.TypeUrl.get(:account_state)
     ForgeAbi.AccountState
   """
-  @spec get(String.t()) :: module() | nil
+  @spec get(String.t() | module() | nil) :: module() | String.t() | nil
+  def get(nil), do: nil
+
   def get(key) do
     result = :ets.lookup(@table_name, key)
 
@@ -143,15 +146,34 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Encode a struct and wrap it with Any.
   """
-  @spec encode(String.t(), map()) :: {:ok, Any.t()} | {:error, term()}
-  def encode(type_url, data) do
+  @spec encode(map(), String.t() | nil) :: {:ok, Any.t()} | {:error, term()}
+  def encode(data, type_url \\ nil)
+
+  def encode(data, nil) do
+    type = data.__struct__
+
+    case get(type) do
+      nil ->
+        Logger.info("Failed to find #{inspect(type)}.")
+        {:error, :noent}
+
+      type_url ->
+        encode(data, type_url)
+    end
+  rescue
+    e ->
+      Logger.warn("Failed to get type_url for data: Error: #{inspect(e)}")
+      {:error, :invalid_data}
+  end
+
+  def encode(data, type_url) do
     case get(type_url) do
       nil ->
         Logger.info("Failed to find #{type_url}.")
         {:error, :noent}
 
       mod ->
-        {:ok, mod.encode(data)}
+        {:ok, Any.new(type_url: type_url, value: mod.encode(data))}
     end
   rescue
     e ->
@@ -162,9 +184,9 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Encode a struct and wrap it with Any. Throw exception on error.
   """
-  @spec encode!(String.t(), map()) :: Any.t() | no_return()
-  def encode!(type_url, data) do
-    case encode(type_url, data) do
+  @spec encode!(map(), String.t() | nil) :: Any.t() | no_return()
+  def encode!(data, type_url \\ nil) do
+    case encode(data, type_url) do
       {:ok, result} -> result
       {:error, reason} -> raise reason
     end
