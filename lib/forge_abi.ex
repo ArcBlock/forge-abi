@@ -4,13 +4,13 @@ defmodule ForgeAbi do
   """
   alias ForgeAbi.Util.TypeUrl
 
+  # typeurl related
   defdelegate add_type_url(type_url, mod), to: TypeUrl, as: :add
   defdelegate add_type_urls(type_urls), to: TypeUrl, as: :add
   defdelegate remove_type_url(type_url), to: TypeUrl, as: :remove
   defdelegate get_type_url(v), to: TypeUrl, as: :get
   defdelegate get_type_urls, to: TypeUrl, as: :all
 
-  # typeurl related
   defdelegate encode_any(data, type_url \\ nil), to: TypeUrl
   defdelegate encode_any!(data, type_url \\ nil), to: TypeUrl
   defdelegate decode_any(any), to: TypeUrl
