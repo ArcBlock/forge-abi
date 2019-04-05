@@ -79,7 +79,7 @@ message RequestGetBlocks {
 message ResponseGetBlocks {
   StatusCode code = 1;
   PageInfo page = 2;
-  repeated BlockInfoSimple blocks = 3;
+  repeated BlockInfo blocks = 3;
 }
 
 // create_wallet(moniker, passphrase): create an account locally

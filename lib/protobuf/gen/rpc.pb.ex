@@ -173,13 +173,13 @@ defmodule ForgeAbi.ResponseGetBlocks do
   @type t :: %__MODULE__{
           code: integer,
           page: ForgeAbi.PageInfo.t(),
-          blocks: [ForgeAbi.BlockInfoSimple.t()]
+          blocks: [ForgeAbi.BlockInfo.t()]
         }
   defstruct [:code, :page, :blocks]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :page, 2, type: ForgeAbi.PageInfo
-  field :blocks, 3, repeated: true, type: ForgeAbi.BlockInfoSimple
+  field :blocks, 3, repeated: true, type: ForgeAbi.BlockInfo
 end
 
 defmodule ForgeAbi.RequestCreateWallet do
