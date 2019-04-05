@@ -264,10 +264,7 @@ defmodule ForgeAbi.ProtocolState do
           name: String.t(),
           version: non_neg_integer,
           description: String.t(),
-          proto: String.t(),
-          pipeline: String.t(),
-          sources: [String.t()],
-          code: [String.t()],
+          tx_hash: String.t(),
           root_hash: String.t(),
           status: integer,
           migrated_to: [String.t()],
@@ -280,10 +277,7 @@ defmodule ForgeAbi.ProtocolState do
     :name,
     :version,
     :description,
-    :proto,
-    :pipeline,
-    :sources,
-    :code,
+    :tx_hash,
     :root_hash,
     :status,
     :migrated_to,
@@ -296,12 +290,9 @@ defmodule ForgeAbi.ProtocolState do
   field :name, 2, type: :string
   field :version, 3, type: :uint32
   field :description, 4, type: :string
-  field :proto, 5, type: :string
-  field :pipeline, 6, type: :string
-  field :sources, 7, repeated: true, type: :string
-  field :code, 8, repeated: true, type: :bytes
-  field :root_hash, 9, type: :bytes
-  field :status, 10, type: ForgeAbi.ProtocolStatus, enum: true
+  field :tx_hash, 5, type: :string
+  field :root_hash, 6, type: :bytes
+  field :status, 7, type: ForgeAbi.ProtocolStatus, enum: true
   field :migrated_to, 12, repeated: true, type: :string
   field :migrated_from, 13, repeated: true, type: :string
   field :context, 14, type: ForgeAbi.StateContext

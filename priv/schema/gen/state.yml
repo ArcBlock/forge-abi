@@ -169,14 +169,8 @@
       type: int
     - name: description
       type: string
-    - name: proto
+    - name: tx_hash
       type: string
-    - name: pipeline
-      type: string
-    - name: sources
-      type: [string]
-    - name: code
-      type: [string]
     - name: root_hash
       type: string
     - name: status
