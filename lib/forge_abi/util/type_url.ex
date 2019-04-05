@@ -120,10 +120,10 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Decode the binary inside the Any.
   """
-  @spec decode(Any.t() | nil) :: {:error, term()} | {:ok, map()}
-  def decode(nil), do: {:error, :noent}
+  @spec decode_any(Any.t() | nil) :: {:error, term()} | {:ok, map()}
+  def decode_any(nil), do: {:error, :noent}
 
-  def decode(%{type_url: type_url, value: value}) do
+  def decode_any(%{type_url: type_url, value: value}) do
     case get(type_url) do
       nil ->
         Logger.debug("Failed to find #{type_url}.")
@@ -141,9 +141,9 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Decode the binary inside the Any. Raise if error.
   """
-  @spec decode!(Any.t() | nil) :: map() | no_return()
-  def decode!(any) do
-    case decode(any) do
+  @spec decode_any!(Any.t() | nil) :: map() | no_return()
+  def decode_any!(any) do
+    case decode_any(any) do
       {:error, reason} -> raise reason
       {:ok, data} -> data
     end
@@ -152,10 +152,10 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Encode a struct and wrap it with Any.
   """
-  @spec encode(map(), String.t() | nil) :: {:ok, Any.t()} | {:error, term()}
-  def encode(data, type_url \\ nil)
+  @spec encode_any(map(), String.t() | nil) :: {:ok, Any.t()} | {:error, term()}
+  def encode_any(data, type_url \\ nil)
 
-  def encode(data, nil) do
+  def encode_any(data, nil) do
     type = data.__struct__
 
     case get(type) do
@@ -164,7 +164,7 @@ defmodule ForgeAbi.Util.TypeUrl do
         {:error, :noent}
 
       type_url ->
-        encode(data, type_url)
+        encode_any(data, type_url)
     end
   rescue
     e ->
@@ -172,7 +172,7 @@ defmodule ForgeAbi.Util.TypeUrl do
       {:error, :invalid_data}
   end
 
-  def encode(data, type_url) do
+  def encode_any(data, type_url) do
     case get(type_url) do
       nil ->
         Logger.warn("Failed to find #{type_url}.")
@@ -190,9 +190,9 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Encode a struct and wrap it with Any. Throw exception on error.
   """
-  @spec encode!(map(), String.t() | nil) :: Any.t() | no_return()
-  def encode!(data, type_url \\ nil) do
-    case encode(data, type_url) do
+  @spec encode_any!(map(), String.t() | nil) :: Any.t() | no_return()
+  def encode_any!(data, type_url \\ nil) do
+    case encode_any(data, type_url) do
       {:ok, result} -> result
       {:error, reason} -> raise "#{inspect(reason)}"
     end

@@ -10,10 +10,10 @@ defmodule ForgeAbi do
   defdelegate get_type_urls, to: TypeUrl, as: :all
 
   # typeurl related
-  defdelegate encode_any(data, type_url \\ nil), to: TypeUrl, as: :encode
-  defdelegate encode_any!(data, type_url \\ nil), to: TypeUrl, as: :encode!
-  defdelegate decode_any(any), to: TypeUrl, as: :decode
-  defdelegate decode_any!(any), to: TypeUrl, as: :decode!
+  defdelegate encode_any(data, type_url \\ nil), to: TypeUrl
+  defdelegate encode_any!(data, type_url \\ nil), to: TypeUrl
+  defdelegate decode_any(any), to: TypeUrl
+  defdelegate decode_any!(any), to: TypeUrl
 
   # unit related
   defdelegate one_token, to: ForgeAbi.Unit

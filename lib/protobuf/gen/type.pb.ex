@@ -47,14 +47,12 @@ defmodule ForgeAbi.WalletInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          type: ForgeAbi.WalletType.t(),
           sk: String.t(),
           pk: String.t(),
           address: String.t()
         }
-  defstruct [:type, :sk, :pk, :address]
+  defstruct [:sk, :pk, :address]
 
-  field :type, 1, type: ForgeAbi.WalletType
   field :sk, 2, type: :bytes
   field :pk, 3, type: :bytes
   field :address, 4, type: :string

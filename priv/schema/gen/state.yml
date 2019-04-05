@@ -11,8 +11,6 @@
       type: string
     - name: pk
       type: string
-    - name: type
-      type: wallet_type
     - name: moniker
       type: string
     - name: context

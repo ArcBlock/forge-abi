@@ -47,7 +47,7 @@ defmodule ForgeAbiTest.Util.TypeUrl do
     assert @mod2 == TypeUrl.get("t2")
   end
 
-  test "encode items shall work" do
+  test "encode_any items shall work" do
     type_urls = [
       {"fg:s:account_state", AccountState}
     ]
@@ -59,10 +59,10 @@ defmodule ForgeAbiTest.Util.TypeUrl do
     expected_any =
       Any.new(type_url: "fg:s:account_state", value: AccountState.encode(expected_state))
 
-    assert {:ok, expected_any} == TypeUrl.encode(expected_state)
+    assert {:ok, expected_any} == TypeUrl.encode_any(expected_state)
   end
 
-  test "decode items shall work" do
+  test "decode_any items shall work" do
     type_urls = [
       {"fg:s:account_state", AccountState}
     ]
@@ -72,7 +72,7 @@ defmodule ForgeAbiTest.Util.TypeUrl do
     expected_state = AccountState.new(nonce: 2, num_txs: 3, address: "1234abcd")
 
     assert {:ok, expected_state} ==
-             TypeUrl.decode(
+             TypeUrl.decode_any(
                Any.new(
                  type_url: "fg:s:account_state",
                  value: AccountState.encode(expected_state)
@@ -80,14 +80,14 @@ defmodule ForgeAbiTest.Util.TypeUrl do
              )
   end
 
-  test "encode unknown item shall work" do
+  test "encode_any unknown item shall work" do
     state = %{a: 1, __module__: Hello}
 
-    assert {:error, :invalid_data} == TypeUrl.encode(state)
+    assert {:error, :invalid_data} == TypeUrl.encode_any(state)
   end
 
-  test "decode unknown item shall work" do
+  test "decode_any unknown item shall work" do
     any = Any.new(type_url: "any:unknown_type", value: "1234567890")
-    assert {:error, :noent} == TypeUrl.decode(any)
+    assert {:error, :noent} == TypeUrl.decode_any(any)
   end
 end
