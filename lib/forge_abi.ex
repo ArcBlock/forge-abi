@@ -7,6 +7,7 @@ defmodule ForgeAbi do
   defdelegate add_type_url(type_url, mod), to: TypeUrl, as: :add
   defdelegate add_type_urls(type_urls), to: TypeUrl, as: :add
   defdelegate remove_type_url(type_url), to: TypeUrl, as: :remove
+  defdelegate get_type_url(v), to: TypeUrl, as: :get
   defdelegate get_type_urls, to: TypeUrl, as: :all
 
   # typeurl related
