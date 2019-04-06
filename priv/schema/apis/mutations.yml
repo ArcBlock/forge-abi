@@ -1,22 +1,10 @@
 ---
-- name: declare
-  return: string
+- name: start_simulator
   type: mutation
-  params:
-    - name: declare_tx
-      type: string
-      meta: null=false
-    - name: wallet
-      type: string
-      meta: null=false
-    - name: token
-      type: string
-    - name: sign
-      type: boolean
-    - name: send
-      type: string
+  return: response_start_simulator
+  params: request_start_simulator
 
-- name: create_tx
-  return: response_create_tx
+- name: stop_simulator
   type: mutation
-  params: request_create_tx_with_type_url
+  return: response_stop_simulator
+  params: request_stop_simulator

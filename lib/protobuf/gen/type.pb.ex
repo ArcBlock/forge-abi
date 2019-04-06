@@ -488,6 +488,68 @@ defmodule ForgeAbi.BlockInfo do
   field :last_block_id, 19, type: AbciVendor.BlockID
 end
 
+defmodule ForgeAbi.BlockInfoSimple do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          height: non_neg_integer,
+          num_txs: non_neg_integer,
+          time: Google.Protobuf.Timestamp.t(),
+          app_hash: String.t(),
+          proposer: String.t(),
+          total_txs: non_neg_integer,
+          txs_hashes: [String.t()],
+          invalid_txs_hashes: [String.t()],
+          consensus_hash: String.t(),
+          data_hash: String.t(),
+          evidence_hash: String.t(),
+          last_commit_hash: String.t(),
+          last_results_hash: String.t(),
+          next_validators_hash: String.t(),
+          validators_hash: String.t(),
+          version: AbciVendor.Version.t(),
+          last_block_id: AbciVendor.BlockID.t()
+        }
+  defstruct [
+    :height,
+    :num_txs,
+    :time,
+    :app_hash,
+    :proposer,
+    :total_txs,
+    :txs_hashes,
+    :invalid_txs_hashes,
+    :consensus_hash,
+    :data_hash,
+    :evidence_hash,
+    :last_commit_hash,
+    :last_results_hash,
+    :next_validators_hash,
+    :validators_hash,
+    :version,
+    :last_block_id
+  ]
+
+  field :height, 1, type: :uint64
+  field :num_txs, 2, type: :uint32
+  field :time, 3, type: Google.Protobuf.Timestamp
+  field :app_hash, 4, type: :bytes
+  field :proposer, 5, type: :bytes
+  field :total_txs, 6, type: :uint64
+  field :txs_hashes, 7, repeated: true, type: :string
+  field :invalid_txs_hashes, 8, repeated: true, type: :string
+  field :consensus_hash, 9, type: :bytes
+  field :data_hash, 10, type: :bytes
+  field :evidence_hash, 11, type: :bytes
+  field :last_commit_hash, 12, type: :bytes
+  field :last_results_hash, 13, type: :bytes
+  field :next_validators_hash, 14, type: :bytes
+  field :validators_hash, 15, type: :bytes
+  field :version, 16, type: AbciVendor.Version
+  field :last_block_id, 17, type: AbciVendor.BlockID
+end
+
 defmodule ForgeAbi.TxStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -747,7 +809,8 @@ defmodule ForgeAbi.ForgeStatistics do
           num_poke_txs: [non_neg_integer],
           tps: [non_neg_integer],
           max_tps: non_neg_integer,
-          avg_tps: non_neg_integer
+          avg_tps: non_neg_integer,
+          avg_block_time: float
         }
   defstruct [
     :num_blocks,
@@ -768,7 +831,8 @@ defmodule ForgeAbi.ForgeStatistics do
     :num_poke_txs,
     :tps,
     :max_tps,
-    :avg_tps
+    :avg_tps,
+    :avg_block_time
   ]
 
   field :num_blocks, 1, repeated: true, type: :uint64
@@ -790,6 +854,7 @@ defmodule ForgeAbi.ForgeStatistics do
   field :tps, 17, repeated: true, type: :uint32
   field :max_tps, 18, type: :uint32
   field :avg_tps, 19, type: :uint32
+  field :avg_block_time, 20, type: :float
 end
 
 defmodule ForgeAbi.TxStatistics do

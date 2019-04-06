@@ -447,24 +447,3 @@ message ResponseGetHealthStatus {
   StatusCode code = 1;
   HealthStatus health_status = 2;
 }
-
-message RequestStartSimulator {}
-
-message ResponseStartSimulator {
-  StatusCode code = 1;
-  string result = 2;
-}
-
-message RequestStopSimulator {}
-
-message ResponseStopSimulator {
-  StatusCode code = 1;
-  string result = 2;
-}
-
-message RequestGetSimulatorStatus {}
-
-message ResponseGetSimulatorStatus {
-  StatusCode code = 1;
-  string result = 2;
-}

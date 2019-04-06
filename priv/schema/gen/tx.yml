@@ -49,4 +49,5 @@
       type: [code_info]
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+

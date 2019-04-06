@@ -31,10 +31,6 @@ service ChainRpc {
   rpc get_asset_address(RequestGetAssetAddress)
       returns (ResponseGetAssetAddress);
   rpc sign_data(RequestSignData) returns (ResponseSignData);
-  rpc start_simulator(RequestStartSimulator) returns (ResponseStartSimulator);
-  rpc stop_simulator(RequestStopSimulator) returns (ResponseStopSimulator);
-  rpc get_simulator_status(RequestGetSimulatorStatus)
-      returns (ResponseGetSimulatorStatus);
 }
 
 service EventRpc {

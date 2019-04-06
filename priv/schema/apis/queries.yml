@@ -92,3 +92,17 @@
       type: num_txs_filter
     - name: num_invalid_txs_filter
       type: num_invalid_txs_filter
+
+- name: get_simulator_status
+  type: query
+  return: response_get_simulator_status
+  params: request_get_simulator_status
+
+- name: list_assets
+  type: query
+  return: response_list_assets
+  params:
+    - name: paging
+      type: page_input
+    - name: owner_address
+      type: string
