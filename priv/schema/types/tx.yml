@@ -218,7 +218,6 @@
     - type: sys_upgrade_tx
     - type: transfer_tx
     - type: update_asset_tx
-
 - name: transaction
   doc: transaction details
   fields:

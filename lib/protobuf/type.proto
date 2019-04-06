@@ -22,7 +22,7 @@ message WalletType {
 }
 
 message WalletInfo {
-  // WalletType type = 1;
+  WalletType type = 1;
   bytes sk = 2;
   bytes pk = 3;
   string address = 4;

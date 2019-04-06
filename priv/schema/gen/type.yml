@@ -30,6 +30,8 @@
 - name: wallet_info
   type: output
   fields:
+    - name: type
+      type: wallet_type
     - name: sk
       type: string
     - name: pk
