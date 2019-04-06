@@ -8,6 +8,7 @@ defmodule ForgeAbi.AccountState do
           num_txs: non_neg_integer,
           address: String.t(),
           pk: String.t(),
+          type: ForgeAbi.WalletType.t(),
           moniker: String.t(),
           context: ForgeAbi.StateContext.t(),
           issuer: String.t(),
@@ -25,6 +26,7 @@ defmodule ForgeAbi.AccountState do
     :num_txs,
     :address,
     :pk,
+    :type,
     :moniker,
     :context,
     :issuer,
@@ -42,6 +44,7 @@ defmodule ForgeAbi.AccountState do
   field :num_txs, 3, type: :uint64
   field :address, 4, type: :string
   field :pk, 5, type: :bytes
+  field :type, 6, type: ForgeAbi.WalletType
   field :moniker, 7, type: :string
   field :context, 8, type: ForgeAbi.StateContext
   field :issuer, 9, type: :string

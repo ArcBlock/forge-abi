@@ -14,7 +14,7 @@ message AccountState {
   uint64 num_txs = 3;
   string address = 4;
   bytes pk = 5;
-  // WalletType type = 6;
+  WalletType type = 6;
   string moniker = 7;
   StateContext context = 8;
   string issuer = 9;
