@@ -7,7 +7,9 @@
       type: string
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: code_info
   type: output
   fields:
@@ -15,7 +17,8 @@
       type: string
     - name: binary
       type: string
-  
+
+
 - name: type_urls
   type: output
   fields:
@@ -23,7 +26,8 @@
       type: string
     - name: module
       type: string
-  
+
+
 - name: deploy_protocol_tx
   type: output
   fields:
@@ -49,7 +53,9 @@
       type: [code_info]
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: consensus_upgrade_tx
   type: output
   fields:
@@ -65,7 +71,9 @@
       type: int
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+
+
 - name: sys_upgrade_tx
   type: output
   fields:
@@ -75,4 +83,5 @@
       type: int
     - name: data
       type: any
-  
+      meta: resolver=google_protobuf_any 
+

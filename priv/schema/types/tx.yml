@@ -10,6 +10,25 @@
       type: any
       meta: resolver=google_protobuf_any
 
+
+- name: consensus_upgrade_tx
+  type: output
+  fields:
+    - name: validators
+      type: [validator]
+    - name: max_bytes
+      type: int
+    - name: max_gas
+      type: int
+    - name: max_validators
+      type: int
+    - name: max_candidates
+      type: int
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
 - name: consume_asset_tx
   type: output
   fields:
@@ -20,6 +39,7 @@
     - name: data
       type: any
       meta: resolver=google_protobuf_any
+
 
 - name: create_asset_tx
   type: output
@@ -38,11 +58,25 @@
     - name: parent
       type: string
 
+
+- name: declare_tx
+  type: output
+  fields:
+    - name: moniker
+      type: string
+    - name: issuer
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
 - name: declare_file_tx
   type: output
   fields:
     - name: hash
       type: string
+
 
 - name: exchange_info
   type: output
@@ -51,6 +85,7 @@
       type: string
     - name: assets
       type: [string]
+
 
 - name: exchange_tx
   type: output
@@ -66,6 +101,7 @@
     - name: data
       type: any
       meta: resolver=google_protobuf_any
+
 
 - name: stake_for_asset
   type: output
@@ -96,6 +132,19 @@
       type: any
       meta: resolver=google_protobuf_any
 
+
+- name: sys_upgrade_tx
+  type: output
+  fields:
+    - name: task
+      type: upgrade_task
+    - name: grace_period
+      type: int
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
 - name: transfer_tx
   type: output
   fields:
@@ -109,6 +158,7 @@
       type: any
       meta: resolver=google_protobuf_any
 
+
 - name: update_asset_tx
   type: output
   fields:
@@ -120,6 +170,7 @@
       type: any
       meta: resolver=google_protobuf_any
 
+
 - name: poke_tx
   type: output
   fields:
@@ -130,14 +181,12 @@
     - name: data
       type: any
       meta: resolver=google_protobuf_any
-
 - name: stake_data_type
   doc: stake type
   fields:
     - name: type
       type: string
       doc: stake type
-
 - name: stake_tx
   doc: stake tx
   fields:
@@ -153,7 +202,6 @@
     - name: value
       type: string
       doc: value for this stake
-
 - name: itx
   meta: type=union resolver=get_itx_type
   doc: inner transaction

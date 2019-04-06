@@ -1,12 +1,4 @@
 
-- name: create_tx
-  type: mutation
-  return: response_create_tx
-  params: request_create_tx
-- name: multisig
-  type: query
-  return: response_multisig
-  params: request_multisig
 - name: send_tx
   type: mutation
   return: response_send_tx
@@ -35,10 +27,6 @@
   type: query
   return: response_get_node_info
   params: request_get_node_info
-- name: search
-  type: query
-  return: response_search
-  params: request_search
 - name: get_net_info
   type: query
   return: response_get_net_info
@@ -51,14 +39,6 @@
   type: query
   return: response_get_config
   params: request_get_config
-- name: get_asset_address
-  type: query
-  return: response_get_asset_address
-  params: request_get_asset_address
-- name: sign_data
-  type: query
-  return: response_sign_data
-  params: request_sign_data
 
 
 - name: subscribe
@@ -71,18 +51,6 @@
   params: request_unsubscribe
 
 
-- name: store_file
-  type: mutation
-  return: response_store_file
-  params: request_store_file
-- name: load_file
-  type: query
-  return: response_load_file
-  params: request_load_file
-- name: pin_file
-  type: query
-  return: response_pin_file
-  params: request_pin_file
 
 
 - name: get_account_state
@@ -107,30 +75,6 @@
   params: request_get_stake_state
 
 
-- name: create_wallet
-  type: mutation
-  return: response_create_wallet
-  params: request_create_wallet
-- name: load_wallet
-  type: query
-  return: response_load_wallet
-  params: request_load_wallet
-- name: recover_wallet
-  type: mutation
-  return: response_recover_wallet
-  params: request_recover_wallet
-- name: list_wallet
-  type: query
-  return: response_list_wallet
-  params: request_list_wallet
-- name: remove_wallet
-  type: mutation
-  return: response_remove_wallet
-  params: request_remove_wallet
-- name: declare_node
-  type: mutation
-  return: response_declare_node
-  params: request_declare_node
 
 
 - name: get_forge_statistics
