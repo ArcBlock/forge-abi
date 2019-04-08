@@ -1,0 +1,34 @@
+- name: account_state
+  type: output
+  fields:
+    - name: balance
+      type: string
+    - name: nonce
+      type: int
+    - name: num_txs
+      type: int
+    - name: address
+      type: string
+    - name: pk
+      type: string
+    - name: type
+      type: wallet_type
+    - name: moniker
+      type: string
+    - name: context
+      type: state_context
+    - name: issuer
+      type: string
+    - name: migrated_to
+      type: [string]
+    - name: migrated_from
+      type: [string]
+    - name: num_assets
+      type: int
+    - name: stake
+      type: stake_context
+    - name: poke
+      type: poke_info
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any

@@ -195,33 +195,6 @@
       type: string
 
 
-- name: height_filter
-  type: output
-  fields:
-    - name: from_height
-      type: int
-    - name: to_height
-      type: int
-
-
-- name: num_txs_filter
-  type: output
-  fields:
-    - name: min_num_txs
-      type: int
-    - name: max_num_txs
-      type: int
-
-
-- name: num_invalid_txs_filter
-  type: output
-  fields:
-    - name: min_num_invalid_txs
-      type: int
-    - name: max_num_invalid_txs
-      type: int
-
-
 - name: indexed_block
   type: output
   fields:
@@ -319,6 +292,15 @@
   fields:
     - name: validity
       type: validity
+
+
+- name: range_filter
+  type: output
+  fields:
+    - name: from
+      type: int
+    - name: to
+      type: int
 
 
 - name: direction

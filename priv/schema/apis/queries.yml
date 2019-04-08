@@ -29,27 +29,27 @@
     - name: validity_filter
       type: validity_filter
 
-- name: get_assets
+- name: list_assets
   type: query
-  return: response_get_assets
+  return: response_list_assets
   params:
     - name: paging
       type: page_input
     - name: owner_address
       type: string
 
-- name: get_stakes
+- name: list_stakes
   type: query
-  return: response_get_stakes
+  return: response_list_stakes
   params:
     - name: paging
       type: page_input
     - name: address_filter
       type: address_filter
 
-- name: get_top_accounts
+- name: list_top_accounts
   type: query
-  return: response_get_top_accounts
+  return: response_list_top_accounts
   params:
     - name: paging
       type: page_input
@@ -60,10 +60,8 @@
   params:
     - name: paging
       type: page_input
-    - name: min_height
-      type: int
-    - name: max_height
-      type: int
+    - name: height_filter
+      type: range_filter
     - name: empty_excluded
       type: boolean
 
@@ -87,22 +85,20 @@
     - name: time_filter
       type: time_filter
     - name: height_filter
-      type: height_filter
+      type: range_filter
     - name: num_txs_filter
-      type: num_txs_filter
+      type: range_filter
     - name: num_invalid_txs_filter
-      type: num_invalid_txs_filter
+      type: range_filter
 
 - name: get_simulator_status
   type: query
   return: response_get_simulator_status
   params: request_get_simulator_status
 
-- name: list_assets
+- name: get_unconfirmed_txs
   type: query
-  return: response_list_assets
+  return: response_get_unconfirmed_txs
   params:
     - name: paging
       type: page_input
-    - name: owner_address
-      type: string

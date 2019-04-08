@@ -120,21 +120,6 @@ message IndexedUpdateAsset {
   string asset = 1;
 }
 
-message HeightFilter {
-  uint64 from_height = 1;
-  uint64 to_height = 2;
-}
-
-message NumTxsFilter {
-  uint64 min_num_txs = 1;
-  uint64 max_num_txs = 2;
-}
-
-message NumInvalidTxsFilter {
-  uint64 min_num_invalid_txs = 1;
-  uint64 max_num_invalid_txs = 2;
-}
-
 message IndexedBlock {
   uint64 height = 1;
   string time = 2;
@@ -193,4 +178,9 @@ enum Validity {
 
 message ValidityFilter {
   Validity validity = 1;
+}
+
+message RangeFilter {
+  uint64 from = 1;
+  uint64 to = 2;
 }
