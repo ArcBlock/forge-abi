@@ -245,8 +245,8 @@
 - name: request_subscribe
   type: input
   fields:
-    - name: type
-      type: topic_type
+    - name: topic
+      type: string
     - name: filter
       type: string
 

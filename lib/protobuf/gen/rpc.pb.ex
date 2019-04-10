@@ -716,12 +716,12 @@ defmodule ForgeAbi.RequestSubscribe do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          type: integer,
+          topic: String.t(),
           filter: String.t()
         }
-  defstruct [:type, :filter]
+  defstruct [:topic, :filter]
 
-  field :type, 1, type: ForgeAbi.TopicType, enum: true
+  field :topic, 1, type: :string
   field :filter, 2, type: :string
 end
 

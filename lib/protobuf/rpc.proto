@@ -274,7 +274,7 @@ message ResponseGetValidatorsInfo {
 // filter could be: value.header.height > 10086 and value.byzantine_validators
 // != []
 message RequestSubscribe {
-  TopicType type = 1;
+  string topic = 1;
   string filter = 2;
 }
 
