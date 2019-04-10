@@ -53,40 +53,24 @@
     - name: direction
       type: direction
 
-- name: height_filter
-  type: input
-  fields:
-    - name: from_height
-      type: int
-    - name: end_height
-      type: int
-
-- name: num_txs_filter
-  type: input
-  fields:
-    - name: min_num_txs
-      type: int
-    - name: max_num_txs
-      type: int
-
-- name: num_invalid_txs_filter
-  type: input
-  fields:
-    - name: min_num_invalid_txs
-      type: int
-    - name: max_num_invalid_txs
-      type: int
-
 - name: version
   type: output
   fields:
     - name: block
-      type: int
+      type: string
     - name: app
-      type: int
+      type: string
 
 - name: validity_filter
   type: input
   fields:
     - name: validity
       type: validity
+
+- name: range_filter
+  type: input
+  fields:
+    - name: from
+      type: string
+    - name: to
+      type: string

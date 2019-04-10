@@ -14,7 +14,6 @@ message DeclareTx {
   google.protobuf.Any data = 15;
 }
 
-
 message CodeInfo {
   // checksum of the module
   bytes checksum = 1;

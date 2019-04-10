@@ -788,7 +788,7 @@ defmodule ForgeAbi.GenesisInfo do
   field :app_hash, 5, type: :string
 end
 
-defmodule ForgeAbi.ForgeStatistics do
+defmodule ForgeAbi.ForgeStats do
   @moduledoc false
   use Protobuf, syntax: :proto3
 

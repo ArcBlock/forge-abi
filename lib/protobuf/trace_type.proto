@@ -51,13 +51,6 @@ message IndexedTransaction {
   string time = 4;
   string type = 5;
   Transaction tx = 6;
-  oneof value {
-    IndexedConsumeAsset consume_asset = 7;
-    IndexedCreateAsset create_asset = 8;
-    IndexedExchange exchange = 9;
-    IndexedTransfer transfer =  10;
-    IndexedUpdateAsset update_asset = 11;
-  }
   bool valid = 20;
   StatusCode code = 21;
 }
@@ -97,42 +90,6 @@ message IndexedStakeState {
   string renaissance_time = 6;
   string message = 7;
   uint32 type = 8;
-}
-
-message IndexedConsumeAsset {
-  string asset = 1;
-}
-
-message IndexedCreateAsset {
-  string asset = 1;
-}
-
-message IndexedExchange {
-  repeated string sender_assets = 1;
-  repeated string receiver_assets = 2;
-}
-
-message IndexedTransfer {
-  repeated string assets = 1;
-}
-
-message IndexedUpdateAsset {
-  string asset = 1;
-}
-
-message HeightFilter {
-  uint64 from_height = 1;
-  uint64 to_height = 2;
-}
-
-message NumTxsFilter {
-  uint64 min_num_txs = 1;
-  uint64 max_num_txs = 2;
-}
-
-message NumInvalidTxsFilter {
-  uint64 min_num_invalid_txs = 1;
-  uint64 max_num_invalid_txs = 2;
 }
 
 message IndexedBlock {
@@ -193,4 +150,9 @@ enum Validity {
 
 message ValidityFilter {
   Validity validity = 1;
+}
+
+message RangeFilter {
+  uint64 from = 1;
+  uint64 to = 2;
 }

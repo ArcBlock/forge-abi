@@ -77,26 +77,26 @@
 
 
 
-- name: get_forge_statistics
+- name: get_forge_stats
   type: query
-  return: response_get_forge_statistics
-  params: request_get_forge_statistics
+  return: response_get_forge_stats
+  params: request_get_forge_stats
 - name: list_transactions
   type: query
   return: response_list_transactions
   params: request_list_transactions
-- name: get_assets
+- name: list_assets
   type: query
-  return: response_get_assets
-  params: request_get_assets
-- name: get_stakes
+  return: response_list_assets
+  params: request_list_assets
+- name: list_stakes
   type: query
-  return: response_get_stakes
-  params: request_get_stakes
-- name: get_top_accounts
+  return: response_list_stakes
+  params: request_list_stakes
+- name: list_top_accounts
   type: query
-  return: response_get_top_accounts
-  params: request_get_top_accounts
+  return: response_list_top_accounts
+  params: request_list_top_accounts
 - name: list_asset_transactions
   type: query
   return: response_list_asset_transactions
@@ -105,10 +105,6 @@
   type: query
   return: response_list_blocks
   params: request_list_blocks
-- name: list_assets
-  type: query
-  return: response_list_assets
-  params: request_list_assets
 - name: get_health_status
   type: query
   return: response_get_health_status

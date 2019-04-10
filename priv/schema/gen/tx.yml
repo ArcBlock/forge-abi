@@ -7,7 +7,7 @@
       type: string
     - name: data
       type: any
-      meta: resolver=google_protobuf_any 
+      meta: resolver=google_protobuf_any
 
 
 - name: code_info
@@ -16,6 +16,8 @@
     - name: checksum
       type: string
     - name: binary
+      type: string
+    - name: address
       type: string
 
 
@@ -53,7 +55,7 @@
       type: [code_info]
     - name: data
       type: any
-      meta: resolver=google_protobuf_any 
+      meta: resolver=google_protobuf_any
 
 
 - name: consensus_upgrade_tx
@@ -71,7 +73,7 @@
       type: int
     - name: data
       type: any
-      meta: resolver=google_protobuf_any 
+      meta: resolver=google_protobuf_any
 
 
 - name: sys_upgrade_tx
@@ -80,8 +82,7 @@
     - name: task
       type: upgrade_task
     - name: grace_period
-      type: int
+      type: string
     - name: data
       type: any
-      meta: resolver=google_protobuf_any 
-
+      meta: resolver=google_protobuf_any
