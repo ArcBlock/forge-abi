@@ -64,6 +64,15 @@
       meta: resolver=google_protobuf_any 
 
 
+- name: core_protocol
+  type: output
+  fields:
+    - name: name
+      type: string
+    - name: address
+      type: string
+
+
 - name: forge_state
   type: output
   fields:
@@ -89,8 +98,8 @@
       type: stake_config
     - name: poke_config
       type: poke_config
-    - name: protocol_addresses
-      type: [string]
+    - name: protocols
+      type: [core_protocol]
     - name: data
       type: any
       meta: resolver=google_protobuf_any 

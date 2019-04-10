@@ -101,6 +101,20 @@ defmodule ForgeAbi.AssetState do
   field :data, 50, type: Google.Protobuf.Any
 end
 
+defmodule ForgeAbi.CoreProtocol do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          name: String.t(),
+          address: String.t()
+        }
+  defstruct [:name, :address]
+
+  field :name, 1, type: :string
+  field :address, 2, type: :string
+end
+
 defmodule ForgeAbi.ForgeState do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -117,7 +131,7 @@ defmodule ForgeAbi.ForgeState do
           tx_config: ForgeAbi.TransactionConfig.t(),
           stake_config: ForgeAbi.StakeConfig.t(),
           poke_config: ForgeAbi.PokeConfig.t(),
-          protocol_addresses: [String.t()],
+          protocols: [ForgeAbi.CoreProtocol.t()],
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -132,7 +146,7 @@ defmodule ForgeAbi.ForgeState do
     :tx_config,
     :stake_config,
     :poke_config,
-    :protocol_addresses,
+    :protocols,
     :data
   ]
 
@@ -147,7 +161,7 @@ defmodule ForgeAbi.ForgeState do
   field :tx_config, 9, type: ForgeAbi.TransactionConfig
   field :stake_config, 10, type: ForgeAbi.StakeConfig
   field :poke_config, 11, type: ForgeAbi.PokeConfig
-  field :protocol_addresses, 12, repeated: true, type: :string
+  field :protocols, 12, repeated: true, type: ForgeAbi.CoreProtocol
   field :data, 15, type: Google.Protobuf.Any
 end
 

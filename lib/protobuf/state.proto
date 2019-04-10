@@ -57,6 +57,11 @@ message AssetState {
   google.protobuf.Any data = 50;
 }
 
+message CoreProtocol {
+  string name = 1;
+  string address = 2;
+}
+
 message ForgeState {
   string address = 1;
   // consensus parameters, in future we shall be able to modify it
@@ -73,7 +78,7 @@ message ForgeState {
   TransactionConfig tx_config = 9;
   StakeConfig stake_config = 10;
   PokeConfig poke_config = 11;
-  repeated string protocol_addresses = 12;
+  repeated CoreProtocol protocols = 12;
 
   google.protobuf.Any data = 15; // forge app can define their own app state
 }
