@@ -310,7 +310,7 @@ message GenesisInfo {
   string app_hash = 5;
 }
 
-message ForgeStatistics {
+message ForgeStats {
   repeated uint64 num_blocks = 1;
   repeated uint64 num_txs = 2;
   repeated BigUint num_stakes = 3;

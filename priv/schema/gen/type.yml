@@ -58,15 +58,15 @@
     - name: block_hash
       type: string
     - name: block_height
-      type: int
+      type: string
     - name: block_time
       type: timestamp
     - name: address
       type: string
     - name: voting_power
-      type: int
+      type: string
     - name: total_txs
-      type: int
+      type: string
     - name: version
       type: string
     - name: data_version
@@ -104,15 +104,15 @@
     - name: block_hash
       type: string
     - name: block_height
-      type: int
+      type: string
     - name: block_time
       type: timestamp
     - name: address
       type: string
     - name: voting_power
-      type: int
+      type: string
     - name: total_txs
-      type: int
+      type: string
     - name: version
       type: string
     - name: data_version
@@ -144,16 +144,16 @@
     - name: address
       type: string
     - name: power
-      type: int
+      type: string
 
 
 - name: consensus_params
   type: output
   fields:
     - name: max_bytes
-      type: int
+      type: string
     - name: max_gas
-      type: int
+      type: string
     - name: max_validators
       type: int
     - name: max_candidates
@@ -192,11 +192,11 @@
     - name: tx_hash
       type: string
     - name: block_height
-      type: int
+      type: string
     - name: block_time
       type: timestamp
     - name: total_txs
-      type: int
+      type: string
     - name: tx_statistics
       type: tx_statistics
     - name: tx_index
@@ -225,7 +225,7 @@
     - name: from
       type: string
     - name: nonce
-      type: int
+      type: string
     - name: chain_id
       type: string
     - name: pk
@@ -245,7 +245,7 @@
     - name: tx
       type: transaction
     - name: height
-      type: int
+      type: string
     - name: index
       type: int
     - name: hash
@@ -272,14 +272,14 @@
     - name: max_multisig
       type: int
     - name: minimum_stake
-      type: int
+      type: string
 
 
 - name: block_info
   type: output
   fields:
     - name: height
-      type: int
+      type: string
     - name: num_txs
       type: int
     - name: time
@@ -291,7 +291,7 @@
     - name: txs
       type: [transaction_info]
     - name: total_txs
-      type: int
+      type: string
     - name: invalid_txs
       type: [transaction_info]
     - name: txs_hashes
@@ -322,7 +322,7 @@
   type: output
   fields:
     - name: height
-      type: int
+      type: string
     - name: num_txs
       type: int
     - name: time
@@ -332,7 +332,7 @@
     - name: proposer
       type: string
     - name: total_txs
-      type: int
+      type: string
     - name: txs_hashes
       type: [string]
     - name: invalid_txs_hashes
@@ -485,7 +485,7 @@
   type: output
   fields:
     - name: block_height
-      type: int
+      type: string
     - name: validators
       type: [validator_info]
 
@@ -498,7 +498,7 @@
     - name: pub_key
       type: pub_key
     - name: voting_power
-      type: int
+      type: string
     - name: proposer_priority
       type: string
     - name: name
@@ -522,41 +522,41 @@
       type: string
 
 
-- name: forge_statistics
+- name: forge_stats
   type: output
   fields:
     - name: num_blocks
-      type: [int]
+      type: [string]
     - name: num_txs
-      type: [int]
+      type: [string]
     - name: num_stakes
       type: [string]
     - name: num_validators
       type: [int]
     - name: num_account_migrate_txs
-      type: [int]
+      type: [string]
     - name: num_create_asset_txs
-      type: [int]
+      type: [string]
     - name: num_consensus_upgrade_txs
       type: [int]
     - name: num_declare_txs
-      type: [int]
+      type: [string]
     - name: num_declare_file_txs
-      type: [int]
+      type: [string]
     - name: num_exchange_txs
-      type: [int]
+      type: [string]
     - name: num_stake_txs
-      type: [int]
+      type: [string]
     - name: num_sys_upgrade_txs
       type: [int]
     - name: num_transfer_txs
-      type: [int]
+      type: [string]
     - name: num_update_asset_txs
-      type: [int]
+      type: [string]
     - name: num_consume_asset_txs
-      type: [int]
+      type: [string]
     - name: num_poke_txs
-      type: [int]
+      type: [string]
     - name: tps
       type: [int]
     - name: max_tps
@@ -571,29 +571,29 @@
   type: output
   fields:
     - name: num_account_migrate_txs
-      type: int
+      type: string
     - name: num_create_asset_txs
-      type: int
+      type: string
     - name: num_consensus_upgrade_txs
       type: int
     - name: num_declare_txs
-      type: int
+      type: string
     - name: num_declare_file_txs
-      type: int
+      type: string
     - name: num_exchange_txs
-      type: int
+      type: string
     - name: num_stake_txs
-      type: int
+      type: string
     - name: num_sys_upgrade_txs
       type: int
     - name: num_transfer_txs
-      type: int
+      type: string
     - name: num_update_asset_txs
-      type: int
+      type: string
     - name: num_consume_asset_txs
-      type: int
+      type: string
     - name: num_poke_txs
-      type: int
+      type: string
 
 
 - name: forge_token
@@ -612,9 +612,9 @@
     - name: decimal
       type: int
     - name: initial_supply
-      type: int
+      type: string
     - name: total_supply
-      type: int
+      type: string
     - name: inflation_rate
       type: int
 
@@ -636,11 +636,11 @@
     - name: address
       type: string
     - name: daily_limit
-      type: int
+      type: string
     - name: balance
-      type: int
+      type: string
     - name: amount
-      type: int
+      type: string
 
 
 - name: extra_create_asset

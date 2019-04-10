@@ -8,6 +8,7 @@
     - gen/trace_type.yml
     - types/general.yml
     - gen/state.yml
+    - types/state.yml
     - gen/tx.yml
     - types/tx.yml
     - gen/rpc.yml

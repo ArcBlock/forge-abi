@@ -92,29 +92,26 @@ defmodule ForgeAbi.WalletRpc.Stub do
   use GRPC.Stub, service: ForgeAbi.WalletRpc.Service
 end
 
-defmodule ForgeAbi.StatisticRpc.Service do
+defmodule ForgeAbi.StatsRpc.Service do
   @moduledoc false
-  use GRPC.Service, name: "forge_abi.StatisticRpc"
+  use GRPC.Service, name: "forge_abi.StatsRpc"
 
-  rpc :get_forge_statistics,
-      ForgeAbi.RequestGetForgeStatistics,
-      ForgeAbi.ResponseGetForgeStatistics
-
+  rpc :get_forge_stats, ForgeAbi.RequestGetForgeStats, ForgeAbi.ResponseGetForgeStats
   rpc :list_transactions, ForgeAbi.RequestListTransactions, ForgeAbi.ResponseListTransactions
-  rpc :get_assets, ForgeAbi.RequestGetAssets, ForgeAbi.ResponseGetAssets
-  rpc :get_stakes, ForgeAbi.RequestGetStakes, ForgeAbi.ResponseGetStakes
-  rpc :get_top_accounts, ForgeAbi.RequestGetTopAccounts, ForgeAbi.ResponseGetTopAccounts
+  rpc :list_assets, ForgeAbi.RequestListAssets, ForgeAbi.ResponseListAssets
+  rpc :list_stakes, ForgeAbi.RequestListStakes, ForgeAbi.ResponseListStakes
+  rpc :list_account, ForgeAbi.RequestListAccount, ForgeAbi.ResponseListAccount
+  rpc :list_top_accounts, ForgeAbi.RequestListTopAccounts, ForgeAbi.ResponseListTopAccounts
 
   rpc :list_asset_transactions,
       ForgeAbi.RequestListAssetTransactions,
       ForgeAbi.ResponseListAssetTransactions
 
   rpc :list_blocks, ForgeAbi.RequestListBlocks, ForgeAbi.ResponseListBlocks
-  rpc :list_assets, ForgeAbi.RequestListAssets, ForgeAbi.ResponseListAssets
   rpc :get_health_status, ForgeAbi.RequestGetHealthStatus, ForgeAbi.ResponseGetHealthStatus
 end
 
-defmodule ForgeAbi.StatisticRpc.Stub do
+defmodule ForgeAbi.StatsRpc.Stub do
   @moduledoc false
-  use GRPC.Stub, service: ForgeAbi.StatisticRpc.Service
+  use GRPC.Stub, service: ForgeAbi.StatsRpc.Service
 end

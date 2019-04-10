@@ -4,9 +4,9 @@
     - name: balance
       type: string
     - name: nonce
-      type: int
+      type: string
     - name: num_txs
-      type: int
+      type: string
     - name: address
       type: string
     - name: pk
@@ -24,7 +24,7 @@
     - name: migrated_from
       type: [string]
     - name: num_assets
-      type: int
+      type: string
     - name: stake
       type: stake_context
     - name: pinned_files
@@ -98,7 +98,7 @@
   type: output
   fields:
     - name: key
-      type: int
+      type: string
     - name: value
       type: upgrade_tasks
 
@@ -151,9 +151,9 @@
     - name: address
       type: string
     - name: num_blocks
-      type: int
+      type: string
     - name: num_txs
-      type: int
+      type: string
     - name: num_stakes
       type: string
     - name: num_validators

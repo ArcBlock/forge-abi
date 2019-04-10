@@ -5,12 +5,14 @@ defmodule ForgeAbi.AccountMigrateTx do
   @type t :: %__MODULE__{
           pk: String.t(),
           type: ForgeAbi.WalletType.t(),
+          address: String.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [:pk, :type, :data]
+  defstruct [:pk, :type, :address, :data]
 
   field :pk, 1, type: :bytes
   field :type, 2, type: ForgeAbi.WalletType
+  field :address, 3, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
 
@@ -62,9 +64,10 @@ defmodule ForgeAbi.CreateAssetTx do
           readonly: boolean,
           transferrable: boolean,
           ttl: non_neg_integer,
-          parent: String.t()
+          parent: String.t(),
+          address: String.t()
         }
-  defstruct [:moniker, :data, :readonly, :transferrable, :ttl, :parent]
+  defstruct [:moniker, :data, :readonly, :transferrable, :ttl, :parent, :address]
 
   field :moniker, 1, type: :string
   field :data, 2, type: Google.Protobuf.Any
@@ -72,6 +75,7 @@ defmodule ForgeAbi.CreateAssetTx do
   field :transferrable, 4, type: :bool
   field :ttl, 5, type: :uint32
   field :parent, 6, type: :string
+  field :address, 7, type: :string
 end
 
 defmodule ForgeAbi.DeclareTx do

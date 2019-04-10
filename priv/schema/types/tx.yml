@@ -44,7 +44,7 @@
       meta: null=false
       doc: sender address of the transaction
     - name: nonce
-      type: integer
+      type: string
       meta: null=false
       doc: sender's nonce for this tx
     - name: chain_id

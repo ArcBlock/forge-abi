@@ -154,16 +154,14 @@ defmodule ForgeAbi.RequestGetBlocks do
 
   @type t :: %__MODULE__{
           paging: ForgeAbi.PageInput.t(),
-          min_height: non_neg_integer,
-          max_height: non_neg_integer,
+          height_filter: ForgeAbi.RangeFilter.t(),
           empty_excluded: boolean
         }
-  defstruct [:paging, :min_height, :max_height, :empty_excluded]
+  defstruct [:paging, :height_filter, :empty_excluded]
 
   field :paging, 1, type: ForgeAbi.PageInput
-  field :min_height, 2, type: :uint64
-  field :max_height, 3, type: :uint64
-  field :empty_excluded, 4, type: :bool
+  field :height_filter, 2, type: ForgeAbi.RangeFilter
+  field :empty_excluded, 3, type: :bool
 end
 
 defmodule ForgeAbi.ResponseGetBlocks do
@@ -173,13 +171,13 @@ defmodule ForgeAbi.ResponseGetBlocks do
   @type t :: %__MODULE__{
           code: integer,
           page: ForgeAbi.PageInfo.t(),
-          blocks: [ForgeAbi.BlockInfo.t()]
+          blocks: [ForgeAbi.BlockInfoSimple.t()]
         }
   defstruct [:code, :page, :blocks]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :page, 2, type: ForgeAbi.PageInfo
-  field :blocks, 3, repeated: true, type: ForgeAbi.BlockInfo
+  field :blocks, 3, repeated: true, type: ForgeAbi.BlockInfoSimple
 end
 
 defmodule ForgeAbi.RequestCreateWallet do
@@ -618,11 +616,11 @@ defmodule ForgeAbi.RequestGetUnconfirmedTxs do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          limit: non_neg_integer
+          paging: ForgeAbi.PageInput.t()
         }
-  defstruct [:limit]
+  defstruct [:paging]
 
-  field :limit, 1, type: :uint32
+  field :paging, 1, type: ForgeAbi.PageInput
 end
 
 defmodule ForgeAbi.ResponseGetUnconfirmedTxs do
@@ -631,12 +629,14 @@ defmodule ForgeAbi.ResponseGetUnconfirmedTxs do
 
   @type t :: %__MODULE__{
           code: integer,
+          page: ForgeAbi.PageInfo.t(),
           unconfirmed_txs: ForgeAbi.UnconfirmedTxs.t()
         }
-  defstruct [:code, :unconfirmed_txs]
+  defstruct [:code, :page, :unconfirmed_txs]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :unconfirmed_txs, 2, type: ForgeAbi.UnconfirmedTxs
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :unconfirmed_txs, 3, type: ForgeAbi.UnconfirmedTxs
 end
 
 defmodule ForgeAbi.RequestGetNetInfo do
@@ -799,7 +799,7 @@ defmodule ForgeAbi.ByHour do
   field :date, 1, type: :string
 end
 
-defmodule ForgeAbi.RequestGetForgeStatistics do
+defmodule ForgeAbi.RequestGetForgeStats do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -813,18 +813,18 @@ defmodule ForgeAbi.RequestGetForgeStatistics do
   field :date, 2, type: ForgeAbi.ByHour, oneof: 0
 end
 
-defmodule ForgeAbi.ResponseGetForgeStatistics do
+defmodule ForgeAbi.ResponseGetForgeStats do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
           code: integer,
-          forge_statistics: ForgeAbi.ForgeStatistics.t()
+          forge_stats: ForgeAbi.ForgeStats.t()
         }
-  defstruct [:code, :forge_statistics]
+  defstruct [:code, :forge_stats]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :forge_statistics, 2, type: ForgeAbi.ForgeStatistics
+  field :forge_stats, 2, type: ForgeAbi.ForgeStats
 end
 
 defmodule ForgeAbi.RequestListTransactions do
@@ -923,7 +923,7 @@ defmodule ForgeAbi.ResponseSignData do
   field :signature, 2, type: :bytes
 end
 
-defmodule ForgeAbi.RequestGetAssets do
+defmodule ForgeAbi.RequestListAssets do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -937,7 +937,7 @@ defmodule ForgeAbi.RequestGetAssets do
   field :owner_address, 2, type: :string
 end
 
-defmodule ForgeAbi.ResponseGetAssets do
+defmodule ForgeAbi.ResponseListAssets do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -953,7 +953,7 @@ defmodule ForgeAbi.ResponseGetAssets do
   field :assets, 3, repeated: true, type: ForgeAbi.IndexedAssetState
 end
 
-defmodule ForgeAbi.RequestGetStakes do
+defmodule ForgeAbi.RequestListStakes do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -967,7 +967,7 @@ defmodule ForgeAbi.RequestGetStakes do
   field :address_filter, 2, type: ForgeAbi.AddressFilter
 end
 
-defmodule ForgeAbi.ResponseGetStakes do
+defmodule ForgeAbi.ResponseListStakes do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -983,7 +983,33 @@ defmodule ForgeAbi.ResponseGetStakes do
   field :stakes, 3, repeated: true, type: ForgeAbi.IndexedStakeState
 end
 
-defmodule ForgeAbi.RequestGetTopAccounts do
+defmodule ForgeAbi.RequestListAccount do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          owner_address: String.t()
+        }
+  defstruct [:owner_address]
+
+  field :owner_address, 1, type: :string
+end
+
+defmodule ForgeAbi.ResponseListAccount do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          account: ForgeAbi.IndexedAccountState.t()
+        }
+  defstruct [:code, :account]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :account, 2, type: ForgeAbi.IndexedAccountState
+end
+
+defmodule ForgeAbi.RequestListTopAccounts do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -995,7 +1021,7 @@ defmodule ForgeAbi.RequestGetTopAccounts do
   field :paging, 1, type: ForgeAbi.PageInput
 end
 
-defmodule ForgeAbi.ResponseGetTopAccounts do
+defmodule ForgeAbi.ResponseListTopAccounts do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -1049,9 +1075,9 @@ defmodule ForgeAbi.RequestListBlocks do
           paging: ForgeAbi.PageInput.t(),
           proposer: String.t(),
           time_filter: ForgeAbi.TimeFilter.t(),
-          height_filter: ForgeAbi.HeightFilter.t(),
-          num_txs_filter: ForgeAbi.NumTxsFilter.t(),
-          num_invalid_txs_filter: ForgeAbi.NumInvalidTxsFilter.t()
+          height_filter: ForgeAbi.RangeFilter.t(),
+          num_txs_filter: ForgeAbi.RangeFilter.t(),
+          num_invalid_txs_filter: ForgeAbi.RangeFilter.t()
         }
   defstruct [
     :paging,
@@ -1065,9 +1091,9 @@ defmodule ForgeAbi.RequestListBlocks do
   field :paging, 1, type: ForgeAbi.PageInput
   field :proposer, 2, type: :string
   field :time_filter, 3, type: ForgeAbi.TimeFilter
-  field :height_filter, 4, type: ForgeAbi.HeightFilter
-  field :num_txs_filter, 5, type: ForgeAbi.NumTxsFilter
-  field :num_invalid_txs_filter, 6, type: ForgeAbi.NumInvalidTxsFilter
+  field :height_filter, 4, type: ForgeAbi.RangeFilter
+  field :num_txs_filter, 5, type: ForgeAbi.RangeFilter
+  field :num_invalid_txs_filter, 6, type: ForgeAbi.RangeFilter
 end
 
 defmodule ForgeAbi.ResponseListBlocks do
@@ -1084,38 +1110,6 @@ defmodule ForgeAbi.ResponseListBlocks do
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :page, 2, type: ForgeAbi.PageInfo
   field :blocks, 3, repeated: true, type: ForgeAbi.IndexedBlock
-end
-
-defmodule ForgeAbi.RequestListAssets do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
-          owner_address: String.t()
-        }
-  defstruct [:paging, :owner_address]
-
-  field :paging, 1, type: ForgeAbi.PageInput
-  field :owner_address, 2, type: :string
-end
-
-defmodule ForgeAbi.ResponseListAssets do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
-          account: ForgeAbi.IndexedAccountState.t(),
-          assets: [ForgeAbi.IndexedAssetState.t()]
-        }
-  defstruct [:code, :page, :account, :assets]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :page, 2, type: ForgeAbi.PageInfo
-  field :account, 3, type: ForgeAbi.IndexedAccountState
-  field :assets, 4, repeated: true, type: ForgeAbi.IndexedAssetState
 end
 
 defmodule ForgeAbi.RequestGetHealthStatus do
