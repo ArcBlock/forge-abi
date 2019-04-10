@@ -799,7 +799,7 @@ defmodule ForgeAbi.ByHour do
   field :date, 1, type: :string
 end
 
-defmodule ForgeAbi.RequestGetForgeStatistics do
+defmodule ForgeAbi.RequestGetForgeStats do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -813,18 +813,18 @@ defmodule ForgeAbi.RequestGetForgeStatistics do
   field :date, 2, type: ForgeAbi.ByHour, oneof: 0
 end
 
-defmodule ForgeAbi.ResponseGetForgeStatistics do
+defmodule ForgeAbi.ResponseGetForgeStats do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
           code: integer,
-          forge_statistics: ForgeAbi.ForgeStatistics.t()
+          forge_stats: ForgeAbi.ForgeStats.t()
         }
-  defstruct [:code, :forge_statistics]
+  defstruct [:code, :forge_stats]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :forge_statistics, 2, type: ForgeAbi.ForgeStatistics
+  field :forge_stats, 2, type: ForgeAbi.ForgeStats
 end
 
 defmodule ForgeAbi.RequestListTransactions do

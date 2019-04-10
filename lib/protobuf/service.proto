@@ -66,8 +66,8 @@ service WalletRpc {
   rpc declare_node(RequestDeclareNode) returns (ResponseDeclareNode);
 }
 
-service StatisticRpc {
-  rpc get_forge_statistics(RequestGetForgeStatistics) returns (ResponseGetForgeStatistics);
+service StatsRpc {
+  rpc get_forge_stats(RequestGetForgeStats) returns (ResponseGetForgeStats);
   rpc list_transactions(RequestListTransactions) returns (ResponseListTransactions);
   rpc list_assets(RequestListAssets) returns (ResponseListAssets);
   rpc list_stakes(RequestListStakes) returns (ResponseListStakes);

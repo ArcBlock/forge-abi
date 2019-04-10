@@ -1,18 +1,18 @@
 ---
-- name: get_forge_statistics
+- name: get_forge_stats
   type: query
-  return: response_get_forge_statistics
-  params: request_get_forge_statistics_real_time
+  return: response_get_forge_stats
+  params: request_get_forge_stats_real_time
 
-- name: get_forge_statistics_by_hour
+- name: get_forge_stats_by_hour
   type: query
-  return: response_get_forge_statistics
-  params: request_get_forge_statistics_by_hour
+  return: response_get_forge_stats
+  params: request_get_forge_stats_by_hour
 
-- name: get_forge_statistics_by_day
+- name: get_forge_stats_by_day
   type: query
-  return: response_get_forge_statistics
-  params: request_get_forge_statistics_by_day
+  return: response_get_forge_stats
+  params: request_get_forge_stats_by_day
 
 - name: list_transactions
   type: query

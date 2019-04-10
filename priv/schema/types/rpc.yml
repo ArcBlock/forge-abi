@@ -1,15 +1,15 @@
-- name: request_get_forge_statistics_real_time
+- name: request_get_forge_stats_real_time
   type: input
 
   fields: []
 
-- name: request_get_forge_statistics_by_hour
+- name: request_get_forge_stats_by_hour
   type: input
   fields:
     - name: date
       type: string
 
-- name: request_get_forge_statistics_by_day
+- name: request_get_forge_stats_by_day
   type: input
   fields:
     - name: start_date

@@ -4,9 +4,9 @@
     - name: balance
       type: string
     - name: nonce
-      type: int
+      type: string
     - name: num_txs
-      type: int
+      type: string
     - name: address
       type: string
     - name: pk
@@ -24,7 +24,7 @@
     - name: migrated_from
       type: [string]
     - name: num_assets
-      type: int
+      type: string
     - name: stake
       type: stake_context
     - name: poke

@@ -71,16 +71,6 @@
       type: string
     - name: tx
       type: transaction
-    - name: consume_asset
-      type: indexed_consume_asset
-    - name: create_asset
-      type: indexed_create_asset
-    - name: exchange
-      type: indexed_exchange
-    - name: transfer
-      type: indexed_transfer
-    - name: update_asset
-      type: indexed_update_asset
     - name: valid
       type: boolean
     - name: code
@@ -95,11 +85,11 @@
     - name: balance
       type: string
     - name: num_assets
-      type: int
+      type: string
     - name: num_txs
-      type: int
+      type: string
     - name: nonce
-      type: int
+      type: string
     - name: genesis_time
       type: string
     - name: renaissance_time
@@ -117,7 +107,7 @@
     - name: total_unstakes
       type: string
     - name: recent_num_txs
-      type: [int]
+      type: [string]
 
 
 - name: indexed_asset_state
@@ -158,56 +148,19 @@
       type: int
 
 
-- name: indexed_consume_asset
-  type: output
-  fields:
-    - name: asset
-      type: string
-
-
-- name: indexed_create_asset
-  type: output
-  fields:
-    - name: asset
-      type: string
-
-
-- name: indexed_exchange
-  type: output
-  fields:
-    - name: sender_assets
-      type: [string]
-    - name: receiver_assets
-      type: [string]
-
-
-- name: indexed_transfer
-  type: output
-  fields:
-    - name: assets
-      type: [string]
-
-
-- name: indexed_update_asset
-  type: output
-  fields:
-    - name: asset
-      type: string
-
-
 - name: indexed_block
   type: output
   fields:
     - name: height
-      type: int
+      type: string
     - name: time
       type: string
     - name: proposer
       type: string
     - name: num_txs
-      type: int
+      type: string
     - name: num_invalid_txs
-      type: int
+      type: string
 
 
 - name: health_status
@@ -231,7 +184,7 @@
     - name: synced
       type: boolean
     - name: block_height
-      type: int
+      type: string
 
 
 - name: network_status
@@ -298,9 +251,9 @@
   type: output
   fields:
     - name: from
-      type: int
+      type: string
     - name: to
-      type: int
+      type: string
 
 
 - name: direction

@@ -73,10 +73,10 @@
 
 
 
-- name: get_forge_statistics
+- name: get_forge_stats
   type: query
-  return: response_get_forge_statistics
-  params: request_get_forge_statistics
+  return: response_get_forge_stats
+  params: request_get_forge_stats
 - name: list_transactions
   type: query
   return: response_list_transactions

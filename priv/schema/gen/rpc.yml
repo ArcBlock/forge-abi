@@ -40,7 +40,7 @@
   type: input
   fields:
     - name: height
-      type: int
+      type: string
 
 
 - name: response_get_block
@@ -82,7 +82,7 @@
     - name: keys
       type: [string]
     - name: height
-      type: int
+      type: string
 
 
 - name: response_get_account_state
@@ -102,7 +102,7 @@
     - name: keys
       type: [string]
     - name: height
-      type: int
+      type: string
 
 
 - name: response_get_asset_state
@@ -122,7 +122,7 @@
     - name: keys
       type: [string]
     - name: height
-      type: int
+      type: string
 
 
 - name: response_get_stake_state
@@ -140,7 +140,7 @@
     - name: keys
       type: [string]
     - name: height
-      type: int
+      type: string
 
 
 - name: response_get_forge_state
@@ -319,7 +319,7 @@
       type: string
 
 
-- name: request_get_forge_statistics
+- name: request_get_forge_stats
   type: input
   fields:
     - name: day_info
@@ -328,13 +328,13 @@
       type: by_hour
 
 
-- name: response_get_forge_statistics
+- name: response_get_forge_stats
   type: output
   fields:
     - name: code
       type: status_code
-    - name: forge_statistics
-      type: forge_statistics
+    - name: forge_stats
+      type: forge_stats
 
 
 - name: request_list_transactions

@@ -5,6 +5,8 @@
       type: string
     - name: type
       type: wallet_type
+    - name: address
+      type: string
     - name: data
       type: any
       meta: resolver=google_protobuf_any 
@@ -16,9 +18,9 @@
     - name: validators
       type: [validator]
     - name: max_bytes
-      type: int
+      type: string
     - name: max_gas
-      type: int
+      type: string
     - name: max_validators
       type: int
     - name: max_candidates
@@ -55,6 +57,8 @@
     - name: ttl
       type: int
     - name: parent
+      type: string
+    - name: address
       type: string
 
 
@@ -138,7 +142,7 @@
     - name: task
       type: upgrade_task
     - name: grace_period
-      type: int
+      type: string
     - name: data
       type: any
       meta: resolver=google_protobuf_any 

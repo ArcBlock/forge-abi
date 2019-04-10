@@ -91,7 +91,6 @@ defmodule ForgeAbi.IndexedTransaction do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          value: {atom, any},
           hash: String.t(),
           sender: String.t(),
           receiver: String.t(),
@@ -101,20 +100,14 @@ defmodule ForgeAbi.IndexedTransaction do
           valid: boolean,
           code: integer
         }
-  defstruct [:value, :hash, :sender, :receiver, :time, :type, :tx, :valid, :code]
+  defstruct [:hash, :sender, :receiver, :time, :type, :tx, :valid, :code]
 
-  oneof :value, 0
   field :hash, 1, type: :string
   field :sender, 2, type: :string
   field :receiver, 3, type: :string
   field :time, 4, type: :string
   field :type, 5, type: :string
   field :tx, 6, type: ForgeAbi.Transaction
-  field :consume_asset, 7, type: ForgeAbi.IndexedConsumeAsset, oneof: 0
-  field :create_asset, 8, type: ForgeAbi.IndexedCreateAsset, oneof: 0
-  field :exchange, 9, type: ForgeAbi.IndexedExchange, oneof: 0
-  field :transfer, 10, type: ForgeAbi.IndexedTransfer, oneof: 0
-  field :update_asset, 11, type: ForgeAbi.IndexedUpdateAsset, oneof: 0
   field :valid, 20, type: :bool
   field :code, 21, type: ForgeAbi.StatusCode, enum: true
 end
@@ -227,68 +220,6 @@ defmodule ForgeAbi.IndexedStakeState do
   field :renaissance_time, 6, type: :string
   field :message, 7, type: :string
   field :type, 8, type: :uint32
-end
-
-defmodule ForgeAbi.IndexedConsumeAsset do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          asset: String.t()
-        }
-  defstruct [:asset]
-
-  field :asset, 1, type: :string
-end
-
-defmodule ForgeAbi.IndexedCreateAsset do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          asset: String.t()
-        }
-  defstruct [:asset]
-
-  field :asset, 1, type: :string
-end
-
-defmodule ForgeAbi.IndexedExchange do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          sender_assets: [String.t()],
-          receiver_assets: [String.t()]
-        }
-  defstruct [:sender_assets, :receiver_assets]
-
-  field :sender_assets, 1, repeated: true, type: :string
-  field :receiver_assets, 2, repeated: true, type: :string
-end
-
-defmodule ForgeAbi.IndexedTransfer do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          assets: [String.t()]
-        }
-  defstruct [:assets]
-
-  field :assets, 1, repeated: true, type: :string
-end
-
-defmodule ForgeAbi.IndexedUpdateAsset do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          asset: String.t()
-        }
-  defstruct [:asset]
-
-  field :asset, 1, type: :string
 end
 
 defmodule ForgeAbi.IndexedBlock do

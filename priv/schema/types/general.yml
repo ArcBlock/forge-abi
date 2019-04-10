@@ -57,9 +57,9 @@
   type: output
   fields:
     - name: block
-      type: int
+      type: string
     - name: app
-      type: int
+      type: string
 
 - name: validity_filter
   type: input
@@ -71,6 +71,6 @@
   type: input
   fields:
     - name: from
-      type: int
+      type: string
     - name: to
-      type: int
+      type: string

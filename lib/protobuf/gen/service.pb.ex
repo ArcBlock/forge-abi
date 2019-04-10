@@ -92,14 +92,11 @@ defmodule ForgeAbi.WalletRpc.Stub do
   use GRPC.Stub, service: ForgeAbi.WalletRpc.Service
 end
 
-defmodule ForgeAbi.StatisticRpc.Service do
+defmodule ForgeAbi.StatsRpc.Service do
   @moduledoc false
-  use GRPC.Service, name: "forge_abi.StatisticRpc"
+  use GRPC.Service, name: "forge_abi.StatsRpc"
 
-  rpc :get_forge_statistics,
-      ForgeAbi.RequestGetForgeStatistics,
-      ForgeAbi.ResponseGetForgeStatistics
-
+  rpc :get_forge_stats, ForgeAbi.RequestGetForgeStats, ForgeAbi.ResponseGetForgeStats
   rpc :list_transactions, ForgeAbi.RequestListTransactions, ForgeAbi.ResponseListTransactions
   rpc :list_assets, ForgeAbi.RequestListAssets, ForgeAbi.ResponseListAssets
   rpc :list_stakes, ForgeAbi.RequestListStakes, ForgeAbi.ResponseListStakes
@@ -114,7 +111,7 @@ defmodule ForgeAbi.StatisticRpc.Service do
   rpc :get_health_status, ForgeAbi.RequestGetHealthStatus, ForgeAbi.ResponseGetHealthStatus
 end
 
-defmodule ForgeAbi.StatisticRpc.Stub do
+defmodule ForgeAbi.StatsRpc.Stub do
   @moduledoc false
-  use GRPC.Stub, service: ForgeAbi.StatisticRpc.Service
+  use GRPC.Stub, service: ForgeAbi.StatsRpc.Service
 end

@@ -11,8 +11,6 @@
       meta: null=false
       doc: data of the type url
 
-
-
 - name: kv_pair
   type: output
   fields:
@@ -41,15 +39,15 @@
   type: output
   fields:
     - name: max_bytes
-      type: int
+      type: string
     - name: max_gas
-      type: int
+      type: string
 
 - name: evidence_params
   type: output
   fields:
     - name: max_age
-      type: int
+      type: string
 
 - name: validator_params
   type: output
@@ -79,9 +77,9 @@
   type: output
   fields:
     - name: Block
-      type: int
+      type: string
     - name: App
-      type: int
+      type: string
 
 - name: part_set_header
   type: output
@@ -105,7 +103,7 @@
     - name: address
       type: string
     - name: power
-      type: int
+      type: string
 
 - name: pub_key
   type: output
@@ -121,7 +119,7 @@
     - name: pub_key
       type: pub_key
     - name: power
-      type: int
+      type: string
 
 - name: vote_info
   type: output
@@ -139,11 +137,11 @@
     - name: validator
       type: validator
     - name: height
-      type: int
+      type: string
     - name: time
       type: timestamp
     - name: total_voting_power
-      type: int
+      type: string
 
 - name: header
   type: output
@@ -153,13 +151,13 @@
     - name: chain_id
       type: string
     - name: height
-      type: int
+      type: string
     - name: time
       type: timestamp
     - name: num_txs
-      type: int
+      type: string
     - name: total_txs
-      type: int
+      type: string
     - name: last_block_id
       type: block_id
     - name: last_commit_hash
@@ -198,9 +196,9 @@
     - name: version
       type: string
     - name: block_version
-      type: int
+      type: string
     - name: p2p_version
-      type: int
+      type: string
 
 - name: request_set_option
   type: output
@@ -232,7 +230,7 @@
     - name: path
       type: string
     - name: height
-      type: int
+      type: string
     - name: prove
       type: boolean
 
@@ -264,7 +262,7 @@
   type: output
   fields:
     - name: height
-      type: int
+      type: string
 
 - name: request_commit
   type: output
@@ -322,9 +320,9 @@
     - name: version
       type: string
     - name: app_version
-      type: int
+      type: string
     - name: last_block_height
-      type: int
+      type: string
     - name: last_block_app_hash
       type: string
 
@@ -356,7 +354,7 @@
     - name: info
       type: string
     - name: index
-      type: int
+      type: string
     - name: key
       type: string
     - name: value
@@ -364,7 +362,7 @@
     - name: proof
       type: proof
     - name: height
-      type: int
+      type: string
     - name: codespace
       type: string
 
@@ -386,9 +384,9 @@
     - name: info
       type: string
     - name: gas_wanted
-      type: int
+      type: string
     - name: gas_used
-      type: int
+      type: string
     - name: tags
       type: [kv_pair]
     - name: codespace
@@ -406,9 +404,9 @@
     - name: info
       type: string
     - name: gas_wanted
-      type: int
+      type: string
     - name: gas_used
-      type: int
+      type: string
     - name: tags
       type: [kv_pair]
     - name: codespace
