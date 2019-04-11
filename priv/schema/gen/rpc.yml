@@ -122,7 +122,7 @@
     - name: keys
       type: [string]
     - name: height
-      type: int
+      type: string
 
 
 - name: response_get_protocol_state
