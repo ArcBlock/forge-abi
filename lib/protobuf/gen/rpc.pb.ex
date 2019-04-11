@@ -894,64 +894,6 @@ defmodule ForgeAbi.ResponseListTransactions do
   field :transactions, 3, repeated: true, type: ForgeAbi.IndexedTransaction
 end
 
-defmodule ForgeAbi.RequestGetAssetAddress do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          sender_address: String.t(),
-          wallet_type: ForgeAbi.WalletType.t()
-        }
-  defstruct [:sender_address, :wallet_type]
-
-  field :sender_address, 1, type: :string
-  field :wallet_type, 3, type: ForgeAbi.WalletType
-end
-
-defmodule ForgeAbi.ResponseGetAssetAddress do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: integer,
-          asset_address: String.t()
-        }
-  defstruct [:code, :asset_address]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :asset_address, 2, type: :string
-end
-
-defmodule ForgeAbi.RequestSignData do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data: String.t(),
-          wallet: ForgeAbi.WalletInfo.t(),
-          token: String.t()
-        }
-  defstruct [:data, :wallet, :token]
-
-  field :data, 1, type: :bytes
-  field :wallet, 2, type: ForgeAbi.WalletInfo
-  field :token, 3, type: :string
-end
-
-defmodule ForgeAbi.ResponseSignData do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: integer,
-          signature: String.t()
-        }
-  defstruct [:code, :signature]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :signature, 2, type: :bytes
-end
-
 defmodule ForgeAbi.RequestListAssets do
   @moduledoc false
   use Protobuf, syntax: :proto3

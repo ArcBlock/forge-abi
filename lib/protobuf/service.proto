@@ -28,9 +28,6 @@ service ChainRpc {
   rpc get_validators_info(RequestGetValidatorsInfo)
       returns (ResponseGetValidatorsInfo);
   rpc get_config(RequestGetConfig) returns (ResponseGetConfig);
-  rpc get_asset_address(RequestGetAssetAddress)
-      returns (ResponseGetAssetAddress);
-  rpc sign_data(RequestSignData) returns (ResponseSignData);
 }
 
 service EventRpc {
