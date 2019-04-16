@@ -251,3 +251,19 @@ defmodule ForgeAbi.PokeTx do
   field :address, 2, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
+
+defmodule ForgeAbi.UpgradeNodeTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          height: non_neg_integer,
+          version: String.t(),
+          override: boolean
+        }
+  defstruct [:height, :version, :override]
+
+  field :height, 1, type: :uint64
+  field :version, 2, type: :string
+  field :override, 3, type: :bool
+end

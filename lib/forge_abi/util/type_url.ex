@@ -25,7 +25,8 @@ defmodule ForgeAbi.Util.TypeUrl do
     StakeTx,
     SysUpgradeTx,
     TransferTx,
-    UpdateAssetTx
+    UpdateAssetTx,
+    UpgradeNodeTx
   }
 
   # state
@@ -71,6 +72,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {:sys_upgrade, "fg:t:sys_upgrade", SysUpgradeTx},
     {:transfer, "fg:t:transfer", TransferTx},
     {:update_asset, "fg:t:update_asset", UpdateAssetTx},
+    {:upgrade_node, "fg:t:upgrade_node", UpgradeNodeTx},
 
     # forge state
     {:account_state, "fg:s:account", AccountState},

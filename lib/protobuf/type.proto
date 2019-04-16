@@ -328,9 +328,9 @@ message ForgeStats {
   repeated uint64 num_consume_asset_txs = 15;
   repeated uint64 num_poke_txs = 16;
   repeated uint32 tps = 17;
-  uint32 max_tps = 18;                // maximum tps in given time range
-  uint32 avg_tps = 19;                // average tps in given time range
-  float avg_block_time = 20;          // average blocks in given time range
+  uint32 max_tps = 18;       // maximum tps in given time range
+  uint32 avg_tps = 19;       // average tps in given time range
+  float avg_block_time = 20; // average blocks in given time range
 }
 
 message TxStatistics {
@@ -376,3 +376,8 @@ message PokeConfig {
 message ExtraCreateAsset { string asset = 1; }
 
 message ExtraAccountMigrate { string address = 1; }
+
+message UpgradeInfo {
+  uint64 height = 1;
+  string version = 2;
+}

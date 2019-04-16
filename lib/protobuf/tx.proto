@@ -62,7 +62,7 @@ message CreateAssetTx {
   // ttl for the asset after first consumption. 0 means unlimited.
   uint32 ttl = 5;
   string parent = 6;
-  //asset address
+  // asset address
   string address = 7;
 }
 
@@ -160,4 +160,14 @@ message PokeTx {
 
   // forge won't touch this field. Only forge app shall handle it.
   google.protobuf.Any data = 15;
+}
+
+message UpgradeNodeTx {
+  // the height node will be stopped at.
+  uint64 height = 1;
+  // the version next release is expected
+  string version = 2;
+  // override the existing upgrade settings if there's already one. Use it with
+  // cautious.
+  bool override = 3;
 }
