@@ -89,6 +89,8 @@
       type: stake_config
     - name: poke_config
       type: poke_config
+    - name: upgrade_info
+      type: upgrade_info
     - name: data
       type: any
       meta: resolver=google_protobuf_any 

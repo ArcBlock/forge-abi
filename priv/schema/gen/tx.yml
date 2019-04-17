@@ -185,3 +185,14 @@
       type: any
       meta: resolver=google_protobuf_any 
 
+
+- name: upgrade_node_tx
+  type: output
+  fields:
+    - name: height
+      type: string
+    - name: version
+      type: string
+    - name: override
+      type: boolean
+
