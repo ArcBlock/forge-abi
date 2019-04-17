@@ -181,12 +181,24 @@
     - name: data
       type: any
       meta: resolver=google_protobuf_any
+
+- name: upgrade_node_tx
+  type: output
+  fields:
+    - name: height
+      type: string
+    - name: version
+      type: string
+    - name: override
+      type: boolean
+
 - name: stake_data_type
   doc: stake type
   fields:
     - name: type
       type: string
       doc: stake type
+
 - name: stake_tx
   doc: stake tx
   fields:
@@ -202,6 +214,7 @@
     - name: value
       type: string
       doc: value for this stake
+
 - name: itx
   meta: type=union resolver=get_itx_type
   doc: inner transaction
