@@ -1001,3 +1001,17 @@ defmodule ForgeAbi.ExtraAccountMigrate do
 
   field :address, 1, type: :string
 end
+
+defmodule ForgeAbi.UpgradeInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          height: non_neg_integer,
+          version: String.t()
+        }
+  defstruct [:height, :version]
+
+  field :height, 1, type: :uint64
+  field :version, 2, type: :string
+end

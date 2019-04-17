@@ -100,6 +100,8 @@
       type: poke_config
     - name: protocols
       type: [core_protocol]
+    - name: upgrade_info
+      type: upgrade_info
     - name: data
       type: any
       meta: resolver=google_protobuf_any 

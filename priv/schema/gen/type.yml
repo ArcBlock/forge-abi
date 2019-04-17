@@ -656,3 +656,12 @@
     - name: address
       type: string
 
+
+- name: upgrade_info
+  type: output
+  fields:
+    - name: height
+      type: string
+    - name: version
+      type: string
+

@@ -132,6 +132,7 @@ defmodule ForgeAbi.ForgeState do
           stake_config: ForgeAbi.StakeConfig.t(),
           poke_config: ForgeAbi.PokeConfig.t(),
           protocols: [ForgeAbi.CoreProtocol.t()],
+          upgrade_info: ForgeAbi.UpgradeInfo.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -147,6 +148,7 @@ defmodule ForgeAbi.ForgeState do
     :stake_config,
     :poke_config,
     :protocols,
+    :upgrade_info,
     :data
   ]
 
@@ -162,6 +164,7 @@ defmodule ForgeAbi.ForgeState do
   field :stake_config, 10, type: ForgeAbi.StakeConfig
   field :poke_config, 11, type: ForgeAbi.PokeConfig
   field :protocols, 12, repeated: true, type: ForgeAbi.CoreProtocol
+  field :upgrade_info, 14, type: ForgeAbi.UpgradeInfo
   field :data, 15, type: Google.Protobuf.Any
 end
 

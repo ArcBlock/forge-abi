@@ -73,12 +73,14 @@ message ForgeState {
   // app state returned by forge app
   bytes forge_app_hash = 7;
 
-  // 8-14 is reserved for future
   ForgeToken token = 8;
   TransactionConfig tx_config = 9;
   StakeConfig stake_config = 10;
   PokeConfig poke_config = 11;
   repeated CoreProtocol protocols = 12;
+
+  // 12-13 is reserved for future
+  UpgradeInfo upgrade_info = 14;
 
   google.protobuf.Any data = 15; // forge app can define their own app state
 }
