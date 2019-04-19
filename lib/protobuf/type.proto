@@ -42,7 +42,7 @@ message ChainInfo {
   uint64 voting_power = 11; // the voting power of the node, in integer.
   uint64 total_txs = 12;    // total number of txs up to the latest block
   string version = 13;      // current forge version
-  string data_version = 14; // current data version
+  // 14 was current data_version removed
   map<string, string> forge_apps_version = 15;
   repeated string supported_txs = 16;
 }
@@ -61,7 +61,7 @@ message NodeInfo {
   uint64 voting_power = 11; // the voting power of the node, in integer.
   uint64 total_txs = 12;    // total number of txs up to the latest block
   string version = 13;      // current forge version
-  string data_version = 14; // current data version
+  // 14 was current data_version removed
   map<string, string> forge_apps_version = 15;
   repeated string supported_txs = 16;
   string ip = 17;          // self node ip

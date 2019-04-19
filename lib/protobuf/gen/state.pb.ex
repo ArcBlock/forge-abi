@@ -111,7 +111,6 @@ defmodule ForgeAbi.ForgeState do
           tasks: %{non_neg_integer => ForgeAbi.UpgradeTasks.t()},
           stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t()},
           version: String.t(),
-          data_version: String.t(),
           forge_app_hash: String.t(),
           token: ForgeAbi.ForgeToken.t(),
           tx_config: ForgeAbi.TransactionConfig.t(),
@@ -126,7 +125,6 @@ defmodule ForgeAbi.ForgeState do
     :tasks,
     :stake_summary,
     :version,
-    :data_version,
     :forge_app_hash,
     :token,
     :tx_config,
@@ -141,7 +139,6 @@ defmodule ForgeAbi.ForgeState do
   field :tasks, 3, repeated: true, type: ForgeAbi.ForgeState.TasksEntry, map: true
   field :stake_summary, 4, repeated: true, type: ForgeAbi.ForgeState.StakeSummaryEntry, map: true
   field :version, 5, type: :string
-  field :data_version, 6, type: :string
   field :forge_app_hash, 7, type: :bytes
   field :token, 8, type: ForgeAbi.ForgeToken
   field :tx_config, 9, type: ForgeAbi.TransactionConfig
