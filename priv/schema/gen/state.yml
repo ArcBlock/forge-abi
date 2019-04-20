@@ -64,6 +64,15 @@
       meta: resolver=google_protobuf_any 
 
 
+- name: core_protocol
+  type: output
+  fields:
+    - name: name
+      type: string
+    - name: address
+      type: string
+
+
 - name: forge_state
   type: output
   fields:
@@ -89,6 +98,8 @@
       type: stake_config
     - name: poke_config
       type: poke_config
+    - name: protocols
+      type: [core_protocol]
     - name: upgrade_info
       type: upgrade_info
     - name: data
@@ -169,4 +180,32 @@
   fields:
     - name: address
       type: [string]
+
+
+- name: protocol_state
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: name
+      type: string
+    - name: version
+      type: int
+    - name: description
+      type: string
+    - name: tx_hash
+      type: string
+    - name: root_hash
+      type: string
+    - name: status
+      type: protocol_status
+    - name: migrated_to
+      type: [string]
+    - name: migrated_from
+      type: [string]
+    - name: context
+      type: state_context
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any 
 
