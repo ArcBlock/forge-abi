@@ -1,12 +1,56 @@
-- name: account_migrate_tx
+- name: declare_tx
   type: output
   fields:
-    - name: pk
+    - name: moniker
       type: string
-    - name: type
-      type: wallet_type
+    - name: issuer
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any 
+
+
+- name: code_info
+  type: output
+  fields:
+    - name: checksum
+      type: string
+    - name: binary
+      type: string
+
+
+- name: type_urls
+  type: output
+  fields:
+    - name: url
+      type: string
+    - name: module
+      type: string
+
+
+- name: deploy_protocol_tx
+  type: output
+  fields:
     - name: address
       type: string
+    - name: name
+      type: string
+    - name: version
+      type: int
+    - name: namespace
+      type: string
+    - name: description
+      type: string
+    - name: type_urls
+      type: [type_urls]
+    - name: proto
+      type: string
+    - name: pipeline
+      type: string
+    - name: sources
+      type: [string]
+    - name: code
+      type: [code_info]
     - name: data
       type: any
       meta: resolver=google_protobuf_any 
@@ -30,112 +74,6 @@
       meta: resolver=google_protobuf_any 
 
 
-- name: consume_asset_tx
-  type: output
-  fields:
-    - name: issuer
-      type: string
-    - name: address
-      type: string
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-
-
-- name: create_asset_tx
-  type: output
-  fields:
-    - name: moniker
-      type: string
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-    - name: readonly
-      type: boolean
-    - name: transferrable
-      type: boolean
-    - name: ttl
-      type: int
-    - name: parent
-      type: string
-    - name: address
-      type: string
-
-
-- name: declare_tx
-  type: output
-  fields:
-    - name: moniker
-      type: string
-    - name: issuer
-      type: string
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-
-
-- name: declare_file_tx
-  type: output
-  fields:
-    - name: hash
-      type: string
-
-
-- name: exchange_info
-  type: output
-  fields:
-    - name: value
-      type: string
-    - name: assets
-      type: [string]
-
-
-- name: exchange_tx
-  type: output
-  fields:
-    - name: to
-      type: string
-    - name: sender
-      type: exchange_info
-    - name: receiver
-      type: exchange_info
-    - name: expired_at
-      type: timestamp
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-
-
-- name: stake_for_asset
-  type: output
-  fields: []
-
-- name: stake_for_chain
-  type: output
-  fields: []
-
-- name: stake_for_node
-  type: output
-  fields: []
-
-- name: stake_for_user
-  type: output
-  fields: []
-
-- name: stake_tx
-  type: output
-  fields:
-    - name: to
-      type: string
-    - name: value
-      type: string
-    - name: message
-      type: string
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-
-
 - name: sys_upgrade_tx
   type: output
   fields:
@@ -146,53 +84,4 @@
     - name: data
       type: any
       meta: resolver=google_protobuf_any 
-
-
-- name: transfer_tx
-  type: output
-  fields:
-    - name: to
-      type: string
-    - name: value
-      type: string
-    - name: assets
-      type: [string]
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-
-
-- name: update_asset_tx
-  type: output
-  fields:
-    - name: address
-      type: string
-    - name: moniker
-      type: string
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-
-
-- name: poke_tx
-  type: output
-  fields:
-    - name: date
-      type: string
-    - name: address
-      type: string
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-
-
-- name: upgrade_node_tx
-  type: output
-  fields:
-    - name: height
-      type: string
-    - name: version
-      type: string
-    - name: override
-      type: boolean
 

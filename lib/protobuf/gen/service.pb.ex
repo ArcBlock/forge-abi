@@ -15,8 +15,6 @@ defmodule ForgeAbi.ChainRpc.Service do
   rpc :get_net_info, ForgeAbi.RequestGetNetInfo, ForgeAbi.ResponseGetNetInfo
   rpc :get_validators_info, ForgeAbi.RequestGetValidatorsInfo, ForgeAbi.ResponseGetValidatorsInfo
   rpc :get_config, ForgeAbi.RequestGetConfig, ForgeAbi.ResponseGetConfig
-  rpc :get_asset_address, ForgeAbi.RequestGetAssetAddress, ForgeAbi.ResponseGetAssetAddress
-  rpc :sign_data, ForgeAbi.RequestSignData, ForgeAbi.ResponseSignData
 end
 
 defmodule ForgeAbi.ChainRpc.Stub do
@@ -63,11 +61,15 @@ defmodule ForgeAbi.StateRpc.Service do
       stream(ForgeAbi.RequestGetAssetState),
       stream(ForgeAbi.ResponseGetAssetState)
 
+  rpc :get_forge_state, ForgeAbi.RequestGetForgeState, ForgeAbi.ResponseGetForgeState
+
+  rpc :get_protocol_state,
+      stream(ForgeAbi.RequestGetProtocolState),
+      stream(ForgeAbi.ResponseGetProtocolState)
+
   rpc :get_stake_state,
       stream(ForgeAbi.RequestGetStakeState),
       stream(ForgeAbi.ResponseGetStakeState)
-
-  rpc :get_forge_state, ForgeAbi.RequestGetForgeState, ForgeAbi.ResponseGetForgeState
 end
 
 defmodule ForgeAbi.StateRpc.Stub do
