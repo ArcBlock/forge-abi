@@ -17,6 +17,7 @@ enum StatusCode {
   unsupported_tx = 9;
   expired_tx = 10;
   too_many_txs = 11;
+  invalid_lock_status = 12;
 
   // 16 - 2047 various errors
   invalid_moniker = 16;

@@ -25,6 +25,8 @@
       meta: value=10
     - type: too_many_txs
       meta: value=11
+    - type: invalid_lock_status
+      meta: value=12
     - type: invalid_moniker
       meta: value=16
     - type: invalid_passphrase
