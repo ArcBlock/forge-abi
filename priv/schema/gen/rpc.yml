@@ -114,6 +114,26 @@
       type: asset_state
 
 
+- name: request_get_protocol_state
+  type: input
+  fields:
+    - name: address
+      type: string
+    - name: keys
+      type: [string]
+    - name: height
+      type: string
+
+
+- name: response_get_protocol_state
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: state
+      type: protocol_state
+
+
 - name: request_get_stake_state
   type: input
   fields:
@@ -225,8 +245,8 @@
 - name: request_subscribe
   type: input
   fields:
-    - name: type
-      type: topic_type
+    - name: topic
+      type: string
     - name: filter
       type: string
 
@@ -267,13 +287,15 @@
     - name: stake
       type: transaction
     - name: account_state
-      type: transaction
+      type: account_state
     - name: asset_state
-      type: transaction
+      type: asset_state
     - name: forge_state
-      type: transaction
+      type: forge_state
     - name: stake_state
-      type: transaction
+      type: stake_state
+    - name: protocol_state
+      type: protocol_state
 
 
 - name: request_unsubscribe

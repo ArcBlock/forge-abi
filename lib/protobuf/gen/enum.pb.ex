@@ -64,9 +64,7 @@ defmodule ForgeAbi.TopicType do
   field :asset_state, 130
   field :forge_state, 131
   field :stake_state, 132
-
-  # note: this line is manually added. So everytime rebuild-protos is executed we shall added this back.
-  use ForgeAbi.EnumFields
+  field :protocol_state, 133
 end
 
 defmodule ForgeAbi.KeyType do
@@ -111,6 +109,7 @@ defmodule ForgeAbi.RoleType do
   field :role_asset, 6
   field :role_stake, 7
   field :role_validator, 8
+  field :role_tx, 9
 end
 
 defmodule ForgeAbi.UpgradeType do
@@ -166,4 +165,13 @@ defmodule ForgeAbi.StakeType do
   field :stake_user, 1
   field :stake_asset, 2
   field :stake_chain, 3
+end
+
+defmodule ForgeAbi.ProtocolStatus do
+  @moduledoc false
+  use Protobuf, enum: true, syntax: :proto3
+
+  field :running, 0
+  field :paused, 1
+  field :terminated, 2
 end

@@ -1,10 +1,210 @@
 ---
+- name: account_migrate_tx
+  type: output
+  fields:
+    - name: pk
+      type: string
+    - name: type
+      type: wallet_type
+    - name: address
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: consensus_upgrade_tx
+  type: output
+  fields:
+    - name: validators
+      type: [validator]
+    - name: max_bytes
+      type: string
+    - name: max_gas
+      type: string
+    - name: max_validators
+      type: int
+    - name: max_candidates
+      type: int
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: consume_asset_tx
+  type: output
+  fields:
+    - name: issuer
+      type: string
+    - name: address
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: create_asset_tx
+  type: output
+  fields:
+    - name: moniker
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+    - name: readonly
+      type: boolean
+    - name: transferrable
+      type: boolean
+    - name: ttl
+      type: int
+    - name: parent
+      type: string
+    - name: address
+      type: string
+
+
+- name: declare_tx
+  type: output
+  fields:
+    - name: moniker
+      type: string
+    - name: issuer
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: declare_file_tx
+  type: output
+  fields:
+    - name: hash
+      type: string
+
+
+- name: exchange_info
+  type: output
+  fields:
+    - name: value
+      type: string
+    - name: assets
+      type: [string]
+
+
+- name: exchange_tx
+  type: output
+  fields:
+    - name: to
+      type: string
+    - name: sender
+      type: exchange_info
+    - name: receiver
+      type: exchange_info
+    - name: expired_at
+      type: timestamp
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: stake_for_asset
+  type: output
+  fields: []
+
+- name: stake_for_chain
+  type: output
+  fields: []
+
+- name: stake_for_node
+  type: output
+  fields: []
+
+- name: stake_for_user
+  type: output
+  fields: []
+
+- name: stake_tx
+  type: output
+  fields:
+    - name: to
+      type: string
+    - name: value
+      type: string
+    - name: message
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: sys_upgrade_tx
+  type: output
+  fields:
+    - name: task
+      type: upgrade_task
+    - name: grace_period
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: transfer_tx
+  type: output
+  fields:
+    - name: to
+      type: string
+    - name: value
+      type: string
+    - name: assets
+      type: [string]
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: update_asset_tx
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: moniker
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: poke_tx
+  type: output
+  fields:
+    - name: date
+      type: string
+    - name: address
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
+
+- name: upgrade_node_tx
+  type: output
+  fields:
+    - name: height
+      type: string
+    - name: version
+      type: string
+    - name: override
+      type: boolean
+
+
 - name: stake_data_type
   doc: stake type
   fields:
     - name: type
       type: string
       doc: stake type
+
 - name: stake_tx
   doc: stake tx
   fields:
@@ -20,6 +220,7 @@
     - name: value
       type: string
       doc: value for this stake
+
 - name: itx
   meta: type=union resolver=get_itx_type
   doc: inner transaction

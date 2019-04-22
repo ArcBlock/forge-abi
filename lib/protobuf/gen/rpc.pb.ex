@@ -407,6 +407,36 @@ defmodule ForgeAbi.ResponseGetAssetState do
   field :state, 2, type: ForgeAbi.AssetState
 end
 
+defmodule ForgeAbi.RequestGetProtocolState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          keys: [String.t()],
+          height: non_neg_integer
+        }
+  defstruct [:address, :keys, :height]
+
+  field :address, 1, type: :string
+  field :keys, 2, repeated: true, type: :string
+  field :height, 3, type: :uint64
+end
+
+defmodule ForgeAbi.ResponseGetProtocolState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          state: ForgeAbi.ProtocolState.t()
+        }
+  defstruct [:code, :state]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :state, 2, type: ForgeAbi.ProtocolState
+end
+
 defmodule ForgeAbi.RequestGetStakeState do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -686,12 +716,12 @@ defmodule ForgeAbi.RequestSubscribe do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          type: integer,
+          topic: String.t(),
           filter: String.t()
         }
-  defstruct [:type, :filter]
+  defstruct [:topic, :filter]
 
-  field :type, 1, type: ForgeAbi.TopicType, enum: true
+  field :topic, 1, type: :string
   field :filter, 2, type: :string
 end
 
@@ -722,10 +752,11 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :declare_file, 22, type: ForgeAbi.Transaction, oneof: 0
   field :sys_upgrade, 23, type: ForgeAbi.Transaction, oneof: 0
   field :stake, 24, type: ForgeAbi.Transaction, oneof: 0
-  field :account_state, 129, type: ForgeAbi.Transaction, oneof: 0
-  field :asset_state, 130, type: ForgeAbi.Transaction, oneof: 0
-  field :forge_state, 131, type: ForgeAbi.Transaction, oneof: 0
-  field :stake_state, 132, type: ForgeAbi.Transaction, oneof: 0
+  field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
+  field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
+  field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0
+  field :stake_state, 132, type: ForgeAbi.StakeState, oneof: 0
+  field :protocol_state, 133, type: ForgeAbi.ProtocolState, oneof: 0
 end
 
 defmodule ForgeAbi.RequestUnsubscribe do
@@ -861,66 +892,6 @@ defmodule ForgeAbi.ResponseListTransactions do
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :page, 2, type: ForgeAbi.PageInfo
   field :transactions, 3, repeated: true, type: ForgeAbi.IndexedTransaction
-end
-
-defmodule ForgeAbi.RequestGetAssetAddress do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          sender_address: String.t(),
-          itx: ForgeAbi.CreateAssetTx.t(),
-          wallet_type: ForgeAbi.WalletType.t()
-        }
-  defstruct [:sender_address, :itx, :wallet_type]
-
-  field :sender_address, 1, type: :string
-  field :itx, 2, type: ForgeAbi.CreateAssetTx
-  field :wallet_type, 3, type: ForgeAbi.WalletType
-end
-
-defmodule ForgeAbi.ResponseGetAssetAddress do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: integer,
-          asset_address: String.t()
-        }
-  defstruct [:code, :asset_address]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :asset_address, 2, type: :string
-end
-
-defmodule ForgeAbi.RequestSignData do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          data: String.t(),
-          wallet: ForgeAbi.WalletInfo.t(),
-          token: String.t()
-        }
-  defstruct [:data, :wallet, :token]
-
-  field :data, 1, type: :bytes
-  field :wallet, 2, type: ForgeAbi.WalletInfo
-  field :token, 3, type: :string
-end
-
-defmodule ForgeAbi.ResponseSignData do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: integer,
-          signature: String.t()
-        }
-  defstruct [:code, :signature]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :signature, 2, type: :bytes
 end
 
 defmodule ForgeAbi.RequestListAssets do

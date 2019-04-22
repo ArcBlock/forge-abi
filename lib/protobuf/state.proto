@@ -3,6 +3,7 @@ package forge_abi;
 
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
+import "enum.proto";
 import "type.proto";
 
 // State definition
@@ -56,6 +57,11 @@ message AssetState {
   google.protobuf.Any data = 50;
 }
 
+message CoreProtocol {
+  string name = 1;
+  string address = 2;
+}
+
 message ForgeState {
   string address = 1;
   // consensus parameters, in future we shall be able to modify it
@@ -72,6 +78,7 @@ message ForgeState {
   TransactionConfig tx_config = 9;
   StakeConfig stake_config = 10;
   PokeConfig poke_config = 11;
+  repeated CoreProtocol protocols = 12;
 
   // 12-13 is reserved for future
   UpgradeInfo upgrade_info = 14;
@@ -113,3 +120,20 @@ message StatisticsState {
 }
 
 message BlacklistState { repeated string address = 1; }
+
+message ProtocolState {
+  string address = 1;
+  string name = 2;
+  uint32 version = 3;
+  string description = 4;
+  string tx_hash = 5;
+  // root hash of the MPT of this tx protocol
+  bytes root_hash = 6;
+  ProtocolStatus status = 7;
+
+  repeated string migrated_to = 12;
+  repeated string migrated_from = 13;
+
+  StateContext context = 14;
+  google.protobuf.Any data = 15; // forge app can define their own app state
+}

@@ -101,6 +101,20 @@ defmodule ForgeAbi.AssetState do
   field :data, 50, type: Google.Protobuf.Any
 end
 
+defmodule ForgeAbi.CoreProtocol do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          name: String.t(),
+          address: String.t()
+        }
+  defstruct [:name, :address]
+
+  field :name, 1, type: :string
+  field :address, 2, type: :string
+end
+
 defmodule ForgeAbi.ForgeState do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -116,6 +130,7 @@ defmodule ForgeAbi.ForgeState do
           tx_config: ForgeAbi.TransactionConfig.t(),
           stake_config: ForgeAbi.StakeConfig.t(),
           poke_config: ForgeAbi.PokeConfig.t(),
+          protocols: [ForgeAbi.CoreProtocol.t()],
           upgrade_info: ForgeAbi.UpgradeInfo.t(),
           data: Google.Protobuf.Any.t()
         }
@@ -130,6 +145,7 @@ defmodule ForgeAbi.ForgeState do
     :tx_config,
     :stake_config,
     :poke_config,
+    :protocols,
     :upgrade_info,
     :data
   ]
@@ -144,6 +160,7 @@ defmodule ForgeAbi.ForgeState do
   field :tx_config, 9, type: ForgeAbi.TransactionConfig
   field :stake_config, 10, type: ForgeAbi.StakeConfig
   field :poke_config, 11, type: ForgeAbi.PokeConfig
+  field :protocols, 12, repeated: true, type: ForgeAbi.CoreProtocol
   field :upgrade_info, 14, type: ForgeAbi.UpgradeInfo
   field :data, 15, type: Google.Protobuf.Any
 end
@@ -250,4 +267,48 @@ defmodule ForgeAbi.BlacklistState do
   defstruct [:address]
 
   field :address, 1, repeated: true, type: :string
+end
+
+defmodule ForgeAbi.ProtocolState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          name: String.t(),
+          version: non_neg_integer,
+          description: String.t(),
+          tx_hash: String.t(),
+          root_hash: String.t(),
+          status: integer,
+          migrated_to: [String.t()],
+          migrated_from: [String.t()],
+          context: ForgeAbi.StateContext.t(),
+          data: Google.Protobuf.Any.t()
+        }
+  defstruct [
+    :address,
+    :name,
+    :version,
+    :description,
+    :tx_hash,
+    :root_hash,
+    :status,
+    :migrated_to,
+    :migrated_from,
+    :context,
+    :data
+  ]
+
+  field :address, 1, type: :string
+  field :name, 2, type: :string
+  field :version, 3, type: :uint32
+  field :description, 4, type: :string
+  field :tx_hash, 5, type: :string
+  field :root_hash, 6, type: :bytes
+  field :status, 7, type: ForgeAbi.ProtocolStatus, enum: true
+  field :migrated_to, 12, repeated: true, type: :string
+  field :migrated_from, 13, repeated: true, type: :string
+  field :context, 14, type: ForgeAbi.StateContext
+  field :data, 15, type: Google.Protobuf.Any
 end
