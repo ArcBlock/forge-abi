@@ -661,21 +661,3 @@
     - name: version
       type: string
 
-
-- name: code_info
-  type: output
-  fields:
-    - name: checksum
-      type: string
-    - name: binary
-      type: string
-
-
-- name: type_urls
-  type: output
-  fields:
-    - name: url
-      type: string
-    - name: module
-      type: string
-
