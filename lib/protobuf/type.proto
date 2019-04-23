@@ -381,3 +381,17 @@ message UpgradeInfo {
   uint64 height = 1;
   string version = 2;
 }
+
+// Used on deploy_protocol
+message CodeInfo {
+  // checksum of the module
+  bytes checksum = 1;
+  // gzipped binary
+  bytes binary = 2;
+}
+
+message TypeUrls {
+  string url = 1;
+  string module = 2;
+}
+
