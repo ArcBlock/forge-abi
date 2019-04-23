@@ -69,7 +69,8 @@ message ForgeState {
   map<uint64, UpgradeTasks> tasks = 3;
   map<uint32, StakeSummary> stake_summary = 4;
   string version = 5;
-  string data_version = 6;
+  //string data_version = 6; current data version deprecated
+
   // app state returned by forge app
   bytes forge_app_hash = 7;
 
