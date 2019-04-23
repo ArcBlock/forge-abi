@@ -91,28 +91,25 @@ defmodule ForgeAbi.IndexedTransaction do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          value: {atom, any},
           hash: String.t(),
           sender: String.t(),
           receiver: String.t(),
           time: String.t(),
           type: String.t(),
-          tx: ForgeAbi.Transaction.t()
+          tx: ForgeAbi.Transaction.t(),
+          valid: boolean,
+          code: integer
         }
-  defstruct [:value, :hash, :sender, :receiver, :time, :type, :tx]
+  defstruct [:hash, :sender, :receiver, :time, :type, :tx, :valid, :code]
 
-  oneof :value, 0
   field :hash, 1, type: :string
   field :sender, 2, type: :string
   field :receiver, 3, type: :string
   field :time, 4, type: :string
   field :type, 5, type: :string
   field :tx, 6, type: ForgeAbi.Transaction
-  field :consume_asset, 7, type: ForgeAbi.IndexedConsumeAsset, oneof: 0
-  field :create_asset, 8, type: ForgeAbi.IndexedCreateAsset, oneof: 0
-  field :exchange, 9, type: ForgeAbi.IndexedExchange, oneof: 0
-  field :transfer, 10, type: ForgeAbi.IndexedTransfer, oneof: 0
-  field :update_asset, 11, type: ForgeAbi.IndexedUpdateAsset, oneof: 0
+  field :valid, 20, type: :bool
+  field :code, 21, type: ForgeAbi.StatusCode, enum: true
 end
 
 defmodule ForgeAbi.IndexedAccountState do
@@ -225,66 +222,162 @@ defmodule ForgeAbi.IndexedStakeState do
   field :type, 8, type: :uint32
 end
 
-defmodule ForgeAbi.IndexedConsumeAsset do
+defmodule ForgeAbi.IndexedBlock do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          asset: String.t()
+          height: non_neg_integer,
+          time: String.t(),
+          proposer: String.t(),
+          num_txs: non_neg_integer,
+          num_invalid_txs: non_neg_integer
         }
-  defstruct [:asset]
+  defstruct [:height, :time, :proposer, :num_txs, :num_invalid_txs]
 
-  field :asset, 1, type: :string
+  field :height, 1, type: :uint64
+  field :time, 2, type: :string
+  field :proposer, 3, type: :string
+  field :num_txs, 4, type: :uint64
+  field :num_invalid_txs, 5, type: :uint64
 end
 
-defmodule ForgeAbi.IndexedCreateAsset do
+defmodule ForgeAbi.HealthStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          asset: String.t()
+          consensus: ForgeAbi.ConsensusStatus.t(),
+          network: ForgeAbi.NetworkStatus.t(),
+          storage: ForgeAbi.StorageStatus.t(),
+          forge: ForgeAbi.ForgeStatus.t()
         }
-  defstruct [:asset]
+  defstruct [:consensus, :network, :storage, :forge]
 
-  field :asset, 1, type: :string
+  field :consensus, 1, type: ForgeAbi.ConsensusStatus
+  field :network, 2, type: ForgeAbi.NetworkStatus
+  field :storage, 3, type: ForgeAbi.StorageStatus
+  field :forge, 4, type: ForgeAbi.ForgeStatus
 end
 
-defmodule ForgeAbi.IndexedExchange do
+defmodule ForgeAbi.ConsensusStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          sender_assets: [String.t()],
-          receiver_assets: [String.t()]
+          health: boolean,
+          synced: boolean,
+          block_height: non_neg_integer
         }
-  defstruct [:sender_assets, :receiver_assets]
+  defstruct [:health, :synced, :block_height]
 
-  field :sender_assets, 1, repeated: true, type: :string
-  field :receiver_assets, 2, repeated: true, type: :string
+  field :health, 1, type: :bool
+  field :synced, 2, type: :bool
+  field :block_height, 3, type: :uint64
 end
 
-defmodule ForgeAbi.IndexedTransfer do
+defmodule ForgeAbi.NetworkStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          assets: [String.t()]
+          health: boolean,
+          num_peers: non_neg_integer
         }
-  defstruct [:assets]
+  defstruct [:health, :num_peers]
 
-  field :assets, 1, repeated: true, type: :string
+  field :health, 1, type: :bool
+  field :num_peers, 2, type: :uint32
 end
 
-defmodule ForgeAbi.IndexedUpdateAsset do
+defmodule ForgeAbi.StorageStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          asset: String.t()
+          health: boolean,
+          indexer_server: String.t(),
+          state_db: String.t(),
+          disk_space: ForgeAbi.DiskSpaceStatus.t()
         }
-  defstruct [:asset]
+  defstruct [:health, :indexer_server, :state_db, :disk_space]
 
-  field :asset, 1, type: :string
+  field :health, 1, type: :bool
+  field :indexer_server, 2, type: :string
+  field :state_db, 3, type: :string
+  field :disk_space, 4, type: ForgeAbi.DiskSpaceStatus
+end
+
+defmodule ForgeAbi.DiskSpaceStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          forge_usage: String.t(),
+          total: String.t()
+        }
+  defstruct [:forge_usage, :total]
+
+  field :forge_usage, 1, type: :string
+  field :total, 2, type: :string
+end
+
+defmodule ForgeAbi.ForgeStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          health: boolean,
+          abi_server: String.t(),
+          forge_web: String.t(),
+          abci_server: ForgeAbi.AbciServerStatus.t()
+        }
+  defstruct [:health, :abi_server, :forge_web, :abci_server]
+
+  field :health, 1, type: :bool
+  field :abi_server, 2, type: :string
+  field :forge_web, 3, type: :string
+  field :abci_server, 4, type: ForgeAbi.AbciServerStatus
+end
+
+defmodule ForgeAbi.AbciServerStatus do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          abci_consensus: String.t(),
+          abci_info: String.t()
+        }
+  defstruct [:abci_consensus, :abci_info]
+
+  field :abci_consensus, 1, type: :string
+  field :abci_info, 2, type: :string
+end
+
+defmodule ForgeAbi.ValidityFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          validity: integer
+        }
+  defstruct [:validity]
+
+  field :validity, 1, type: ForgeAbi.Validity, enum: true
+end
+
+defmodule ForgeAbi.RangeFilter do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          from: non_neg_integer,
+          to: non_neg_integer
+        }
+  defstruct [:from, :to]
+
+  field :from, 1, type: :uint64
+  field :to, 2, type: :uint64
 end
 
 defmodule ForgeAbi.Direction do
@@ -294,4 +387,13 @@ defmodule ForgeAbi.Direction do
   field :mutual, 0
   field :one_way, 1
   field :union, 2
+end
+
+defmodule ForgeAbi.Validity do
+  @moduledoc false
+  use Protobuf, enum: true, syntax: :proto3
+
+  field :both, 0
+  field :valid, 1
+  field :invalid, 2
 end

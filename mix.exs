@@ -31,8 +31,9 @@ defmodule ForgeAbi.MixProject do
 
   defp deps do
     [
-      {:ex_abci_proto, "~> 0.7.6"},
+      {:ex_abci_proto, "~> 0.8"},
       {:jason, "~> 1.1"},
+      {:protobuf, "~> 0.5.3", override: true},
       {:typed_struct, "~> 0.1.4"},
 
       # dev and test

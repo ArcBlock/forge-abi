@@ -1,15 +1,89 @@
-defmodule ForgeAbi.AccountMigrateTx do
+defmodule ForgeAbi.DeclareTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          pk: String.t(),
-          type: ForgeAbi.WalletType.t()
+          moniker: String.t(),
+          issuer: String.t(),
+          data: Google.Protobuf.Any.t()
         }
-  defstruct [:pk, :type]
+  defstruct [:moniker, :issuer, :data]
 
-  field :pk, 1, type: :bytes
-  field :type, 2, type: ForgeAbi.WalletType
+  field :moniker, 1, type: :string
+  field :issuer, 2, type: :string
+  field :data, 15, type: Google.Protobuf.Any
+end
+
+defmodule ForgeAbi.CodeInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          checksum: String.t(),
+          binary: String.t()
+        }
+  defstruct [:checksum, :binary]
+
+  field :checksum, 1, type: :bytes
+  field :binary, 2, type: :bytes
+end
+
+defmodule ForgeAbi.TypeUrls do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          url: String.t(),
+          module: String.t()
+        }
+  defstruct [:url, :module]
+
+  field :url, 1, type: :string
+  field :module, 2, type: :string
+end
+
+defmodule ForgeAbi.DeployProtocolTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          name: String.t(),
+          version: non_neg_integer,
+          namespace: String.t(),
+          description: String.t(),
+          type_urls: [ForgeAbi.TypeUrls.t()],
+          proto: String.t(),
+          pipeline: String.t(),
+          sources: [String.t()],
+          code: [ForgeAbi.CodeInfo.t()],
+          data: Google.Protobuf.Any.t()
+        }
+  defstruct [
+    :address,
+    :name,
+    :version,
+    :namespace,
+    :description,
+    :type_urls,
+    :proto,
+    :pipeline,
+    :sources,
+    :code,
+    :data
+  ]
+
+  field :address, 1, type: :string
+  field :name, 2, type: :string
+  field :version, 3, type: :uint32
+  field :namespace, 4, type: :string
+  field :description, 5, type: :string
+  field :type_urls, 6, repeated: true, type: ForgeAbi.TypeUrls
+  field :proto, 7, type: :string
+  field :pipeline, 8, type: :string
+  field :sources, 9, repeated: true, type: :string
+  field :code, 10, repeated: true, type: ForgeAbi.CodeInfo
+  field :data, 15, type: Google.Protobuf.Any
 end
 
 defmodule ForgeAbi.ConsensusUpgradeTx do
@@ -34,156 +108,6 @@ defmodule ForgeAbi.ConsensusUpgradeTx do
   field :data, 15, type: Google.Protobuf.Any
 end
 
-defmodule ForgeAbi.ConsumeAssetTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          issuer: String.t(),
-          address: String.t(),
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:issuer, :address, :data]
-
-  field :issuer, 1, type: :string
-  field :address, 2, type: :string
-  field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.CreateAssetTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          moniker: String.t(),
-          data: Google.Protobuf.Any.t(),
-          readonly: boolean,
-          transferrable: boolean,
-          ttl: non_neg_integer,
-          parent: String.t()
-        }
-  defstruct [:moniker, :data, :readonly, :transferrable, :ttl, :parent]
-
-  field :moniker, 1, type: :string
-  field :data, 2, type: Google.Protobuf.Any
-  field :readonly, 3, type: :bool
-  field :transferrable, 4, type: :bool
-  field :ttl, 5, type: :uint32
-  field :parent, 6, type: :string
-end
-
-defmodule ForgeAbi.DeclareTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          moniker: String.t(),
-          pk: String.t(),
-          type: ForgeAbi.WalletType.t(),
-          issuer: String.t(),
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:moniker, :pk, :type, :issuer, :data]
-
-  field :moniker, 1, type: :string
-  field :pk, 2, type: :bytes
-  field :type, 3, type: ForgeAbi.WalletType
-  field :issuer, 4, type: :string
-  field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.DeclareFileTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          hash: String.t()
-        }
-  defstruct [:hash]
-
-  field :hash, 1, type: :string
-end
-
-defmodule ForgeAbi.ExchangeInfo do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          value: ForgeAbi.BigUint.t(),
-          assets: [String.t()]
-        }
-  defstruct [:value, :assets]
-
-  field :value, 1, type: ForgeAbi.BigUint
-  field :assets, 2, repeated: true, type: :string
-end
-
-defmodule ForgeAbi.ExchangeTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          to: String.t(),
-          sender: ForgeAbi.ExchangeInfo.t(),
-          receiver: ForgeAbi.ExchangeInfo.t(),
-          expired_at: Google.Protobuf.Timestamp.t(),
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:to, :sender, :receiver, :expired_at, :data]
-
-  field :to, 1, type: :string
-  field :sender, 2, type: ForgeAbi.ExchangeInfo
-  field :receiver, 3, type: ForgeAbi.ExchangeInfo
-  field :expired_at, 4, type: Google.Protobuf.Timestamp
-  field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.StakeForAsset do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  defstruct []
-end
-
-defmodule ForgeAbi.StakeForChain do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  defstruct []
-end
-
-defmodule ForgeAbi.StakeForNode do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  defstruct []
-end
-
-defmodule ForgeAbi.StakeForUser do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  defstruct []
-end
-
-defmodule ForgeAbi.StakeTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          to: String.t(),
-          value: ForgeAbi.BigSint.t(),
-          message: String.t(),
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:to, :value, :message, :data]
-
-  field :to, 1, type: :string
-  field :value, 2, type: ForgeAbi.BigSint
-  field :message, 3, type: :string
-  field :data, 15, type: Google.Protobuf.Any
-end
-
 defmodule ForgeAbi.SysUpgradeTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -198,52 +122,4 @@ defmodule ForgeAbi.SysUpgradeTx do
   field :task, 1, type: ForgeAbi.UpgradeTask
   field :grace_period, 2, type: :uint64
   field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.TransferTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          to: String.t(),
-          value: ForgeAbi.BigUint.t(),
-          assets: [String.t()],
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:to, :value, :assets, :data]
-
-  field :to, 1, type: :string
-  field :value, 2, type: ForgeAbi.BigUint
-  field :assets, 3, repeated: true, type: :string
-  field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.UpdateAssetTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          address: String.t(),
-          moniker: String.t(),
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:address, :moniker, :data]
-
-  field :address, 1, type: :string
-  field :moniker, 2, type: :string
-  field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.PokeTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          date: String.t(),
-          address: String.t()
-        }
-  defstruct [:date, :address]
-
-  field :date, 1, type: :string
-  field :address, 2, type: :string
 end

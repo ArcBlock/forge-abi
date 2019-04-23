@@ -78,7 +78,6 @@ defmodule ForgeAbi.ChainInfo do
           voting_power: non_neg_integer,
           total_txs: non_neg_integer,
           version: String.t(),
-          data_version: String.t(),
           forge_apps_version: %{String.t() => String.t()},
           supported_txs: [String.t()]
         }
@@ -96,7 +95,6 @@ defmodule ForgeAbi.ChainInfo do
     :voting_power,
     :total_txs,
     :version,
-    :data_version,
     :forge_apps_version,
     :supported_txs
   ]
@@ -114,7 +112,6 @@ defmodule ForgeAbi.ChainInfo do
   field :voting_power, 11, type: :uint64
   field :total_txs, 12, type: :uint64
   field :version, 13, type: :string
-  field :data_version, 14, type: :string
 
   field :forge_apps_version, 15,
     repeated: true,
@@ -156,11 +153,11 @@ defmodule ForgeAbi.NodeInfo do
           voting_power: non_neg_integer,
           total_txs: non_neg_integer,
           version: String.t(),
-          data_version: String.t(),
           forge_apps_version: %{String.t() => String.t()},
           supported_txs: [String.t()],
           ip: String.t(),
-          geo_info: ForgeAbi.GeoInfo.t()
+          geo_info: ForgeAbi.GeoInfo.t(),
+          p2p_address: String.t()
         }
   defstruct [
     :id,
@@ -176,11 +173,11 @@ defmodule ForgeAbi.NodeInfo do
     :voting_power,
     :total_txs,
     :version,
-    :data_version,
     :forge_apps_version,
     :supported_txs,
     :ip,
-    :geo_info
+    :geo_info,
+    :p2p_address
   ]
 
   field :id, 1, type: :string
@@ -196,7 +193,6 @@ defmodule ForgeAbi.NodeInfo do
   field :voting_power, 11, type: :uint64
   field :total_txs, 12, type: :uint64
   field :version, 13, type: :string
-  field :data_version, 14, type: :string
 
   field :forge_apps_version, 15,
     repeated: true,
@@ -206,6 +202,7 @@ defmodule ForgeAbi.NodeInfo do
   field :supported_txs, 16, repeated: true, type: :string
   field :ip, 17, type: :string
   field :geo_info, 18, type: ForgeAbi.GeoInfo
+  field :p2p_address, 19, type: :string
 end
 
 defmodule ForgeAbi.NodeInfo.ForgeAppsVersionEntry do
@@ -337,14 +334,16 @@ defmodule ForgeAbi.Multisig do
 
   @type t :: %__MODULE__{
           signer: String.t(),
+          pk: String.t(),
           signature: String.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [:signer, :signature, :data]
+  defstruct [:signer, :pk, :signature, :data]
 
   field :signer, 1, type: :string
-  field :signature, 2, type: :bytes
-  field :data, 3, type: Google.Protobuf.Any
+  field :pk, 2, type: :bytes
+  field :signature, 3, type: :bytes
+  field :data, 15, type: Google.Protobuf.Any
 end
 
 defmodule ForgeAbi.Transaction do
@@ -354,19 +353,21 @@ defmodule ForgeAbi.Transaction do
   @type t :: %__MODULE__{
           from: String.t(),
           nonce: non_neg_integer,
-          signature: String.t(),
           chain_id: String.t(),
+          pk: String.t(),
+          signature: String.t(),
           signatures: [ForgeAbi.Multisig.t()],
           itx: Google.Protobuf.Any.t()
         }
-  defstruct [:from, :nonce, :signature, :chain_id, :signatures, :itx]
+  defstruct [:from, :nonce, :chain_id, :pk, :signature, :signatures, :itx]
 
   field :from, 1, type: :string
   field :nonce, 2, type: :uint64
-  field :signature, 3, type: :bytes
-  field :chain_id, 4, type: :string
-  field :signatures, 5, repeated: true, type: ForgeAbi.Multisig
-  field :itx, 7, type: Google.Protobuf.Any
+  field :chain_id, 3, type: :string
+  field :pk, 4, type: :bytes
+  field :signature, 13, type: :bytes
+  field :signatures, 14, repeated: true, type: ForgeAbi.Multisig
+  field :itx, 15, type: Google.Protobuf.Any
 end
 
 defmodule ForgeAbi.TransactionInfo do
@@ -397,6 +398,24 @@ defmodule ForgeAbi.TransactionInfo do
   field :account_migrate, 9, type: ForgeAbi.ExtraAccountMigrate, oneof: 0
 end
 
+defmodule ForgeAbi.TransactionConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          max_asset_size: non_neg_integer,
+          max_list_size: non_neg_integer,
+          max_multisig: non_neg_integer,
+          minimum_stake: non_neg_integer
+        }
+  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake]
+
+  field :max_asset_size, 1, type: :uint32
+  field :max_list_size, 2, type: :uint32
+  field :max_multisig, 3, type: :uint32
+  field :minimum_stake, 4, type: :uint64
+end
+
 defmodule ForgeAbi.BlockInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -411,7 +430,16 @@ defmodule ForgeAbi.BlockInfo do
           total_txs: non_neg_integer,
           invalid_txs: [ForgeAbi.TransactionInfo.t()],
           txs_hashes: [String.t()],
-          invalid_txs_hashes: [String.t()]
+          invalid_txs_hashes: [String.t()],
+          consensus_hash: String.t(),
+          data_hash: String.t(),
+          evidence_hash: String.t(),
+          last_commit_hash: String.t(),
+          last_results_hash: String.t(),
+          next_validators_hash: String.t(),
+          validators_hash: String.t(),
+          version: AbciVendor.Version.t(),
+          last_block_id: AbciVendor.BlockID.t()
         }
   defstruct [
     :height,
@@ -423,19 +451,99 @@ defmodule ForgeAbi.BlockInfo do
     :total_txs,
     :invalid_txs,
     :txs_hashes,
-    :invalid_txs_hashes
+    :invalid_txs_hashes,
+    :consensus_hash,
+    :data_hash,
+    :evidence_hash,
+    :last_commit_hash,
+    :last_results_hash,
+    :next_validators_hash,
+    :validators_hash,
+    :version,
+    :last_block_id
   ]
 
   field :height, 1, type: :uint64
   field :num_txs, 2, type: :uint32
   field :time, 3, type: Google.Protobuf.Timestamp
-  field :app_hash, 4, type: :string
-  field :proposer, 5, type: :string
+  field :app_hash, 4, type: :bytes
+  field :proposer, 5, type: :bytes
   field :txs, 6, repeated: true, type: ForgeAbi.TransactionInfo
   field :total_txs, 7, type: :uint64
   field :invalid_txs, 8, repeated: true, type: ForgeAbi.TransactionInfo
   field :txs_hashes, 9, repeated: true, type: :string
   field :invalid_txs_hashes, 10, repeated: true, type: :string
+  field :consensus_hash, 11, type: :bytes
+  field :data_hash, 12, type: :bytes
+  field :evidence_hash, 13, type: :bytes
+  field :last_commit_hash, 14, type: :bytes
+  field :last_results_hash, 15, type: :bytes
+  field :next_validators_hash, 16, type: :bytes
+  field :validators_hash, 17, type: :bytes
+  field :version, 18, type: AbciVendor.Version
+  field :last_block_id, 19, type: AbciVendor.BlockID
+end
+
+defmodule ForgeAbi.BlockInfoSimple do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          height: non_neg_integer,
+          num_txs: non_neg_integer,
+          time: Google.Protobuf.Timestamp.t(),
+          app_hash: String.t(),
+          proposer: String.t(),
+          total_txs: non_neg_integer,
+          txs_hashes: [String.t()],
+          invalid_txs_hashes: [String.t()],
+          consensus_hash: String.t(),
+          data_hash: String.t(),
+          evidence_hash: String.t(),
+          last_commit_hash: String.t(),
+          last_results_hash: String.t(),
+          next_validators_hash: String.t(),
+          validators_hash: String.t(),
+          version: AbciVendor.Version.t(),
+          last_block_id: AbciVendor.BlockID.t()
+        }
+  defstruct [
+    :height,
+    :num_txs,
+    :time,
+    :app_hash,
+    :proposer,
+    :total_txs,
+    :txs_hashes,
+    :invalid_txs_hashes,
+    :consensus_hash,
+    :data_hash,
+    :evidence_hash,
+    :last_commit_hash,
+    :last_results_hash,
+    :next_validators_hash,
+    :validators_hash,
+    :version,
+    :last_block_id
+  ]
+
+  field :height, 1, type: :uint64
+  field :num_txs, 2, type: :uint32
+  field :time, 3, type: Google.Protobuf.Timestamp
+  field :app_hash, 4, type: :bytes
+  field :proposer, 5, type: :bytes
+  field :total_txs, 6, type: :uint64
+  field :txs_hashes, 7, repeated: true, type: :string
+  field :invalid_txs_hashes, 8, repeated: true, type: :string
+  field :consensus_hash, 9, type: :bytes
+  field :data_hash, 10, type: :bytes
+  field :evidence_hash, 11, type: :bytes
+  field :last_commit_hash, 12, type: :bytes
+  field :last_results_hash, 13, type: :bytes
+  field :next_validators_hash, 14, type: :bytes
+  field :validators_hash, 15, type: :bytes
+  field :version, 16, type: AbciVendor.Version
+  field :last_block_id, 17, type: AbciVendor.BlockID
 end
 
 defmodule ForgeAbi.TxStatus do
@@ -530,6 +638,20 @@ defmodule ForgeAbi.StakeSummary do
   field :total_stakes, 1, type: ForgeAbi.BigUint
   field :total_unstakes, 2, type: ForgeAbi.BigUint
   field :context, 3, type: ForgeAbi.StateContext
+end
+
+defmodule ForgeAbi.StakeConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          timeout_general: non_neg_integer,
+          timeout_stake_for_node: non_neg_integer
+        }
+  defstruct [:timeout_general, :timeout_stake_for_node]
+
+  field :timeout_general, 1, type: :uint32
+  field :timeout_stake_for_node, 2, type: :uint32
 end
 
 defmodule ForgeAbi.UnconfirmedTxs do
@@ -627,15 +749,17 @@ defmodule ForgeAbi.ValidatorInfo do
           pub_key: AbciVendor.PubKey.t(),
           voting_power: non_neg_integer,
           proposer_priority: String.t(),
-          name: String.t()
+          name: String.t(),
+          geo_info: ForgeAbi.GeoInfo.t()
         }
-  defstruct [:address, :pub_key, :voting_power, :proposer_priority, :name]
+  defstruct [:address, :pub_key, :voting_power, :proposer_priority, :name, :geo_info]
 
   field :address, 1, type: :string
   field :pub_key, 2, type: AbciVendor.PubKey
   field :voting_power, 3, type: :uint64
   field :proposer_priority, 4, type: :string
   field :name, 5, type: :string
+  field :geo_info, 6, type: ForgeAbi.GeoInfo
 end
 
 defmodule ForgeAbi.GenesisInfo do
@@ -658,7 +782,7 @@ defmodule ForgeAbi.GenesisInfo do
   field :app_hash, 5, type: :string
 end
 
-defmodule ForgeAbi.ForgeStatistics do
+defmodule ForgeAbi.ForgeStats do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -678,7 +802,11 @@ defmodule ForgeAbi.ForgeStatistics do
           num_transfer_txs: [non_neg_integer],
           num_update_asset_txs: [non_neg_integer],
           num_consume_asset_txs: [non_neg_integer],
-          num_poke_txs: [non_neg_integer]
+          num_poke_txs: [non_neg_integer],
+          tps: [non_neg_integer],
+          max_tps: non_neg_integer,
+          avg_tps: non_neg_integer,
+          avg_block_time: float
         }
   defstruct [
     :num_blocks,
@@ -696,7 +824,11 @@ defmodule ForgeAbi.ForgeStatistics do
     :num_transfer_txs,
     :num_update_asset_txs,
     :num_consume_asset_txs,
-    :num_poke_txs
+    :num_poke_txs,
+    :tps,
+    :max_tps,
+    :avg_tps,
+    :avg_block_time
   ]
 
   field :num_blocks, 1, repeated: true, type: :uint64
@@ -715,6 +847,10 @@ defmodule ForgeAbi.ForgeStatistics do
   field :num_update_asset_txs, 14, repeated: true, type: :uint64
   field :num_consume_asset_txs, 15, repeated: true, type: :uint64
   field :num_poke_txs, 16, repeated: true, type: :uint64
+  field :tps, 17, repeated: true, type: :uint32
+  field :max_tps, 18, type: :uint32
+  field :avg_tps, 19, type: :uint32
+  field :avg_block_time, 20, type: :float
 end
 
 defmodule ForgeAbi.TxStatistics do
@@ -818,6 +954,24 @@ defmodule ForgeAbi.PokeInfo do
   field :amount, 3, type: ForgeAbi.BigUint
 end
 
+defmodule ForgeAbi.PokeConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          daily_limit: non_neg_integer,
+          balance: non_neg_integer,
+          amount: non_neg_integer
+        }
+  defstruct [:address, :daily_limit, :balance, :amount]
+
+  field :address, 1, type: :string
+  field :daily_limit, 2, type: :uint64
+  field :balance, 3, type: :uint64
+  field :amount, 4, type: :uint64
+end
+
 defmodule ForgeAbi.ExtraCreateAsset do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -840,4 +994,18 @@ defmodule ForgeAbi.ExtraAccountMigrate do
   defstruct [:address]
 
   field :address, 1, type: :string
+end
+
+defmodule ForgeAbi.UpgradeInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          height: non_neg_integer,
+          version: String.t()
+        }
+  defstruct [:height, :version]
+
+  field :height, 1, type: :uint64
+  field :version, 2, type: :string
 end

@@ -5,7 +5,8 @@
       type: string
     - name: type
       type: string
-  
+
+
 - name: page_input
   type: output
   fields:
@@ -15,13 +16,15 @@
       type: int
     - name: order
       type: [page_order]
-  
+
+
 - name: type_filter
   type: output
   fields:
     - name: types
       type: [string]
-  
+
+
 - name: time_filter
   type: output
   fields:
@@ -29,7 +32,8 @@
       type: string
     - name: end_date_time
       type: string
-  
+
+
 - name: address_filter
   type: output
   fields:
@@ -39,7 +43,8 @@
       type: string
     - name: direction
       type: direction
-  
+
+
 - name: page_info
   type: output
   fields:
@@ -49,7 +54,8 @@
       type: boolean
     - name: total
       type: int
-  
+
+
 - name: indexed_transaction
   type: output
   fields:
@@ -65,17 +71,12 @@
       type: string
     - name: tx
       type: transaction
-    - name: consume_asset
-      type: indexed_consume_asset
-    - name: create_asset
-      type: indexed_create_asset
-    - name: exchange
-      type: indexed_exchange
-    - name: transfer
-      type: indexed_transfer
-    - name: update_asset
-      type: indexed_update_asset
-  
+    - name: valid
+      type: boolean
+    - name: code
+      type: status_code
+
+
 - name: indexed_account_state
   type: output
   fields:
@@ -84,11 +85,11 @@
     - name: balance
       type: string
     - name: num_assets
-      type: int
+      type: string
     - name: num_txs
-      type: int
+      type: string
     - name: nonce
-      type: int
+      type: string
     - name: genesis_time
       type: string
     - name: renaissance_time
@@ -106,8 +107,9 @@
     - name: total_unstakes
       type: string
     - name: recent_num_txs
-      type: [int]
-  
+      type: [string]
+
+
 - name: indexed_asset_state
   type: output
   fields:
@@ -123,7 +125,8 @@
       type: string
     - name: readonly
       type: boolean
-  
+
+
 - name: indexed_stake_state
   type: output
   fields:
@@ -143,39 +146,116 @@
       type: string
     - name: type
       type: int
-  
-- name: indexed_consume_asset
+
+
+- name: indexed_block
   type: output
   fields:
-    - name: asset
+    - name: height
       type: string
-  
-- name: indexed_create_asset
-  type: output
-  fields:
-    - name: asset
+    - name: time
       type: string
-  
-- name: indexed_exchange
-  type: output
-  fields:
-    - name: sender_assets
-      type: [string]
-    - name: receiver_assets
-      type: [string]
-  
-- name: indexed_transfer
-  type: output
-  fields:
-    - name: assets
-      type: [string]
-  
-- name: indexed_update_asset
-  type: output
-  fields:
-    - name: asset
+    - name: proposer
       type: string
-  
+    - name: num_txs
+      type: string
+    - name: num_invalid_txs
+      type: string
+
+
+- name: health_status
+  type: output
+  fields:
+    - name: consensus
+      type: consensus_status
+    - name: network
+      type: network_status
+    - name: storage
+      type: storage_status
+    - name: forge
+      type: forge_status
+
+
+- name: consensus_status
+  type: output
+  fields:
+    - name: health
+      type: boolean
+    - name: synced
+      type: boolean
+    - name: block_height
+      type: string
+
+
+- name: network_status
+  type: output
+  fields:
+    - name: health
+      type: boolean
+    - name: num_peers
+      type: int
+
+
+- name: storage_status
+  type: output
+  fields:
+    - name: health
+      type: boolean
+    - name: indexer_server
+      type: string
+    - name: state_db
+      type: string
+    - name: disk_space
+      type: disk_space_status
+
+
+- name: disk_space_status
+  type: output
+  fields:
+    - name: forge_usage
+      type: string
+    - name: total
+      type: string
+
+
+- name: forge_status
+  type: output
+  fields:
+    - name: health
+      type: boolean
+    - name: abi_server
+      type: string
+    - name: forge_web
+      type: string
+    - name: abci_server
+      type: abci_server_status
+
+
+- name: abci_server_status
+  type: output
+  fields:
+    - name: abci_consensus
+      type: string
+    - name: abci_info
+      type: string
+
+
+- name: validity_filter
+  type: output
+  fields:
+    - name: validity
+      type: validity
+
+
+- name: range_filter
+  type: output
+  fields:
+    - name: from
+      type: string
+    - name: to
+      type: string
+
+
 - name: direction
   type: enum
   fields:
@@ -184,4 +264,14 @@
     - type: one_way
       meta: value=1
     - type: union
+      meta: value=2
+
+- name: validity
+  type: enum
+  fields:
+    - type: both
+      meta: value=0
+    - type: valid
+      meta: value=1
+    - type: invalid
       meta: value=2

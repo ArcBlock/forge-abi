@@ -13,6 +13,7 @@ defmodule ForgeAbi.StatusCode do
   field :invalid_tx, 8
   field :unsupported_tx, 9
   field :expired_tx, 10
+  field :too_many_txs, 11
   field :invalid_moniker, 16
   field :invalid_passphrase, 17
   field :invalid_multisig, 20
@@ -63,9 +64,7 @@ defmodule ForgeAbi.TopicType do
   field :asset_state, 130
   field :forge_state, 131
   field :stake_state, 132
-
-  # note: this line is manually added. So everytime rebuild-protos is executed we shall added this back.
-  use ForgeAbi.EnumFields
+  field :protocol_state, 133
 end
 
 defmodule ForgeAbi.KeyType do
@@ -82,6 +81,7 @@ defmodule ForgeAbi.HashType do
 
   field :keccak, 0
   field :sha3, 1
+  field :sha2, 2
   field :keccak_384, 6
   field :sha3_384, 7
   field :keccak_512, 13
@@ -109,6 +109,7 @@ defmodule ForgeAbi.RoleType do
   field :role_asset, 6
   field :role_stake, 7
   field :role_validator, 8
+  field :role_tx, 9
 end
 
 defmodule ForgeAbi.UpgradeType do
@@ -164,4 +165,13 @@ defmodule ForgeAbi.StakeType do
   field :stake_user, 1
   field :stake_asset, 2
   field :stake_chain, 3
+end
+
+defmodule ForgeAbi.ProtocolStatus do
+  @moduledoc false
+  use Protobuf, enum: true, syntax: :proto3
+
+  field :running, 0
+  field :paused, 1
+  field :terminated, 2
 end

@@ -52,3 +52,25 @@
       type: string
     - name: direction
       type: direction
+
+- name: version
+  type: output
+  fields:
+    - name: block
+      type: string
+    - name: app
+      type: string
+
+- name: validity_filter
+  type: input
+  fields:
+    - name: validity
+      type: validity
+
+- name: range_filter
+  type: input
+  fields:
+    - name: from
+      type: string
+    - name: to
+      type: string
