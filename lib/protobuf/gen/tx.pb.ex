@@ -14,34 +14,6 @@ defmodule ForgeAbi.DeclareTx do
   field :data, 15, type: Google.Protobuf.Any
 end
 
-defmodule ForgeAbi.CodeInfo do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          checksum: String.t(),
-          binary: String.t()
-        }
-  defstruct [:checksum, :binary]
-
-  field :checksum, 1, type: :bytes
-  field :binary, 2, type: :bytes
-end
-
-defmodule ForgeAbi.TypeUrls do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          url: String.t(),
-          module: String.t()
-        }
-  defstruct [:url, :module]
-
-  field :url, 1, type: :string
-  field :module, 2, type: :string
-end
-
 defmodule ForgeAbi.DeployProtocolTx do
   @moduledoc false
   use Protobuf, syntax: :proto3
