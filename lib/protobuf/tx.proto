@@ -14,18 +14,6 @@ message DeclareTx {
   google.protobuf.Any data = 15;
 }
 
-message CodeInfo {
-  // checksum of the module
-  bytes checksum = 1;
-  // gzipped binary
-  bytes binary = 2;
-}
-
-message TypeUrls {
-  string url = 1;
-  string module = 2;
-}
-
 message DeployProtocolTx {
   // address of the tx protocol
   string address = 1;
