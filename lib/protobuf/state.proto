@@ -31,6 +31,8 @@ message AccountState {
   StakeContext stake = 16;
   CircularQueue pinned_files = 17;
   PokeInfo poke = 18;
+  // The current deposit this account has received. It cannot exceed the deposit cap.
+  BigUint deposit_received = 19;
 
   google.protobuf.Any data = 50;
 }
@@ -135,4 +137,9 @@ message ProtocolState {
 
   StateContext context = 14;
   google.protobuf.Any data = 15; // forge app can define their own app state
+}
+
+// This is the one stored in state DB.
+message TetherState {
+  bool available = 1;
 }

@@ -31,6 +31,8 @@
       type: circular_queue
     - name: poke
       type: poke_info
+    - name: deposit_received
+      type: string
     - name: data
       type: any
       meta: resolver=google_protobuf_any 
@@ -208,4 +210,11 @@
     - name: data
       type: any
       meta: resolver=google_protobuf_any 
+
+
+- name: tether_state
+  type: output
+  fields:
+    - name: available
+      type: boolean
 

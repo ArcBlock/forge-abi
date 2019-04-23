@@ -18,6 +18,7 @@ defmodule ForgeAbi.AccountState do
           stake: ForgeAbi.StakeContext.t(),
           pinned_files: ForgeAbi.CircularQueue.t(),
           poke: ForgeAbi.PokeInfo.t(),
+          deposit_received: ForgeAbi.BigUint.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -36,6 +37,7 @@ defmodule ForgeAbi.AccountState do
     :stake,
     :pinned_files,
     :poke,
+    :deposit_received,
     :data
   ]
 
@@ -54,6 +56,7 @@ defmodule ForgeAbi.AccountState do
   field :stake, 16, type: ForgeAbi.StakeContext
   field :pinned_files, 17, type: ForgeAbi.CircularQueue
   field :poke, 18, type: ForgeAbi.PokeInfo
+  field :deposit_received, 19, type: ForgeAbi.BigUint
   field :data, 50, type: Google.Protobuf.Any
 end
 
@@ -314,4 +317,16 @@ defmodule ForgeAbi.ProtocolState do
   field :migrated_from, 13, repeated: true, type: :string
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
+end
+
+defmodule ForgeAbi.TetherState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          available: boolean
+        }
+  defstruct [:available]
+
+  field :available, 1, type: :bool
 end
