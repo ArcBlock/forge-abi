@@ -152,10 +152,6 @@ message TransactionInfo {
   repeated abci_vendor.KVPair tags = 5;
   StatusCode code = 6;
   google.protobuf.Timestamp time = 7;
-  oneof extra_meta {
-    ExtraCreateAsset create_asset = 8;
-    ExtraAccountMigrate account_migrate = 9;
-  }
 }
 
 message TransactionConfig {
@@ -372,10 +368,6 @@ message PokeConfig {
   uint64 balance = 3;
   uint64 amount = 4;
 }
-
-message ExtraCreateAsset { string asset = 1; }
-
-message ExtraAccountMigrate { string address = 1; }
 
 message UpgradeInfo {
   uint64 height = 1;
