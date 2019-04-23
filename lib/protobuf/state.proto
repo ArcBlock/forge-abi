@@ -143,3 +143,15 @@ message ProtocolState {
 message TetherState {
   bool available = 1;
 }
+
+// This is just for displaying purpose.
+message TetherInfo {
+  bool available = 1;
+  string custodian = 2;
+  string depositor = 3;
+  string withdrawer = 4;
+  BigUint value = 5;
+  BigUint fee = 6;
+  string target = 7;
+  google.protobuf.Timestamp locktime = 8;
+}

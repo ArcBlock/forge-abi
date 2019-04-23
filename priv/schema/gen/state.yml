@@ -218,3 +218,24 @@
     - name: available
       type: boolean
 
+
+- name: tether_info
+  type: output
+  fields:
+    - name: available
+      type: boolean
+    - name: custodian
+      type: string
+    - name: depositor
+      type: string
+    - name: withdrawer
+      type: string
+    - name: value
+      type: string
+    - name: fee
+      type: string
+    - name: target
+      type: string
+    - name: locktime
+      type: timestamp
+
