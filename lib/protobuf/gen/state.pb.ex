@@ -201,14 +201,16 @@ defmodule ForgeAbi.RootState do
           address: String.t(),
           account: String.t(),
           asset: String.t(),
-          receipt: String.t()
+          receipt: String.t(),
+          protocol: String.t()
         }
-  defstruct [:address, :account, :asset, :receipt]
+  defstruct [:address, :account, :asset, :receipt, :protocol]
 
   field :address, 1, type: :string
   field :account, 2, type: :bytes
   field :asset, 3, type: :bytes
   field :receipt, 4, type: :bytes
+  field :protocol, 5, type: :bytes
 end
 
 defmodule ForgeAbi.StakeState do
