@@ -113,6 +113,8 @@
       type: string
     - name: version
       type: string
+    - name: data_version
+      type: string
     - name: forge_apps_version
       type: [forge_apps_version_entry]
     - name: supported_txs
@@ -212,7 +214,7 @@
       type: string
     - name: data
       type: any
-      meta: resolver=google_protobuf_any 
+      meta: resolver=google_protobuf_any
 
 
 - name: transaction
@@ -232,7 +234,7 @@
       type: [multisig]
     - name: itx
       type: any
-      meta: resolver=google_protobuf_any 
+      meta: resolver=google_protobuf_any
 
 
 - name: transaction_info
@@ -642,22 +644,3 @@
       type: string
     - name: version
       type: string
-
-
-- name: code_info
-  type: output
-  fields:
-    - name: checksum
-      type: string
-    - name: binary
-      type: string
-
-
-- name: type_urls
-  type: output
-  fields:
-    - name: url
-      type: string
-    - name: module
-      type: string
-
