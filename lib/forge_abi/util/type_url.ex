@@ -27,6 +27,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:s:statistics", ForgeAbi.StatisticsState},
     {"fg:s:protocol", ForgeAbi.ProtocolState},
     {"fg:s:root", ForgeAbi.RootState},
+    {"fg:s:tether", ForgeAbi.TetherState},
 
     # forge tx stake
     # {"fg:x:stake_node", StakeForNode},

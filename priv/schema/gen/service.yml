@@ -73,6 +73,10 @@
   type: query
   return: response_get_stake_state
   params: request_get_stake_state
+- name: get_tether_info
+  type: query
+  return: response_get_tether_info
+  params: request_get_tether_info
 
 
 
