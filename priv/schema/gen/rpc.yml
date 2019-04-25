@@ -172,6 +172,26 @@
       type: forge_state
 
 
+- name: request_get_tether_info
+  type: input
+  fields:
+    - name: hash
+      type: string
+    - name: keys
+      type: [string]
+    - name: height
+      type: string
+
+
+- name: response_get_tether_info
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: info
+      type: tether_info
+
+
 - name: request_get_chain_info
   type: input
   fields: []
