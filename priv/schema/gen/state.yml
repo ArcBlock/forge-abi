@@ -88,8 +88,6 @@
       type: [stake_summary_entry]
     - name: version
       type: string
-    - name: data_version
-      type: string
     - name: forge_app_hash
       type: string
     - name: token
@@ -137,6 +135,8 @@
     - name: asset
       type: string
     - name: receipt
+      type: string
+    - name: protocol
       type: string
 
 

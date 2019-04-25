@@ -112,7 +112,9 @@ defmodule ForgeAbi.RoleType do
   field :role_asset, 6
   field :role_stake, 7
   field :role_validator, 8
-  field :role_tx, 9
+  field :role_group, 9
+  field :role_tx, 10
+  field :role_any, 63
 end
 
 defmodule ForgeAbi.UpgradeType do

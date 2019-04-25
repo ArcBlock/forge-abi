@@ -78,7 +78,6 @@ defmodule ForgeAbi.ChainInfo do
           voting_power: non_neg_integer,
           total_txs: non_neg_integer,
           version: String.t(),
-          data_version: String.t(),
           forge_apps_version: %{String.t() => String.t()},
           supported_txs: [String.t()]
         }
@@ -96,7 +95,6 @@ defmodule ForgeAbi.ChainInfo do
     :voting_power,
     :total_txs,
     :version,
-    :data_version,
     :forge_apps_version,
     :supported_txs
   ]
@@ -114,7 +112,6 @@ defmodule ForgeAbi.ChainInfo do
   field :voting_power, 11, type: :uint64
   field :total_txs, 12, type: :uint64
   field :version, 13, type: :string
-  field :data_version, 14, type: :string
 
   field :forge_apps_version, 15,
     repeated: true,
@@ -156,7 +153,6 @@ defmodule ForgeAbi.NodeInfo do
           voting_power: non_neg_integer,
           total_txs: non_neg_integer,
           version: String.t(),
-          data_version: String.t(),
           forge_apps_version: %{String.t() => String.t()},
           supported_txs: [String.t()],
           ip: String.t(),
@@ -177,7 +173,6 @@ defmodule ForgeAbi.NodeInfo do
     :voting_power,
     :total_txs,
     :version,
-    :data_version,
     :forge_apps_version,
     :supported_txs,
     :ip,
@@ -198,7 +193,6 @@ defmodule ForgeAbi.NodeInfo do
   field :voting_power, 11, type: :uint64
   field :total_txs, 12, type: :uint64
   field :version, 13, type: :string
-  field :data_version, 14, type: :string
 
   field :forge_apps_version, 15,
     repeated: true,

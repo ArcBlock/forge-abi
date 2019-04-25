@@ -128,7 +128,6 @@ defmodule ForgeAbi.ForgeState do
           tasks: %{non_neg_integer => ForgeAbi.UpgradeTasks.t()},
           stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t()},
           version: String.t(),
-          data_version: String.t(),
           forge_app_hash: String.t(),
           token: ForgeAbi.ForgeToken.t(),
           tx_config: ForgeAbi.TransactionConfig.t(),
@@ -144,7 +143,6 @@ defmodule ForgeAbi.ForgeState do
     :tasks,
     :stake_summary,
     :version,
-    :data_version,
     :forge_app_hash,
     :token,
     :tx_config,
@@ -160,7 +158,6 @@ defmodule ForgeAbi.ForgeState do
   field :tasks, 3, repeated: true, type: ForgeAbi.ForgeState.TasksEntry, map: true
   field :stake_summary, 4, repeated: true, type: ForgeAbi.ForgeState.StakeSummaryEntry, map: true
   field :version, 5, type: :string
-  field :data_version, 6, type: :string
   field :forge_app_hash, 7, type: :bytes
   field :token, 8, type: ForgeAbi.ForgeToken
   field :tx_config, 9, type: ForgeAbi.TransactionConfig
@@ -207,14 +204,16 @@ defmodule ForgeAbi.RootState do
           address: String.t(),
           account: String.t(),
           asset: String.t(),
-          receipt: String.t()
+          receipt: String.t(),
+          protocol: String.t()
         }
-  defstruct [:address, :account, :asset, :receipt]
+  defstruct [:address, :account, :asset, :receipt, :protocol]
 
   field :address, 1, type: :string
   field :account, 2, type: :bytes
   field :asset, 3, type: :bytes
   field :receipt, 4, type: :bytes
+  field :protocol, 5, type: :bytes
 end
 
 defmodule ForgeAbi.StakeState do

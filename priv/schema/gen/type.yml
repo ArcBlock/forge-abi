@@ -69,8 +69,6 @@
       type: string
     - name: version
       type: string
-    - name: data_version
-      type: string
     - name: forge_apps_version
       type: [forge_apps_version_entry]
     - name: supported_txs
@@ -114,8 +112,6 @@
     - name: total_txs
       type: string
     - name: version
-      type: string
-    - name: data_version
       type: string
     - name: forge_apps_version
       type: [forge_apps_version_entry]
