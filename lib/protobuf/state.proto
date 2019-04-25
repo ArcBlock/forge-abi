@@ -152,7 +152,8 @@ message TetherInfo {
   string depositor = 4;
   string withdrawer = 5;
   BigUint value = 6;
-  BigUint fee = 7;
-  string target = 8;
-  google.protobuf.Timestamp locktime = 9;
+  BigUint commission = 7;
+  BigUint charge = 8;
+  string target = 9;
+  google.protobuf.Timestamp locktime = 10;
 }

@@ -342,7 +342,8 @@ defmodule ForgeAbi.TetherInfo do
           depositor: String.t(),
           withdrawer: String.t(),
           value: ForgeAbi.BigUint.t(),
-          fee: ForgeAbi.BigUint.t(),
+          commission: ForgeAbi.BigUint.t(),
+          charge: ForgeAbi.BigUint.t(),
           target: String.t(),
           locktime: Google.Protobuf.Timestamp.t()
         }
@@ -353,7 +354,8 @@ defmodule ForgeAbi.TetherInfo do
     :depositor,
     :withdrawer,
     :value,
-    :fee,
+    :commission,
+    :charge,
     :target,
     :locktime
   ]
@@ -364,7 +366,8 @@ defmodule ForgeAbi.TetherInfo do
   field :depositor, 4, type: :string
   field :withdrawer, 5, type: :string
   field :value, 6, type: ForgeAbi.BigUint
-  field :fee, 7, type: ForgeAbi.BigUint
-  field :target, 8, type: :string
-  field :locktime, 9, type: Google.Protobuf.Timestamp
+  field :commission, 7, type: ForgeAbi.BigUint
+  field :charge, 8, type: ForgeAbi.BigUint
+  field :target, 9, type: :string
+  field :locktime, 10, type: Google.Protobuf.Timestamp
 end

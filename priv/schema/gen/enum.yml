@@ -71,6 +71,8 @@
       meta: value=41
     - type: consumed_asset
       meta: value=42
+    - type: invalid_deposit_value
+      meta: value=43
     - type: forbidden
       meta: value=403
     - type: internal
