@@ -222,6 +222,8 @@
 - name: tether_info
   type: output
   fields:
+    - name: hash
+      type: string
     - name: available
       type: boolean
     - name: custodian

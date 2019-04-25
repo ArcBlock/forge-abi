@@ -336,6 +336,7 @@ defmodule ForgeAbi.TetherInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
+          hash: String.t(),
           available: boolean,
           custodian: String.t(),
           depositor: String.t(),
@@ -345,14 +346,25 @@ defmodule ForgeAbi.TetherInfo do
           target: String.t(),
           locktime: Google.Protobuf.Timestamp.t()
         }
-  defstruct [:available, :custodian, :depositor, :withdrawer, :value, :fee, :target, :locktime]
+  defstruct [
+    :hash,
+    :available,
+    :custodian,
+    :depositor,
+    :withdrawer,
+    :value,
+    :fee,
+    :target,
+    :locktime
+  ]
 
-  field :available, 1, type: :bool
-  field :custodian, 2, type: :string
-  field :depositor, 3, type: :string
-  field :withdrawer, 4, type: :string
-  field :value, 5, type: ForgeAbi.BigUint
-  field :fee, 6, type: ForgeAbi.BigUint
-  field :target, 7, type: :string
-  field :locktime, 8, type: Google.Protobuf.Timestamp
+  field :hash, 1, type: :string
+  field :available, 2, type: :bool
+  field :custodian, 3, type: :string
+  field :depositor, 4, type: :string
+  field :withdrawer, 5, type: :string
+  field :value, 6, type: ForgeAbi.BigUint
+  field :fee, 7, type: ForgeAbi.BigUint
+  field :target, 8, type: :string
+  field :locktime, 9, type: Google.Protobuf.Timestamp
 end

@@ -495,6 +495,36 @@ defmodule ForgeAbi.ResponseGetForgeState do
   field :state, 2, type: ForgeAbi.ForgeState
 end
 
+defmodule ForgeAbi.RequestGetTetherInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          hash: String.t(),
+          keys: [String.t()],
+          height: non_neg_integer
+        }
+  defstruct [:hash, :keys, :height]
+
+  field :hash, 1, type: :string
+  field :keys, 2, repeated: true, type: :string
+  field :height, 3, type: :uint64
+end
+
+defmodule ForgeAbi.ResponseGetTetherInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          info: ForgeAbi.TetherInfo.t()
+        }
+  defstruct [:code, :info]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :info, 2, type: ForgeAbi.TetherInfo
+end
+
 defmodule ForgeAbi.RequestStoreFile do
   @moduledoc false
   use Protobuf, syntax: :proto3
