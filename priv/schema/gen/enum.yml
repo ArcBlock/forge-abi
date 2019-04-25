@@ -25,6 +25,8 @@
       meta: value=10
     - type: too_many_txs
       meta: value=11
+    - type: invalid_lock_status
+      meta: value=12
     - type: invalid_moniker
       meta: value=16
     - type: invalid_passphrase
@@ -69,6 +71,10 @@
       meta: value=41
     - type: consumed_asset
       meta: value=42
+    - type: invalid_deposit_value
+      meta: value=43
+    - type: exceed_deposit_cap
+      meta: value=44
     - type: forbidden
       meta: value=403
     - type: internal
