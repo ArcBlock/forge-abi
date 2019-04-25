@@ -38,6 +38,7 @@ defmodule ForgeAbi.StatusCode do
   field :readonly_asset, 41
   field :consumed_asset, 42
   field :invalid_deposit_value, 43
+  field :exceed_deposit_cap, 44
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504

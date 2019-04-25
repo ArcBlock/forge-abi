@@ -73,6 +73,8 @@
       meta: value=42
     - type: invalid_deposit_value
       meta: value=43
+    - type: exceed_deposit_cap
+      meta: value=44
     - type: forbidden
       meta: value=403
     - type: internal

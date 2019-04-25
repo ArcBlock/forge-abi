@@ -46,6 +46,7 @@ enum StatusCode {
   readonly_asset = 41;
   consumed_asset = 42;
   invalid_deposit_value = 43;
+  exceed_deposit_cap = 44;
 
   forbidden = 403;
   internal = 500;
