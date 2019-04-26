@@ -74,3 +74,37 @@
       type: string
     - name: to
       type: string
+
+- name: transaction_info
+  type: output
+  fields:
+    - name: tx
+      type: transaction
+    - name: height
+      type: string
+    - name: index
+      type: int
+    - name: hash
+      type: string
+    - name: tags
+      type: [kv_pair]
+    - name: code
+      type: status_code
+    - name: time
+      type: timestamp
+    - name: create_asset
+      type: extra_create_asset
+    - name: account_migrate
+      type: extra_account_migrate
+
+- name: extra_create_asset
+  type: output
+  fields:
+    - name: asset
+      type: string
+
+- name: extra_account_migrate
+  type: output
+  fields:
+    - name: address
+      type: string
