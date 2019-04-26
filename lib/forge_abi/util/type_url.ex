@@ -121,7 +121,7 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Decode the binary inside the Any.
   """
-  @spec decode_any(Any.t() | nil) :: {:error, term()} | {:ok, map()}
+  @spec decode_any(Any.t() | nil) :: {:error, term()} | {:ok, any()}
   def decode_any(nil), do: {:error, :noent}
 
   def decode_any(%{type_url: type_url, value: value}) do
@@ -142,7 +142,7 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   Decode the binary inside the Any. Raise if error.
   """
-  @spec decode_any!(Any.t() | nil) :: map() | no_return()
+  @spec decode_any!(Any.t() | nil) :: any() | no_return()
   def decode_any!(any) do
     case decode_any(any) do
       {:error, reason} -> raise reason
