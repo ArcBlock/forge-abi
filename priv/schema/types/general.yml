@@ -75,6 +75,37 @@
     - name: to
       type: string
 
+- name: protocol
+  type: output
+  fields:
+    - name: address
+      type: string
+    - name: name
+      type: string
+    - name: version
+      type: int
+    - name: namespace
+      type: string
+    - name: description
+      type: string
+    - name: type_urls
+      type: [type_urls]
+    - name: proto
+      type: string
+    - name: pipeline
+      type: string
+    - name: sources
+      type: [string]
+    - name: code
+      type: [code_info]
+    - name: installed_at
+      type: timestamp
+    - name: group
+      type: string
+    - name: data
+      type: any
+      meta: resolver=google_protobuf_any
+
 - name: transaction_info
   type: output
   fields:
