@@ -63,3 +63,17 @@
       type: indexed_account_state
     - name: assets
       type: [indexed_asset_state]
+
+- name: request_get_protocols
+  type: input
+  fields:
+    - name: address
+      type: string
+
+- name: response_get_protocols
+  type: output
+  fields:
+    - name: code
+      type: status_code
+    - name: protocols
+      type: [protocol]

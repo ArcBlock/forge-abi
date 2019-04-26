@@ -31,6 +31,8 @@
       type: circular_queue
     - name: poke
       type: poke_info
+    - name: deposit_received
+      type: string
     - name: data
       type: any
       meta: resolver=google_protobuf_any 
@@ -134,6 +136,8 @@
       type: string
     - name: receipt
       type: string
+    - name: protocol
+      type: string
 
 
 - name: stake_state
@@ -206,4 +210,36 @@
     - name: data
       type: any
       meta: resolver=google_protobuf_any 
+
+
+- name: tether_state
+  type: output
+  fields:
+    - name: available
+      type: boolean
+
+
+- name: tether_info
+  type: output
+  fields:
+    - name: hash
+      type: string
+    - name: available
+      type: boolean
+    - name: custodian
+      type: string
+    - name: depositor
+      type: string
+    - name: withdrawer
+      type: string
+    - name: value
+      type: string
+    - name: commission
+      type: string
+    - name: charge
+      type: string
+    - name: target
+      type: string
+    - name: locktime
+      type: timestamp
 

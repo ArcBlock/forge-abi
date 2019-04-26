@@ -18,6 +18,7 @@ defmodule ForgeAbi.AccountState do
           stake: ForgeAbi.StakeContext.t(),
           pinned_files: ForgeAbi.CircularQueue.t(),
           poke: ForgeAbi.PokeInfo.t(),
+          deposit_received: ForgeAbi.BigUint.t(),
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -36,6 +37,7 @@ defmodule ForgeAbi.AccountState do
     :stake,
     :pinned_files,
     :poke,
+    :deposit_received,
     :data
   ]
 
@@ -54,6 +56,7 @@ defmodule ForgeAbi.AccountState do
   field :stake, 16, type: ForgeAbi.StakeContext
   field :pinned_files, 17, type: ForgeAbi.CircularQueue
   field :poke, 18, type: ForgeAbi.PokeInfo
+  field :deposit_received, 19, type: ForgeAbi.BigUint
   field :data, 50, type: Google.Protobuf.Any
 end
 
@@ -201,14 +204,16 @@ defmodule ForgeAbi.RootState do
           address: String.t(),
           account: String.t(),
           asset: String.t(),
-          receipt: String.t()
+          receipt: String.t(),
+          protocol: String.t()
         }
-  defstruct [:address, :account, :asset, :receipt]
+  defstruct [:address, :account, :asset, :receipt, :protocol]
 
   field :address, 1, type: :string
   field :account, 2, type: :bytes
   field :asset, 3, type: :bytes
   field :receipt, 4, type: :bytes
+  field :protocol, 5, type: :bytes
 end
 
 defmodule ForgeAbi.StakeState do
@@ -311,4 +316,57 @@ defmodule ForgeAbi.ProtocolState do
   field :migrated_from, 13, repeated: true, type: :string
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
+end
+
+defmodule ForgeAbi.TetherState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          available: boolean
+        }
+  defstruct [:available]
+
+  field :available, 1, type: :bool
+end
+
+defmodule ForgeAbi.TetherInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          hash: String.t(),
+          available: boolean,
+          custodian: String.t(),
+          depositor: String.t(),
+          withdrawer: String.t(),
+          value: ForgeAbi.BigUint.t(),
+          commission: ForgeAbi.BigUint.t(),
+          charge: ForgeAbi.BigUint.t(),
+          target: String.t(),
+          locktime: Google.Protobuf.Timestamp.t()
+        }
+  defstruct [
+    :hash,
+    :available,
+    :custodian,
+    :depositor,
+    :withdrawer,
+    :value,
+    :commission,
+    :charge,
+    :target,
+    :locktime
+  ]
+
+  field :hash, 1, type: :string
+  field :available, 2, type: :bool
+  field :custodian, 3, type: :string
+  field :depositor, 4, type: :string
+  field :withdrawer, 5, type: :string
+  field :value, 6, type: ForgeAbi.BigUint
+  field :commission, 7, type: ForgeAbi.BigUint
+  field :charge, 8, type: ForgeAbi.BigUint
+  field :target, 9, type: :string
+  field :locktime, 10, type: Google.Protobuf.Timestamp
 end

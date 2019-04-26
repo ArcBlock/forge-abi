@@ -102,3 +102,8 @@
   params:
     - name: paging
       type: page_input
+
+- name: get_protocols
+  type: query
+  return: response_get_protocols
+  params: request_get_protocols

@@ -70,6 +70,10 @@ defmodule ForgeAbi.StateRpc.Service do
   rpc :get_stake_state,
       stream(ForgeAbi.RequestGetStakeState),
       stream(ForgeAbi.ResponseGetStakeState)
+
+  rpc :get_tether_info,
+      stream(ForgeAbi.RequestGetTetherInfo),
+      stream(ForgeAbi.ResponseGetTetherInfo)
 end
 
 defmodule ForgeAbi.StateRpc.Stub do

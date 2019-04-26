@@ -31,6 +31,8 @@ message AccountState {
   StakeContext stake = 16;
   CircularQueue pinned_files = 17;
   PokeInfo poke = 18;
+  // The current deposit this account has received. It cannot exceed the deposit cap.
+  BigUint deposit_received = 19;
 
   google.protobuf.Any data = 50;
 }
@@ -69,7 +71,7 @@ message ForgeState {
   map<uint64, UpgradeTasks> tasks = 3;
   map<uint32, StakeSummary> stake_summary = 4;
   string version = 5;
-  //string data_version = 6; current data version deprecated
+  // string data_version = 6; current data version deprecated
 
   // app state returned by forge app
   bytes forge_app_hash = 7;
@@ -95,6 +97,7 @@ message RootState {
   bytes account = 2;
   bytes asset = 3;
   bytes receipt = 4;
+  bytes protocol = 5;
 }
 
 message StakeState {
@@ -136,4 +139,23 @@ message ProtocolState {
 
   StateContext context = 14;
   google.protobuf.Any data = 15; // forge app can define their own app state
+}
+
+// This is the one stored in state DB.
+message TetherState {
+  bool available = 1;
+}
+
+// This is just for displaying purpose.
+message TetherInfo {
+  string hash = 1;
+  bool available = 2;
+  string custodian = 3;
+  string depositor = 4;
+  string withdrawer = 5;
+  BigUint value = 6;
+  BigUint commission = 7;
+  BigUint charge = 8;
+  string target = 9;
+  google.protobuf.Timestamp locktime = 10;
 }
