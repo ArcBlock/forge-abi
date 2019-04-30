@@ -47,6 +47,10 @@ enum StatusCode {
   consumed_asset = 42;
   invalid_deposit_value = 43;
   exceed_deposit_cap = 44;
+  invalid_deposit_target = 45;
+  invalid_depositor = 46;
+  invalid_withdrawer = 47;
+  duplicate_tether = 48;
 
   forbidden = 403;
   internal = 500;
