@@ -43,6 +43,7 @@ defmodule ForgeAbi.StatusCode do
   field :invalid_depositor, 46
   field :invalid_withdrawer, 47
   field :duplicate_tether, 48
+  field :invalid_expiry_date, 49
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504
