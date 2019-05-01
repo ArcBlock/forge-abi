@@ -254,6 +254,15 @@
       type: timestamp
 
 
+- name: declare_config
+  type: output
+  fields:
+    - name: restricted
+      type: boolean
+    - name: hierarchy
+      type: int
+
+
 - name: transaction_config
   type: output
   fields:
@@ -265,6 +274,8 @@
       type: int
     - name: minimum_stake
       type: string
+    - name: declare
+      type: declare_config
 
 
 - name: block_info

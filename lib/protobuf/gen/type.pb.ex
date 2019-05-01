@@ -394,6 +394,20 @@ defmodule ForgeAbi.TransactionInfo do
   field :time, 7, type: Google.Protobuf.Timestamp
 end
 
+defmodule ForgeAbi.DeclareConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          restricted: boolean,
+          hierarchy: non_neg_integer
+        }
+  defstruct [:restricted, :hierarchy]
+
+  field :restricted, 1, type: :bool
+  field :hierarchy, 2, type: :uint32
+end
+
 defmodule ForgeAbi.TransactionConfig do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -402,14 +416,16 @@ defmodule ForgeAbi.TransactionConfig do
           max_asset_size: non_neg_integer,
           max_list_size: non_neg_integer,
           max_multisig: non_neg_integer,
-          minimum_stake: non_neg_integer
+          minimum_stake: non_neg_integer,
+          declare: ForgeAbi.DeclareConfig.t()
         }
-  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake]
+  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake, :declare]
 
   field :max_asset_size, 1, type: :uint32
   field :max_list_size, 2, type: :uint32
   field :max_multisig, 3, type: :uint32
   field :minimum_stake, 4, type: :uint64
+  field :declare, 5, type: ForgeAbi.DeclareConfig
 end
 
 defmodule ForgeAbi.BlockInfo do
