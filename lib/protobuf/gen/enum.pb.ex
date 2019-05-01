@@ -15,6 +15,7 @@ defmodule ForgeAbi.StatusCode do
   field :expired_tx, 10
   field :too_many_txs, 11
   field :invalid_lock_status, 12
+  field :invalid_request, 13
   field :invalid_moniker, 16
   field :invalid_passphrase, 17
   field :invalid_multisig, 20

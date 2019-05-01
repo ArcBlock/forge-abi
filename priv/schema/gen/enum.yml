@@ -27,6 +27,8 @@
       meta: value=11
     - type: invalid_lock_status
       meta: value=12
+    - type: invalid_request
+      meta: value=13
     - type: invalid_moniker
       meta: value=16
     - type: invalid_passphrase
