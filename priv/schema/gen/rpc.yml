@@ -172,10 +172,10 @@
       type: forge_state
 
 
-- name: request_get_tether_info
+- name: request_get_tether_state
   type: input
   fields:
-    - name: hash
+    - name: address
       type: string
     - name: keys
       type: [string]
@@ -183,13 +183,13 @@
       type: string
 
 
-- name: response_get_tether_info
+- name: response_get_tether_state
   type: output
   fields:
     - name: code
       type: status_code
-    - name: info
-      type: tether_info
+    - name: state
+      type: tether_state
 
 
 - name: request_get_chain_info

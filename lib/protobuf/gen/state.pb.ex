@@ -323,18 +323,6 @@ defmodule ForgeAbi.TetherState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          available: boolean
-        }
-  defstruct [:available]
-
-  field :available, 1, type: :bool
-end
-
-defmodule ForgeAbi.TetherInfo do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
           hash: String.t(),
           available: boolean,
           custodian: String.t(),
@@ -344,7 +332,8 @@ defmodule ForgeAbi.TetherInfo do
           commission: ForgeAbi.BigUint.t(),
           charge: ForgeAbi.BigUint.t(),
           target: String.t(),
-          locktime: Google.Protobuf.Timestamp.t()
+          locktime: Google.Protobuf.Timestamp.t(),
+          address: String.t()
         }
   defstruct [
     :hash,
@@ -356,7 +345,8 @@ defmodule ForgeAbi.TetherInfo do
     :commission,
     :charge,
     :target,
-    :locktime
+    :locktime,
+    :address
   ]
 
   field :hash, 1, type: :string
@@ -369,4 +359,19 @@ defmodule ForgeAbi.TetherInfo do
   field :charge, 8, type: ForgeAbi.BigUint
   field :target, 9, type: :string
   field :locktime, 10, type: Google.Protobuf.Timestamp
+  field :address, 11, type: :string
+end
+
+defmodule ForgeAbi.TetherInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          available: boolean,
+          hash: String.t()
+        }
+  defstruct [:available, :hash]
+
+  field :available, 1, type: :bool
+  field :hash, 2, type: :string
 end
