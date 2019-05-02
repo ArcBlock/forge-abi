@@ -29,12 +29,6 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:s:root", ForgeAbi.RootState},
     {"fg:s:tether", ForgeAbi.TetherState},
 
-    # forge tx stake
-    # {"fg:x:stake_node", StakeForNode},
-    # {"fg:x:stake_user", StakeForUser},
-    # {"fg:x:stake_asset", StakeForAsset},
-    # {"fg:x:stake_chain", StakeForChain},
-
     # other type url
     {"fg:x:block_info", ForgeAbi.BlockInfo},
     {"fg:x:tx", ForgeAbi.Transaction},

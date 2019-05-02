@@ -280,10 +280,7 @@ defmodule ForgeAbi.ProtocolState do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          name: String.t(),
-          version: non_neg_integer,
-          description: String.t(),
-          tx_hash: String.t(),
+          itx: ForgeAbi.DeployProtocolTx.t(),
           root_hash: String.t(),
           status: integer,
           migrated_to: [String.t()],
@@ -291,27 +288,12 @@ defmodule ForgeAbi.ProtocolState do
           context: ForgeAbi.StateContext.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [
-    :address,
-    :name,
-    :version,
-    :description,
-    :tx_hash,
-    :root_hash,
-    :status,
-    :migrated_to,
-    :migrated_from,
-    :context,
-    :data
-  ]
+  defstruct [:address, :itx, :root_hash, :status, :migrated_to, :migrated_from, :context, :data]
 
   field :address, 1, type: :string
-  field :name, 2, type: :string
-  field :version, 3, type: :uint32
-  field :description, 4, type: :string
-  field :tx_hash, 5, type: :string
-  field :root_hash, 6, type: :bytes
-  field :status, 7, type: ForgeAbi.ProtocolStatus, enum: true
+  field :itx, 2, type: ForgeAbi.DeployProtocolTx
+  field :root_hash, 3, type: :bytes
+  field :status, 4, type: ForgeAbi.ProtocolStatus, enum: true
   field :migrated_to, 12, repeated: true, type: :string
   field :migrated_from, 13, repeated: true, type: :string
   field :context, 14, type: ForgeAbi.StateContext

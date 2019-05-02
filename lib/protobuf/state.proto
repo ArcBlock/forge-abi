@@ -5,6 +5,7 @@ import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
 import "enum.proto";
 import "type.proto";
+import "tx.proto";
 
 // State definition
 
@@ -31,7 +32,8 @@ message AccountState {
   StakeContext stake = 16;
   CircularQueue pinned_files = 17;
   PokeInfo poke = 18;
-  // The current deposit this account has received. It cannot exceed the deposit cap.
+  // The current deposit this account has received. It cannot exceed the deposit
+  // cap.
   BigUint deposit_received = 19;
 
   google.protobuf.Any data = 50;
@@ -126,13 +128,10 @@ message BlacklistState { repeated string address = 1; }
 
 message ProtocolState {
   string address = 1;
-  string name = 2;
-  uint32 version = 3;
-  string description = 4;
-  string tx_hash = 5;
+  DeployProtocolTx itx = 2;
   // root hash of the MPT of this tx protocol
-  bytes root_hash = 6;
-  ProtocolStatus status = 7;
+  bytes root_hash = 3;
+  ProtocolStatus status = 4;
 
   repeated string migrated_to = 12;
   repeated string migrated_from = 13;
@@ -142,9 +141,7 @@ message ProtocolState {
 }
 
 // This is the one stored in state DB.
-message TetherState {
-  bool available = 1;
-}
+message TetherState { bool available = 1; }
 
 // This is just for displaying purpose.
 message TetherInfo {

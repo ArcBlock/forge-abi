@@ -1,19 +1,3 @@
-defmodule ForgeAbi.DeclareTx do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          moniker: String.t(),
-          issuer: String.t(),
-          data: Google.Protobuf.Any.t()
-        }
-  defstruct [:moniker, :issuer, :data]
-
-  field :moniker, 1, type: :string
-  field :issuer, 2, type: :string
-  field :data, 15, type: Google.Protobuf.Any
-end
-
 defmodule ForgeAbi.CodeInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -57,6 +41,7 @@ defmodule ForgeAbi.DeployProtocolTx do
           pipeline: String.t(),
           sources: [String.t()],
           code: [ForgeAbi.CodeInfo.t()],
+          tags: [String.t()],
           data: Google.Protobuf.Any.t()
         }
   defstruct [
@@ -70,6 +55,7 @@ defmodule ForgeAbi.DeployProtocolTx do
     :pipeline,
     :sources,
     :code,
+    :tags,
     :data
   ]
 
@@ -83,6 +69,7 @@ defmodule ForgeAbi.DeployProtocolTx do
   field :pipeline, 8, type: :string
   field :sources, 9, repeated: true, type: :string
   field :code, 10, repeated: true, type: ForgeAbi.CodeInfo
+  field :tags, 11, repeated: true, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
 
