@@ -27,7 +27,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:s:statistics", ForgeAbi.StatisticsState},
     {"fg:s:protocol", ForgeAbi.ProtocolState},
     {"fg:s:root", ForgeAbi.RootState},
-    {"fg:s:tether", ForgeAbi.TetherState},
+    {"fg:s:tether", ForgeAbi.TetherInfo},
 
     # other type url
     {"fg:x:block_info", ForgeAbi.BlockInfo},
@@ -76,10 +76,10 @@ defmodule ForgeAbi.Util.TypeUrl do
   @doc """
   retrieve all types for introspection.
   """
-  @spec all :: Stream.t()
+  @spec all :: Enumerable.t()
   def all do
-    Stream.resource(
-      fn -> :ets.first(@table_name) end,
+    fn -> :ets.first(@table_name) end
+    |> Stream.resource(
       fn
         :"$end_of_table" -> {:halt, nil}
         previous_key -> {[previous_key], :ets.next(@table_name, previous_key)}

@@ -209,13 +209,6 @@
 - name: tether_state
   type: output
   fields:
-    - name: available
-      type: boolean
-
-
-- name: tether_info
-  type: output
-  fields:
     - name: hash
       type: string
     - name: available
@@ -236,4 +229,15 @@
       type: string
     - name: locktime
       type: timestamp
+    - name: address
+      type: string
+
+
+- name: tether_info
+  type: output
+  fields:
+    - name: available
+      type: boolean
+    - name: hash
+      type: string
 

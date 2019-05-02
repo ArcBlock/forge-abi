@@ -120,6 +120,7 @@ defmodule ForgeAbi.RoleType do
   field :role_validator, 8
   field :role_group, 9
   field :role_tx, 10
+  field :role_tether, 11
   field :role_any, 63
 end
 
