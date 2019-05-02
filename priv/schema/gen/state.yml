@@ -189,14 +189,8 @@
   fields:
     - name: address
       type: string
-    - name: name
-      type: string
-    - name: version
-      type: int
-    - name: description
-      type: string
-    - name: tx_hash
-      type: string
+    - name: itx
+      type: deploy_protocol_tx
     - name: root_hash
       type: string
     - name: status

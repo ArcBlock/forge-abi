@@ -1,15 +1,3 @@
-- name: declare_tx
-  type: output
-  fields:
-    - name: moniker
-      type: string
-    - name: issuer
-      type: string
-    - name: data
-      type: any
-      meta: resolver=google_protobuf_any 
-
-
 - name: code_info
   type: output
   fields:
@@ -51,6 +39,8 @@
       type: [string]
     - name: code
       type: [code_info]
+    - name: tags
+      type: [string]
     - name: data
       type: any
       meta: resolver=google_protobuf_any 
