@@ -141,13 +141,8 @@ message ProtocolState {
   google.protobuf.Any data = 15; // forge app can define their own app state
 }
 
-// This is the one stored in state DB.
-message TetherState {
-  bool available = 1;
-}
-
 // This is just for displaying purpose.
-message TetherInfo {
+message TetherState {
   string hash = 1;
   bool available = 2;
   string custodian = 3;
@@ -158,4 +153,11 @@ message TetherInfo {
   BigUint charge = 8;
   string target = 9;
   google.protobuf.Timestamp locktime = 10;
+  string address = 11;
+}
+
+// This is the one stored in state DB.
+message TetherInfo {
+  bool available = 1;
+  string hash = 2;
 }

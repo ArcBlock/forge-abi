@@ -197,6 +197,8 @@
       meta: value=9
     - type: role_tx
       meta: value=10
+    - type: role_tether
+      meta: value=11
     - type: role_any
       meta: value=63
 
