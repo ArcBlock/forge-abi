@@ -46,7 +46,7 @@ defmodule ForgeAbi.AccountState do
   field :num_txs, 3, type: :uint64
   field :address, 4, type: :string
   field :pk, 5, type: :bytes
-  field :type, 6, type: ForgeAbi.WalletType
+  field :type, 6, type: ForgeAbi.WalletType, deprecated: true
   field :moniker, 7, type: :string
   field :context, 8, type: ForgeAbi.StateContext
   field :issuer, 9, type: :string

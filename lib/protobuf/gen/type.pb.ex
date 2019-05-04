@@ -54,7 +54,7 @@ defmodule ForgeAbi.WalletInfo do
         }
   defstruct [:type, :sk, :pk, :address]
 
-  field :type, 1, type: ForgeAbi.WalletType
+  field :type, 1, type: ForgeAbi.WalletType, deprecated: true
   field :sk, 2, type: :bytes
   field :pk, 3, type: :bytes
   field :address, 4, type: :string
