@@ -27,6 +27,8 @@
       meta: value=11
     - type: invalid_lock_status
       meta: value=12
+    - type: invalid_request
+      meta: value=13
     - type: invalid_moniker
       meta: value=16
     - type: invalid_passphrase
@@ -75,6 +77,16 @@
       meta: value=43
     - type: exceed_deposit_cap
       meta: value=44
+    - type: invalid_deposit_target
+      meta: value=45
+    - type: invalid_depositor
+      meta: value=46
+    - type: invalid_withdrawer
+      meta: value=47
+    - type: duplicate_tether
+      meta: value=48
+    - type: invalid_expiry_date
+      meta: value=49
     - type: forbidden
       meta: value=403
     - type: internal
@@ -185,6 +197,8 @@
       meta: value=9
     - type: role_tx
       meta: value=10
+    - type: role_tether
+      meta: value=11
     - type: role_any
       meta: value=63
 

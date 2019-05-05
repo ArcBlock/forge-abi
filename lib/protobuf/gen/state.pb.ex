@@ -46,7 +46,7 @@ defmodule ForgeAbi.AccountState do
   field :num_txs, 3, type: :uint64
   field :address, 4, type: :string
   field :pk, 5, type: :bytes
-  field :type, 6, type: ForgeAbi.WalletType
+  field :type, 6, type: ForgeAbi.WalletType, deprecated: true
   field :moniker, 7, type: :string
   field :context, 8, type: ForgeAbi.StateContext
   field :issuer, 9, type: :string
@@ -280,10 +280,7 @@ defmodule ForgeAbi.ProtocolState do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          name: String.t(),
-          version: non_neg_integer,
-          description: String.t(),
-          tx_hash: String.t(),
+          itx: ForgeAbi.DeployProtocolTx.t(),
           root_hash: String.t(),
           status: integer,
           migrated_to: [String.t()],
@@ -291,27 +288,12 @@ defmodule ForgeAbi.ProtocolState do
           context: ForgeAbi.StateContext.t(),
           data: Google.Protobuf.Any.t()
         }
-  defstruct [
-    :address,
-    :name,
-    :version,
-    :description,
-    :tx_hash,
-    :root_hash,
-    :status,
-    :migrated_to,
-    :migrated_from,
-    :context,
-    :data
-  ]
+  defstruct [:address, :itx, :root_hash, :status, :migrated_to, :migrated_from, :context, :data]
 
   field :address, 1, type: :string
-  field :name, 2, type: :string
-  field :version, 3, type: :uint32
-  field :description, 4, type: :string
-  field :tx_hash, 5, type: :string
-  field :root_hash, 6, type: :bytes
-  field :status, 7, type: ForgeAbi.ProtocolStatus, enum: true
+  field :itx, 2, type: ForgeAbi.DeployProtocolTx
+  field :root_hash, 3, type: :bytes
+  field :status, 4, type: ForgeAbi.ProtocolStatus, enum: true
   field :migrated_to, 12, repeated: true, type: :string
   field :migrated_from, 13, repeated: true, type: :string
   field :context, 14, type: ForgeAbi.StateContext
@@ -319,18 +301,6 @@ defmodule ForgeAbi.ProtocolState do
 end
 
 defmodule ForgeAbi.TetherState do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          available: boolean
-        }
-  defstruct [:available]
-
-  field :available, 1, type: :bool
-end
-
-defmodule ForgeAbi.TetherInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -344,7 +314,8 @@ defmodule ForgeAbi.TetherInfo do
           commission: ForgeAbi.BigUint.t(),
           charge: ForgeAbi.BigUint.t(),
           target: String.t(),
-          locktime: Google.Protobuf.Timestamp.t()
+          locktime: Google.Protobuf.Timestamp.t(),
+          address: String.t()
         }
   defstruct [
     :hash,
@@ -356,7 +327,8 @@ defmodule ForgeAbi.TetherInfo do
     :commission,
     :charge,
     :target,
-    :locktime
+    :locktime,
+    :address
   ]
 
   field :hash, 1, type: :string
@@ -369,4 +341,19 @@ defmodule ForgeAbi.TetherInfo do
   field :charge, 8, type: ForgeAbi.BigUint
   field :target, 9, type: :string
   field :locktime, 10, type: Google.Protobuf.Timestamp
+  field :address, 11, type: :string
+end
+
+defmodule ForgeAbi.TetherInfo do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          available: boolean,
+          hash: String.t()
+        }
+  defstruct [:available, :hash]
+
+  field :available, 1, type: :bool
+  field :hash, 2, type: :string
 end

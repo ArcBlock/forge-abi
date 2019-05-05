@@ -189,14 +189,8 @@
   fields:
     - name: address
       type: string
-    - name: name
-      type: string
-    - name: version
-      type: int
-    - name: description
-      type: string
-    - name: tx_hash
-      type: string
+    - name: itx
+      type: deploy_protocol_tx
     - name: root_hash
       type: string
     - name: status
@@ -213,13 +207,6 @@
 
 
 - name: tether_state
-  type: output
-  fields:
-    - name: available
-      type: boolean
-
-
-- name: tether_info
   type: output
   fields:
     - name: hash
@@ -242,4 +229,15 @@
       type: string
     - name: locktime
       type: timestamp
+    - name: address
+      type: string
+
+
+- name: tether_info
+  type: output
+  fields:
+    - name: available
+      type: boolean
+    - name: hash
+      type: string
 

@@ -47,7 +47,7 @@ run:
 
 
 rebuild-proto: prepare-vendor-proto
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/*.proto
+	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,trace_type,tx,type}.proto
 	@make rebuild-goldorin
 	@echo "New protobuf files for elixir created."
 

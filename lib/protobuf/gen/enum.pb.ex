@@ -15,6 +15,7 @@ defmodule ForgeAbi.StatusCode do
   field :expired_tx, 10
   field :too_many_txs, 11
   field :invalid_lock_status, 12
+  field :invalid_request, 13
   field :invalid_moniker, 16
   field :invalid_passphrase, 17
   field :invalid_multisig, 20
@@ -39,6 +40,11 @@ defmodule ForgeAbi.StatusCode do
   field :consumed_asset, 42
   field :invalid_deposit_value, 43
   field :exceed_deposit_cap, 44
+  field :invalid_deposit_target, 45
+  field :invalid_depositor, 46
+  field :invalid_withdrawer, 47
+  field :duplicate_tether, 48
+  field :invalid_expiry_date, 49
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504
@@ -114,6 +120,7 @@ defmodule ForgeAbi.RoleType do
   field :role_validator, 8
   field :role_group, 9
   field :role_tx, 10
+  field :role_tether, 11
   field :role_any, 63
 end
 
