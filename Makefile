@@ -73,7 +73,7 @@ rebuild-proto-json: prepare-vendor-proto
 prepare-vendor-proto:
 	@echo "Preparing vendor protobuf..."
 	@mkdir -p vendors
-	@curl --silent https://raw.githubusercontent.com/ArcBlock/ex_abci_proto/master/lib/protos/vendor.proto > ./vendors/vendor.proto
+	@curl --silent https://$(GITHUB_TOKEN)@raw.githubusercontent.com/ArcBlock/forge-js/master/packages/forge-proto/vendor.proto > ./vendors/vendor.proto
 	@echo "Vendor protobuf file fetched!"
 
 include .makefiles/*.mk
