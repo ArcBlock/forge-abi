@@ -18,6 +18,16 @@ defmodule ForgeAbi.MixProject do
         coveralls: :test,
         "coveralls.html": :test,
         "coveralls.json": :test
+      ],
+      description: description(),
+      package: package(),
+      # Docs
+      name: "ForgeAbi",
+      source_url: "https://github.com/arcblock/forge-abi",
+      homepage_url: "https://github.com/arcblock/forge-abi",
+      docs: [
+        main: "ForgeAbi",
+        extras: ["README.md"]
       ]
     ]
   end
@@ -33,7 +43,7 @@ defmodule ForgeAbi.MixProject do
     [
       {:ex_abci_proto, "~> 0.8"},
       {:jason, "~> 1.1"},
-      {:protobuf, "~> 0.5.3", override: true},
+      {:protobuf, "~> 0.5.3"},
       {:typed_struct, "~> 0.1.4"},
 
       # dev and test
@@ -42,6 +52,36 @@ defmodule ForgeAbi.MixProject do
       {:ex_doc, "~> 0.19.0", only: [:dev, :test], runtime: false},
       {:excoveralls, "~> 0.10", only: [:test]},
       {:pre_commit_hook, "~> 1.2", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp description do
+    """
+    Forge Abi contains forge related protocol buffer definitions and Goldorin GraphQL definitions. It is a dependency for Forge and Forge Elixir SDK. Normally as a Dapp developer you won't use the code here directly but you'd use the types defined here.
+    """
+  end
+
+  defp package do
+    [
+      files: [
+        "config",
+        "lib",
+        "mix.exs",
+        "README*",
+        "version",
+        ".elixir_version"
+      ],
+      licenses: ["Apache 2.0"],
+      maintainers: [
+        "christinaleizhou@gmail.com",
+        "dingpl716@gmail.com",
+        "sunboshan@gmail.com",
+        "tyr.chen@gmail.com"
+      ],
+      links: %{
+        "GitHub" => "https://github.com/arcblock/forge-abi",
+        "Docs" => "https://hexdocs.pm/forge-abi"
+      }
     ]
   end
 end
