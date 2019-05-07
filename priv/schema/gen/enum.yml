@@ -89,6 +89,8 @@
       meta: value=49
     - type: invalid_deposit
       meta: value=50
+    - type: invalid_custodian
+      meta: value=51
     - type: forbidden
       meta: value=403
     - type: internal
