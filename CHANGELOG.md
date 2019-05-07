@@ -1,3 +1,37 @@
+## 1.5.0 (May 07, 2019)
+  - Update readme (#84)
+  - use lite vendor proto for js (#82)
+  - makr wallet type as deprecated
+  - support embedded protocols (#81)
+  - Switch to tether state. (#80)
+  - add invalid_request
+  - Support exchange tether transaction. (#79)
+  - add declare config
+  - add get_protocols api (#77)
+  - fix typespec
+  - deprecate accountMigrate and createAsset in TransactionInfo (#74)
+  - Implement deposit tether transaction. (#78)
+  - fix role type (#76)
+  - workaround the forge web broken
+  - rollback tx type (#75)
+  - use latest generated code (#73)
+  - fix: move CodeInfo and TypeUrls from tx.proto to type.proto (#72)
+  - remove data_version (#70)
+  - temporarily make the API work (#71)
+  - support deploy tx (#63)
+  - support upgrade node tx (#69)
+  - Apis refactoring batch 2 (#68)
+  - deprecate graqhql apis and fields (#67)
+  - Rename the 'value' filed of Google.Protobuf.Any to 'encoded_value' in GQL definition. (#65)
+  - remove simulator start/stop from grpc (#66)
+  - add avgBlockTime to stat apis (#64)
+  - add pk field to tx (#62)
+  - index invalid txs and enable tx validity filter in api  (#61)
+  - fix protobuf to use 0.5.3 (0.6.x not working with forge now)
+  - Add blacklist state (#57)
+  - add apis to start/stop/get_status simulator (#60)
+  - add-get-health-status-api (#59)
+
 ## 1.4.0 (March 25, 2019)
   - do not check state in check tx pipeline (#58)
 
