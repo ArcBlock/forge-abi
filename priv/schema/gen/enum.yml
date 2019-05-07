@@ -87,7 +87,7 @@
       meta: value=48
     - type: invalid_expiry_date
       meta: value=49
-    - type: invalid_deposits
+    - type: invalid_deposit
       meta: value=50
     - type: forbidden
       meta: value=403
