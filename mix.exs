@@ -66,6 +66,7 @@ defmodule ForgeAbi.MixProject do
       files: [
         "config",
         "lib",
+        "priv",
         "mix.exs",
         "README*",
         "version",

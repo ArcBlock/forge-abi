@@ -1,3 +1,6 @@
+## 1.6.1 (May 07, 2019)
+  - add priv folder
+
 ## 1.6.0 (May 07, 2019)
   - Add error code for withdrawing tether transaction. (#83)
 
