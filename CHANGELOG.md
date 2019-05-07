@@ -1,3 +1,6 @@
+## 1.6.0 (May 07, 2019)
+  - Add error code for withdrawing tether transaction. (#83)
+
 ## 1.5.0 (May 07, 2019)
   - Update readme (#84)
   - use lite vendor proto for js (#82)
