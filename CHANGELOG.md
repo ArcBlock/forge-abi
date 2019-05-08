@@ -1,3 +1,6 @@
+## 1.6.2 (May 08, 2019)
+  - fix license
+
 ## 1.6.1 (May 07, 2019)
   - add priv folder
 

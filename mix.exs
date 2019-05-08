@@ -69,12 +69,14 @@ defmodule ForgeAbi.MixProject do
         "priv",
         "mix.exs",
         "README*",
+        "LICENSE",
         "version",
         ".elixir_version"
       ],
       licenses: ["Apache 2.0"],
       maintainers: [
         "christinaleizhou@gmail.com",
+        "cnredink@gmail.com",
         "dingpl716@gmail.com",
         "sunboshan@gmail.com",
         "tyr.chen@gmail.com"
