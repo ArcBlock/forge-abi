@@ -13,6 +13,7 @@
       type: string
     - name: type
       type: wallet_type
+      meta: deprecated=true
     - name: moniker
       type: string
     - name: context
