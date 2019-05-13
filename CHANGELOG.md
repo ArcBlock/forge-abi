@@ -1,3 +1,6 @@
+## 1.6.3 (May , 132019)
+  - add deprecate support. (#85)
+
 ## 1.6.2 (May 08, 2019)
   - fix license
 
