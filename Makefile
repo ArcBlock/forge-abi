@@ -47,14 +47,8 @@ run:
 
 
 rebuild-proto: prepare-vendor-proto
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,trace_type,tx,type}.proto
-	@make rebuild-goldorin
+	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,tx,trace_type,type}.proto
 	@echo "New protobuf files for elixir created."
-
-rebuild-goldorin:
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH)/gen ./vendors/vendor.proto
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH)/gen $(PROTO_PATH)/{enum,type,state,tx,rpc,trace_type}.proto
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH)/gen $(PROTO_PATH)/service.proto
 
 rebuild-proto-js: prepare-vendor-proto-js
 	# @npm install -g grpc-tools
@@ -79,6 +73,7 @@ prepare-vendor-proto-js:
 prepare-vendor-proto:
 	@echo "Preparing vendor protobuf..."
 	@mkdir -p vendors
+	@rm -rf lib/protobuf/gen; mkdir -p lib/protobuf/gen;
 	@curl --silent https://raw.githubusercontent.com/ArcBlock/ex_abci_proto/master/lib/protos/vendor.proto > ./vendors/vendor.proto
 	@echo "Vendor protobuf file fetched!"
 

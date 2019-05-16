@@ -10,6 +10,12 @@ defmodule ForgeAbi.Util.TypeUrl do
     def decode(data), do: data
   end
 
+  defmodule JsonCodec do
+    @moduledoc false
+    def encode(data), do: Jason.encode!(data)
+    def decode(data), do: Jason.decode!(data)
+  end
+
   alias Google.Protobuf.Any
 
   @table_name :forge_abi
@@ -36,7 +42,8 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:x:tx_status", ForgeAbi.TxStatus},
 
     # dummy codec
-    {"fg:x:address", DummyCodec}
+    {"fg:x:address", DummyCodec},
+    {"fg:x:json", JsonCodec}
   ]
 
   @doc """

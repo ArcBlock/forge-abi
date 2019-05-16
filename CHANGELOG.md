@@ -1,3 +1,7 @@
+## 1.7.0 (May 16, 2019)
+  - add json codec
+  - remove yml files
+
 ## 1.6.3 (May 13, 2019)
   - add deprecate support. (#85)
 
