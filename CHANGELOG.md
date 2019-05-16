@@ -1,3 +1,6 @@
+## 1.7.1 (May 16, 2019)
+  - remove priv
+
 ## 1.7.0 (May 16, 2019)
   - add json codec
   - remove yml files
