@@ -1,3 +1,7 @@
+## 1.8.0 (May 17, 2019)
+  - add missing parent for asset state
+
+
 ## 1.7.1 (May 16, 2019)
   - remove priv
 

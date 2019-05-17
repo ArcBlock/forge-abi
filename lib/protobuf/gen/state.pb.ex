@@ -73,6 +73,7 @@ defmodule ForgeAbi.AssetState do
           ttl: non_neg_integer,
           consumed_time: Google.Protobuf.Timestamp.t(),
           issuer: String.t(),
+          parent: String.t(),
           stake: ForgeAbi.StakeContext.t(),
           context: ForgeAbi.StateContext.t(),
           data: Google.Protobuf.Any.t()
@@ -86,6 +87,7 @@ defmodule ForgeAbi.AssetState do
     :ttl,
     :consumed_time,
     :issuer,
+    :parent,
     :stake,
     :context,
     :data
@@ -99,6 +101,7 @@ defmodule ForgeAbi.AssetState do
   field :ttl, 6, type: :uint32
   field :consumed_time, 7, type: Google.Protobuf.Timestamp
   field :issuer, 8, type: :string
+  field :parent, 9, type: :string
   field :stake, 13, type: ForgeAbi.StakeContext
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 50, type: Google.Protobuf.Any
