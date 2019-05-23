@@ -1121,14 +1121,16 @@ defmodule ForgeAbi.RequestListTethers do
           paging: ForgeAbi.PageInput.t(),
           depositor: String.t(),
           withdrawer: String.t(),
-          custodian: String.t()
+          custodian: String.t(),
+          available: boolean
         }
-  defstruct [:paging, :depositor, :withdrawer, :custodian]
+  defstruct [:paging, :depositor, :withdrawer, :custodian, :available]
 
   field :paging, 1, type: ForgeAbi.PageInput
   field :depositor, 2, type: :string
   field :withdrawer, 3, type: :string
   field :custodian, 4, type: :string
+  field :available, 5, type: :bool
 end
 
 defmodule ForgeAbi.ResponseListTethers do

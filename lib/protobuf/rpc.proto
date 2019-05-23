@@ -430,6 +430,7 @@ message RequestListTethers {
   string depositor = 2;
   string withdrawer = 3;
   string custodian = 4;
+  bool  available = 5;
 }
 
 message ResponseListTethers {
