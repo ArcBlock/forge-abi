@@ -3,8 +3,8 @@ defmodule ForgeAbi.CodeInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          checksum: String.t(),
-          binary: String.t()
+          checksum: binary,
+          binary: binary
         }
   defstruct [:checksum, :binary]
 
@@ -42,7 +42,7 @@ defmodule ForgeAbi.DeployProtocolTx do
           sources: [String.t()],
           code: [ForgeAbi.CodeInfo.t()],
           tags: [String.t()],
-          data: Google.Protobuf.Any.t()
+          data: Google.Protobuf.Any.t() | nil
         }
   defstruct [
     :address,
@@ -83,7 +83,7 @@ defmodule ForgeAbi.ConsensusUpgradeTx do
           max_gas: integer,
           max_validators: non_neg_integer,
           max_candidates: non_neg_integer,
-          data: Google.Protobuf.Any.t()
+          data: Google.Protobuf.Any.t() | nil
         }
   defstruct [:validators, :max_bytes, :max_gas, :max_validators, :max_candidates, :data]
 
@@ -100,9 +100,9 @@ defmodule ForgeAbi.SysUpgradeTx do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          task: ForgeAbi.UpgradeTask.t(),
+          task: ForgeAbi.UpgradeTask.t() | nil,
           grace_period: non_neg_integer,
-          data: Google.Protobuf.Any.t()
+          data: Google.Protobuf.Any.t() | nil
         }
   defstruct [:task, :grace_period, :data]
 

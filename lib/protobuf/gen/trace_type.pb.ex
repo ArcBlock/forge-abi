@@ -61,7 +61,7 @@ defmodule ForgeAbi.AddressFilter do
   @type t :: %__MODULE__{
           sender: String.t(),
           receiver: String.t(),
-          direction: integer
+          direction: atom | integer
         }
   defstruct [:sender, :receiver, :direction]
 
@@ -96,9 +96,9 @@ defmodule ForgeAbi.IndexedTransaction do
           receiver: String.t(),
           time: String.t(),
           type: String.t(),
-          tx: ForgeAbi.Transaction.t(),
+          tx: ForgeAbi.Transaction.t() | nil,
           valid: boolean,
-          code: integer
+          code: atom | integer
         }
   defstruct [:hash, :sender, :receiver, :time, :type, :tx, :valid, :code]
 
@@ -118,7 +118,7 @@ defmodule ForgeAbi.IndexedAccountState do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          balance: ForgeAbi.BigUint.t(),
+          balance: ForgeAbi.BigUint.t() | nil,
           num_assets: non_neg_integer,
           num_txs: non_neg_integer,
           nonce: non_neg_integer,
@@ -127,9 +127,9 @@ defmodule ForgeAbi.IndexedAccountState do
           moniker: String.t(),
           migrated_from: String.t(),
           migrated_to: String.t(),
-          total_received_stakes: ForgeAbi.BigUint.t(),
-          total_stakes: ForgeAbi.BigUint.t(),
-          total_unstakes: ForgeAbi.BigUint.t(),
+          total_received_stakes: ForgeAbi.BigUint.t() | nil,
+          total_stakes: ForgeAbi.BigUint.t() | nil,
+          total_unstakes: ForgeAbi.BigUint.t() | nil,
           recent_num_txs: [non_neg_integer]
         }
   defstruct [
@@ -193,7 +193,7 @@ defmodule ForgeAbi.IndexedStakeState do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          balance: ForgeAbi.BigUint.t(),
+          balance: ForgeAbi.BigUint.t() | nil,
           sender: String.t(),
           receiver: String.t(),
           genesis_time: String.t(),
@@ -247,10 +247,10 @@ defmodule ForgeAbi.HealthStatus do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          consensus: ForgeAbi.ConsensusStatus.t(),
-          network: ForgeAbi.NetworkStatus.t(),
-          storage: ForgeAbi.StorageStatus.t(),
-          forge: ForgeAbi.ForgeStatus.t()
+          consensus: ForgeAbi.ConsensusStatus.t() | nil,
+          network: ForgeAbi.NetworkStatus.t() | nil,
+          storage: ForgeAbi.StorageStatus.t() | nil,
+          forge: ForgeAbi.ForgeStatus.t() | nil
         }
   defstruct [:consensus, :network, :storage, :forge]
 
@@ -298,7 +298,7 @@ defmodule ForgeAbi.StorageStatus do
           health: boolean,
           indexer_server: String.t(),
           state_db: String.t(),
-          disk_space: ForgeAbi.DiskSpaceStatus.t()
+          disk_space: ForgeAbi.DiskSpaceStatus.t() | nil
         }
   defstruct [:health, :indexer_server, :state_db, :disk_space]
 
@@ -330,7 +330,7 @@ defmodule ForgeAbi.ForgeStatus do
           health: boolean,
           abi_server: String.t(),
           forge_web: String.t(),
-          abci_server: ForgeAbi.AbciServerStatus.t()
+          abci_server: ForgeAbi.AbciServerStatus.t() | nil
         }
   defstruct [:health, :abi_server, :forge_web, :abci_server]
 
@@ -359,7 +359,7 @@ defmodule ForgeAbi.ValidityFilter do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          validity: integer
+          validity: atom | integer
         }
   defstruct [:validity]
 
