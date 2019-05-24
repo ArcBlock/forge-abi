@@ -1,3 +1,6 @@
+## 1.8.1 (May 23, 2019)
+  - Support listing tethers.
+
 ## 1.8.0 (May 17, 2019)
   - add missing parent for asset state
 

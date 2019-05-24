@@ -1113,6 +1113,42 @@ defmodule ForgeAbi.ResponseListBlocks do
   field :blocks, 3, repeated: true, type: ForgeAbi.IndexedBlock
 end
 
+defmodule ForgeAbi.RequestListTethers do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t(),
+          depositor: String.t(),
+          withdrawer: String.t(),
+          custodian: String.t(),
+          available: boolean
+        }
+  defstruct [:paging, :depositor, :withdrawer, :custodian, :available]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :depositor, 2, type: :string
+  field :withdrawer, 3, type: :string
+  field :custodian, 4, type: :string
+  field :available, 5, type: :bool
+end
+
+defmodule ForgeAbi.ResponseListTethers do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: integer,
+          page: ForgeAbi.PageInfo.t(),
+          tethers: [ForgeAbi.TetherState.t()]
+        }
+  defstruct [:code, :page, :tethers]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :tethers, 3, repeated: true, type: ForgeAbi.TetherState
+end
+
 defmodule ForgeAbi.RequestGetHealthStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
