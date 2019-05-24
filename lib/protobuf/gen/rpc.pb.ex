@@ -1124,7 +1124,7 @@ defmodule ForgeAbi.RequestListTethers do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
+          paging: ForgeAbi.PageInput.t() | nil,
           depositor: String.t(),
           withdrawer: String.t(),
           custodian: String.t(),
@@ -1144,8 +1144,8 @@ defmodule ForgeAbi.ResponseListTethers do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           tethers: [ForgeAbi.TetherState.t()]
         }
   defstruct [:code, :page, :tethers]
