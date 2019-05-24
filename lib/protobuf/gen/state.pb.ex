@@ -3,23 +3,23 @@ defmodule ForgeAbi.AccountState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          balance: ForgeAbi.BigUint.t(),
+          balance: ForgeAbi.BigUint.t() | nil,
           nonce: non_neg_integer,
           num_txs: non_neg_integer,
           address: String.t(),
-          pk: String.t(),
-          type: ForgeAbi.WalletType.t(),
+          pk: binary,
+          type: ForgeAbi.WalletType.t() | nil,
           moniker: String.t(),
-          context: ForgeAbi.StateContext.t(),
+          context: ForgeAbi.StateContext.t() | nil,
           issuer: String.t(),
           migrated_to: [String.t()],
           migrated_from: [String.t()],
           num_assets: non_neg_integer,
-          stake: ForgeAbi.StakeContext.t(),
-          pinned_files: ForgeAbi.CircularQueue.t(),
-          poke: ForgeAbi.PokeInfo.t(),
-          deposit_received: ForgeAbi.BigUint.t(),
-          data: Google.Protobuf.Any.t()
+          stake: ForgeAbi.StakeContext.t() | nil,
+          pinned_files: ForgeAbi.CircularQueue.t() | nil,
+          poke: ForgeAbi.PokeInfo.t() | nil,
+          deposit_received: ForgeAbi.BigUint.t() | nil,
+          data: Google.Protobuf.Any.t() | nil
         }
   defstruct [
     :balance,
@@ -71,12 +71,12 @@ defmodule ForgeAbi.AssetState do
           readonly: boolean,
           transferrable: boolean,
           ttl: non_neg_integer,
-          consumed_time: Google.Protobuf.Timestamp.t(),
+          consumed_time: Google.Protobuf.Timestamp.t() | nil,
           issuer: String.t(),
           parent: String.t(),
-          stake: ForgeAbi.StakeContext.t(),
-          context: ForgeAbi.StateContext.t(),
-          data: Google.Protobuf.Any.t()
+          stake: ForgeAbi.StakeContext.t() | nil,
+          context: ForgeAbi.StateContext.t() | nil,
+          data: Google.Protobuf.Any.t() | nil
         }
   defstruct [
     :address,
@@ -127,18 +127,18 @@ defmodule ForgeAbi.ForgeState do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          consensus: ForgeAbi.ConsensusParams.t(),
-          tasks: %{non_neg_integer => ForgeAbi.UpgradeTasks.t()},
-          stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t()},
+          consensus: ForgeAbi.ConsensusParams.t() | nil,
+          tasks: %{non_neg_integer => ForgeAbi.UpgradeTasks.t() | nil},
+          stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t() | nil},
           version: String.t(),
-          forge_app_hash: String.t(),
-          token: ForgeAbi.ForgeToken.t(),
-          tx_config: ForgeAbi.TransactionConfig.t(),
-          stake_config: ForgeAbi.StakeConfig.t(),
-          poke_config: ForgeAbi.PokeConfig.t(),
+          forge_app_hash: binary,
+          token: ForgeAbi.ForgeToken.t() | nil,
+          tx_config: ForgeAbi.TransactionConfig.t() | nil,
+          stake_config: ForgeAbi.StakeConfig.t() | nil,
+          poke_config: ForgeAbi.PokeConfig.t() | nil,
           protocols: [ForgeAbi.CoreProtocol.t()],
-          upgrade_info: ForgeAbi.UpgradeInfo.t(),
-          data: Google.Protobuf.Any.t()
+          upgrade_info: ForgeAbi.UpgradeInfo.t() | nil,
+          data: Google.Protobuf.Any.t() | nil
         }
   defstruct [
     :address,
@@ -177,7 +177,7 @@ defmodule ForgeAbi.ForgeState.TasksEntry do
 
   @type t :: %__MODULE__{
           key: non_neg_integer,
-          value: ForgeAbi.UpgradeTasks.t()
+          value: ForgeAbi.UpgradeTasks.t() | nil
         }
   defstruct [:key, :value]
 
@@ -191,7 +191,7 @@ defmodule ForgeAbi.ForgeState.StakeSummaryEntry do
 
   @type t :: %__MODULE__{
           key: non_neg_integer,
-          value: ForgeAbi.StakeSummary.t()
+          value: ForgeAbi.StakeSummary.t() | nil
         }
   defstruct [:key, :value]
 
@@ -205,10 +205,10 @@ defmodule ForgeAbi.RootState do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          account: String.t(),
-          asset: String.t(),
-          receipt: String.t(),
-          protocol: String.t()
+          account: binary,
+          asset: binary,
+          receipt: binary,
+          protocol: binary
         }
   defstruct [:address, :account, :asset, :receipt, :protocol]
 
@@ -227,10 +227,10 @@ defmodule ForgeAbi.StakeState do
           address: String.t(),
           from: String.t(),
           to: String.t(),
-          balance: ForgeAbi.BigUint.t(),
+          balance: ForgeAbi.BigUint.t() | nil,
           message: String.t(),
-          context: ForgeAbi.StateContext.t(),
-          data: Google.Protobuf.Any.t()
+          context: ForgeAbi.StateContext.t() | nil,
+          data: Google.Protobuf.Any.t() | nil
         }
   defstruct [:address, :from, :to, :balance, :message, :context, :data]
 
@@ -251,9 +251,9 @@ defmodule ForgeAbi.StatisticsState do
           address: String.t(),
           num_blocks: non_neg_integer,
           num_txs: non_neg_integer,
-          num_stakes: ForgeAbi.BigUint.t(),
+          num_stakes: ForgeAbi.BigUint.t() | nil,
           num_validators: non_neg_integer,
-          tx_statistics: ForgeAbi.TxStatistics.t()
+          tx_statistics: ForgeAbi.TxStatistics.t() | nil
         }
   defstruct [:address, :num_blocks, :num_txs, :num_stakes, :num_validators, :tx_statistics]
 
@@ -283,13 +283,13 @@ defmodule ForgeAbi.ProtocolState do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          itx: ForgeAbi.DeployProtocolTx.t(),
-          root_hash: String.t(),
-          status: integer,
+          itx: ForgeAbi.DeployProtocolTx.t() | nil,
+          root_hash: binary,
+          status: atom | integer,
           migrated_to: [String.t()],
           migrated_from: [String.t()],
-          context: ForgeAbi.StateContext.t(),
-          data: Google.Protobuf.Any.t()
+          context: ForgeAbi.StateContext.t() | nil,
+          data: Google.Protobuf.Any.t() | nil
         }
   defstruct [:address, :itx, :root_hash, :status, :migrated_to, :migrated_from, :context, :data]
 
@@ -313,11 +313,11 @@ defmodule ForgeAbi.TetherState do
           custodian: String.t(),
           depositor: String.t(),
           withdrawer: String.t(),
-          value: ForgeAbi.BigUint.t(),
-          commission: ForgeAbi.BigUint.t(),
-          charge: ForgeAbi.BigUint.t(),
+          value: ForgeAbi.BigUint.t() | nil,
+          commission: ForgeAbi.BigUint.t() | nil,
+          charge: ForgeAbi.BigUint.t() | nil,
           target: String.t(),
-          locktime: Google.Protobuf.Timestamp.t(),
+          locktime: Google.Protobuf.Timestamp.t() | nil,
           address: String.t()
         }
   defstruct [
