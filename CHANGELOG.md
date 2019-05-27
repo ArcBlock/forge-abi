@@ -1,3 +1,6 @@
+## 1.8.2 (May 27, 2019)
+  - support force upgrade
+
 ## 1.8.1 (May 23, 2019)
   - Support listing tethers.
 
