@@ -990,10 +990,12 @@ defmodule ForgeAbi.UpgradeInfo do
 
   @type t :: %__MODULE__{
           height: non_neg_integer,
-          version: String.t()
+          version: String.t(),
+          force: boolean
         }
-  defstruct [:height, :version]
+  defstruct [:height, :version, :force]
 
   field :height, 1, type: :uint64
   field :version, 2, type: :string
+  field :force, 3, type: :bool
 end

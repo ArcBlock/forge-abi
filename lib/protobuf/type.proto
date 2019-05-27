@@ -377,4 +377,5 @@ message PokeConfig {
 message UpgradeInfo {
   uint64 height = 1;
   string version = 2;
+  bool force = 3;
 }
