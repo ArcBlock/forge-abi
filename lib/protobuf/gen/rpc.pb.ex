@@ -822,8 +822,12 @@ defmodule ForgeAbi.RequestGetConfig do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
-  @type t :: %__MODULE__{}
-  defstruct []
+  @type t :: %__MODULE__{
+          parsed: boolean
+        }
+  defstruct [:parsed]
+
+  field :parsed, 1, type: :bool
 end
 
 defmodule ForgeAbi.ResponseGetConfig do

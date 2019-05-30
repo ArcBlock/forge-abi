@@ -1,3 +1,6 @@
+## 1.9.1 (May 30, 2019)
+  - support retrieving parsed config
+
 ## 1.8.1 (May 23, 2019)
   - Support listing tethers.
 
