@@ -1,3 +1,6 @@
+## 1.9.2 (May 30, 2019)
+  - flexible decimal for forge sdk multiple chain support
+
 ## 1.9.1 (May 30, 2019)
   - support retrieving parsed config
 

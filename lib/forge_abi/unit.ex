@@ -43,13 +43,14 @@ defmodule ForgeAbi.Unit do
   @spec one_token(non_neg_integer()) :: non_neg_integer()
   defdelegate one_token(decimal \\ 0), to: BigInt
 
-  @spec token_to_unit(number()) :: BigUint.t()
-  def token_to_unit(n), do: new_unit(round(n * one_token()))
+  @spec token_to_unit(number(), non_neg_integer()) :: BigUint.t()
+  def token_to_unit(n, decimal \\ 0), do: new_unit(round(n * one_token(decimal)))
 
-  @spec unit_to_token(BigUint.t() | non_neg_integer()) :: number()
-  def unit_to_token(i) when is_integer(i), do: div(i, one_token())
+  @spec unit_to_token(BigUint.t() | non_neg_integer(), non_neg_integer()) :: number()
+  def unit_to_token(unit, decimal \\ 0)
+  def unit_to_token(i, decimal) when is_integer(i), do: div(i, one_token(decimal))
 
-  def unit_to_token(v) do
-    div(BigInt.to_int(v), one_token())
+  def unit_to_token(v, decimal) do
+    div(BigInt.to_int(v), one_token(decimal))
   end
 end
