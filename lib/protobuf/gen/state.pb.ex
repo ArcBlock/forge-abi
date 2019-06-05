@@ -208,15 +208,19 @@ defmodule ForgeAbi.RootState do
           account: binary,
           asset: binary,
           receipt: binary,
-          protocol: binary
+          protocol: binary,
+          governance: binary,
+          custom: binary
         }
-  defstruct [:address, :account, :asset, :receipt, :protocol]
+  defstruct [:address, :account, :asset, :receipt, :protocol, :governance, :custom]
 
   field :address, 1, type: :string
   field :account, 2, type: :bytes
   field :asset, 3, type: :bytes
   field :receipt, 4, type: :bytes
   field :protocol, 5, type: :bytes
+  field :governance, 6, type: :bytes
+  field :custom, 7, type: :bytes
 end
 
 defmodule ForgeAbi.StakeState do
