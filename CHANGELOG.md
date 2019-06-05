@@ -1,3 +1,6 @@
+## 1.9.3 (June 5, 2019)
+  - Add two more column families.
+  
 ## 1.9.2 (May 30, 2019)
   - flexible decimal for forge sdk multiple chain support
 
