@@ -19,6 +19,7 @@ message AccountState {
   string moniker = 7;
   StateContext context = 8;
   string issuer = 9;
+  BigUint gas_balance = 10;
 
   // the address that is being migrated. Once this is set this account state is
   // read only. No further tx can alter this account state. And tx with "from"

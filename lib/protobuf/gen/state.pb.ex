@@ -12,6 +12,7 @@ defmodule ForgeAbi.AccountState do
           moniker: String.t(),
           context: ForgeAbi.StateContext.t() | nil,
           issuer: String.t(),
+          gas_balance: ForgeAbi.BigUint.t() | nil,
           migrated_to: [String.t()],
           migrated_from: [String.t()],
           num_assets: non_neg_integer,
@@ -31,6 +32,7 @@ defmodule ForgeAbi.AccountState do
     :moniker,
     :context,
     :issuer,
+    :gas_balance,
     :migrated_to,
     :migrated_from,
     :num_assets,
@@ -50,6 +52,7 @@ defmodule ForgeAbi.AccountState do
   field :moniker, 7, type: :string
   field :context, 8, type: ForgeAbi.StateContext
   field :issuer, 9, type: :string
+  field :gas_balance, 10, type: ForgeAbi.BigUint
   field :migrated_to, 13, repeated: true, type: :string
   field :migrated_from, 14, repeated: true, type: :string
   field :num_assets, 15, type: :uint64
