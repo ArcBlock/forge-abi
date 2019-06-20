@@ -140,6 +140,7 @@ defmodule ForgeAbi.ForgeState do
           stake_config: ForgeAbi.StakeConfig.t() | nil,
           poke_config: ForgeAbi.PokeConfig.t() | nil,
           protocols: [ForgeAbi.CoreProtocol.t()],
+          gas: %{String.t() => integer},
           upgrade_info: ForgeAbi.UpgradeInfo.t() | nil,
           data: Google.Protobuf.Any.t() | nil
         }
@@ -155,6 +156,7 @@ defmodule ForgeAbi.ForgeState do
     :stake_config,
     :poke_config,
     :protocols,
+    :gas,
     :upgrade_info,
     :data
   ]
@@ -170,6 +172,7 @@ defmodule ForgeAbi.ForgeState do
   field :stake_config, 10, type: ForgeAbi.StakeConfig
   field :poke_config, 11, type: ForgeAbi.PokeConfig
   field :protocols, 12, repeated: true, type: ForgeAbi.CoreProtocol
+  field :gas, 13, repeated: true, type: ForgeAbi.ForgeState.GasEntry, map: true
   field :upgrade_info, 14, type: ForgeAbi.UpgradeInfo
   field :data, 15, type: Google.Protobuf.Any
 end
@@ -200,6 +203,20 @@ defmodule ForgeAbi.ForgeState.StakeSummaryEntry do
 
   field :key, 1, type: :uint32
   field :value, 2, type: ForgeAbi.StakeSummary
+end
+
+defmodule ForgeAbi.ForgeState.GasEntry do
+  @moduledoc false
+  use Protobuf, map: true, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          key: String.t(),
+          value: integer
+        }
+  defstruct [:key, :value]
+
+  field :key, 1, type: :string
+  field :value, 2, type: :int32
 end
 
 defmodule ForgeAbi.RootState do
