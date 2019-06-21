@@ -19,6 +19,7 @@ message AccountState {
   string moniker = 7;
   StateContext context = 8;
   string issuer = 9;
+  BigUint gas_balance = 10;
 
   // the address that is being migrated. Once this is set this account state is
   // read only. No further tx can alter this account state. And tx with "from"
@@ -85,8 +86,7 @@ message ForgeState {
   StakeConfig stake_config = 10;
   PokeConfig poke_config = 11;
   repeated CoreProtocol protocols = 12;
-
-  // 12-13 is reserved for future
+  map<string, uint32> gas = 13;
   UpgradeInfo upgrade_info = 14;
 
   google.protobuf.Any data = 15; // forge app can define their own app state
