@@ -1,3 +1,6 @@
+## 1.9.4 (June 21, 2019)
+  - Add gas to tx (#94)
+
 ## 1.9.3 (June 5, 2019)
   - Add two more column families.
   
