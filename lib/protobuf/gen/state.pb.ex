@@ -140,7 +140,7 @@ defmodule ForgeAbi.ForgeState do
           stake_config: ForgeAbi.StakeConfig.t() | nil,
           poke_config: ForgeAbi.PokeConfig.t() | nil,
           protocols: [ForgeAbi.CoreProtocol.t()],
-          gas: %{String.t() => integer},
+          gas: %{String.t() => non_neg_integer},
           upgrade_info: ForgeAbi.UpgradeInfo.t() | nil,
           data: Google.Protobuf.Any.t() | nil
         }
@@ -211,12 +211,12 @@ defmodule ForgeAbi.ForgeState.GasEntry do
 
   @type t :: %__MODULE__{
           key: String.t(),
-          value: integer
+          value: non_neg_integer
         }
   defstruct [:key, :value]
 
   field :key, 1, type: :string
-  field :value, 2, type: :int32
+  field :value, 2, type: :uint32
 end
 
 defmodule ForgeAbi.RootState do
