@@ -384,3 +384,31 @@ defmodule ForgeAbi.TetherInfo do
   field :available, 1, type: :bool
   field :hash, 2, type: :string
 end
+
+defmodule ForgeAbi.SwapState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          hash: String.t(),
+          address: String.t(),
+          hashkey: binary,
+          sender: String.t(),
+          receiver: String.t(),
+          value: ForgeAbi.BigUint.t() | nil,
+          assets: [String.t()],
+          locktime: non_neg_integer,
+          hashlock: binary
+        }
+  defstruct [:hash, :address, :hashkey, :sender, :receiver, :value, :assets, :locktime, :hashlock]
+
+  field :hash, 1, type: :string
+  field :address, 2, type: :string
+  field :hashkey, 3, type: :bytes
+  field :sender, 4, type: :string
+  field :receiver, 5, type: :string
+  field :value, 6, type: ForgeAbi.BigUint
+  field :assets, 7, repeated: true, type: :string
+  field :locktime, 8, type: :uint32
+  field :hashlock, 9, type: :bytes
+end

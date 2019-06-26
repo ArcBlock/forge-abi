@@ -164,3 +164,18 @@ message TetherInfo {
   bool available = 1;
   string hash = 2;
 }
+
+// TODO: [peiling] We have already defined this state in core protocols repo.
+// The only reason we define this state here again is because the protobuf 
+// definition ResponseGetSwapState needs to reference to this SwapState.
+message SwapState {
+  string hash = 1;
+  string address = 2;
+  bytes hashkey = 3;
+  string sender = 4;
+  string receiver = 5;
+  BigUint value = 6;
+  repeated string assets = 7;
+  uint32 locktime = 8;
+  bytes hashlock = 9;
+}
