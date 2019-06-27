@@ -398,9 +398,21 @@ defmodule ForgeAbi.SwapState do
           value: ForgeAbi.BigUint.t() | nil,
           assets: [String.t()],
           locktime: non_neg_integer,
-          hashlock: binary
+          hashlock: binary,
+          context: ForgeAbi.StateContext.t() | nil
         }
-  defstruct [:hash, :address, :hashkey, :sender, :receiver, :value, :assets, :locktime, :hashlock]
+  defstruct [
+    :hash,
+    :address,
+    :hashkey,
+    :sender,
+    :receiver,
+    :value,
+    :assets,
+    :locktime,
+    :hashlock,
+    :context
+  ]
 
   field :hash, 1, type: :string
   field :address, 2, type: :string
@@ -411,4 +423,5 @@ defmodule ForgeAbi.SwapState do
   field :assets, 7, repeated: true, type: :string
   field :locktime, 8, type: :uint32
   field :hashlock, 9, type: :bytes
+  field :context, 10, type: ForgeAbi.StateContext
 end

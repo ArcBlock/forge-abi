@@ -178,4 +178,5 @@ message SwapState {
   repeated string assets = 7;
   uint32 locktime = 8;
   bytes hashlock = 9;
+  StateContext context = 10;
 }
