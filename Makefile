@@ -45,6 +45,12 @@ run:
 	@echo "Running the software..."
 	@iex -S mix
 
+gen-error-code-files:
+	@mkdir -p priv/error_code
+	@mix ForgeAbi.GenErrorCode
+
+gen-error-code-doc: gen-error-code-files
+	@mv priv ../forge-docs/src/error_codes
 
 rebuild-proto: prepare-vendor-proto
 	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,tx,trace_type,type}.proto

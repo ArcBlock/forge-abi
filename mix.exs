@@ -45,6 +45,7 @@ defmodule ForgeAbi.MixProject do
       {:jason, "~> 1.1"},
       {:protobuf, "~> 0.6.1"},
       {:typed_struct, "~> 0.1.4"},
+      {:yaml_elixir, "~> 2.4"},
 
       # dev and test
       {:credo, "~> 1.0.0", only: [:dev, :test]},
