@@ -1,3 +1,6 @@
+## 1.9.5 (July 3, 2019)
+  - Support Atomic Swap.
+
 ## 1.9.4 (June 21, 2019)
   - Add gas to tx (#94)
 
