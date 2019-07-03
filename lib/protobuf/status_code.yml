@@ -1,8 +1,93 @@
 ---
-invalid_nonce: the transaction has been seen in the chain. So this is being treated as a replay tx.
-insufficient_funds:
-  default: the sender has no enough tokens to send tx
-  stake: |
-    the stake state has no enough tokens to ...
-    Normally this is due to ...
-    check the balance by `get_stake_state(<your_stake_address>)` for more information.
+invalid_nonce: This transaction has been seen in the chain and is treated as a replay tx.
+  poke: The nonce of PokeTx must be 0.
+
+invalid_signature: This transaction's signature does not match the pk.
+
+invalid_sender_state: The sender of this transaction does not exist on this chain.
+
+invalid_receiver_state: The receiver of this transaction does not exist on this chain.
+
+insufficient_data: There is some required data missing to construct this transaction properly.
+
+insufficient_fund: There is not enough balance in participants account.
+
+invalid_owner: The owner of this asset does not exist on this chain.
+
+invalid_tx: This transaction is not valid.
+
+unsupported_tx: This transaction contains type_urls not registered on the chain.
+
+expired_tx: This transaction has expired.
+
+too_many_txs: There are too many transactions.
+
+invalid_lock_status: The lock status is invalid.
+
+invalid_request: This request is invalid.
+
+invalid_moniker: This moniker is invalid. Moniker should have at least 4 characters.
+
+invalid_passphrase: This passphrase is invalid.
+
+invalid_multisig: This multisig is invalid.
+
+invalid_wallet: This wallet is invalid.
+
+invalid_chain_id: This chain_id is invalid.
+
+consensus_rpc_error: This transaction has already occured on the chain before.
+
+storage_rpc_error: This is a storage rpc error.
+
+noent: Noent
+
+account_migrated: This account has migrated to a new one.
+
+unsupported_stake: This stake is not supported.
+
+insufficient_stake: The require stake amount is not enough.
+
+invalid_stake_state: The required stake does not exist.
+
+expired_wallet_token: The token included in this transaction has expired.
+
+banned_unstake: This unstake action is banned.
+
+invalid_asset: This asset address does not exist on the chain.
+
+invalid_tx_size: The size of this transaction is too large.
+
+invalid_signer_state: The address of this transaction's signer does not exist on the chain.
+
+invalid_forge_state: The forge state is invalid.
+
+expired_asset: This asset has expired.
+
+untransferrable_asset: This asset can not be transferred.
+
+readonly_asset: This asset is readonly and therefore can not be modified.
+
+consumed_asset: This asset has already been consumed before.
+
+invalid_deposit_value: The deposit value is not valid.
+
+exceed_deposit_cap: The amount exceeds the deposit cap.
+
+invalid_deposit_target: The target of this deposit is invalid.
+
+invalid_depositor: The depositor does not exist on the chain.
+
+invalid_withdrawer: The withdrawer does not exist on the chain.
+
+duplicate_tether: The tether is duplicated.
+
+invalid_expiry_date: The expiry date is invalid.
+
+invalid_deposit: The depoisit is invalid.
+
+invalid_custodian: The custodian does not exist on the chain.
+
+forbidden = 403;
+internal = 500;
+timeout = 504;
