@@ -450,6 +450,19 @@ message ResponseListTethers {
   repeated TetherState tethers = 3;
 }
 
+message RequestListSwap {
+  PageInput paging = 1;
+  string sender = 2;
+  string receiver = 3;
+  bool available = 4;
+}
+
+message ResponseListSwap {
+  StatusCode code = 1;
+  PageInfo page = 2;
+  repeated SwapState swap = 3;
+}
+
 message RequestGetHealthStatus {}
 
 message ResponseGetHealthStatus {

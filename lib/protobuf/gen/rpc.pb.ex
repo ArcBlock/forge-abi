@@ -1189,6 +1189,40 @@ defmodule ForgeAbi.ResponseListTethers do
   field :tethers, 3, repeated: true, type: ForgeAbi.TetherState
 end
 
+defmodule ForgeAbi.RequestListSwap do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          paging: ForgeAbi.PageInput.t() | nil,
+          sender: String.t(),
+          receiver: String.t(),
+          available: boolean
+        }
+  defstruct [:paging, :sender, :receiver, :available]
+
+  field :paging, 1, type: ForgeAbi.PageInput
+  field :sender, 2, type: :string
+  field :receiver, 3, type: :string
+  field :available, 4, type: :bool
+end
+
+defmodule ForgeAbi.ResponseListSwap do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
+          swap: [ForgeAbi.SwapState.t()]
+        }
+  defstruct [:code, :page, :swap]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :page, 2, type: ForgeAbi.PageInfo
+  field :swap, 3, repeated: true, type: ForgeAbi.SwapState
+end
+
 defmodule ForgeAbi.RequestGetHealthStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
