@@ -207,8 +207,10 @@ defmodule ForgeAbi.Util.BigInt do
   defp do_sub(false, va, vb), do: to_unsigned(va) - to_unsigned(vb)
   defp do_sub(true, va, vb), do: to_unsigned(va) + to_unsigned(vb)
 
-  defp decimal_to_int(0),
-    do: round(:math.pow(10, Application.get_env(:forge_abi, :decimal)))
+  defp decimal_to_int(0) do
+    decimal = Application.get_env(:forge_abi, :decimal)
+    round(:math.pow(10, decimal))
+  end
 
   defp decimal_to_int(d), do: round(:math.pow(10, d))
 end

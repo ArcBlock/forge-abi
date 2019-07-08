@@ -74,6 +74,8 @@ defmodule ForgeAbi.StateRpc.Service do
   rpc :get_tether_state,
       stream(ForgeAbi.RequestGetTetherState),
       stream(ForgeAbi.ResponseGetTetherState)
+
+  rpc :get_swap_state, stream(ForgeAbi.RequestGetSwapState), stream(ForgeAbi.ResponseGetSwapState)
 end
 
 defmodule ForgeAbi.StateRpc.Stub do
@@ -116,6 +118,7 @@ defmodule ForgeAbi.StatsRpc.Service do
   rpc :list_blocks, ForgeAbi.RequestListBlocks, ForgeAbi.ResponseListBlocks
   rpc :get_health_status, ForgeAbi.RequestGetHealthStatus, ForgeAbi.ResponseGetHealthStatus
   rpc :list_tethers, ForgeAbi.RequestListTethers, ForgeAbi.ResponseListTethers
+  rpc :list_swap, ForgeAbi.RequestListSwap, ForgeAbi.ResponseListSwap
 end
 
 defmodule ForgeAbi.StatsRpc.Stub do

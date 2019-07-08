@@ -17,7 +17,7 @@ defmodule ForgeAbi do
   defdelegate decode_any!(any), to: TypeUrl
 
   # unit related
-  defdelegate one_token, to: ForgeAbi.Unit
-  defdelegate token_to_unit(num), to: ForgeAbi.Unit
-  defdelegate unit_to_token(unit), to: ForgeAbi.Unit
+  defdelegate one_token(decimal \\ 0), to: ForgeAbi.Unit
+  defdelegate token_to_unit(num, decimal \\ 0), to: ForgeAbi.Unit
+  defdelegate unit_to_token(unit, decimal \\ 0), to: ForgeAbi.Unit
 end

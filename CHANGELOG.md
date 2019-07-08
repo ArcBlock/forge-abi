@@ -1,3 +1,18 @@
+## 1.9.5 (July 3, 2019)
+  - Support Atomic Swap.
+
+## 1.9.4 (June 21, 2019)
+  - Add gas to tx (#94)
+
+## 1.9.3 (June 5, 2019)
+  - Add two more column families.
+  
+## 1.9.2 (May 30, 2019)
+  - flexible decimal for forge sdk multiple chain support
+
+## 1.9.1 (May 30, 2019)
+  - support retrieving parsed config
+
 ## 1.8.1 (May 23, 2019)
   - Support listing tethers.
 

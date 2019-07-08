@@ -12,6 +12,7 @@ defmodule ForgeAbi.AccountState do
           moniker: String.t(),
           context: ForgeAbi.StateContext.t() | nil,
           issuer: String.t(),
+          gas_balance: ForgeAbi.BigUint.t() | nil,
           migrated_to: [String.t()],
           migrated_from: [String.t()],
           num_assets: non_neg_integer,
@@ -31,6 +32,7 @@ defmodule ForgeAbi.AccountState do
     :moniker,
     :context,
     :issuer,
+    :gas_balance,
     :migrated_to,
     :migrated_from,
     :num_assets,
@@ -50,6 +52,7 @@ defmodule ForgeAbi.AccountState do
   field :moniker, 7, type: :string
   field :context, 8, type: ForgeAbi.StateContext
   field :issuer, 9, type: :string
+  field :gas_balance, 10, type: ForgeAbi.BigUint
   field :migrated_to, 13, repeated: true, type: :string
   field :migrated_from, 14, repeated: true, type: :string
   field :num_assets, 15, type: :uint64
@@ -137,6 +140,7 @@ defmodule ForgeAbi.ForgeState do
           stake_config: ForgeAbi.StakeConfig.t() | nil,
           poke_config: ForgeAbi.PokeConfig.t() | nil,
           protocols: [ForgeAbi.CoreProtocol.t()],
+          gas: %{String.t() => non_neg_integer},
           upgrade_info: ForgeAbi.UpgradeInfo.t() | nil,
           data: Google.Protobuf.Any.t() | nil
         }
@@ -152,6 +156,7 @@ defmodule ForgeAbi.ForgeState do
     :stake_config,
     :poke_config,
     :protocols,
+    :gas,
     :upgrade_info,
     :data
   ]
@@ -167,6 +172,7 @@ defmodule ForgeAbi.ForgeState do
   field :stake_config, 10, type: ForgeAbi.StakeConfig
   field :poke_config, 11, type: ForgeAbi.PokeConfig
   field :protocols, 12, repeated: true, type: ForgeAbi.CoreProtocol
+  field :gas, 13, repeated: true, type: ForgeAbi.ForgeState.GasEntry, map: true
   field :upgrade_info, 14, type: ForgeAbi.UpgradeInfo
   field :data, 15, type: Google.Protobuf.Any
 end
@@ -199,6 +205,20 @@ defmodule ForgeAbi.ForgeState.StakeSummaryEntry do
   field :value, 2, type: ForgeAbi.StakeSummary
 end
 
+defmodule ForgeAbi.ForgeState.GasEntry do
+  @moduledoc false
+  use Protobuf, map: true, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          key: String.t(),
+          value: non_neg_integer
+        }
+  defstruct [:key, :value]
+
+  field :key, 1, type: :string
+  field :value, 2, type: :uint32
+end
+
 defmodule ForgeAbi.RootState do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -208,15 +228,19 @@ defmodule ForgeAbi.RootState do
           account: binary,
           asset: binary,
           receipt: binary,
-          protocol: binary
+          protocol: binary,
+          governance: binary,
+          custom: binary
         }
-  defstruct [:address, :account, :asset, :receipt, :protocol]
+  defstruct [:address, :account, :asset, :receipt, :protocol, :governance, :custom]
 
   field :address, 1, type: :string
   field :account, 2, type: :bytes
   field :asset, 3, type: :bytes
   field :receipt, 4, type: :bytes
   field :protocol, 5, type: :bytes
+  field :governance, 6, type: :bytes
+  field :custom, 7, type: :bytes
 end
 
 defmodule ForgeAbi.StakeState do
@@ -359,4 +383,45 @@ defmodule ForgeAbi.TetherInfo do
 
   field :available, 1, type: :bool
   field :hash, 2, type: :string
+end
+
+defmodule ForgeAbi.SwapState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          hash: String.t(),
+          address: String.t(),
+          hashkey: binary,
+          sender: String.t(),
+          receiver: String.t(),
+          value: ForgeAbi.BigUint.t() | nil,
+          assets: [String.t()],
+          locktime: non_neg_integer,
+          hashlock: binary,
+          context: ForgeAbi.StateContext.t() | nil
+        }
+  defstruct [
+    :hash,
+    :address,
+    :hashkey,
+    :sender,
+    :receiver,
+    :value,
+    :assets,
+    :locktime,
+    :hashlock,
+    :context
+  ]
+
+  field :hash, 1, type: :string
+  field :address, 2, type: :string
+  field :hashkey, 3, type: :bytes
+  field :sender, 4, type: :string
+  field :receiver, 5, type: :string
+  field :value, 6, type: ForgeAbi.BigUint
+  field :assets, 7, repeated: true, type: :string
+  field :locktime, 8, type: :uint32
+  field :hashlock, 9, type: :bytes
+  field :context, 10, type: ForgeAbi.StateContext
 end
