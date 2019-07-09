@@ -47,6 +47,9 @@ defmodule ForgeAbi.StatusCode do
   field :invalid_expiry_date, 49
   field :invalid_deposit, 50
   field :invalid_custodian, 51
+  field :insufficient_gas, 52
+  field :invalid_swap, 53
+  field :invalid_hashkey, 54
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504

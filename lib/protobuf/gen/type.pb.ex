@@ -355,16 +355,18 @@ defmodule ForgeAbi.Transaction do
           nonce: non_neg_integer,
           chain_id: String.t(),
           pk: binary,
+          gas: non_neg_integer,
           signature: binary,
           signatures: [ForgeAbi.Multisig.t()],
           itx: Google.Protobuf.Any.t() | nil
         }
-  defstruct [:from, :nonce, :chain_id, :pk, :signature, :signatures, :itx]
+  defstruct [:from, :nonce, :chain_id, :pk, :gas, :signature, :signatures, :itx]
 
   field :from, 1, type: :string
   field :nonce, 2, type: :uint64
   field :chain_id, 3, type: :string
   field :pk, 4, type: :bytes
+  field :gas, 5, type: :uint32
   field :signature, 13, type: :bytes
   field :signatures, 14, repeated: true, type: ForgeAbi.Multisig
   field :itx, 15, type: Google.Protobuf.Any
