@@ -1,1 +1,0 @@
-the sender has no enough tokens to send tx

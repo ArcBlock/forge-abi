@@ -8,43 +8,37 @@ defmodule Mix.Tasks.ForgeAbi.GenErrorCode do
 
   def write_error_files do
     parsed_file = parse_error_yml()
-    {:ok, summary} = File.open(@output_summary_file, [:write])
-    IO.binwrite(summary, "# Status Code\n\n")
+    write_to_summary("# Status Code\n\n")
 
     for {code_name, info} <- parsed_file do
-      prepare_for_code(summary, code_name)
+      prepare_for_code(code_name)
 
       case is_binary(info) do
-        true -> handle_default_code(summary, code_name, info)
-        false -> handle_tx_codes(info, summary, code_name)
+        true -> handle_default_code(code_name, info)
+        false -> handle_tx_codes(info, code_name)
       end
     end
   end
 
-  defp handle_default_code(summary, code_name, info) do
-    IO.binwrite(summary, "#{info}\n\n")
-
-    {:ok, single_code} =
-      File.open(Path.join(@output_folder, "error_code/#{code_name}/default.md"), [:write])
-
-    IO.binwrite(single_code, "#{info}")
+  defp handle_default_code(code_name, info) do
+    write_to_summary("#{info}\n\n")
+    File.write(Path.join(@output_folder, "error_code/#{code_name}/default.md"), "#{info}")
   end
 
-  defp handle_tx_codes(info, summary, code_name) do
-    for {tx_name, tx_msg} <- info, do: handle_tx_code(summary, code_name, tx_name, tx_msg)
+  defp handle_tx_codes(info, code_name) do
+    for {tx_name, tx_msg} <- info, do: handle_tx_code(code_name, tx_name, tx_msg)
   end
 
-  defp handle_tx_code(summary, code_name, tx_name, tx_msg) do
-    {:ok, single_code} =
-      File.open(Path.join(@output_folder, "error_code/#{code_name}/#{tx_name}.md"), [:write])
+  defp handle_tx_code(code_name, tx_name, tx_msg) do
+    single_file = Path.join(@output_folder, "error_code/#{code_name}/#{tx_name}.md")
 
-    IO.binwrite(single_code, "#{tx_msg}")
-    IO.binwrite(summary, "### #{tx_name}\n\n")
-    IO.binwrite(summary, "#{tx_msg}\n\n")
+    File.write(single_file, "#{tx_msg}")
+    write_to_summary("### #{tx_name}\n\n")
+    write_to_summary("#{tx_msg}\n\n")
   end
 
-  defp prepare_for_code(summary, code_name) do
-    IO.binwrite(summary, "## #{code_name}\n\n")
+  defp prepare_for_code(code_name) do
+    write_to_summary("## #{code_name}\n\n")
     File.mkdir_p(Path.join(@output_folder, "error_code/#{code_name}"))
   end
 
@@ -53,6 +47,10 @@ defmodule Mix.Tasks.ForgeAbi.GenErrorCode do
       {:ok, file} -> file
       {:error, _} -> IO.puts("Fail to parse the status_code.yml file.")
     end
+  end
+
+  defp write_to_summary(content) do
+    File.write(@output_summary_file, content, [:append])
   end
 
   def run(_argv) do

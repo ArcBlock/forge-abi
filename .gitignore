@@ -26,3 +26,4 @@ forge_abi-*.tar
 vendors/vendor.proto
 .tool-versions
 gen_js
+/priv/
