@@ -151,7 +151,7 @@ message TransactionInfo {
   uint64 height = 2;
   uint32 index = 3;
   string hash = 4;
-  repeated abci_vendor.KVPair tags = 5;
+  repeated abci_vendor.Event events = 5;
   StatusCode code = 6;
   google.protobuf.Timestamp time = 7;
 }
