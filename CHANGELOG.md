@@ -1,3 +1,6 @@
+## 1.10.0 (July 10, 2019)
+  - Update tags to events to follow tendermint 0.32.0 upgrade
+
 ## 1.9.5 (July 3, 2019)
   - Support Atomic Swap.
 
