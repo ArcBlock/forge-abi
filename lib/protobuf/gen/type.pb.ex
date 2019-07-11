@@ -381,17 +381,17 @@ defmodule ForgeAbi.TransactionInfo do
           height: non_neg_integer,
           index: non_neg_integer,
           hash: String.t(),
-          events: [AbciVendor.Event.t()],
+          tags: [AbciVendor.KVPair.t()],
           code: atom | integer,
           time: Google.Protobuf.Timestamp.t() | nil
         }
-  defstruct [:tx, :height, :index, :hash, :events, :code, :time]
+  defstruct [:tx, :height, :index, :hash, :tags, :code, :time]
 
   field :tx, 1, type: ForgeAbi.Transaction
   field :height, 2, type: :uint64
   field :index, 3, type: :uint32
   field :hash, 4, type: :string
-  field :events, 5, repeated: true, type: AbciVendor.Event
+  field :tags, 5, repeated: true, type: AbciVendor.KVPair
   field :code, 6, type: ForgeAbi.StatusCode, enum: true
   field :time, 7, type: Google.Protobuf.Timestamp
 end
