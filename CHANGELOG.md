@@ -1,3 +1,6 @@
+## 1.11.0 (July 16, 2019)
+  - Generate error code with provided yml file (#96)
+
 ## 1.10.0 (July 10, 2019)
   - Update tags to events to follow tendermint 0.32.0 upgrade
 
