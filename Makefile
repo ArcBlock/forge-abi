@@ -53,7 +53,7 @@ gen-error-code-doc: gen-error-code-files
 	@mv priv ../forge-docs/src/error_codes
 
 rebuild-proto: prepare-vendor-proto
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,tx,trace_type,type}.proto
+	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,trace_type,tx,type}.proto
 	@echo "New protobuf files for elixir created."
 
 rebuild-proto-js: prepare-vendor-proto-js
