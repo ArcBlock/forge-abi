@@ -14,7 +14,7 @@ This transaction has already occured on the chain before.
 
 ## forbidden
 
-Forbidden.
+Operation is not permitted with current authorization.
 
 ## account_migrated
 
@@ -169,15 +169,15 @@ Possible Causes:
 
 ### default
 
-Possible Causes:
+The transaction cannot pass sanity check. Possible Causes:
   1. Anti Land Attack: Sender and receiver address should not be equal
   2. Anti Replay Attack: This transaction has been seen in the chain and is treated as a replay tx.
-  3. decode tx: This transaction includeds `type-url` that can not be decoded properly.
-  4. verify date: # TODO
-  5. verify itx size: The itx's size in this transaction exceeds max size.
-  6. verify signer: # TODO
+  3. decode tx: This transaction includes `type-url` that can not be decoded properly.
+  4. verify date: the transaction is expired.
+  5. verify itx size: The size of itx in this transaction exceeds max size.
+  6. verify signer: the multisig signer is invalid
   7. verify tx size: The size of this transaction exceeds max size.
-  8. pre_pipeline extract signers: # TODO
+  8. pre_pipeline extract signers: the multisig signer is invalid
 
 
 ### deploy_protocol
@@ -186,8 +186,8 @@ Possible causes:
 1. Sender should be moderator
 2. `DeployProtocolTx.address`, `DeployProtocolTx.name`, `DeployProtocolTx.namespace`, `DeployProtocolTx.code` should not be empty. The size of `DeployProtocolTx.description` should not exceed max size.
 3. `DeployProtocolTx.address` should be correctly calculated using `DeployProtocolTx`.
-4. check_type_urls: #TODO
-5. check_code: #TODO
+4. `type_url` and the module doesn't match.
+5. the binary of the protocol is modified on purpose.
 6. Version of new protocol should be bigger than the old ones.
 
 
@@ -199,7 +199,7 @@ Possible causes:
 
 ### update_asset
 
-If `tx.data` contains `AssetFactory`, 'AssetFactory.price', `AssetFactory.template`. `AssetFactory.allowed_spec_args` and `AssetFactory.asset_anme` can not be empty.
+If `tx.data` contains `AssetFactory`, 'AssetFactory.price', `AssetFactory.template`. `AssetFactory.allowed_spec_args` and `AssetFactory.asset_name` can not be empty.
 
 
 ### upgrade_node
@@ -208,12 +208,12 @@ Possible causes:
 1. `tx.from` should be the same as moderator address
 2. `UpgradeNodeTx.version` should be bigger than forge version
 3. `UpgradeNodeTx.height` should be bigger than current block height.
-4. #TODO upgrade_node protocol.ex line 54
+4. an existing upgrade_node operation is going to be carried out while the new upgrade_node tx has no `override` flag.
 
 
 ## internal
 
-Internal Error
+Internal error occurred - mainly a server implementation issue.
 
 ## invalid_expiry_date
 
@@ -433,7 +433,7 @@ This asset has already been consumed before.
 
 ## timeout
 
-Timeout.
+Operation is timeout.
 
 ## too_many_txs
 
