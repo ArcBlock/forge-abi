@@ -50,7 +50,9 @@ gen-error-code-files:
 	@mix ForgeAbi.GenErrorCode
 
 gen-error-code-doc: gen-error-code-files
-	@mv priv ../forge-docs/src/error_codes
+	@mkdir -p ../forge-docs/src/error_codes
+	@cp -r priv/error_code ../forge-docs/src/error_codes/.error_code
+	@cp priv/error.md ../forge-docs/src/error_codes/error.md
 
 rebuild-proto: prepare-vendor-proto
 	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,trace_type,tx,type}.proto
