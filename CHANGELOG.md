@@ -1,3 +1,6 @@
+## 1.11.1 (July 19, 2019)
+  - chore: add json format of transaction error codes
+
 ## 1.11.0 (July 16, 2019)
   - Generate error code with provided yml file (#96)
 
