@@ -70,6 +70,11 @@ rebuild-proto-json: prepare-vendor-proto-js
 	@pbjs -p ./vendors/ -p $(PROTO_PATH)/ -t json -o $(PROTO_PATH)/gen_js/spec.json $(PROTO_PATH)/*.proto
 	@echo "New protobuf spec json created."
 
+rebuild-status-json:
+	@npm install -g yaml2json
+	@yaml2json ./lib/protobuf/status_code.yml > ./lib/protobuf/status_code.json
+	@echo "status code json generated"
+
 prepare-vendor-proto-js:
 	@echo "Preparing vendor protobuf for js..."
 	@mkdir -p vendors
