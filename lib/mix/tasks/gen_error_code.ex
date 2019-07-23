@@ -6,7 +6,15 @@ defmodule Mix.Tasks.ForgeAbi.GenErrorCode do
   @output_summary_file Path.join(@output_folder, "error.md")
   @input_file Path.join(File.cwd!(), "lib/protobuf/status_code.yml")
 
-  def write_error_files do
+  # output is from `make all-txs` in forge-core-protocols
+  @all_txs ~w(declare account_migrate create_asset acquire_asset consume_asset update_asset deploy_protocol upgrade_node stake exchange transfer deposit_tether exchange_tether withdraw_tether approve_tether revoke_tether poke setup_swap retrieve_swap revoke_swap)
+
+  def run(_argv) do
+    write_error_files()
+  end
+
+  # private functions
+  defp write_error_files do
     parsed_file = parse_error_yml()
     write_to_summary("# Status Code\n\n")
 
@@ -17,6 +25,8 @@ defmodule Mix.Tasks.ForgeAbi.GenErrorCode do
         true -> handle_default_code(code_name, info)
         false -> handle_tx_codes(info, code_name)
       end
+
+      copy_default(code_name)
     end
   end
 
@@ -53,7 +63,13 @@ defmodule Mix.Tasks.ForgeAbi.GenErrorCode do
     File.write(@output_summary_file, content, [:append])
   end
 
-  def run(_argv) do
-    write_error_files()
+  defp copy_default(code_name) do
+    base_path = Path.join(@output_folder, "error_code/#{code_name}")
+    default = Path.join(base_path, "default.md")
+
+    @all_txs
+    |> Enum.map(&Path.join(base_path, "#{&1}.md"))
+    |> Enum.reject(&File.exists?/1)
+    |> Enum.each(&File.copy!(default, &1))
   end
 end
