@@ -58,6 +58,7 @@ enum StatusCode {
   insufficient_gas = 52;
   invalid_swap = 53;
   invalid_hashkey = 54;
+  invalid_delegation = 55;
 
   forbidden = 403;
   internal = 500;

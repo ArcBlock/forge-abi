@@ -69,3 +69,14 @@ message SysUpgradeTx {
   // forge won't touch this field. Only forge app shall handle it.
   google.protobuf.Any data = 15;
 }
+
+message DelegateOp {
+  string type_url = 1;
+  repeated DelegateRule rules = 2;
+}
+
+message DelegateRule {
+  string field = 1;
+  string op = 2;
+  string value = 3;
+}

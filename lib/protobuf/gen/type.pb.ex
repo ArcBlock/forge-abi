@@ -336,13 +336,15 @@ defmodule ForgeAbi.Multisig do
           signer: String.t(),
           pk: binary,
           signature: binary,
+          delegator: String.t(),
           data: Google.Protobuf.Any.t() | nil
         }
-  defstruct [:signer, :pk, :signature, :data]
+  defstruct [:signer, :pk, :signature, :delegator, :data]
 
   field :signer, 1, type: :string
   field :pk, 2, type: :bytes
   field :signature, 3, type: :bytes
+  field :delegator, 4, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
 
@@ -356,17 +358,19 @@ defmodule ForgeAbi.Transaction do
           chain_id: String.t(),
           pk: binary,
           gas: non_neg_integer,
+          delegator: String.t(),
           signature: binary,
           signatures: [ForgeAbi.Multisig.t()],
           itx: Google.Protobuf.Any.t() | nil
         }
-  defstruct [:from, :nonce, :chain_id, :pk, :gas, :signature, :signatures, :itx]
+  defstruct [:from, :nonce, :chain_id, :pk, :gas, :delegator, :signature, :signatures, :itx]
 
   field :from, 1, type: :string
   field :nonce, 2, type: :uint64
   field :chain_id, 3, type: :string
   field :pk, 4, type: :bytes
   field :gas, 5, type: :uint32
+  field :delegator, 6, type: :string
   field :signature, 13, type: :bytes
   field :signatures, 14, repeated: true, type: ForgeAbi.Multisig
   field :itx, 15, type: Google.Protobuf.Any

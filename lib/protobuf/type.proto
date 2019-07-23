@@ -120,6 +120,8 @@ message Multisig {
   bytes pk = 2;
   // signature
   bytes signature = 3;
+  // delegator
+  string delegator = 4;
 
   // extra data
   google.protobuf.Any data = 15;

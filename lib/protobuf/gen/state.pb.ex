@@ -425,3 +425,21 @@ defmodule ForgeAbi.SwapState do
   field :hashlock, 9, type: :bytes
   field :context, 10, type: ForgeAbi.StateContext
 end
+
+defmodule ForgeAbi.DelegationState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          ops: [ForgeAbi.DelegateOp.t()],
+          context: ForgeAbi.StateContext.t() | nil,
+          data: Google.Protobuf.Any.t() | nil
+        }
+  defstruct [:address, :ops, :context, :data]
+
+  field :address, 1, type: :string
+  field :ops, 2, repeated: true, type: ForgeAbi.DelegateOp
+  field :context, 14, type: ForgeAbi.StateContext
+  field :data, 15, type: Google.Protobuf.Any
+end
