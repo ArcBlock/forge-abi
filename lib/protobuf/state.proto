@@ -186,14 +186,13 @@ message SwapState {
 // state.num_tokens_delta < 50000, delta is calculated based on the
 // configuration for interval.
 message DelegateOpState {
-  string type_url = 1;
   // all the individual rules in DelegateTx will be concat into one per type_url
   // by "AND"
-  string rule = 2;
-  uint64 num_txs = 3;
-  uint64 num_tokens = 4;
-  uint64 num_txs_delta = 5;
-  uint64 num_tokens_delta = 6;
+  string rule = 1;
+  uint64 num_txs = 2;
+  uint64 num_tokens = 3;
+  uint64 num_txs_delta = 4;
+  uint64 num_tokens_delta = 5;
 }
 
 message DelegateState {
