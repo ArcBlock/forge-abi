@@ -448,7 +448,7 @@ defmodule ForgeAbi.DelegateOpState do
   field :num_tokens_delta, 6, type: :uint64
 end
 
-defmodule ForgeAbi.DelegationState do
+defmodule ForgeAbi.DelegateState do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
@@ -461,12 +461,12 @@ defmodule ForgeAbi.DelegationState do
   defstruct [:address, :ops, :context, :data]
 
   field :address, 1, type: :string
-  field :ops, 2, repeated: true, type: ForgeAbi.DelegationState.OpsEntry, map: true
+  field :ops, 2, repeated: true, type: ForgeAbi.DelegateState.OpsEntry, map: true
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
 end
 
-defmodule ForgeAbi.DelegationState.OpsEntry do
+defmodule ForgeAbi.DelegateState.OpsEntry do
   @moduledoc false
   use Protobuf, map: true, syntax: :proto3
 

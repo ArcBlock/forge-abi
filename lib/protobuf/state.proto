@@ -196,7 +196,7 @@ message DelegateOpState {
   uint64 num_tokens_delta = 6;
 }
 
-message DelegationState {
+message DelegateState {
   string address = 1;
   map<string, DelegateOpState> ops = 2;
 

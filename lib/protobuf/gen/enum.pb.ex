@@ -51,6 +51,7 @@ defmodule ForgeAbi.StatusCode do
   field :invalid_swap, 53
   field :invalid_hashkey, 54
   field :invalid_delegation, 55
+  field :insufficient_delegation, 56
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504

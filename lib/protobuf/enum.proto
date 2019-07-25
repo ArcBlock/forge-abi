@@ -59,6 +59,7 @@ enum StatusCode {
   invalid_swap = 53;
   invalid_hashkey = 54;
   invalid_delegation = 55;
+  insufficient_delegation = 56;
 
   forbidden = 403;
   internal = 500;

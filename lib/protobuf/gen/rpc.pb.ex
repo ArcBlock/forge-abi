@@ -556,6 +556,36 @@ defmodule ForgeAbi.ResponseGetSwapState do
   field :state, 2, type: ForgeAbi.SwapState
 end
 
+defmodule ForgeAbi.RequestGetDelegateState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          keys: [String.t()],
+          height: non_neg_integer
+        }
+  defstruct [:address, :keys, :height]
+
+  field :address, 1, type: :string
+  field :keys, 2, repeated: true, type: :string
+  field :height, 3, type: :uint64
+end
+
+defmodule ForgeAbi.ResponseGetDelegateState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: atom | integer,
+          state: ForgeAbi.DelegateState.t() | nil
+        }
+  defstruct [:code, :state]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :state, 2, type: ForgeAbi.DelegateState
+end
+
 defmodule ForgeAbi.RequestStoreFile do
   @moduledoc false
   use Protobuf, syntax: :proto3
