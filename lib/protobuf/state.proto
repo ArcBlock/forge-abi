@@ -182,9 +182,23 @@ message SwapState {
   StateContext context = 10;
 }
 
+// a rule can check against the statistics values, e.g. state.num_txs < 10000,
+// state.num_tokens_delta < 50000, delta is calculated based on the
+// configuration for interval.
+message DelegateOpState {
+  string type_url = 1;
+  // all the individual rules in DelegateTx will be concat into one per type_url
+  // by "AND"
+  string rule = 2;
+  uint64 num_txs = 3;
+  uint64 num_tokens = 4;
+  uint64 num_txs_delta = 5;
+  uint64 num_tokens_delta = 6;
+}
+
 message DelegationState {
   string address = 1;
-  repeated DelegateOp ops = 2;
+  map<string, DelegateOpState> ops = 2;
 
   // state context, replace exiting fields
   StateContext context = 14;

@@ -110,33 +110,3 @@ defmodule ForgeAbi.SysUpgradeTx do
   field :grace_period, 2, type: :uint64
   field :data, 15, type: Google.Protobuf.Any
 end
-
-defmodule ForgeAbi.DelegateOp do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          type_url: String.t(),
-          rules: [ForgeAbi.DelegateRule.t()]
-        }
-  defstruct [:type_url, :rules]
-
-  field :type_url, 1, type: :string
-  field :rules, 2, repeated: true, type: ForgeAbi.DelegateRule
-end
-
-defmodule ForgeAbi.DelegateRule do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          field: String.t(),
-          op: String.t(),
-          value: String.t()
-        }
-  defstruct [:field, :op, :value]
-
-  field :field, 1, type: :string
-  field :op, 2, type: :string
-  field :value, 3, type: :string
-end

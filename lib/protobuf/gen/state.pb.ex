@@ -426,20 +426,56 @@ defmodule ForgeAbi.SwapState do
   field :context, 10, type: ForgeAbi.StateContext
 end
 
+defmodule ForgeAbi.DelegateOpState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          type_url: String.t(),
+          rule: String.t(),
+          num_txs: non_neg_integer,
+          num_tokens: non_neg_integer,
+          num_txs_delta: non_neg_integer,
+          num_tokens_delta: non_neg_integer
+        }
+  defstruct [:type_url, :rule, :num_txs, :num_tokens, :num_txs_delta, :num_tokens_delta]
+
+  field :type_url, 1, type: :string
+  field :rule, 2, type: :string
+  field :num_txs, 3, type: :uint64
+  field :num_tokens, 4, type: :uint64
+  field :num_txs_delta, 5, type: :uint64
+  field :num_tokens_delta, 6, type: :uint64
+end
+
 defmodule ForgeAbi.DelegationState do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
           address: String.t(),
-          ops: [ForgeAbi.DelegateOp.t()],
+          ops: %{String.t() => ForgeAbi.DelegateOpState.t() | nil},
           context: ForgeAbi.StateContext.t() | nil,
           data: Google.Protobuf.Any.t() | nil
         }
   defstruct [:address, :ops, :context, :data]
 
   field :address, 1, type: :string
-  field :ops, 2, repeated: true, type: ForgeAbi.DelegateOp
+  field :ops, 2, repeated: true, type: ForgeAbi.DelegationState.OpsEntry, map: true
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
+end
+
+defmodule ForgeAbi.DelegationState.OpsEntry do
+  @moduledoc false
+  use Protobuf, map: true, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          key: String.t(),
+          value: ForgeAbi.DelegateOpState.t() | nil
+        }
+  defstruct [:key, :value]
+
+  field :key, 1, type: :string
+  field :value, 2, type: ForgeAbi.DelegateOpState
 end
