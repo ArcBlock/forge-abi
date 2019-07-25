@@ -431,21 +431,19 @@ defmodule ForgeAbi.DelegateOpState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          type_url: String.t(),
           rule: String.t(),
           num_txs: non_neg_integer,
           num_tokens: non_neg_integer,
           num_txs_delta: non_neg_integer,
           num_tokens_delta: non_neg_integer
         }
-  defstruct [:type_url, :rule, :num_txs, :num_tokens, :num_txs_delta, :num_tokens_delta]
+  defstruct [:rule, :num_txs, :num_tokens, :num_txs_delta, :num_tokens_delta]
 
-  field :type_url, 1, type: :string
-  field :rule, 2, type: :string
-  field :num_txs, 3, type: :uint64
-  field :num_tokens, 4, type: :uint64
-  field :num_txs_delta, 5, type: :uint64
-  field :num_tokens_delta, 6, type: :uint64
+  field :rule, 1, type: :string
+  field :num_txs, 2, type: :uint64
+  field :num_tokens, 3, type: :uint64
+  field :num_txs_delta, 4, type: :uint64
+  field :num_tokens_delta, 5, type: :uint64
 end
 
 defmodule ForgeAbi.DelegateState do

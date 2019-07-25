@@ -35,6 +35,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:s:root", ForgeAbi.RootState},
     {"fg:s:tether", ForgeAbi.TetherInfo},
     {"fg:s:swap", ForgeAbi.SwapState},
+    {"fg:s:delegate", ForgeAbi.DelegateState},
 
     # other type url
     {"fg:x:block_info", ForgeAbi.BlockInfo},
