@@ -847,11 +847,13 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :declare_file, 22, type: ForgeAbi.Transaction, oneof: 0
   field :sys_upgrade, 23, type: ForgeAbi.Transaction, oneof: 0
   field :stake, 24, type: ForgeAbi.Transaction, oneof: 0
+  field :delegate, 25, type: ForgeAbi.Transaction, oneof: 0
   field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
   field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
   field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0
   field :stake_state, 132, type: ForgeAbi.StakeState, oneof: 0
   field :protocol_state, 133, type: ForgeAbi.ProtocolState, oneof: 0
+  field :delegate_state, 134, type: ForgeAbi.DelegateState, oneof: 0
 end
 
 defmodule ForgeAbi.RequestUnsubscribe do

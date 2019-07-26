@@ -331,12 +331,14 @@ message ResponseSubscribe {
     Transaction declare_file = 22;
     Transaction sys_upgrade = 23;
     Transaction stake = 24;
+    Transaction delegate = 25;
 
     AccountState account_state = 129;
     AssetState asset_state = 130;
     ForgeState forge_state = 131;
     StakeState stake_state = 132;
     ProtocolState protocol_state = 133;
+    DelegateState delegate_state = 134;
   }
 }
 
