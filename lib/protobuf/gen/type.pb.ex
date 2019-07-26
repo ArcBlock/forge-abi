@@ -414,6 +414,18 @@ defmodule ForgeAbi.DeclareConfig do
   field :hierarchy, 2, type: :uint32
 end
 
+defmodule ForgeAbi.DelegateConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          type_urls: [String.t()]
+        }
+  defstruct [:type_urls]
+
+  field :type_urls, 1, repeated: true, type: :string
+end
+
 defmodule ForgeAbi.TransactionConfig do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -423,15 +435,17 @@ defmodule ForgeAbi.TransactionConfig do
           max_list_size: non_neg_integer,
           max_multisig: non_neg_integer,
           minimum_stake: non_neg_integer,
-          declare: ForgeAbi.DeclareConfig.t() | nil
+          declare: ForgeAbi.DeclareConfig.t() | nil,
+          delegate: ForgeAbi.DelegateConfig.t() | nil
         }
-  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake, :declare]
+  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake, :declare, :delegate]
 
   field :max_asset_size, 1, type: :uint32
   field :max_list_size, 2, type: :uint32
   field :max_multisig, 3, type: :uint32
   field :minimum_stake, 4, type: :uint64
   field :declare, 5, type: ForgeAbi.DeclareConfig
+  field :delegate, 6, type: ForgeAbi.DelegateConfig
 end
 
 defmodule ForgeAbi.BlockInfo do

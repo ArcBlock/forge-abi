@@ -164,12 +164,16 @@ message DeclareConfig {
   bool restricted = 1;
   uint32 hierarchy = 2;
 }
+
+message DelegateConfig { repeated string type_urls = 1; }
+
 message TransactionConfig {
   uint32 max_asset_size = 1;
   uint32 max_list_size = 2;
   uint32 max_multisig = 3;
   uint64 minimum_stake = 4;
   DeclareConfig declare = 5;
+  DelegateConfig delegate = 6;
 }
 
 message BlockInfo {
