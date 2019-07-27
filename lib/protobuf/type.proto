@@ -165,7 +165,12 @@ message DeclareConfig {
   uint32 hierarchy = 2;
 }
 
-message DelegateConfig { repeated string type_urls = 1; }
+message DelegateConfig {
+  // the interval used for calculate the num_txs_delta / num_tokens_delta
+  uint32 delta_interval = 1;
+  // a list of type_urls that are allowed for delegation
+  repeated string type_urls = 2;
+}
 
 message TransactionConfig {
   uint32 max_asset_size = 1;

@@ -419,11 +419,13 @@ defmodule ForgeAbi.DelegateConfig do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
+          delta_interval: non_neg_integer,
           type_urls: [String.t()]
         }
-  defstruct [:type_urls]
+  defstruct [:delta_interval, :type_urls]
 
-  field :type_urls, 1, repeated: true, type: :string
+  field :delta_interval, 1, type: :uint32
+  field :type_urls, 2, repeated: true, type: :string
 end
 
 defmodule ForgeAbi.TransactionConfig do

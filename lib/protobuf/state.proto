@@ -189,9 +189,11 @@ message DelegateOpState {
   // all the individual rules in DelegateTx will be concat into one per type_url
   // by "AND"
   string rule = 1;
+
   uint64 num_txs = 2;
-  uint64 num_tokens = 3;
-  uint64 num_txs_delta = 4;
+  uint64 num_txs_delta = 3;
+
+  uint64 num_tokens = 4;
   uint64 num_tokens_delta = 5;
 }
 

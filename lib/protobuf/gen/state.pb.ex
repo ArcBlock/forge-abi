@@ -433,16 +433,16 @@ defmodule ForgeAbi.DelegateOpState do
   @type t :: %__MODULE__{
           rule: String.t(),
           num_txs: non_neg_integer,
-          num_tokens: non_neg_integer,
           num_txs_delta: non_neg_integer,
+          num_tokens: non_neg_integer,
           num_tokens_delta: non_neg_integer
         }
-  defstruct [:rule, :num_txs, :num_tokens, :num_txs_delta, :num_tokens_delta]
+  defstruct [:rule, :num_txs, :num_txs_delta, :num_tokens, :num_tokens_delta]
 
   field :rule, 1, type: :string
   field :num_txs, 2, type: :uint64
-  field :num_tokens, 3, type: :uint64
-  field :num_txs_delta, 4, type: :uint64
+  field :num_txs_delta, 3, type: :uint64
+  field :num_tokens, 4, type: :uint64
   field :num_tokens_delta, 5, type: :uint64
 end
 
