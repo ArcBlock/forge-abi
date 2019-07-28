@@ -434,16 +434,16 @@ defmodule ForgeAbi.DelegateOpState do
           rule: String.t(),
           num_txs: non_neg_integer,
           num_txs_delta: non_neg_integer,
-          num_tokens: non_neg_integer,
-          num_tokens_delta: non_neg_integer
+          balance: ForgeAbi.BigUint.t() | nil,
+          balance_delta: ForgeAbi.BigUint.t() | nil
         }
-  defstruct [:rule, :num_txs, :num_txs_delta, :num_tokens, :num_tokens_delta]
+  defstruct [:rule, :num_txs, :num_txs_delta, :balance, :balance_delta]
 
   field :rule, 1, type: :string
   field :num_txs, 2, type: :uint64
   field :num_txs_delta, 3, type: :uint64
-  field :num_tokens, 4, type: :uint64
-  field :num_tokens_delta, 5, type: :uint64
+  field :balance, 4, type: ForgeAbi.BigUint
+  field :balance_delta, 5, type: ForgeAbi.BigUint
 end
 
 defmodule ForgeAbi.DelegateState do

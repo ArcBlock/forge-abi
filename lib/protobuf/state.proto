@@ -183,7 +183,7 @@ message SwapState {
 }
 
 // a rule can check against the statistics values, e.g. state.num_txs < 10000,
-// state.num_tokens_delta < 50000, delta is calculated based on the
+// state.balance_delta < 50000, delta is calculated based on the
 // configuration for interval.
 message DelegateOpState {
   // all the individual rules in DelegateTx will be concat into one per type_url
@@ -193,8 +193,8 @@ message DelegateOpState {
   uint64 num_txs = 2;
   uint64 num_txs_delta = 3;
 
-  uint64 num_tokens = 4;
-  uint64 num_tokens_delta = 5;
+  BigUint balance = 4;
+  BigUint balance_delta = 5;
 }
 
 message DelegateState {
