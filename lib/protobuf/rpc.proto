@@ -320,6 +320,8 @@ message ResponseSubscribe {
     Transaction declare_file = 22;
     Transaction sys_upgrade = 23;
     Transaction stake = 24;
+    Transaction activate_protocol=25;
+    Transaction deactivate_protocol=26;
 
     AccountState account_state = 129;
     AssetState asset_state = 130;
