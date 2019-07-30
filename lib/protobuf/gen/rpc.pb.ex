@@ -40,14 +40,16 @@ defmodule ForgeAbi.RequestMultisig do
           tx: ForgeAbi.Transaction.t() | nil,
           data: Google.Protobuf.Any.t() | nil,
           wallet: ForgeAbi.WalletInfo.t() | nil,
-          token: String.t()
+          token: String.t(),
+          delegatee: String.t()
         }
-  defstruct [:tx, :data, :wallet, :token]
+  defstruct [:tx, :data, :wallet, :token, :delegatee]
 
   field :tx, 1, type: ForgeAbi.Transaction
   field :data, 2, type: Google.Protobuf.Any
   field :wallet, 3, type: ForgeAbi.WalletInfo
   field :token, 4, type: :string
+  field :delegatee, 5, type: :string
 end
 
 defmodule ForgeAbi.ResponseMultisig do
