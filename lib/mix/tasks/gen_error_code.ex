@@ -7,7 +7,7 @@ defmodule Mix.Tasks.ForgeAbi.GenErrorCode do
   @input_file Path.join(File.cwd!(), "lib/protobuf/status_code.yml")
 
   # output is from `make all-txs` in forge-core-protocols
-  @all_txs ~w(declare account_migrate create_asset acquire_asset consume_asset update_asset deploy_protocol upgrade_node stake exchange transfer deposit_tether exchange_tether withdraw_tether approve_tether revoke_tether poke setup_swap retrieve_swap revoke_swap)
+  @all_txs ~w(declare account_migrate create_asset acquire_asset consume_asset update_asset deploy_protocol upgrade_node stake exchange transfer deposit_tether exchange_tether withdraw_tether approve_tether revoke_tether poke setup_swap retrieve_swap revoke_swap delegate)
 
   def run(_argv) do
     write_error_files()

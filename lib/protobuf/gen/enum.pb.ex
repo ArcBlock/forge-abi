@@ -50,35 +50,13 @@ defmodule ForgeAbi.StatusCode do
   field :insufficient_gas, 52
   field :invalid_swap, 53
   field :invalid_hashkey, 54
+  field :invalid_delegation, 55
+  field :insufficient_delegation, 56
+  field :invalid_delegation_rule, 57
+  field :invalid_delegation_type_url, 58
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504
-end
-
-defmodule ForgeAbi.TopicType do
-  @moduledoc false
-  use Protobuf, enum: true, syntax: :proto3
-
-  field :transfer, 0
-  field :exchange, 1
-  field :declare, 2
-  field :create_asset, 3
-  field :update_asset, 4
-  field :stake, 5
-  field :account_migrate, 6
-  field :begin_block, 16
-  field :end_block, 17
-  field :consensus_upgrade, 21
-  field :declare_file, 22
-  field :sys_upgrade, 23
-  field :application, 24
-  field :consume_asset, 25
-  field :poke, 26
-  field :account_state, 129
-  field :asset_state, 130
-  field :forge_state, 131
-  field :stake_state, 132
-  field :protocol_state, 133
 end
 
 defmodule ForgeAbi.KeyType do
