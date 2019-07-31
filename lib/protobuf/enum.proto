@@ -60,8 +60,9 @@ enum StatusCode {
   invalid_hashkey = 54;
 
   sender_not_authorized =55;
-  protocol_not_runnint=56;
+  protocol_not_running=56;
   protocol_not_paused=57;
+  protocol_not_activated=58;
 
   forbidden = 403;
   internal = 500;
