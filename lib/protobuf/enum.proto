@@ -58,11 +58,16 @@ enum StatusCode {
   insufficient_gas = 52;
   invalid_swap = 53;
   invalid_hashkey = 54;
+  invalid_delegation = 55;
+  insufficient_delegation = 56;
+  invalid_delegation_rule = 57;
+  invalid_delegation_type_url = 58;
 
-  sender_not_authorized =55;
-  protocol_not_running=56;
-  protocol_not_paused=57;
-  protocol_not_activated=58;
+  sender_not_authorized =59;
+  protocol_not_running=60;
+  protocol_not_paused=61;
+  protocol_not_activated=62;
+  invalid_deactivation=63;
 
   forbidden = 403;
   internal = 500;

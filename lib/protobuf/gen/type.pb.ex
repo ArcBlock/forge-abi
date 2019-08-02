@@ -336,13 +336,15 @@ defmodule ForgeAbi.Multisig do
           signer: String.t(),
           pk: binary,
           signature: binary,
+          delegator: String.t(),
           data: Google.Protobuf.Any.t() | nil
         }
-  defstruct [:signer, :pk, :signature, :data]
+  defstruct [:signer, :pk, :signature, :delegator, :data]
 
   field :signer, 1, type: :string
   field :pk, 2, type: :bytes
   field :signature, 3, type: :bytes
+  field :delegator, 4, type: :string
   field :data, 15, type: Google.Protobuf.Any
 end
 
@@ -356,17 +358,19 @@ defmodule ForgeAbi.Transaction do
           chain_id: String.t(),
           pk: binary,
           gas: non_neg_integer,
+          delegator: String.t(),
           signature: binary,
           signatures: [ForgeAbi.Multisig.t()],
           itx: Google.Protobuf.Any.t() | nil
         }
-  defstruct [:from, :nonce, :chain_id, :pk, :gas, :signature, :signatures, :itx]
+  defstruct [:from, :nonce, :chain_id, :pk, :gas, :delegator, :signature, :signatures, :itx]
 
   field :from, 1, type: :string
   field :nonce, 2, type: :uint64
   field :chain_id, 3, type: :string
   field :pk, 4, type: :bytes
   field :gas, 5, type: :uint32
+  field :delegator, 6, type: :string
   field :signature, 13, type: :bytes
   field :signatures, 14, repeated: true, type: ForgeAbi.Multisig
   field :itx, 15, type: Google.Protobuf.Any
@@ -410,6 +414,20 @@ defmodule ForgeAbi.DeclareConfig do
   field :hierarchy, 2, type: :uint32
 end
 
+defmodule ForgeAbi.DelegateConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          delta_interval: non_neg_integer,
+          type_urls: [String.t()]
+        }
+  defstruct [:delta_interval, :type_urls]
+
+  field :delta_interval, 1, type: :uint32
+  field :type_urls, 2, repeated: true, type: :string
+end
+
 defmodule ForgeAbi.TransactionConfig do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -419,15 +437,17 @@ defmodule ForgeAbi.TransactionConfig do
           max_list_size: non_neg_integer,
           max_multisig: non_neg_integer,
           minimum_stake: non_neg_integer,
-          declare: ForgeAbi.DeclareConfig.t() | nil
+          declare: ForgeAbi.DeclareConfig.t() | nil,
+          delegate: ForgeAbi.DelegateConfig.t() | nil
         }
-  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake, :declare]
+  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake, :declare, :delegate]
 
   field :max_asset_size, 1, type: :uint32
   field :max_list_size, 2, type: :uint32
   field :max_multisig, 3, type: :uint32
   field :minimum_stake, 4, type: :uint64
   field :declare, 5, type: ForgeAbi.DeclareConfig
+  field :delegate, 6, type: ForgeAbi.DelegateConfig
 end
 
 defmodule ForgeAbi.BlockInfo do

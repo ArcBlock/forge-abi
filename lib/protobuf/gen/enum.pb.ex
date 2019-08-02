@@ -50,9 +50,15 @@ defmodule ForgeAbi.StatusCode do
   field :insufficient_gas, 52
   field :invalid_swap, 53
   field :invalid_hashkey, 54
-  field :sender_not_authorized, 55
-  field :protocol_not_runnint, 56
-  field :protocol_not_paused, 57
+  field :invalid_delegation, 55
+  field :insufficient_delegation, 56
+  field :invalid_delegation_rule, 57
+  field :invalid_delegation_type_url, 58
+  field :sender_not_authorized, 59
+  field :protocol_not_running, 60
+  field :protocol_not_paused, 61
+  field :protocol_not_activated, 62
+  field :invalid_deactivation, 63
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504

@@ -40,14 +40,16 @@ defmodule ForgeAbi.RequestMultisig do
           tx: ForgeAbi.Transaction.t() | nil,
           data: Google.Protobuf.Any.t() | nil,
           wallet: ForgeAbi.WalletInfo.t() | nil,
-          token: String.t()
+          token: String.t(),
+          delegatee: String.t()
         }
-  defstruct [:tx, :data, :wallet, :token]
+  defstruct [:tx, :data, :wallet, :token, :delegatee]
 
   field :tx, 1, type: ForgeAbi.Transaction
   field :data, 2, type: Google.Protobuf.Any
   field :wallet, 3, type: ForgeAbi.WalletInfo
   field :token, 4, type: :string
+  field :delegatee, 5, type: :string
 end
 
 defmodule ForgeAbi.ResponseMultisig do
@@ -556,6 +558,36 @@ defmodule ForgeAbi.ResponseGetSwapState do
   field :state, 2, type: ForgeAbi.SwapState
 end
 
+defmodule ForgeAbi.RequestGetDelegateState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          keys: [String.t()],
+          height: non_neg_integer
+        }
+  defstruct [:address, :keys, :height]
+
+  field :address, 1, type: :string
+  field :keys, 2, repeated: true, type: :string
+  field :height, 3, type: :uint64
+end
+
+defmodule ForgeAbi.ResponseGetDelegateState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: atom | integer,
+          state: ForgeAbi.DelegateState.t() | nil
+        }
+  defstruct [:code, :state]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :state, 2, type: ForgeAbi.DelegateState
+end
+
 defmodule ForgeAbi.RequestStoreFile do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -817,11 +849,15 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :declare_file, 22, type: ForgeAbi.Transaction, oneof: 0
   field :sys_upgrade, 23, type: ForgeAbi.Transaction, oneof: 0
   field :stake, 24, type: ForgeAbi.Transaction, oneof: 0
+  field :delegate, 25, type: ForgeAbi.Transaction, oneof: 0
+  field :activate_protocol, 26, type: ForgeAbi.Transaction, oneof: 0
+  field :deactivate_protocol, 27, type: ForgeAbi.Transaction, oneof: 0
   field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
   field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
   field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0
   field :stake_state, 132, type: ForgeAbi.StakeState, oneof: 0
   field :protocol_state, 133, type: ForgeAbi.ProtocolState, oneof: 0
+  field :delegate_state, 134, type: ForgeAbi.DelegateState, oneof: 0
 end
 
 defmodule ForgeAbi.RequestUnsubscribe do

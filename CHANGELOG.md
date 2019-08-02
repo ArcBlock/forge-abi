@@ -1,3 +1,17 @@
+## 1.12.0 (July 29, 2019)
+  - fix multisig
+  - use balance/balance_delta
+  - update DelegateConfig
+  - add delegate config
+  - remove unnecessary TopicType and add delegate in ResponseSubscribe
+  - add more error code
+  - type_url is not needed in DelegateOpState
+  - add rpc support
+  - refactor the delegate state
+  - add state and op definition
+  - support delegate tx
+  - generate default error for none defined txs (#99)
+
 ## 1.11.0 (July 16, 2019)
   - Generate error code with provided yml file (#96)
 

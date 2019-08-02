@@ -76,6 +76,10 @@ defmodule ForgeAbi.StateRpc.Service do
       stream(ForgeAbi.ResponseGetTetherState)
 
   rpc :get_swap_state, stream(ForgeAbi.RequestGetSwapState), stream(ForgeAbi.ResponseGetSwapState)
+
+  rpc :get_delegate_state,
+      stream(ForgeAbi.RequestGetDelegateState),
+      stream(ForgeAbi.ResponseGetDelegateState)
 end
 
 defmodule ForgeAbi.StateRpc.Stub do

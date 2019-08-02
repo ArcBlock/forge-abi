@@ -425,3 +425,55 @@ defmodule ForgeAbi.SwapState do
   field :hashlock, 9, type: :bytes
   field :context, 10, type: ForgeAbi.StateContext
 end
+
+defmodule ForgeAbi.DelegateOpState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          rule: String.t(),
+          num_txs: non_neg_integer,
+          num_txs_delta: non_neg_integer,
+          balance: ForgeAbi.BigUint.t() | nil,
+          balance_delta: ForgeAbi.BigUint.t() | nil
+        }
+  defstruct [:rule, :num_txs, :num_txs_delta, :balance, :balance_delta]
+
+  field :rule, 1, type: :string
+  field :num_txs, 2, type: :uint64
+  field :num_txs_delta, 3, type: :uint64
+  field :balance, 4, type: ForgeAbi.BigUint
+  field :balance_delta, 5, type: ForgeAbi.BigUint
+end
+
+defmodule ForgeAbi.DelegateState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          ops: %{String.t() => ForgeAbi.DelegateOpState.t() | nil},
+          context: ForgeAbi.StateContext.t() | nil,
+          data: Google.Protobuf.Any.t() | nil
+        }
+  defstruct [:address, :ops, :context, :data]
+
+  field :address, 1, type: :string
+  field :ops, 2, repeated: true, type: ForgeAbi.DelegateState.OpsEntry, map: true
+  field :context, 14, type: ForgeAbi.StateContext
+  field :data, 15, type: Google.Protobuf.Any
+end
+
+defmodule ForgeAbi.DelegateState.OpsEntry do
+  @moduledoc false
+  use Protobuf, map: true, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          key: String.t(),
+          value: ForgeAbi.DelegateOpState.t() | nil
+        }
+  defstruct [:key, :value]
+
+  field :key, 1, type: :string
+  field :value, 2, type: ForgeAbi.DelegateOpState
+end
