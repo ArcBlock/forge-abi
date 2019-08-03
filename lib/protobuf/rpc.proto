@@ -333,6 +333,8 @@ message ResponseSubscribe {
     Transaction sys_upgrade = 23;
     Transaction stake = 24;
     Transaction delegate = 25;
+    Transaction activate_protocol=26;
+    Transaction deactivate_protocol=27;
 
     AccountState account_state = 129;
     AssetState asset_state = 130;

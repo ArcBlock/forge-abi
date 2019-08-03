@@ -54,6 +54,11 @@ defmodule ForgeAbi.StatusCode do
   field :insufficient_delegation, 56
   field :invalid_delegation_rule, 57
   field :invalid_delegation_type_url, 58
+  field :sender_not_authorized, 59
+  field :protocol_not_running, 60
+  field :protocol_not_paused, 61
+  field :protocol_not_activated, 62
+  field :invalid_deactivation, 63
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504

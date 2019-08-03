@@ -850,6 +850,8 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :sys_upgrade, 23, type: ForgeAbi.Transaction, oneof: 0
   field :stake, 24, type: ForgeAbi.Transaction, oneof: 0
   field :delegate, 25, type: ForgeAbi.Transaction, oneof: 0
+  field :activate_protocol, 26, type: ForgeAbi.Transaction, oneof: 0
+  field :deactivate_protocol, 27, type: ForgeAbi.Transaction, oneof: 0
   field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
   field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
   field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0
