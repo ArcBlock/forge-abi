@@ -1,3 +1,7 @@
+## 1.12.1 (August 20, 2019)
+  - fix: add back ticks in error code markdown to avoid render errors
+  - Add status code and subscription topic for activate/deactivate tx (#102)
+
 ## 1.12.0 (July 29, 2019)
   - fix multisig
   - use balance/balance_delta
