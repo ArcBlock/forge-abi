@@ -43,12 +43,12 @@ defmodule Mix.Tasks.ForgeAbi.GenErrorCode do
     single_file = Path.join(@output_folder, "error_code/#{code_name}/#{tx_name}.md")
 
     File.write(single_file, "#{tx_msg}")
-    write_to_summary("### #{tx_name}\n\n")
+    write_to_summary("### `#{tx_name}`\n\n")
     write_to_summary("#{tx_msg}\n\n")
   end
 
   defp prepare_for_code(code_name) do
-    write_to_summary("## #{code_name}\n\n")
+    write_to_summary("## `#{code_name}`\n\n")
     File.mkdir_p(Path.join(@output_folder, "error_code/#{code_name}"))
   end
 
