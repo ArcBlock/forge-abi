@@ -25,8 +25,8 @@ This account has migrated to a new one.
 ### `account_migrate`
 
 Possible causes:
-1. `AccountMigrateTx.address` is not correctly calculated with `AccountMigrateTx.pk` and `AccountMigrateTx.type` or the receiver does not exist on this chain.
-2. `AccountMigrateTx.address` does not exist on this chain.
+1. `AccountMigrateTx.address` is not correctly calculated with `AccountMigrateTx.pk` and `AccountMigrateTx.type`
+2. `AccountMigrateTx.address` already exist on this chain.
 
 
 ### `consume_asset`
