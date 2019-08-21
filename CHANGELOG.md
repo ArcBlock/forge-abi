@@ -1,4 +1,4 @@
-## 0.12.2 (August 21, 2019)
+## 1.12.2 (August 21, 2019)
 
 - chore: update generated markdown for error codes
 - fix: wrong description of `invalid_reciever_state` for AccountMigrateTx
