@@ -393,3 +393,9 @@ message UpgradeInfo {
   uint64 height = 1;
   string version = 2;
 }
+
+message WithdrawItem{
+  // Items in WithdrawQue
+  string hash = 1;
+  BigUint value = 2;
+}

@@ -28,7 +28,7 @@ message AccountState {
   repeated string migrated_from = 14;
 
   uint64 num_assets = 15;
-  // 16-49 reserve for future
+
 
   StakeContext stake = 16;
   CircularQueue pinned_files = 17;
@@ -36,6 +36,9 @@ message AccountState {
   // The current deposit this account has received. It cannot exceed the deposit
   // cap.
   BigUint deposit_received = 19;
+
+  CircularQueue withdraw_txs = 20;
+  // 20-49 reserve for future
 
   google.protobuf.Any data = 50;
 }
