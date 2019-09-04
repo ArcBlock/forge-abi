@@ -69,6 +69,11 @@ enum StatusCode {
   protocol_not_activated=62;
   invalid_deactivation=63;
 
+  sender_withdraw_infos_full=64;
+  withdraw_infos_not_initiated=65;
+  withdraw_info_missing=66;
+  invalid_withdraw_tx=67;
+
   forbidden = 403;
   internal = 500;
   timeout = 504;

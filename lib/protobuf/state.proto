@@ -37,7 +37,7 @@ message AccountState {
   // cap.
   BigUint deposit_received = 19;
 
-  CircularQueue withdraw_txs = 20;
+  CircularQueue withdraw_infos = 20;
   // 20-49 reserve for future
 
   google.protobuf.Any data = 50;
