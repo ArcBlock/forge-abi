@@ -168,7 +168,7 @@ invalid_asset:
   create_asset: |
     Possible causes:
     1. `CreateAssetTx.address` is not calculated correctly.
-    2. `CreateAssetTx.moniker` should have at least 4 characters.
+    2. `CreateAssetTx.moniker` should have at least 5 characters.
     3. Asset parent does not have a valid state.
     4. Asset already exists on the chain. This is a duplicate asset.
   update_asset: |
