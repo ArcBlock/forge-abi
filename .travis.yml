@@ -4,10 +4,14 @@ elixir: 1.8.1
 otp_release: 21.2.4
 branches:
   only:
-  - master
+    - master
+cache:
+  directories:
+    - _build
+    - deps
 install:
-- mix local.hex --force
-- mix local.rebar --force
+  - mix local.hex --force
+  - mix local.rebar --force
 before_script: make travis-init
 script: make travis
 deploy:
@@ -18,6 +22,7 @@ deploy:
       branch: master
   - provider: releases
     skip_cleanup: true
+    tag_name: '$(git describe --tags --exact-match)'
     api_key:
       secure: ge0UU1+VDmvefZVFji+W6TMZ5+83/4cm0bcjyFZxlReRVtZUgiPsArdJVwX1udm7r4gdq1SwbnTnyB0R4No0H9gPaC6L0jBetz8FPeMAxbAB4aLaZkjnlXwLY5eeVFP9dbYCO85WStSRdkoRiDKxw/mxBIRN1enoEolb6UUVm41MDfPHopv7zWpHMTZ9KsCRx+O0cyvp2mfw2PNljt6rSFMev2+1rqTyY9TPGnr0XIF1/x5tScYg0j3RuNgDFBlMi+C8tnHTdehWmat7XAku9dLDipaZDOKyhpN2WBlQaSju/dZ5DkeJ/eZqU+qTHJGhx/icYZEJgwNm1OeElIVV2jfWFzlfT3R29DNqc//a5JIzlSVxIoystkRYONQoiQn/Y82KJOKM6N5Jxx3Ism77XVD/5aKhkLZ8eqh08cOGkLUcO0iNElF06vxdi2/e+llh3cztVME/0vSQPTlDPTSmpoU0OKUP8+31MIuzkWvovfi5v5FybyrRI/D3bJfzLn1gYzMvT8yFYiX7ZOFaiHRGWRyRTTUNuPckVbZjGAuJ+/RkGU6RJiBQieR8RDChKs2OOD5jEDZcVmZdtejB7ZJ4GeqG8xn1Cvuml2088dwUfb8r1fUcXRb7z48IzZKJT8N+GlrmIUomBIU0hEqbSDv65nQG/9k3Ipocg/bKYxO6k6g=
     on:
@@ -25,4 +30,4 @@ deploy:
       branch: master
 env:
   matrix:
-  - MIX_ENV=test
+    - MIX_ENV=test

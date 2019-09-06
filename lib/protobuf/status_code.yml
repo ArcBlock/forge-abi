@@ -22,8 +22,8 @@ invalid_receiver_state:
     The receiver of this transaction does not exist on this chain.
   account_migrate: |
     Possible causes:
-    1. `AccountMigrateTx.address` is not correctly calculated with `AccountMigrateTx.pk` and `AccountMigrateTx.type` or the receiver does not exist on this chain.
-    2. `AccountMigrateTx.address` does not exist on this chain.
+    1. `AccountMigrateTx.address` is not correctly calculated with `AccountMigrateTx.pk` and `AccountMigrateTx.type`
+    2. `AccountMigrateTx.address` already exist on this chain.
   consume_asset: |
     The `signer` included in first `tx.signatures` does not exist on this chain.
   poke: |
@@ -168,8 +168,9 @@ invalid_asset:
   create_asset: |
     Possible causes:
     1. `CreateAssetTx.address` is not calculated correctly.
-    2. Asset parent does not have a valid state.
-    3. Asset already exists on the chain. This is a duplicate asset.
+    2. `CreateAssetTx.moniker` should have at least 5 characters.
+    3. Asset parent does not have a valid state.
+    4. Asset already exists on the chain. This is a duplicate asset.
   update_asset: |
     `UpdateAssetTx.address` is not a valid asset.
   exchange: |
