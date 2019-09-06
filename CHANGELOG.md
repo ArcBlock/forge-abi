@@ -1,3 +1,11 @@
+## 1.13.1 (September 6th, 2019)
+
+- Fix version number.
+
+## 1.12.3 (September 6th, 2019)
+
+- Support indexing for fields of asset state.
+
 ## 1.12.2 (August 21, 2019)
 
 - chore: update generated markdown for error codes
