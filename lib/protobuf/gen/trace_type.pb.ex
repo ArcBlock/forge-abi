@@ -175,9 +175,28 @@ defmodule ForgeAbi.IndexedAssetState do
           genesis_time: String.t(),
           renaissance_time: String.t(),
           moniker: String.t(),
-          readonly: boolean
+          readonly: boolean,
+          consumed_time: String.t(),
+          issuer: String.t(),
+          parent: String.t(),
+          transferrable: boolean,
+          ttl: non_neg_integer,
+          data: Google.Protobuf.Any.t() | nil
         }
-  defstruct [:address, :owner, :genesis_time, :renaissance_time, :moniker, :readonly]
+  defstruct [
+    :address,
+    :owner,
+    :genesis_time,
+    :renaissance_time,
+    :moniker,
+    :readonly,
+    :consumed_time,
+    :issuer,
+    :parent,
+    :transferrable,
+    :ttl,
+    :data
+  ]
 
   field :address, 1, type: :string
   field :owner, 2, type: :string
@@ -185,6 +204,12 @@ defmodule ForgeAbi.IndexedAssetState do
   field :renaissance_time, 4, type: :string
   field :moniker, 5, type: :string
   field :readonly, 6, type: :bool
+  field :consumed_time, 7, type: :string
+  field :issuer, 8, type: :string
+  field :parent, 9, type: :string
+  field :transferrable, 10, type: :bool
+  field :ttl, 11, type: :uint64
+  field :data, 50, type: Google.Protobuf.Any
 end
 
 defmodule ForgeAbi.IndexedStakeState do
