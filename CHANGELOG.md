@@ -1,3 +1,7 @@
+## 1.14.0 (September 12, 2019)
+  - refactor forge config
+  - fix: add error code when asset moniker invalid (#107)
+
 ## 1.13.1 (September 6th, 2019)
 
 - Fix version number.
