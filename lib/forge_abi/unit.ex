@@ -37,7 +37,7 @@ defmodule ForgeAbi.Unit do
     iex> a + c
     %ForgeAbi.BigUint{value: <<10>>}
   """
-  @spec new_unit(integer()) :: BigUint.t()
+  @spec new_unit(integer() | nil) :: BigUint.t()
   defdelegate new_unit(i), to: BigInt, as: :biguint
 
   @spec one_token(non_neg_integer()) :: non_neg_integer()
