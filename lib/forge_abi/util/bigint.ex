@@ -25,7 +25,8 @@ defmodule ForgeAbi.Util.BigInt do
     iex> biguint(1111111111111111111111111111111111111111)
     %ForgeAbi.BigUint{value: <<3, 67, 232, 55, 78, 152, 132, 21, 75, 248, 55, 181, 113, 199, 28, 113, 199>>}
   """
-  @spec biguint(integer()) :: BigUint.t()
+  @spec biguint(integer() | nil) :: BigUint.t()
+  def biguint(nil), do: nil
   def biguint(i) when Kernel.<(i, 0), do: BigUint.new(value: <<0>>)
   def biguint(i), do: BigUint.new(value: to_binary(i))
 
