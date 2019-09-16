@@ -438,9 +438,20 @@ defmodule ForgeAbi.TransactionConfig do
           max_multisig: non_neg_integer,
           minimum_stake: non_neg_integer,
           declare: ForgeAbi.DeclareConfig.t() | nil,
-          delegate: ForgeAbi.DelegateConfig.t() | nil
+          delegate: ForgeAbi.DelegateConfig.t() | nil,
+          poke: ForgeAbi.PokeConfig.t() | nil,
+          stake: ForgeAbi.StakeConfig.t() | nil
         }
-  defstruct [:max_asset_size, :max_list_size, :max_multisig, :minimum_stake, :declare, :delegate]
+  defstruct [
+    :max_asset_size,
+    :max_list_size,
+    :max_multisig,
+    :minimum_stake,
+    :declare,
+    :delegate,
+    :poke,
+    :stake
+  ]
 
   field :max_asset_size, 1, type: :uint32
   field :max_list_size, 2, type: :uint32
@@ -448,6 +459,8 @@ defmodule ForgeAbi.TransactionConfig do
   field :minimum_stake, 4, type: :uint64
   field :declare, 5, type: ForgeAbi.DeclareConfig
   field :delegate, 6, type: ForgeAbi.DelegateConfig
+  field :poke, 7, type: ForgeAbi.PokeConfig
+  field :stake, 8, type: ForgeAbi.StakeConfig
 end
 
 defmodule ForgeAbi.BlockInfo do
@@ -993,17 +1006,15 @@ defmodule ForgeAbi.PokeConfig do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          address: String.t(),
           daily_limit: non_neg_integer,
-          balance: non_neg_integer,
-          amount: non_neg_integer
+          amount: non_neg_integer,
+          enabled: boolean
         }
-  defstruct [:address, :daily_limit, :balance, :amount]
+  defstruct [:daily_limit, :amount, :enabled]
 
-  field :address, 1, type: :string
   field :daily_limit, 2, type: :uint64
-  field :balance, 3, type: :uint64
   field :amount, 4, type: :uint64
+  field :enabled, 5, type: :bool
 end
 
 defmodule ForgeAbi.UpgradeInfo do
@@ -1018,4 +1029,46 @@ defmodule ForgeAbi.UpgradeInfo do
 
   field :height, 1, type: :uint64
   field :version, 2, type: :string
+end
+
+defmodule ForgeAbi.AccountConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          pk: binary,
+          balance: ForgeAbi.BigUint.t() | nil
+        }
+  defstruct [:address, :pk, :balance]
+
+  field :address, 1, type: :string
+  field :pk, 2, type: :bytes
+  field :balance, 3, type: ForgeAbi.BigUint
+end
+
+defmodule ForgeAbi.TokenSwapConfig do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          commission_holder_address: String.t(),
+          withdraw_interval: non_neg_integer,
+          commission: ForgeAbi.BigUint.t() | nil,
+          commission_rate: non_neg_integer,
+          revoke_commission: non_neg_integer
+        }
+  defstruct [
+    :commission_holder_address,
+    :withdraw_interval,
+    :commission,
+    :commission_rate,
+    :revoke_commission
+  ]
+
+  field :commission_holder_address, 1, type: :string
+  field :withdraw_interval, 2, type: :uint32
+  field :commission, 3, type: ForgeAbi.BigUint
+  field :commission_rate, 4, type: :uint32
+  field :revoke_commission, 5, type: :uint32
 end
