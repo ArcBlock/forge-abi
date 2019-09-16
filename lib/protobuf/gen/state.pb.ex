@@ -20,6 +20,7 @@ defmodule ForgeAbi.AccountState do
           pinned_files: ForgeAbi.CircularQueue.t() | nil,
           poke: ForgeAbi.PokeInfo.t() | nil,
           deposit_received: ForgeAbi.BigUint.t() | nil,
+          withdraw_items: ForgeAbi.CircularQueue.t() | nil,
           data: Google.Protobuf.Any.t() | nil
         }
   defstruct [
@@ -40,6 +41,7 @@ defmodule ForgeAbi.AccountState do
     :pinned_files,
     :poke,
     :deposit_received,
+    :withdraw_items,
     :data
   ]
 
@@ -60,6 +62,7 @@ defmodule ForgeAbi.AccountState do
   field :pinned_files, 17, type: ForgeAbi.CircularQueue
   field :poke, 18, type: ForgeAbi.PokeInfo
   field :deposit_received, 19, type: ForgeAbi.BigUint
+  field :withdraw_items, 20, type: ForgeAbi.CircularQueue
   field :data, 50, type: Google.Protobuf.Any
 end
 
