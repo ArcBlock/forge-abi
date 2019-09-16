@@ -42,6 +42,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:x:tx", ForgeAbi.Transaction},
     {"fg:x:tx_info", ForgeAbi.TransactionInfo},
     {"fg:x:tx_status", ForgeAbi.TxStatus},
+    {"fg:x:withdraw_item", ForgeAbi.WithdrawItem},
 
     # dummy codec
     {"fg:x:address", DummyCodec},
