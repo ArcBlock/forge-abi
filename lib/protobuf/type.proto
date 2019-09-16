@@ -397,6 +397,11 @@ message UpgradeInfo {
   string version = 2;
 }
 
+message WithdrawItem{
+  string hash = 1;
+  BigUint value = 2;
+}
+
 message AccountConfig {
   string address = 1;
   bytes pk = 2;
@@ -409,4 +414,12 @@ message TokenSwapConfig {
   BigUint commission = 3;
   uint32 commission_rate = 4;
   uint32 revoke_commission = 5;
+}
+
+message Evidence {
+  string hash = 1;        // tx hash from a foreign chain
+  string chain_type = 2;  // type of the chain, currently only "eth"
+  string chain_id = 3;    // chain id of the chain. Could be testnet or mainnet.
+  bytes original_tx = 4;  // the binary for the original tx
+  string receiver_address = 5; // the address of the receiver (can only be controlled account)
 }
