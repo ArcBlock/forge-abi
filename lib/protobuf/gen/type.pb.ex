@@ -1031,6 +1031,20 @@ defmodule ForgeAbi.UpgradeInfo do
   field :version, 2, type: :string
 end
 
+defmodule ForgeAbi.WithdrawItem do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          hash: String.t(),
+          value: ForgeAbi.BigUint.t() | nil
+        }
+  defstruct [:hash, :value]
+
+  field :hash, 1, type: :string
+  field :value, 2, type: ForgeAbi.BigUint
+end
+
 defmodule ForgeAbi.AccountConfig do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -1071,4 +1085,24 @@ defmodule ForgeAbi.TokenSwapConfig do
   field :commission, 3, type: ForgeAbi.BigUint
   field :commission_rate, 4, type: :uint32
   field :revoke_commission, 5, type: :uint32
+end
+
+defmodule ForgeAbi.Evidence do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          hash: String.t(),
+          chain_type: String.t(),
+          chain_id: String.t(),
+          original_tx: binary,
+          receiver_address: String.t()
+        }
+  defstruct [:hash, :chain_type, :chain_id, :original_tx, :receiver_address]
+
+  field :hash, 1, type: :string
+  field :chain_type, 2, type: :string
+  field :chain_id, 3, type: :string
+  field :original_tx, 4, type: :bytes
+  field :receiver_address, 5, type: :string
 end

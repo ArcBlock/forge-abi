@@ -59,6 +59,9 @@ defmodule ForgeAbi.StatusCode do
   field :protocol_not_paused, 61
   field :protocol_not_activated, 62
   field :invalid_deactivation, 63
+  field :sender_withdraw_items_full, 64
+  field :withdraw_item_missing, 65
+  field :invalid_withdraw_tx, 66
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504
