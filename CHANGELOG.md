@@ -1,3 +1,7 @@
+## 1.14.2 (September 19, 2019)
+  - Add new error code
+  - support token-swap txs (#112)
+
 ## 1.14.1 (September 15, 2019)
   - rename to withdrawItem
   - Support token-swap txs
