@@ -1,3 +1,6 @@
+## 1.14.3 (September 30, 2019)
+  - bump dependencies
+
 ## 1.14.2 (September 19, 2019)
   - Add new error code
   - support token-swap txs (#112)
