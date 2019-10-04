@@ -1,5 +1,9 @@
+## 1.14.4 (October 04, 2019)
+  - Add subscribe types for new txs
+
 ## 1.14.3 (September 30, 2019)
   - bump dependencies
+
 
 ## 1.14.2 (September 19, 2019)
   - Add new error code
