@@ -852,6 +852,11 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :delegate, 25, type: ForgeAbi.Transaction, oneof: 0
   field :activate_protocol, 26, type: ForgeAbi.Transaction, oneof: 0
   field :deactivate_protocol, 27, type: ForgeAbi.Transaction, oneof: 0
+  field :revoke_delegate, 28, type: ForgeAbi.Transaction, oneof: 0
+  field :deposit_token, 29, type: ForgeAbi.Transaction, oneof: 0
+  field :withdraw_token, 30, type: ForgeAbi.Transaction, oneof: 0
+  field :approve_withdraw, 31, type: ForgeAbi.Transaction, oneof: 0
+  field :revoke_withdraw, 32, type: ForgeAbi.Transaction, oneof: 0
   field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
   field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
   field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0
