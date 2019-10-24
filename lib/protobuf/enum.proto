@@ -73,6 +73,7 @@ enum StatusCode {
   withdraw_item_missing=65;
   invalid_withdraw_tx=66;
   invalid_chain_type=67;
+  invalid_time=68;
 
   forbidden = 403;
   internal = 500;

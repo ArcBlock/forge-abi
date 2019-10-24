@@ -63,6 +63,7 @@ defmodule ForgeAbi.StatusCode do
   field :withdraw_item_missing, 65
   field :invalid_withdraw_tx, 66
   field :invalid_chain_type, 67
+  field :invalid_time, 68
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504
