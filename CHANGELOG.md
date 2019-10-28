@@ -1,6 +1,8 @@
+## 1.14.6 (October 28, 2019)
+  - Add a new rpc_connection_error
+
 ## 1.14.5 (October 24, 2019)
   - Add new error code for invalid timestamp
-
 
 ## 1.14.4 (October 04, 2019)
   - Add subscribe types for new txs
