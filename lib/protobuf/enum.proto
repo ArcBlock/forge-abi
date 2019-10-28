@@ -32,6 +32,7 @@ enum StatusCode {
   storage_rpc_error = 25;
   noent = 26;
   account_migrated = 27;
+  rpc_connection_error = 28;
 
   unsupported_stake = 30;
   insufficient_stake = 31;

@@ -25,6 +25,7 @@ defmodule ForgeAbi.StatusCode do
   field :storage_rpc_error, 25
   field :noent, 26
   field :account_migrated, 27
+  field :rpc_connection_error, 28
   field :unsupported_stake, 30
   field :insufficient_stake, 31
   field :invalid_stake_state, 32
