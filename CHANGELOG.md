@@ -1,3 +1,6 @@
+## 1.14.6 (October 29, 2019)
+  - chore: add asset protocol files
+
 ## 1.14.5 (October 24, 2019)
   - Add new error code for invalid timestamp
 
