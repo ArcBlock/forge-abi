@@ -1,3 +1,6 @@
+## 1.15.0 (October 29, 2019)
+  - deprecate passphrase
+
 ## 1.14.6 (October 28, 2019)
   - Add a new rpc_connection_error
 
