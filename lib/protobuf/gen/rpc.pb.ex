@@ -187,13 +187,11 @@ defmodule ForgeAbi.RequestCreateWallet do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          passphrase: String.t(),
           type: ForgeAbi.WalletType.t() | nil,
           moniker: String.t()
         }
-  defstruct [:passphrase, :type, :moniker]
+  defstruct [:type, :moniker]
 
-  field :passphrase, 1, type: :string
   field :type, 2, type: ForgeAbi.WalletType
   field :moniker, 3, type: :string
 end
