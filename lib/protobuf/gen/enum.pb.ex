@@ -44,7 +44,6 @@ defmodule ForgeAbi.StatusCode do
   field :invalid_deposit_target, 45
   field :invalid_depositor, 46
   field :invalid_withdrawer, 47
-  field :duplicate_tether, 48
   field :invalid_expiry_date, 49
   field :invalid_deposit, 50
   field :invalid_custodian, 51
@@ -114,7 +113,6 @@ defmodule ForgeAbi.RoleType do
   field :role_validator, 8
   field :role_group, 9
   field :role_tx, 10
-  field :role_tether, 11
   field :role_any, 63
 end
 

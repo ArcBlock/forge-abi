@@ -33,7 +33,6 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:s:statistics", ForgeAbi.StatisticsState},
     {"fg:s:protocol", ForgeAbi.ProtocolState},
     {"fg:s:root", ForgeAbi.RootState},
-    {"fg:s:tether", ForgeAbi.TetherInfo},
     {"fg:s:swap", ForgeAbi.SwapState},
     {"fg:s:delegate", ForgeAbi.DelegateState},
 

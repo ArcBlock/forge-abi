@@ -3,7 +3,7 @@ defmodule ForgeAbi.BigUint do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          value: binary
+          value: String.t()
         }
   defstruct [:value]
 
@@ -15,7 +15,7 @@ defmodule ForgeAbi.BigSint do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          value: binary,
+          value: String.t(),
           minus: boolean
         }
   defstruct [:value, :minus]
@@ -29,10 +29,10 @@ defmodule ForgeAbi.WalletType do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          pk: atom | integer,
-          hash: atom | integer,
-          address: atom | integer,
-          role: atom | integer
+          pk: integer,
+          hash: integer,
+          address: integer,
+          role: integer
         }
   defstruct [:pk, :hash, :address, :role]
 
@@ -47,9 +47,9 @@ defmodule ForgeAbi.WalletInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          type: ForgeAbi.WalletType.t() | nil,
-          sk: binary,
-          pk: binary,
+          type: ForgeAbi.WalletType.t(),
+          sk: String.t(),
+          pk: String.t(),
           address: String.t()
         }
   defstruct [:type, :sk, :pk, :address]
@@ -70,10 +70,10 @@ defmodule ForgeAbi.ChainInfo do
           moniker: String.t(),
           consensus_version: String.t(),
           synced: boolean,
-          app_hash: binary,
-          block_hash: binary,
+          app_hash: String.t(),
+          block_hash: String.t(),
           block_height: non_neg_integer,
-          block_time: Google.Protobuf.Timestamp.t() | nil,
+          block_time: Google.Protobuf.Timestamp.t(),
           address: String.t(),
           voting_power: non_neg_integer,
           total_txs: non_neg_integer,
@@ -145,10 +145,10 @@ defmodule ForgeAbi.NodeInfo do
           moniker: String.t(),
           consensus_version: String.t(),
           synced: boolean,
-          app_hash: binary,
-          block_hash: binary,
+          app_hash: String.t(),
+          block_hash: String.t(),
           block_height: non_neg_integer,
-          block_time: Google.Protobuf.Timestamp.t() | nil,
+          block_time: Google.Protobuf.Timestamp.t(),
           address: String.t(),
           voting_power: non_neg_integer,
           total_txs: non_neg_integer,
@@ -156,7 +156,7 @@ defmodule ForgeAbi.NodeInfo do
           forge_apps_version: %{String.t() => String.t()},
           supported_txs: [String.t()],
           ip: String.t(),
-          geo_info: ForgeAbi.GeoInfo.t() | nil,
+          geo_info: ForgeAbi.GeoInfo.t(),
           p2p_address: String.t()
         }
   defstruct [
@@ -273,9 +273,9 @@ defmodule ForgeAbi.UpgradeTask do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          type: atom | integer,
+          type: integer,
           data_hash: String.t(),
-          actions: [atom | integer]
+          actions: [integer]
         }
   defstruct [:type, :data_hash, :actions]
 
@@ -303,11 +303,11 @@ defmodule ForgeAbi.AbciContext do
   @type t :: %__MODULE__{
           tx_hash: String.t(),
           block_height: non_neg_integer,
-          block_time: Google.Protobuf.Timestamp.t() | nil,
+          block_time: Google.Protobuf.Timestamp.t(),
           total_txs: non_neg_integer,
-          tx_statistics: ForgeAbi.TxStatistics.t() | nil,
+          tx_statistics: ForgeAbi.TxStatistics.t(),
           tx_index: non_neg_integer,
-          last_block_time: Google.Protobuf.Timestamp.t() | nil
+          last_block_time: Google.Protobuf.Timestamp.t()
         }
   defstruct [
     :tx_hash,
@@ -334,10 +334,10 @@ defmodule ForgeAbi.Multisig do
 
   @type t :: %__MODULE__{
           signer: String.t(),
-          pk: binary,
-          signature: binary,
+          pk: String.t(),
+          signature: String.t(),
           delegator: String.t(),
-          data: Google.Protobuf.Any.t() | nil
+          data: Google.Protobuf.Any.t()
         }
   defstruct [:signer, :pk, :signature, :delegator, :data]
 
@@ -356,12 +356,12 @@ defmodule ForgeAbi.Transaction do
           from: String.t(),
           nonce: non_neg_integer,
           chain_id: String.t(),
-          pk: binary,
+          pk: String.t(),
           gas: non_neg_integer,
           delegator: String.t(),
-          signature: binary,
+          signature: String.t(),
           signatures: [ForgeAbi.Multisig.t()],
-          itx: Google.Protobuf.Any.t() | nil
+          itx: Google.Protobuf.Any.t()
         }
   defstruct [:from, :nonce, :chain_id, :pk, :gas, :delegator, :signature, :signatures, :itx]
 
@@ -381,13 +381,13 @@ defmodule ForgeAbi.TransactionInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          tx: ForgeAbi.Transaction.t() | nil,
+          tx: ForgeAbi.Transaction.t(),
           height: non_neg_integer,
           index: non_neg_integer,
           hash: String.t(),
           tags: [AbciVendor.KVPair.t()],
-          code: atom | integer,
-          time: Google.Protobuf.Timestamp.t() | nil
+          code: integer,
+          time: Google.Protobuf.Timestamp.t()
         }
   defstruct [:tx, :height, :index, :hash, :tags, :code, :time]
 
@@ -437,10 +437,10 @@ defmodule ForgeAbi.TransactionConfig do
           max_list_size: non_neg_integer,
           max_multisig: non_neg_integer,
           minimum_stake: non_neg_integer,
-          declare: ForgeAbi.DeclareConfig.t() | nil,
-          delegate: ForgeAbi.DelegateConfig.t() | nil,
-          poke: ForgeAbi.PokeConfig.t() | nil,
-          stake: ForgeAbi.StakeConfig.t() | nil
+          declare: ForgeAbi.DeclareConfig.t(),
+          delegate: ForgeAbi.DelegateConfig.t(),
+          poke: ForgeAbi.PokeConfig.t(),
+          stake: ForgeAbi.StakeConfig.t()
         }
   defstruct [
     :max_asset_size,
@@ -470,23 +470,23 @@ defmodule ForgeAbi.BlockInfo do
   @type t :: %__MODULE__{
           height: non_neg_integer,
           num_txs: non_neg_integer,
-          time: Google.Protobuf.Timestamp.t() | nil,
-          app_hash: binary,
-          proposer: binary,
+          time: Google.Protobuf.Timestamp.t(),
+          app_hash: String.t(),
+          proposer: String.t(),
           txs: [ForgeAbi.TransactionInfo.t()],
           total_txs: non_neg_integer,
           invalid_txs: [ForgeAbi.TransactionInfo.t()],
           txs_hashes: [String.t()],
           invalid_txs_hashes: [String.t()],
-          consensus_hash: binary,
-          data_hash: binary,
-          evidence_hash: binary,
-          last_commit_hash: binary,
-          last_results_hash: binary,
-          next_validators_hash: binary,
-          validators_hash: binary,
-          version: AbciVendor.Version.t() | nil,
-          last_block_id: AbciVendor.BlockID.t() | nil
+          consensus_hash: String.t(),
+          data_hash: String.t(),
+          evidence_hash: String.t(),
+          last_commit_hash: String.t(),
+          last_results_hash: String.t(),
+          next_validators_hash: String.t(),
+          validators_hash: String.t(),
+          version: AbciVendor.Version.t(),
+          last_block_id: AbciVendor.BlockID.t()
         }
   defstruct [
     :height,
@@ -538,21 +538,21 @@ defmodule ForgeAbi.BlockInfoSimple do
   @type t :: %__MODULE__{
           height: non_neg_integer,
           num_txs: non_neg_integer,
-          time: Google.Protobuf.Timestamp.t() | nil,
-          app_hash: binary,
-          proposer: binary,
+          time: Google.Protobuf.Timestamp.t(),
+          app_hash: String.t(),
+          proposer: String.t(),
           total_txs: non_neg_integer,
           txs_hashes: [String.t()],
           invalid_txs_hashes: [String.t()],
-          consensus_hash: binary,
-          data_hash: binary,
-          evidence_hash: binary,
-          last_commit_hash: binary,
-          last_results_hash: binary,
-          next_validators_hash: binary,
-          validators_hash: binary,
-          version: AbciVendor.Version.t() | nil,
-          last_block_id: AbciVendor.BlockID.t() | nil
+          consensus_hash: String.t(),
+          data_hash: String.t(),
+          evidence_hash: String.t(),
+          last_commit_hash: String.t(),
+          last_results_hash: String.t(),
+          next_validators_hash: String.t(),
+          validators_hash: String.t(),
+          version: AbciVendor.Version.t(),
+          last_block_id: AbciVendor.BlockID.t()
         }
   defstruct [
     :height,
@@ -598,7 +598,7 @@ defmodule ForgeAbi.TxStatus do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: atom | integer,
+          code: integer,
           hash: String.t()
         }
   defstruct [:code, :hash]
@@ -612,7 +612,7 @@ defmodule ForgeAbi.CircularQueue do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          items: [binary],
+          items: [String.t()],
           type_url: String.t(),
           max_items: non_neg_integer,
           circular: boolean,
@@ -634,8 +634,8 @@ defmodule ForgeAbi.StateContext do
   @type t :: %__MODULE__{
           genesis_tx: String.t(),
           renaissance_tx: String.t(),
-          genesis_time: Google.Protobuf.Timestamp.t() | nil,
-          renaissance_time: Google.Protobuf.Timestamp.t() | nil
+          genesis_time: Google.Protobuf.Timestamp.t(),
+          renaissance_time: Google.Protobuf.Timestamp.t()
         }
   defstruct [:genesis_tx, :renaissance_tx, :genesis_time, :renaissance_time]
 
@@ -650,11 +650,11 @@ defmodule ForgeAbi.StakeContext do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          total_stakes: ForgeAbi.BigUint.t() | nil,
-          total_unstakes: ForgeAbi.BigUint.t() | nil,
-          total_received_stakes: ForgeAbi.BigUint.t() | nil,
-          recent_stakes: ForgeAbi.CircularQueue.t() | nil,
-          recent_received_stakes: ForgeAbi.CircularQueue.t() | nil
+          total_stakes: ForgeAbi.BigUint.t(),
+          total_unstakes: ForgeAbi.BigUint.t(),
+          total_received_stakes: ForgeAbi.BigUint.t(),
+          recent_stakes: ForgeAbi.CircularQueue.t(),
+          recent_received_stakes: ForgeAbi.CircularQueue.t()
         }
   defstruct [
     :total_stakes,
@@ -676,9 +676,9 @@ defmodule ForgeAbi.StakeSummary do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          total_stakes: ForgeAbi.BigUint.t() | nil,
-          total_unstakes: ForgeAbi.BigUint.t() | nil,
-          context: ForgeAbi.StateContext.t() | nil
+          total_stakes: ForgeAbi.BigUint.t(),
+          total_unstakes: ForgeAbi.BigUint.t(),
+          context: ForgeAbi.StateContext.t()
         }
   defstruct [:total_stakes, :total_unstakes, :context]
 
@@ -761,7 +761,7 @@ defmodule ForgeAbi.PeerInfo do
           consensus_version: String.t(),
           moniker: String.t(),
           ip: String.t(),
-          geo_info: ForgeAbi.GeoInfo.t() | nil
+          geo_info: ForgeAbi.GeoInfo.t()
         }
   defstruct [:id, :network, :consensus_version, :moniker, :ip, :geo_info]
 
@@ -793,11 +793,11 @@ defmodule ForgeAbi.ValidatorInfo do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          pub_key: AbciVendor.PubKey.t() | nil,
+          pub_key: AbciVendor.PubKey.t(),
           voting_power: non_neg_integer,
           proposer_priority: String.t(),
           name: String.t(),
-          geo_info: ForgeAbi.GeoInfo.t() | nil
+          geo_info: ForgeAbi.GeoInfo.t()
         }
   defstruct [:address, :pub_key, :voting_power, :proposer_priority, :name, :geo_info]
 
@@ -816,7 +816,7 @@ defmodule ForgeAbi.GenesisInfo do
   @type t :: %__MODULE__{
           genesis_time: String.t(),
           chain_id: String.t(),
-          consensus_params: AbciVendor.ConsensusParams.t() | nil,
+          consensus_params: AbciVendor.ConsensusParams.t(),
           validators: [ForgeAbi.ValidatorInfo.t()],
           app_hash: String.t()
         }
@@ -956,7 +956,7 @@ defmodule ForgeAbi.ForgeToken do
           symbol: String.t(),
           unit: String.t(),
           description: String.t(),
-          icon: binary,
+          icon: String.t(),
           decimal: non_neg_integer,
           initial_supply: non_neg_integer,
           total_supply: non_neg_integer,
@@ -990,9 +990,9 @@ defmodule ForgeAbi.PokeInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          daily_limit: ForgeAbi.BigUint.t() | nil,
-          leftover: ForgeAbi.BigUint.t() | nil,
-          amount: ForgeAbi.BigUint.t() | nil
+          daily_limit: ForgeAbi.BigUint.t(),
+          leftover: ForgeAbi.BigUint.t(),
+          amount: ForgeAbi.BigUint.t()
         }
   defstruct [:daily_limit, :leftover, :amount]
 
@@ -1037,7 +1037,7 @@ defmodule ForgeAbi.WithdrawItem do
 
   @type t :: %__MODULE__{
           hash: String.t(),
-          value: ForgeAbi.BigUint.t() | nil
+          value: ForgeAbi.BigUint.t()
         }
   defstruct [:hash, :value]
 
@@ -1051,8 +1051,8 @@ defmodule ForgeAbi.AccountConfig do
 
   @type t :: %__MODULE__{
           address: String.t(),
-          pk: binary,
-          balance: ForgeAbi.BigUint.t() | nil
+          pk: String.t(),
+          balance: ForgeAbi.BigUint.t()
         }
   defstruct [:address, :pk, :balance]
 
@@ -1068,7 +1068,7 @@ defmodule ForgeAbi.TokenSwapConfig do
   @type t :: %__MODULE__{
           commission_holder_address: String.t(),
           withdraw_interval: non_neg_integer,
-          commission: ForgeAbi.BigUint.t() | nil,
+          commission: ForgeAbi.BigUint.t(),
           commission_rate: non_neg_integer,
           revoke_commission: non_neg_integer
         }
@@ -1095,7 +1095,7 @@ defmodule ForgeAbi.Evidence do
           hash: String.t(),
           chain_type: String.t(),
           chain_id: String.t(),
-          original_tx: binary,
+          original_tx: String.t(),
           receiver_address: String.t()
         }
   defstruct [:hash, :chain_type, :chain_id, :original_tx, :receiver_address]
