@@ -3,8 +3,8 @@ defmodule ForgeAbi.RequestSendTx do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          tx: ForgeAbi.Transaction.t(),
-          wallet: ForgeAbi.WalletInfo.t(),
+          tx: ForgeAbi.Transaction.t() | nil,
+          wallet: ForgeAbi.WalletInfo.t() | nil,
           token: String.t(),
           commit: boolean
         }
@@ -21,7 +21,7 @@ defmodule ForgeAbi.ResponseSendTx do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
+          code: atom | integer,
           hash: String.t()
         }
   defstruct [:code, :hash]
@@ -47,8 +47,8 @@ defmodule ForgeAbi.ResponseGetTx do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          info: ForgeAbi.TransactionInfo.t()
+          code: atom | integer,
+          info: ForgeAbi.TransactionInfo.t() | nil
         }
   defstruct [:code, :info]
 
@@ -73,8 +73,8 @@ defmodule ForgeAbi.ResponseGetBlock do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          block: ForgeAbi.BlockInfo.t()
+          code: atom | integer,
+          block: ForgeAbi.BlockInfo.t() | nil
         }
   defstruct [:code, :block]
 
@@ -87,8 +87,8 @@ defmodule ForgeAbi.RequestGetBlocks do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
-          height_filter: ForgeAbi.RangeFilter.t(),
+          paging: ForgeAbi.PageInput.t() | nil,
+          height_filter: ForgeAbi.RangeFilter.t() | nil,
           empty_excluded: boolean
         }
   defstruct [:paging, :height_filter, :empty_excluded]
@@ -103,8 +103,8 @@ defmodule ForgeAbi.ResponseGetBlocks do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           blocks: [ForgeAbi.BlockInfoSimple.t()]
         }
   defstruct [:code, :page, :blocks]
@@ -131,8 +131,8 @@ defmodule ForgeAbi.ResponseDeclareNode do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          wallet: ForgeAbi.WalletInfo.t()
+          code: atom | integer,
+          wallet: ForgeAbi.WalletInfo.t() | nil
         }
   defstruct [:code, :wallet]
 
@@ -161,8 +161,8 @@ defmodule ForgeAbi.ResponseGetAccountState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          state: ForgeAbi.AccountState.t()
+          code: atom | integer,
+          state: ForgeAbi.AccountState.t() | nil
         }
   defstruct [:code, :state]
 
@@ -191,8 +191,8 @@ defmodule ForgeAbi.ResponseGetAssetState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          state: ForgeAbi.AssetState.t()
+          code: atom | integer,
+          state: ForgeAbi.AssetState.t() | nil
         }
   defstruct [:code, :state]
 
@@ -221,8 +221,8 @@ defmodule ForgeAbi.ResponseGetProtocolState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          state: ForgeAbi.ProtocolState.t()
+          code: atom | integer,
+          state: ForgeAbi.ProtocolState.t() | nil
         }
   defstruct [:code, :state]
 
@@ -251,8 +251,8 @@ defmodule ForgeAbi.ResponseGetStakeState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          state: ForgeAbi.StakeState.t()
+          code: atom | integer,
+          state: ForgeAbi.StakeState.t() | nil
         }
   defstruct [:code, :state]
 
@@ -279,8 +279,8 @@ defmodule ForgeAbi.ResponseGetForgeState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          state: ForgeAbi.ForgeState.t()
+          code: atom | integer,
+          state: ForgeAbi.ForgeState.t() | nil
         }
   defstruct [:code, :state]
 
@@ -309,8 +309,8 @@ defmodule ForgeAbi.ResponseGetSwapState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          state: ForgeAbi.SwapState.t()
+          code: atom | integer,
+          state: ForgeAbi.SwapState.t() | nil
         }
   defstruct [:code, :state]
 
@@ -339,8 +339,8 @@ defmodule ForgeAbi.ResponseGetDelegateState do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          state: ForgeAbi.DelegateState.t()
+          code: atom | integer,
+          state: ForgeAbi.DelegateState.t() | nil
         }
   defstruct [:code, :state]
 
@@ -353,7 +353,7 @@ defmodule ForgeAbi.RequestStoreFile do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          chunk: String.t()
+          chunk: binary
         }
   defstruct [:chunk]
 
@@ -365,7 +365,7 @@ defmodule ForgeAbi.ResponseStoreFile do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
+          code: atom | integer,
           hash: String.t()
         }
   defstruct [:code, :hash]
@@ -391,8 +391,8 @@ defmodule ForgeAbi.ResponseLoadFile do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          chunk: String.t()
+          code: atom | integer,
+          chunk: binary
         }
   defstruct [:code, :chunk]
 
@@ -417,7 +417,7 @@ defmodule ForgeAbi.ResponsePinFile do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer
+          code: atom | integer
         }
   defstruct [:code]
 
@@ -428,6 +428,7 @@ defmodule ForgeAbi.RequestGetChainInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
+  @type t :: %__MODULE__{}
   defstruct []
 end
 
@@ -436,8 +437,8 @@ defmodule ForgeAbi.ResponseGetChainInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          info: ForgeAbi.ChainInfo.t()
+          code: atom | integer,
+          info: ForgeAbi.ChainInfo.t() | nil
         }
   defstruct [:code, :info]
 
@@ -449,6 +450,7 @@ defmodule ForgeAbi.RequestGetNodeInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
+  @type t :: %__MODULE__{}
   defstruct []
 end
 
@@ -457,8 +459,8 @@ defmodule ForgeAbi.ResponseGetNodeInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          info: ForgeAbi.NodeInfo.t()
+          code: atom | integer,
+          info: ForgeAbi.NodeInfo.t() | nil
         }
   defstruct [:code, :info]
 
@@ -485,7 +487,7 @@ defmodule ForgeAbi.ResponseSearch do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
+          code: atom | integer,
           txs: [ForgeAbi.TransactionInfo.t()]
         }
   defstruct [:code, :txs]
@@ -499,7 +501,7 @@ defmodule ForgeAbi.RequestGetUnconfirmedTxs do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t()
+          paging: ForgeAbi.PageInput.t() | nil
         }
   defstruct [:paging]
 
@@ -511,9 +513,9 @@ defmodule ForgeAbi.ResponseGetUnconfirmedTxs do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
-          unconfirmed_txs: ForgeAbi.UnconfirmedTxs.t()
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
+          unconfirmed_txs: ForgeAbi.UnconfirmedTxs.t() | nil
         }
   defstruct [:code, :page, :unconfirmed_txs]
 
@@ -526,6 +528,7 @@ defmodule ForgeAbi.RequestGetNetInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
+  @type t :: %__MODULE__{}
   defstruct []
 end
 
@@ -534,8 +537,8 @@ defmodule ForgeAbi.ResponseGetNetInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          net_info: ForgeAbi.NetInfo.t()
+          code: atom | integer,
+          net_info: ForgeAbi.NetInfo.t() | nil
         }
   defstruct [:code, :net_info]
 
@@ -547,6 +550,7 @@ defmodule ForgeAbi.RequestGetValidatorsInfo do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
+  @type t :: %__MODULE__{}
   defstruct []
 end
 
@@ -555,8 +559,8 @@ defmodule ForgeAbi.ResponseGetValidatorsInfo do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          validators_info: ForgeAbi.ValidatorsInfo.t()
+          code: atom | integer,
+          validators_info: ForgeAbi.ValidatorsInfo.t() | nil
         }
   defstruct [:code, :validators_info]
 
@@ -584,7 +588,7 @@ defmodule ForgeAbi.ResponseSubscribe do
 
   @type t :: %__MODULE__{
           value: {atom, any},
-          code: integer
+          code: atom | integer
         }
   defstruct [:value, :code]
 
@@ -638,7 +642,7 @@ defmodule ForgeAbi.ResponseUnsubscribe do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer
+          code: atom | integer
         }
   defstruct [:code]
 
@@ -662,7 +666,7 @@ defmodule ForgeAbi.ResponseGetConfig do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
+          code: atom | integer,
           config: String.t()
         }
   defstruct [:code, :config]
@@ -716,8 +720,8 @@ defmodule ForgeAbi.ResponseGetForgeStats do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          forge_stats: ForgeAbi.ForgeStats.t()
+          code: atom | integer,
+          forge_stats: ForgeAbi.ForgeStats.t() | nil
         }
   defstruct [:code, :forge_stats]
 
@@ -730,11 +734,11 @@ defmodule ForgeAbi.RequestListTransactions do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
-          time_filter: ForgeAbi.TimeFilter.t(),
-          address_filter: ForgeAbi.AddressFilter.t(),
-          type_filter: ForgeAbi.TypeFilter.t(),
-          validity_filter: ForgeAbi.ValidityFilter.t()
+          paging: ForgeAbi.PageInput.t() | nil,
+          time_filter: ForgeAbi.TimeFilter.t() | nil,
+          address_filter: ForgeAbi.AddressFilter.t() | nil,
+          type_filter: ForgeAbi.TypeFilter.t() | nil,
+          validity_filter: ForgeAbi.ValidityFilter.t() | nil
         }
   defstruct [:paging, :time_filter, :address_filter, :type_filter, :validity_filter]
 
@@ -750,8 +754,8 @@ defmodule ForgeAbi.ResponseListTransactions do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           transactions: [ForgeAbi.IndexedTransaction.t()]
         }
   defstruct [:code, :page, :transactions]
@@ -766,7 +770,7 @@ defmodule ForgeAbi.RequestListAssets do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
+          paging: ForgeAbi.PageInput.t() | nil,
           owner_address: String.t()
         }
   defstruct [:paging, :owner_address]
@@ -780,8 +784,8 @@ defmodule ForgeAbi.ResponseListAssets do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           assets: [ForgeAbi.IndexedAssetState.t()]
         }
   defstruct [:code, :page, :assets]
@@ -796,8 +800,8 @@ defmodule ForgeAbi.RequestListStakes do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
-          address_filter: ForgeAbi.AddressFilter.t()
+          paging: ForgeAbi.PageInput.t() | nil,
+          address_filter: ForgeAbi.AddressFilter.t() | nil
         }
   defstruct [:paging, :address_filter]
 
@@ -810,8 +814,8 @@ defmodule ForgeAbi.ResponseListStakes do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           stakes: [ForgeAbi.IndexedStakeState.t()]
         }
   defstruct [:code, :page, :stakes]
@@ -838,8 +842,8 @@ defmodule ForgeAbi.ResponseListAccount do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          account: ForgeAbi.IndexedAccountState.t()
+          code: atom | integer,
+          account: ForgeAbi.IndexedAccountState.t() | nil
         }
   defstruct [:code, :account]
 
@@ -852,7 +856,7 @@ defmodule ForgeAbi.RequestListTopAccounts do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t()
+          paging: ForgeAbi.PageInput.t() | nil
         }
   defstruct [:paging]
 
@@ -864,8 +868,8 @@ defmodule ForgeAbi.ResponseListTopAccounts do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           accounts: [ForgeAbi.IndexedAccountState.t()]
         }
   defstruct [:code, :page, :accounts]
@@ -880,7 +884,7 @@ defmodule ForgeAbi.RequestListAssetTransactions do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
+          paging: ForgeAbi.PageInput.t() | nil,
           address: String.t()
         }
   defstruct [:paging, :address]
@@ -894,8 +898,8 @@ defmodule ForgeAbi.ResponseListAssetTransactions do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           transactions: [ForgeAbi.IndexedTransaction.t()]
         }
   defstruct [:code, :page, :transactions]
@@ -910,12 +914,12 @@ defmodule ForgeAbi.RequestListBlocks do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
+          paging: ForgeAbi.PageInput.t() | nil,
           proposer: String.t(),
-          time_filter: ForgeAbi.TimeFilter.t(),
-          height_filter: ForgeAbi.RangeFilter.t(),
-          num_txs_filter: ForgeAbi.RangeFilter.t(),
-          num_invalid_txs_filter: ForgeAbi.RangeFilter.t()
+          time_filter: ForgeAbi.TimeFilter.t() | nil,
+          height_filter: ForgeAbi.RangeFilter.t() | nil,
+          num_txs_filter: ForgeAbi.RangeFilter.t() | nil,
+          num_invalid_txs_filter: ForgeAbi.RangeFilter.t() | nil
         }
   defstruct [
     :paging,
@@ -939,8 +943,8 @@ defmodule ForgeAbi.ResponseListBlocks do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           blocks: [ForgeAbi.IndexedBlock.t()]
         }
   defstruct [:code, :page, :blocks]
@@ -955,7 +959,7 @@ defmodule ForgeAbi.RequestListSwap do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          paging: ForgeAbi.PageInput.t(),
+          paging: ForgeAbi.PageInput.t() | nil,
           sender: String.t(),
           receiver: String.t(),
           available: boolean
@@ -973,8 +977,8 @@ defmodule ForgeAbi.ResponseListSwap do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          page: ForgeAbi.PageInfo.t(),
+          code: atom | integer,
+          page: ForgeAbi.PageInfo.t() | nil,
           swap: [ForgeAbi.SwapState.t()]
         }
   defstruct [:code, :page, :swap]
@@ -988,6 +992,7 @@ defmodule ForgeAbi.RequestGetHealthStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
 
+  @type t :: %__MODULE__{}
   defstruct []
 end
 
@@ -996,8 +1001,8 @@ defmodule ForgeAbi.ResponseGetHealthStatus do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: integer,
-          health_status: ForgeAbi.HealthStatus.t()
+          code: atom | integer,
+          health_status: ForgeAbi.HealthStatus.t() | nil
         }
   defstruct [:code, :health_status]
 

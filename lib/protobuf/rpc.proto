@@ -1,7 +1,6 @@
 syntax = "proto3";
 package forge_abi;
 
-import "google/protobuf/any.proto";
 import "vendor.proto";
 import "enum.proto";
 import "type.proto";
@@ -239,13 +238,13 @@ message ResponseSubscribe {
     Transaction sys_upgrade = 23;
     Transaction stake = 24;
     Transaction delegate = 25;
-    Transaction activate_protocol=26;
-    Transaction deactivate_protocol=27;
-    Transaction revoke_delegate=28;
-    Transaction deposit_token=29;
-    Transaction withdraw_token=30;
-    Transaction approve_withdraw=31;
-    Transaction revoke_withdraw=32;
+    Transaction activate_protocol = 26;
+    Transaction deactivate_protocol = 27;
+    Transaction revoke_delegate = 28;
+    Transaction deposit_token = 29;
+    Transaction withdraw_token = 30;
+    Transaction approve_withdraw = 31;
+    Transaction revoke_withdraw = 32;
 
     AccountState account_state = 129;
     AssetState asset_state = 130;
