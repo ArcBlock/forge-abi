@@ -75,7 +75,7 @@ rebuild-proto-json: prepare-vendor-proto-js
 prepare-vendor-proto-js:
 	@echo "Preparing vendor protobuf for js..."
 	@mkdir -p vendors
-	@curl --silent https://$(GITHUB_TOKEN)@raw.githubusercontent.com/ArcBlock/forge-js/master/packages/forge-proto/vendor.proto > ./vendors/vendor.proto
+	@curl --silent https://$(GITHUB_TOKEN)@raw.githubusercontent.com/ArcBlock/forge-js/master/forge/forge-proto/vendor.proto > ./vendors/vendor.proto
 	@echo "Vendor protobuf file for js fetched!"
 
 prepare-vendor-proto:

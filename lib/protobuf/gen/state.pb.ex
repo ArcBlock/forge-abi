@@ -346,64 +346,6 @@ defmodule ForgeAbi.ProtocolState do
   field :data, 15, type: Google.Protobuf.Any
 end
 
-defmodule ForgeAbi.TetherState do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          hash: String.t(),
-          available: boolean,
-          custodian: String.t(),
-          depositor: String.t(),
-          withdrawer: String.t(),
-          value: ForgeAbi.BigUint.t() | nil,
-          commission: ForgeAbi.BigUint.t() | nil,
-          charge: ForgeAbi.BigUint.t() | nil,
-          target: String.t(),
-          locktime: Google.Protobuf.Timestamp.t() | nil,
-          address: String.t()
-        }
-  defstruct [
-    :hash,
-    :available,
-    :custodian,
-    :depositor,
-    :withdrawer,
-    :value,
-    :commission,
-    :charge,
-    :target,
-    :locktime,
-    :address
-  ]
-
-  field :hash, 1, type: :string
-  field :available, 2, type: :bool
-  field :custodian, 3, type: :string
-  field :depositor, 4, type: :string
-  field :withdrawer, 5, type: :string
-  field :value, 6, type: ForgeAbi.BigUint
-  field :commission, 7, type: ForgeAbi.BigUint
-  field :charge, 8, type: ForgeAbi.BigUint
-  field :target, 9, type: :string
-  field :locktime, 10, type: Google.Protobuf.Timestamp
-  field :address, 11, type: :string
-end
-
-defmodule ForgeAbi.TetherInfo do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          available: boolean,
-          hash: String.t()
-        }
-  defstruct [:available, :hash]
-
-  field :available, 1, type: :bool
-  field :hash, 2, type: :string
-end
-
 defmodule ForgeAbi.SwapState do
   @moduledoc false
   use Protobuf, syntax: :proto3
