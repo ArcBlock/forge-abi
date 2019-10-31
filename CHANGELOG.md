@@ -1,3 +1,8 @@
+## 1.16.0 (October 31, 2019)
+  - chore: cleanup tether and wallet related protobuf def
+  - fix: javascript proto fetch url
+  - chore: improve status_code message
+
 ## 1.15.0 (October 29, 2019)
   - deprecate passphrase
 
