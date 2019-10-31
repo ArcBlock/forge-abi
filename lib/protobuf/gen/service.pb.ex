@@ -2,8 +2,6 @@ defmodule ForgeAbi.ChainRpc.Service do
   @moduledoc false
   use GRPC.Service, name: "forge_abi.ChainRpc"
 
-  rpc :create_tx, ForgeAbi.RequestCreateTx, ForgeAbi.ResponseCreateTx
-  rpc :multisig, ForgeAbi.RequestMultisig, ForgeAbi.ResponseMultisig
   rpc :send_tx, ForgeAbi.RequestSendTx, ForgeAbi.ResponseSendTx
   rpc :get_tx, stream(ForgeAbi.RequestGetTx), stream(ForgeAbi.ResponseGetTx)
   rpc :get_block, stream(ForgeAbi.RequestGetBlock), stream(ForgeAbi.ResponseGetBlock)
@@ -38,10 +36,6 @@ end
 defmodule ForgeAbi.FileRpc.Service do
   @moduledoc false
   use GRPC.Service, name: "forge_abi.FileRpc"
-
-  rpc :store_file, stream(ForgeAbi.RequestStoreFile), ForgeAbi.ResponseStoreFile
-  rpc :load_file, ForgeAbi.RequestLoadFile, stream(ForgeAbi.ResponseLoadFile)
-  rpc :pin_file, ForgeAbi.RequestPinFile, ForgeAbi.ResponsePinFile
 end
 
 defmodule ForgeAbi.FileRpc.Stub do
@@ -91,11 +85,6 @@ defmodule ForgeAbi.WalletRpc.Service do
   @moduledoc false
   use GRPC.Service, name: "forge_abi.WalletRpc"
 
-  rpc :create_wallet, ForgeAbi.RequestCreateWallet, ForgeAbi.ResponseCreateWallet
-  rpc :load_wallet, ForgeAbi.RequestLoadWallet, ForgeAbi.ResponseLoadWallet
-  rpc :recover_wallet, ForgeAbi.RequestRecoverWallet, ForgeAbi.ResponseRecoverWallet
-  rpc :list_wallet, ForgeAbi.RequestListWallet, stream(ForgeAbi.ResponseListWallet)
-  rpc :remove_wallet, ForgeAbi.RequestRemoveWallet, ForgeAbi.ResponseRemoveWallet
   rpc :declare_node, ForgeAbi.RequestDeclareNode, ForgeAbi.ResponseDeclareNode
 end
 
@@ -121,7 +110,6 @@ defmodule ForgeAbi.StatsRpc.Service do
 
   rpc :list_blocks, ForgeAbi.RequestListBlocks, ForgeAbi.ResponseListBlocks
   rpc :get_health_status, ForgeAbi.RequestGetHealthStatus, ForgeAbi.ResponseGetHealthStatus
-  rpc :list_tethers, ForgeAbi.RequestListTethers, ForgeAbi.ResponseListTethers
   rpc :list_swap, ForgeAbi.RequestListSwap, ForgeAbi.ResponseListSwap
 end
 
