@@ -1,3 +1,6 @@
+## 1.17.0 (November 01, 2019)
+  - support creating nested default value for ABI struct
+
 ## 1.16.0 (October 31, 2019)
   - chore: cleanup tether and wallet related protobuf def
   - fix: javascript proto fetch url

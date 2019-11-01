@@ -127,7 +127,7 @@ defmodule ForgeAbi.Util.BigInt do
     a + bigsint(b)
   end
 
-  def nil + nil, do: raise(ArithmeticError)
+  def nil + nil, do: 0
   def nil + b, do: b
   def a + nil, do: a
   def a + b, do: Kernel.+(a, b)
@@ -157,8 +157,8 @@ defmodule ForgeAbi.Util.BigInt do
     a - bigsint(b)
   end
 
-  def nil - nil, do: raise(ArithmeticError)
-  def nil - _b, do: raise(ArithmeticError)
+  def nil - nil, do: 0
+  def nil - b, do: Kernel.-(0, b)
   def a - nil, do: a
   def a - b, do: Kernel.-(a, b)
 
@@ -195,6 +195,7 @@ defmodule ForgeAbi.Util.BigInt do
 
   defp to_binary(i), do: :binary.encode_unsigned(i)
 
+  defp to_unsigned(nil), do: 0
   defp to_unsigned(v) when is_integer(v), do: v
   defp to_unsigned(v) when is_float(v), do: v
   defp to_unsigned(%{value: a}), do: to_unsigned(a)
