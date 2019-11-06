@@ -624,7 +624,7 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :deploy_protocol, 37, type: ForgeAbi.Transaction, oneof: 0
   field :consume_asset, 38, type: ForgeAbi.Transaction, oneof: 0
   field :acquire_asset, 39, type: ForgeAbi.Transaction, oneof: 0
-  field :upgrade_nodes, 40, type: ForgeAbi.Transaction, oneof: 0
+  field :upgrade_node, 40, type: ForgeAbi.Transaction, oneof: 0
   field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
   field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
   field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0

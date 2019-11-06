@@ -252,7 +252,7 @@ message ResponseSubscribe {
     Transaction deploy_protocol = 37;
     Transaction consume_asset = 38;
     Transaction acquire_asset = 39;
-    Transaction upgrade_nodes = 40;
+    Transaction upgrade_node = 40;
 
 
     AccountState account_state = 129;
