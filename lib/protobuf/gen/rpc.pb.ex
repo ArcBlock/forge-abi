@@ -600,13 +600,13 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :confirm, 5, type: ForgeAbi.Transaction, oneof: 0
   field :create_asset, 6, type: ForgeAbi.Transaction, oneof: 0
   field :exchange, 7, type: ForgeAbi.Transaction, oneof: 0
-  field :revoke, 8, type: ForgeAbi.Transaction, oneof: 0
+  field :revoke, 8, type: ForgeAbi.Transaction, deprecated: true, oneof: 0
   field :begin_block, 16, type: AbciVendor.RequestBeginBlock, oneof: 0
   field :end_block, 17, type: AbciVendor.RequestEndBlock, oneof: 0
   field :declare, 19, type: ForgeAbi.Transaction, oneof: 0
   field :update_asset, 20, type: ForgeAbi.Transaction, oneof: 0
   field :consensus_upgrade, 21, type: ForgeAbi.Transaction, oneof: 0
-  field :declare_file, 22, type: ForgeAbi.Transaction, oneof: 0
+  field :declare_file, 22, type: ForgeAbi.Transaction, deprecated: true, oneof: 0
   field :sys_upgrade, 23, type: ForgeAbi.Transaction, oneof: 0
   field :stake, 24, type: ForgeAbi.Transaction, oneof: 0
   field :delegate, 25, type: ForgeAbi.Transaction, oneof: 0
@@ -617,12 +617,21 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :withdraw_token, 30, type: ForgeAbi.Transaction, oneof: 0
   field :approve_withdraw, 31, type: ForgeAbi.Transaction, oneof: 0
   field :revoke_withdraw, 32, type: ForgeAbi.Transaction, oneof: 0
+  field :setup_swap, 33, type: ForgeAbi.Transaction, oneof: 0
+  field :revoke_swap, 34, type: ForgeAbi.Transaction, oneof: 0
+  field :retrieve_swap, 35, type: ForgeAbi.Transaction, oneof: 0
+  field :poke, 36, type: ForgeAbi.Transaction, oneof: 0
+  field :deploy_protocol, 37, type: ForgeAbi.Transaction, oneof: 0
+  field :consume_asset, 38, type: ForgeAbi.Transaction, oneof: 0
+  field :acquire_asset, 39, type: ForgeAbi.Transaction, oneof: 0
+  field :upgrade_nodes, 40, type: ForgeAbi.Transaction, oneof: 0
   field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
   field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
   field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0
   field :stake_state, 132, type: ForgeAbi.StakeState, oneof: 0
   field :protocol_state, 133, type: ForgeAbi.ProtocolState, oneof: 0
   field :delegate_state, 134, type: ForgeAbi.DelegateState, oneof: 0
+  field :swap_state, 135, type: ForgeAbi.SwapState, oneof: 0
 end
 
 defmodule ForgeAbi.RequestUnsubscribe do
