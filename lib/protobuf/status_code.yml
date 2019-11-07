@@ -142,7 +142,7 @@ invalid_wallet: This wallet is invalid.
 
 invalid_chain_id: This chain_id is invalid.
 
-consensus_rpc_error: This transaction has already occured on the chain before.
+consensus_rpc_error: This transaction has already occurred on the chain before.
 
 storage_rpc_error: This is a storage rpc error.
 
@@ -221,6 +221,8 @@ invalid_deposit: The deposit is invalid.
 invalid_custodian: The custodian does not exist on the chain.
 
 invalid_delegation: The delegation parameters are invalid.
+
+invalid_subscribe: the subscription is invalid, most likely the topic or the filter is invalid.
 
 forbidden: Operation is not permitted with current authorization.
 

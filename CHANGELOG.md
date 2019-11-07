@@ -1,3 +1,8 @@
+## 1.17.1 (November 06, 2019)
+  - add error code for subscribe
+  - fix typo
+  - upgrade subscription type
+
 ## 1.17.0 (November 01, 2019)
   - support creating nested default value for ABI struct
 
