@@ -64,6 +64,12 @@ insufficient_fund:
     There is not enough balance in participants account.
   poke: |
     Poke account does not have enough balance.
+  acquire_asset: |
+    Sender's account does not have enough balance to acquire the asset
+
+insufficient_asset:
+  default: |
+    Sender is acquiring too much assets from the factory
 
 invalid_owner:
   default: |
@@ -173,6 +179,8 @@ invalid_asset:
     4. Asset already exists on the chain. This is a duplicate asset.
   update_asset: |
     `UpdateAssetTx.address` is not a valid asset.
+  acquire_asset: |
+    `AcquireAssetTx.specs[n].address` is not valid or the address already exists
   exchange: |
     `ExchangeTx.sender.assets` or `ExchangeTx.receiver.assets` contain invalid assets.
   transfer: |
@@ -231,3 +239,9 @@ internal: Internal error occurred - mainly a server implementation issue.
 timeout: Operation is timeout.
 
 invalid_delegation_type_url: The type_url you want to delegate is not allowed in your forge config
+
+module_not_found:
+  default: |
+    The module is not a known type in forge
+  acquire_asset: |
+    `FactoryState.asset_name` is not known to forge

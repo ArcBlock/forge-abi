@@ -77,6 +77,9 @@ enum StatusCode {
   invalid_time=68;
   invalid_subscribe=69;
 
+  insufficient_asset=70;
+  module_not_found=71;
+
   forbidden = 403;
   internal = 500;
   timeout = 504;
