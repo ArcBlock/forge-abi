@@ -65,6 +65,10 @@ defmodule ForgeAbi.StatusCode do
   field :invalid_chain_type, 67
   field :invalid_time, 68
   field :invalid_subscribe, 69
+  field :invalid_did_type, 70
+  field :invalid_candidate_state, 71
+  field :validator_not_found, 72
+  field :validator_not_changed, 73
   field :forbidden, 403
   field :internal, 500
   field :timeout, 504

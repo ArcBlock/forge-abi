@@ -1,3 +1,6 @@
+## 1.18.0 (November 25, 2019)
+
+
 ## 1.17.1 (November 06, 2019)
   - add error code for subscribe
   - fix typo
