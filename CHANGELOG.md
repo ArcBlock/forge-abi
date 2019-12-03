@@ -1,5 +1,5 @@
 ## 1.18.2 (December 3, 2019)
-  - Change the type of cost in DeclareConfig to double.
+  - Change the type of cost in DeclareConfig to BigUint.
 
 ## 1.18.1 (December 3, 2019)
   - Makes restricted declare requires token. 
