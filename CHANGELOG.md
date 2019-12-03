@@ -1,5 +1,8 @@
-## 1.18.0 (November 25, 2019)
+## 1.18.1 (December 3, 2019)
+  - Makes restricted declare requires token. 
 
+## 1.18.0 (November 25, 2019)
+  - support update validator.
 
 ## 1.17.1 (November 06, 2019)
   - add error code for subscribe
