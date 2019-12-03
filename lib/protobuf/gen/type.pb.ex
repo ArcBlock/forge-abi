@@ -407,13 +407,13 @@ defmodule ForgeAbi.DeclareConfig do
   @type t :: %__MODULE__{
           restricted: boolean,
           hierarchy: non_neg_integer,
-          cost: non_neg_integer
+          cost: float
         }
   defstruct [:restricted, :hierarchy, :cost]
 
   field :restricted, 1, type: :bool
   field :hierarchy, 2, type: :uint32
-  field :cost, 3, type: :uint64
+  field :cost, 3, type: :double
 end
 
 defmodule ForgeAbi.DelegateConfig do

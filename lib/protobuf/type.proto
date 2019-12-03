@@ -163,7 +163,7 @@ message TransactionInfo {
 message DeclareConfig {
   bool restricted = 1;
   uint32 hierarchy = 2;
-  uint64 cost = 3;
+  double cost = 3;
 }
 
 message DelegateConfig {
