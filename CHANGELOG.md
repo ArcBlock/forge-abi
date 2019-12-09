@@ -1,3 +1,6 @@
+## 1.18.3 (December 09, 2019)
+  - deprecate unused fields for send_tx
+
 ## 1.18.2 (December 3, 2019)
   - Change the type of cost in DeclareConfig to BigUint.
 

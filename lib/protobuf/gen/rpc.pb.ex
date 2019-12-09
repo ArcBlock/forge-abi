@@ -11,8 +11,8 @@ defmodule ForgeAbi.RequestSendTx do
   defstruct [:tx, :wallet, :token, :commit]
 
   field :tx, 1, type: ForgeAbi.Transaction
-  field :wallet, 2, type: ForgeAbi.WalletInfo
-  field :token, 3, type: :string
+  field :wallet, 2, type: ForgeAbi.WalletInfo, deprecated: true
+  field :token, 3, type: :string, deprecated: true
   field :commit, 4, type: :bool
 end
 

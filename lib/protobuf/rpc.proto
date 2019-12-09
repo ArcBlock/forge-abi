@@ -12,8 +12,8 @@ import "trace_type.proto";
 // send_tx(tx, wallet, token, commit \\ false)
 message RequestSendTx {
   Transaction tx = 1;
-  WalletInfo wallet = 2;
-  string token = 3;
+  WalletInfo wallet = 2[ deprecated = true ];
+  string token = 3[ deprecated = true ];
   bool commit = 4;
 }
 
