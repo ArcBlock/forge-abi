@@ -119,11 +119,13 @@ defmodule ForgeAbi.RequestDeclareNode do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          validator: boolean
+          validator: boolean,
+          issuer: String.t()
         }
-  defstruct [:validator]
+  defstruct [:validator, :issuer]
 
   field :validator, 1, type: :bool
+  field :issuer, 2, type: :string
 end
 
 defmodule ForgeAbi.ResponseDeclareNode do
@@ -132,12 +134,14 @@ defmodule ForgeAbi.ResponseDeclareNode do
 
   @type t :: %__MODULE__{
           code: atom | integer,
-          wallet: ForgeAbi.WalletInfo.t() | nil
+          wallet: ForgeAbi.WalletInfo.t() | nil,
+          tx: ForgeAbi.Transaction.t() | nil
         }
-  defstruct [:code, :wallet]
+  defstruct [:code, :wallet, :tx]
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :wallet, 3, type: ForgeAbi.WalletInfo
+  field :tx, 4, type: ForgeAbi.Transaction
 end
 
 defmodule ForgeAbi.RequestGetAccountState do
