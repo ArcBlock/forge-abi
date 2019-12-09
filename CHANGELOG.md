@@ -1,3 +1,6 @@
+## 1.18.4 (December 09, 2019)
+  - support restricted declare node
+
 ## 1.18.3 (December 09, 2019)
   - deprecate unused fields for send_tx
 

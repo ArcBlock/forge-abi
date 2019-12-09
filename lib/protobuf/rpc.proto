@@ -50,11 +50,15 @@ message ResponseGetBlocks {
   repeated BlockInfoSimple blocks = 3;
 }
 
-message RequestDeclareNode { bool validator = 1; }
+message RequestDeclareNode {
+  bool validator = 1;
+  string issuer = 2;
+}
 
 message ResponseDeclareNode {
   StatusCode code = 1;
   WalletInfo wallet = 3;
+  Transaction tx = 4;
 }
 
 // get_account_state(address, key): retrieve the current state from a list of
