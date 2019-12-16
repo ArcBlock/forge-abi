@@ -111,6 +111,7 @@ defmodule ForgeAbi.StatsRpc.Service do
   rpc :list_blocks, ForgeAbi.RequestListBlocks, ForgeAbi.ResponseListBlocks
   rpc :get_health_status, ForgeAbi.RequestGetHealthStatus, ForgeAbi.ResponseGetHealthStatus
   rpc :list_swap, ForgeAbi.RequestListSwap, ForgeAbi.ResponseListSwap
+  rpc :get_swap_statistics, ForgeAbi.RequestGetSwapStatistics, ForgeAbi.ResponseGetSwapStatistics
 end
 
 defmodule ForgeAbi.StatsRpc.Stub do

@@ -169,6 +169,17 @@ message SwapState {
   StateContext context = 10;
 }
 
+// TODO: [peiling] We have already defined this state in core protocols repo.
+// The only reason we define this state here again is because the protobuf
+// definition ResponseGetSwapStatistics needs to reference to this.
+message SwapStatistics {
+  string address = 1;
+  BigUint locked_value_out = 2;
+  BigUint locked_value_in = 3;
+  uint32 locked_assets_out = 4;
+  uint32 locked_assets_in = 5;
+}
+
 // a rule can check against the statistics values, e.g. state.num_txs < 10000,
 // state.balance_delta < 50000, delta is calculated based on the
 // configuration for interval.

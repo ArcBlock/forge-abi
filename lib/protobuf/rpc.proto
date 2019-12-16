@@ -389,6 +389,15 @@ message ResponseListSwap {
   repeated SwapState swap = 3;
 }
 
+message RequestGetSwapStatistics {
+  string address = 1;
+}
+
+message ResponseGetSwapStatistics {
+  StatusCode code = 1;
+  SwapStatistics statistics = 2;
+}
+
 message RequestGetHealthStatus {}
 
 message ResponseGetHealthStatus {
