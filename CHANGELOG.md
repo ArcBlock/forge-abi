@@ -1,3 +1,6 @@
+## 1.18.5 (December 15, 2019)
+  - Add get_swap_statistics API
+
 ## 1.18.4 (December 09, 2019)
   - support restricted declare node
 

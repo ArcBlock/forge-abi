@@ -387,6 +387,26 @@ defmodule ForgeAbi.SwapState do
   field :context, 10, type: ForgeAbi.StateContext
 end
 
+defmodule ForgeAbi.SwapStatistics do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          locked_value_out: ForgeAbi.BigUint.t() | nil,
+          locked_value_in: ForgeAbi.BigUint.t() | nil,
+          locked_assets_out: non_neg_integer,
+          locked_assets_in: non_neg_integer
+        }
+  defstruct [:address, :locked_value_out, :locked_value_in, :locked_assets_out, :locked_assets_in]
+
+  field :address, 1, type: :string
+  field :locked_value_out, 2, type: ForgeAbi.BigUint
+  field :locked_value_in, 3, type: ForgeAbi.BigUint
+  field :locked_assets_out, 4, type: :uint32
+  field :locked_assets_in, 5, type: :uint32
+end
+
 defmodule ForgeAbi.DelegateOpState do
   @moduledoc false
   use Protobuf, syntax: :proto3

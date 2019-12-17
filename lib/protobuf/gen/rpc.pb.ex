@@ -1001,6 +1001,32 @@ defmodule ForgeAbi.ResponseListSwap do
   field :swap, 3, repeated: true, type: ForgeAbi.SwapState
 end
 
+defmodule ForgeAbi.RequestGetSwapStatistics do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t()
+        }
+  defstruct [:address]
+
+  field :address, 1, type: :string
+end
+
+defmodule ForgeAbi.ResponseGetSwapStatistics do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          code: atom | integer,
+          statistics: ForgeAbi.SwapStatistics.t() | nil
+        }
+  defstruct [:code, :statistics]
+
+  field :code, 1, type: ForgeAbi.StatusCode, enum: true
+  field :statistics, 2, type: ForgeAbi.SwapStatistics
+end
+
 defmodule ForgeAbi.RequestGetHealthStatus do
   @moduledoc false
   use Protobuf, syntax: :proto3
