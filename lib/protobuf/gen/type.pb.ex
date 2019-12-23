@@ -1072,21 +1072,27 @@ defmodule ForgeAbi.TokenSwapConfig do
           withdraw_interval: non_neg_integer,
           commission: ForgeAbi.BigUint.t() | nil,
           commission_rate: non_neg_integer,
-          revoke_commission: non_neg_integer
+          revoke_commission: non_neg_integer,
+          min_commission: non_neg_integer,
+          max_commission: non_neg_integer
         }
   defstruct [
     :commission_holder_address,
     :withdraw_interval,
     :commission,
     :commission_rate,
-    :revoke_commission
+    :revoke_commission,
+    :min_commission,
+    :max_commission
   ]
 
   field :commission_holder_address, 1, type: :string
   field :withdraw_interval, 2, type: :uint32
-  field :commission, 3, type: ForgeAbi.BigUint
+  field :commission, 3, type: ForgeAbi.BigUint, deprecated: true
   field :commission_rate, 4, type: :uint32
   field :revoke_commission, 5, type: :uint32
+  field :min_commission, 6, type: :uint64
+  field :max_commission, 7, type: :uint64
 end
 
 defmodule ForgeAbi.Evidence do

@@ -1,3 +1,6 @@
+## 1.18.6 (December 23, 2019)
+
+
 ## 1.18.5 (December 15, 2019)
   - Add get_swap_statistics API
 
