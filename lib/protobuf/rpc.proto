@@ -12,8 +12,8 @@ import "trace_type.proto";
 // send_tx(tx, wallet, token, commit \\ false)
 message RequestSendTx {
   Transaction tx = 1;
-  WalletInfo wallet = 2[ deprecated = true ];
-  string token = 3[ deprecated = true ];
+  WalletInfo wallet = 2 [ deprecated = true ];
+  string token = 3 [ deprecated = true ];
   bool commit = 4;
 }
 
@@ -230,7 +230,7 @@ message ResponseSubscribe {
     Transaction confirm = 5;
     Transaction create_asset = 6;
     Transaction exchange = 7;
-    Transaction revoke = 8 [deprecated = true];
+    Transaction revoke = 8 [ deprecated = true ];
 
     abci_vendor.RequestBeginBlock begin_block = 16;
     abci_vendor.RequestEndBlock end_block = 17;
@@ -238,7 +238,7 @@ message ResponseSubscribe {
     Transaction declare = 19;
     Transaction update_asset = 20;
     Transaction consensus_upgrade = 21;
-    Transaction declare_file = 22 [deprecated = true];
+    Transaction declare_file = 22 [ deprecated = true ];
     Transaction sys_upgrade = 23;
     Transaction stake = 24;
     Transaction delegate = 25;
@@ -257,7 +257,8 @@ message ResponseSubscribe {
     Transaction consume_asset = 38;
     Transaction acquire_asset = 39;
     Transaction upgrade_node = 40;
-
+    Transaction update_validator = 41;
+    Transaction update_consensus_params = 42;
 
     AccountState account_state = 129;
     AssetState asset_state = 130;
@@ -389,9 +390,7 @@ message ResponseListSwap {
   repeated SwapState swap = 3;
 }
 
-message RequestGetSwapStatistics {
-  string address = 1;
-}
+message RequestGetSwapStatistics { string address = 1; }
 
 message ResponseGetSwapStatistics {
   StatusCode code = 1;
