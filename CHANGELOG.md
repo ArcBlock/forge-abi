@@ -1,3 +1,6 @@
+## 1.19.0 (January 10, 2020)
+  - update response subscribe type
+
 ## 1.18.7 (December 23, 2019)
 
 
