@@ -1,3 +1,25 @@
+defmodule ForgeAbi.Direction do
+  @moduledoc false
+  use Protobuf, enum: true, syntax: :proto3
+
+  @type t :: integer | :mutual | :one_way | :union
+
+  field :mutual, 0
+  field :one_way, 1
+  field :union, 2
+end
+
+defmodule ForgeAbi.Validity do
+  @moduledoc false
+  use Protobuf, enum: true, syntax: :proto3
+
+  @type t :: integer | :both | :valid | :invalid
+
+  field :both, 0
+  field :valid, 1
+  field :invalid, 2
+end
+
 defmodule ForgeAbi.PageOrder do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -61,7 +83,7 @@ defmodule ForgeAbi.AddressFilter do
   @type t :: %__MODULE__{
           sender: String.t(),
           receiver: String.t(),
-          direction: atom | integer
+          direction: ForgeAbi.Direction.t()
         }
   defstruct [:sender, :receiver, :direction]
 
@@ -98,7 +120,7 @@ defmodule ForgeAbi.IndexedTransaction do
           type: String.t(),
           tx: ForgeAbi.Transaction.t() | nil,
           valid: boolean,
-          code: atom | integer
+          code: ForgeAbi.StatusCode.t()
         }
   defstruct [:hash, :sender, :receiver, :time, :type, :tx, :valid, :code]
 
@@ -384,7 +406,7 @@ defmodule ForgeAbi.ValidityFilter do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          validity: atom | integer
+          validity: ForgeAbi.Validity.t()
         }
   defstruct [:validity]
 
@@ -403,22 +425,4 @@ defmodule ForgeAbi.RangeFilter do
 
   field :from, 1, type: :uint64
   field :to, 2, type: :uint64
-end
-
-defmodule ForgeAbi.Direction do
-  @moduledoc false
-  use Protobuf, enum: true, syntax: :proto3
-
-  field :mutual, 0
-  field :one_way, 1
-  field :union, 2
-end
-
-defmodule ForgeAbi.Validity do
-  @moduledoc false
-  use Protobuf, enum: true, syntax: :proto3
-
-  field :both, 0
-  field :valid, 1
-  field :invalid, 2
 end

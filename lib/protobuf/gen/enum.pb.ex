@@ -2,6 +2,79 @@ defmodule ForgeAbi.StatusCode do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
 
+  @type t ::
+          integer
+          | :ok
+          | :invalid_nonce
+          | :invalid_signature
+          | :invalid_sender_state
+          | :invalid_receiver_state
+          | :insufficient_data
+          | :insufficient_fund
+          | :invalid_owner
+          | :invalid_tx
+          | :unsupported_tx
+          | :expired_tx
+          | :too_many_txs
+          | :invalid_lock_status
+          | :invalid_request
+          | :invalid_moniker
+          | :invalid_passphrase
+          | :invalid_multisig
+          | :invalid_wallet
+          | :invalid_chain_id
+          | :consensus_rpc_error
+          | :storage_rpc_error
+          | :noent
+          | :account_migrated
+          | :rpc_connection_error
+          | :unsupported_stake
+          | :insufficient_stake
+          | :invalid_stake_state
+          | :expired_wallet_token
+          | :banned_unstake
+          | :invalid_asset
+          | :invalid_tx_size
+          | :invalid_signer_state
+          | :invalid_forge_state
+          | :expired_asset
+          | :untransferrable_asset
+          | :readonly_asset
+          | :consumed_asset
+          | :invalid_deposit_value
+          | :exceed_deposit_cap
+          | :invalid_deposit_target
+          | :invalid_depositor
+          | :invalid_withdrawer
+          | :invalid_expiry_date
+          | :invalid_deposit
+          | :invalid_custodian
+          | :insufficient_gas
+          | :invalid_swap
+          | :invalid_hashkey
+          | :invalid_delegation
+          | :insufficient_delegation
+          | :invalid_delegation_rule
+          | :invalid_delegation_type_url
+          | :sender_not_authorized
+          | :protocol_not_running
+          | :protocol_not_paused
+          | :protocol_not_activated
+          | :invalid_deactivation
+          | :sender_withdraw_items_full
+          | :withdraw_item_missing
+          | :invalid_withdraw_tx
+          | :invalid_chain_type
+          | :invalid_time
+          | :invalid_subscribe
+          | :invalid_did_type
+          | :invalid_candidate_state
+          | :validator_not_found
+          | :validator_not_changed
+          | :forbidden
+          | :internal
+          | :timeout
+
   field :ok, 0
   field :invalid_nonce, 1
   field :invalid_signature, 2
@@ -78,6 +151,8 @@ defmodule ForgeAbi.KeyType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
 
+  @type t :: integer | :ed25519 | :secp256k1
+
   field :ed25519, 0
   field :secp256k1, 1
 end
@@ -85,6 +160,8 @@ end
 defmodule ForgeAbi.HashType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
+
+  @type t :: integer | :keccak | :sha3 | :sha2 | :keccak_384 | :sha3_384 | :keccak_512 | :sha3_512
 
   field :keccak, 0
   field :sha3, 1
@@ -99,6 +176,8 @@ defmodule ForgeAbi.EncodingType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
 
+  @type t :: integer | :base16 | :base58
+
   field :base16, 0
   field :base58, 1
 end
@@ -106,6 +185,21 @@ end
 defmodule ForgeAbi.RoleType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
+
+  @type t ::
+          integer
+          | :role_account
+          | :role_node
+          | :role_device
+          | :role_application
+          | :role_smart_contract
+          | :role_bot
+          | :role_asset
+          | :role_stake
+          | :role_validator
+          | :role_group
+          | :role_tx
+          | :role_any
 
   field :role_account, 0
   field :role_node, 1
@@ -125,6 +219,19 @@ defmodule ForgeAbi.UpgradeType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
 
+  @type t ::
+          integer
+          | :config_app
+          | :config_forge
+          | :config_dfs
+          | :config_consensus
+          | :config_p2p
+          | :exe_app
+          | :exe_forge
+          | :exe_dfs
+          | :exe_consensus
+          | :exe_p2p
+
   field :config_app, 0
   field :config_forge, 1
   field :config_dfs, 2
@@ -140,6 +247,21 @@ end
 defmodule ForgeAbi.UpgradeAction do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
+
+  @type t ::
+          integer
+          | :verify
+          | :backup
+          | :replace
+          | :restart_app
+          | :restart_dfs
+          | :restart_consensus
+          | :restart_p2p
+          | :restart_forge
+          | :rollback_if_fail
+          | :restart_all_if_fail
+          | :crash_if_fail
+          | :drop_address_book
 
   field :verify, 0
   field :backup, 1
@@ -159,6 +281,9 @@ defmodule ForgeAbi.StateType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
 
+  @type t ::
+          integer | :state_account | :state_asset | :state_channel | :state_forge | :state_stake
+
   field :state_account, 0
   field :state_asset, 1
   field :state_channel, 2
@@ -170,6 +295,8 @@ defmodule ForgeAbi.StakeType do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
 
+  @type t :: integer | :stake_node | :stake_user | :stake_asset | :stake_chain
+
   field :stake_node, 0
   field :stake_user, 1
   field :stake_asset, 2
@@ -179,6 +306,8 @@ end
 defmodule ForgeAbi.ProtocolStatus do
   @moduledoc false
   use Protobuf, enum: true, syntax: :proto3
+
+  @type t :: integer | :running | :paused | :terminated
 
   field :running, 0
   field :paused, 1

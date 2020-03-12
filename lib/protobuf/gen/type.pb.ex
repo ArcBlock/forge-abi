@@ -29,10 +29,10 @@ defmodule ForgeAbi.WalletType do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          pk: atom | integer,
-          hash: atom | integer,
-          address: atom | integer,
-          role: atom | integer
+          pk: ForgeAbi.KeyType.t(),
+          hash: ForgeAbi.HashType.t(),
+          address: ForgeAbi.EncodingType.t(),
+          role: ForgeAbi.RoleType.t()
         }
   defstruct [:pk, :hash, :address, :role]
 
@@ -58,6 +58,20 @@ defmodule ForgeAbi.WalletInfo do
   field :sk, 2, type: :bytes
   field :pk, 3, type: :bytes
   field :address, 4, type: :string
+end
+
+defmodule ForgeAbi.ChainInfo.ForgeAppsVersionEntry do
+  @moduledoc false
+  use Protobuf, map: true, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          key: String.t(),
+          value: String.t()
+        }
+  defstruct [:key, :value]
+
+  field :key, 1, type: :string
+  field :value, 2, type: :string
 end
 
 defmodule ForgeAbi.ChainInfo do
@@ -121,7 +135,7 @@ defmodule ForgeAbi.ChainInfo do
   field :supported_txs, 16, repeated: true, type: :string
 end
 
-defmodule ForgeAbi.ChainInfo.ForgeAppsVersionEntry do
+defmodule ForgeAbi.NodeInfo.ForgeAppsVersionEntry do
   @moduledoc false
   use Protobuf, map: true, syntax: :proto3
 
@@ -205,20 +219,6 @@ defmodule ForgeAbi.NodeInfo do
   field :p2p_address, 19, type: :string
 end
 
-defmodule ForgeAbi.NodeInfo.ForgeAppsVersionEntry do
-  @moduledoc false
-  use Protobuf, map: true, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          key: String.t(),
-          value: String.t()
-        }
-  defstruct [:key, :value]
-
-  field :key, 1, type: :string
-  field :value, 2, type: :string
-end
-
 defmodule ForgeAbi.Validator do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -273,9 +273,9 @@ defmodule ForgeAbi.UpgradeTask do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          type: atom | integer,
+          type: ForgeAbi.UpgradeType.t(),
           data_hash: String.t(),
-          actions: [atom | integer]
+          actions: [[ForgeAbi.UpgradeAction.t()]]
         }
   defstruct [:type, :data_hash, :actions]
 
@@ -386,7 +386,7 @@ defmodule ForgeAbi.TransactionInfo do
           index: non_neg_integer,
           hash: String.t(),
           tags: [AbciVendor.KVPair.t()],
-          code: atom | integer,
+          code: ForgeAbi.StatusCode.t(),
           time: Google.Protobuf.Timestamp.t() | nil
         }
   defstruct [:tx, :height, :index, :hash, :tags, :code, :time]
@@ -600,7 +600,7 @@ defmodule ForgeAbi.TxStatus do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          code: atom | integer,
+          code: ForgeAbi.StatusCode.t(),
           hash: String.t()
         }
   defstruct [:code, :hash]
@@ -742,8 +742,8 @@ defmodule ForgeAbi.GeoInfo do
   @type t :: %__MODULE__{
           city: String.t(),
           country: String.t(),
-          latitude: float,
-          longitude: float
+          latitude: float | :infinity | :negative_infinity | :nan,
+          longitude: float | :infinity | :negative_infinity | :nan
         }
   defstruct [:city, :country, :latitude, :longitude]
 
@@ -855,7 +855,7 @@ defmodule ForgeAbi.ForgeStats do
           tps: [non_neg_integer],
           max_tps: non_neg_integer,
           avg_tps: non_neg_integer,
-          avg_block_time: float
+          avg_block_time: float | :infinity | :negative_infinity | :nan
         }
   defstruct [
     :num_blocks,

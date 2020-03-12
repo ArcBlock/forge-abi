@@ -127,61 +127,6 @@ defmodule ForgeAbi.CoreProtocol do
   field :address, 2, type: :string
 end
 
-defmodule ForgeAbi.ForgeState do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          address: String.t(),
-          consensus: ForgeAbi.ConsensusParams.t() | nil,
-          tasks: %{non_neg_integer => ForgeAbi.UpgradeTasks.t() | nil},
-          stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t() | nil},
-          version: String.t(),
-          token: ForgeAbi.ForgeToken.t() | nil,
-          tx_config: ForgeAbi.TransactionConfig.t() | nil,
-          protocols: [ForgeAbi.CoreProtocol.t()],
-          gas: %{String.t() => non_neg_integer},
-          upgrade_info: ForgeAbi.UpgradeInfo.t() | nil,
-          account_config: %{String.t() => ForgeAbi.AccountConfig.t() | nil},
-          token_swap_config: ForgeAbi.TokenSwapConfig.t() | nil,
-          data: Google.Protobuf.Any.t() | nil
-        }
-  defstruct [
-    :address,
-    :consensus,
-    :tasks,
-    :stake_summary,
-    :version,
-    :token,
-    :tx_config,
-    :protocols,
-    :gas,
-    :upgrade_info,
-    :account_config,
-    :token_swap_config,
-    :data
-  ]
-
-  field :address, 1, type: :string
-  field :consensus, 2, type: ForgeAbi.ConsensusParams
-  field :tasks, 3, repeated: true, type: ForgeAbi.ForgeState.TasksEntry, map: true
-  field :stake_summary, 4, repeated: true, type: ForgeAbi.ForgeState.StakeSummaryEntry, map: true
-  field :version, 5, type: :string
-  field :token, 8, type: ForgeAbi.ForgeToken
-  field :tx_config, 9, type: ForgeAbi.TransactionConfig
-  field :protocols, 12, repeated: true, type: ForgeAbi.CoreProtocol
-  field :gas, 13, repeated: true, type: ForgeAbi.ForgeState.GasEntry, map: true
-  field :upgrade_info, 14, type: ForgeAbi.UpgradeInfo
-
-  field :account_config, 16,
-    repeated: true,
-    type: ForgeAbi.ForgeState.AccountConfigEntry,
-    map: true
-
-  field :token_swap_config, 17, type: ForgeAbi.TokenSwapConfig
-  field :data, 2047, type: Google.Protobuf.Any
-end
-
 defmodule ForgeAbi.ForgeState.TasksEntry do
   @moduledoc false
   use Protobuf, map: true, syntax: :proto3
@@ -236,6 +181,61 @@ defmodule ForgeAbi.ForgeState.AccountConfigEntry do
 
   field :key, 1, type: :string
   field :value, 2, type: ForgeAbi.AccountConfig
+end
+
+defmodule ForgeAbi.ForgeState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          consensus: ForgeAbi.ConsensusParams.t() | nil,
+          tasks: %{non_neg_integer => ForgeAbi.UpgradeTasks.t() | nil},
+          stake_summary: %{non_neg_integer => ForgeAbi.StakeSummary.t() | nil},
+          version: String.t(),
+          token: ForgeAbi.ForgeToken.t() | nil,
+          tx_config: ForgeAbi.TransactionConfig.t() | nil,
+          protocols: [ForgeAbi.CoreProtocol.t()],
+          gas: %{String.t() => non_neg_integer},
+          upgrade_info: ForgeAbi.UpgradeInfo.t() | nil,
+          account_config: %{String.t() => ForgeAbi.AccountConfig.t() | nil},
+          token_swap_config: ForgeAbi.TokenSwapConfig.t() | nil,
+          data: Google.Protobuf.Any.t() | nil
+        }
+  defstruct [
+    :address,
+    :consensus,
+    :tasks,
+    :stake_summary,
+    :version,
+    :token,
+    :tx_config,
+    :protocols,
+    :gas,
+    :upgrade_info,
+    :account_config,
+    :token_swap_config,
+    :data
+  ]
+
+  field :address, 1, type: :string
+  field :consensus, 2, type: ForgeAbi.ConsensusParams
+  field :tasks, 3, repeated: true, type: ForgeAbi.ForgeState.TasksEntry, map: true
+  field :stake_summary, 4, repeated: true, type: ForgeAbi.ForgeState.StakeSummaryEntry, map: true
+  field :version, 5, type: :string
+  field :token, 8, type: ForgeAbi.ForgeToken
+  field :tx_config, 9, type: ForgeAbi.TransactionConfig
+  field :protocols, 12, repeated: true, type: ForgeAbi.CoreProtocol
+  field :gas, 13, repeated: true, type: ForgeAbi.ForgeState.GasEntry, map: true
+  field :upgrade_info, 14, type: ForgeAbi.UpgradeInfo
+
+  field :account_config, 16,
+    repeated: true,
+    type: ForgeAbi.ForgeState.AccountConfigEntry,
+    map: true
+
+  field :token_swap_config, 17, type: ForgeAbi.TokenSwapConfig
+  field :data, 2047, type: Google.Protobuf.Any
 end
 
 defmodule ForgeAbi.RootState do
@@ -328,7 +328,7 @@ defmodule ForgeAbi.ProtocolState do
           address: String.t(),
           itx: ForgeAbi.DeployProtocolTx.t() | nil,
           root_hash: binary,
-          status: atom | integer,
+          status: ForgeAbi.ProtocolStatus.t(),
           migrated_to: [String.t()],
           migrated_from: [String.t()],
           context: ForgeAbi.StateContext.t() | nil,
@@ -427,6 +427,20 @@ defmodule ForgeAbi.DelegateOpState do
   field :balance_delta, 5, type: ForgeAbi.BigUint
 end
 
+defmodule ForgeAbi.DelegateState.OpsEntry do
+  @moduledoc false
+  use Protobuf, map: true, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          key: String.t(),
+          value: ForgeAbi.DelegateOpState.t() | nil
+        }
+  defstruct [:key, :value]
+
+  field :key, 1, type: :string
+  field :value, 2, type: ForgeAbi.DelegateOpState
+end
+
 defmodule ForgeAbi.DelegateState do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -443,18 +457,4 @@ defmodule ForgeAbi.DelegateState do
   field :ops, 2, repeated: true, type: ForgeAbi.DelegateState.OpsEntry, map: true
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
-end
-
-defmodule ForgeAbi.DelegateState.OpsEntry do
-  @moduledoc false
-  use Protobuf, map: true, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          key: String.t(),
-          value: ForgeAbi.DelegateOpState.t() | nil
-        }
-  defstruct [:key, :value]
-
-  field :key, 1, type: :string
-  field :value, 2, type: ForgeAbi.DelegateOpState
 end
