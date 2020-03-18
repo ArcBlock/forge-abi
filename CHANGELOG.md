@@ -1,3 +1,7 @@
+## 1.20.0 (March 18, 2020)
+  - support static compiled tx
+  - update generated code
+
 ## 1.19.0 (January 10, 2020)
   - update response subscribe type
 
