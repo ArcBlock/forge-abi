@@ -35,6 +35,7 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:s:root", ForgeAbi.RootState},
     {"fg:s:swap", ForgeAbi.SwapState},
     {"fg:s:delegate", ForgeAbi.DelegateState},
+    {"fg:s:asset_factory_state", ForgeAbi.AssetFactoryState},
 
     # other type url
     {"fg:x:block_info", ForgeAbi.BlockInfo},
@@ -43,6 +44,44 @@ defmodule ForgeAbi.Util.TypeUrl do
     {"fg:x:tx_status", ForgeAbi.TxStatus},
     {"fg:x:withdraw_item", ForgeAbi.WithdrawItem},
 
+    # forge tx
+
+    # account
+    {"fg:t:account_migrate", ForgeAbi.AccountMigrateTx},
+    {"fg:t:declare", ForgeAbi.DeclareTx},
+    {"fg:t:delegate", ForgeAbi.DelegateTx},
+    {"fg:t:revoke_delegate", ForgeAbi.RevokeDelegateTx},
+    {"fg:t:update_asset", ForgeAbi.UpdateAssetTx},
+
+    # asset
+    {"fg:t:acquire_asset", ForgeAbi.AcquireAssetTx},
+    {"fg:t:consume_asset", ForgeAbi.ConsumeAssetTx},
+    {"fg:t:create_asset", ForgeAbi.CreateAssetTx},
+    {"fg:x:asset_factory", ForgeAbi.AssetFactory},
+
+    # governance
+    {"fg:t:update_consensus_params", ForgeAbi.UpdateConsensusParamsTx},
+    {"fg:t:update_validator", ForgeAbi.UpdateValidatorTx},
+    {"fg:t:upgrade_node", ForgeAbi.UpgradeNodeTx},
+
+    # misc
+    {"fg:t:poke", ForgeAbi.PokeTx},
+    {"fg:t:refuel", ForgeAbi.RefuelTx},
+
+    # atomic swap
+    {"fg:t:retrieve_swap", ForgeAbi.RetrieveSwapTx},
+    {"fg:t:revoke_swap", ForgeAbi.RevokeSwapTx},
+    {"fg:t:setup_swap", ForgeAbi.SetupSwapTx},
+
+    # token swap
+    {"fg:t:approve_withdraw", ForgeAbi.ApproveWithdrawTx},
+    {"fg:t:deposit_token", ForgeAbi.DepositTokenTx},
+    {"fg:t:revoke_withdraw", ForgeAbi.RevokeWithdrawTx},
+    {"fg:t:withdraw_token", ForgeAbi.WithdrawTokenTx},
+
+    # trade
+    {"fg:t:exchange", ForgeAbi.ExchangeTx},
+    {"fg:t:transfer", ForgeAbi.TransferTx},
     # dummy codec
     {"fg:x:address", DummyCodec},
     {"fg:x:json", JsonCodec}
@@ -95,7 +134,23 @@ defmodule ForgeAbi.Util.TypeUrl do
       end,
       fn _ -> :ok end
     )
-    |> Stream.map(fn key -> List.first(:ets.lookup(@table_name, key)) end)
+    |> Enum.map(fn key -> List.first(:ets.lookup(@table_name, key)) end)
+  end
+
+  @doc """
+  retrieve all urls for introspection.
+  """
+  @spec all :: Enumerable.t()
+  def all_urls do
+    fn -> :ets.first(@table_name) end
+    |> Stream.resource(
+      fn
+        :"$end_of_table" -> {:halt, nil}
+        previous_key -> {[previous_key], :ets.next(@table_name, previous_key)}
+      end,
+      fn _ -> :ok end
+    )
+    |> Enum.filter(fn key -> is_binary(key) and String.starts_with?(key, "fg:t") end)
   end
 
   @doc """
