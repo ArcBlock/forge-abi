@@ -10,6 +10,7 @@ defmodule ForgeAbi do
   defdelegate remove_type_url(type_url), to: TypeUrl, as: :remove
   defdelegate get_type_url(v), to: TypeUrl, as: :get
   defdelegate get_type_urls, to: TypeUrl, as: :all
+  defdelegate get_urls, to: TypeUrl, as: :all_urls
 
   defdelegate encode_any(data, type_url \\ nil), to: TypeUrl
   defdelegate encode_any!(data, type_url \\ nil), to: TypeUrl
