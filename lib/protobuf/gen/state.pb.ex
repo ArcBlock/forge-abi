@@ -458,3 +458,41 @@ defmodule ForgeAbi.DelegateState do
   field :context, 14, type: ForgeAbi.StateContext
   field :data, 15, type: Google.Protobuf.Any
 end
+
+defmodule ForgeAbi.AssetFactoryState do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          description: String.t(),
+          limit: non_neg_integer,
+          price: ForgeAbi.BigUint.t() | nil,
+          template: String.t(),
+          allowed_spec_args: [String.t()],
+          asset_name: String.t(),
+          attributes: ForgeAbi.AssetAttributes.t() | nil,
+          num_created: non_neg_integer,
+          data: Google.Protobuf.Any.t() | nil
+        }
+  defstruct [
+    :description,
+    :limit,
+    :price,
+    :template,
+    :allowed_spec_args,
+    :asset_name,
+    :attributes,
+    :num_created,
+    :data
+  ]
+
+  field :description, 1, type: :string
+  field :limit, 2, type: :uint32
+  field :price, 3, type: ForgeAbi.BigUint
+  field :template, 4, type: :string
+  field :allowed_spec_args, 5, repeated: true, type: :string
+  field :asset_name, 6, type: :string
+  field :attributes, 7, type: ForgeAbi.AssetAttributes
+  field :num_created, 8, type: :uint32
+  field :data, 15, type: Google.Protobuf.Any
+end
