@@ -1,3 +1,6 @@
+## 1.21.0 (March 20, 2020)
+  - move tx proto
+
 ## 1.20.0 (March 18, 2020)
   - support static compiled tx
   - update generated code
