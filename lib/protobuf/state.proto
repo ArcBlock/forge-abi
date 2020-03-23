@@ -29,7 +29,6 @@ message AccountState {
 
   uint64 num_assets = 15;
 
-
   StakeContext stake = 16;
   CircularQueue pinned_files = 17;
   PokeInfo poke = 18;
@@ -202,5 +201,20 @@ message DelegateState {
   // state context, replace exiting fields
   StateContext context = 14;
   // forge app can extend this
+  google.protobuf.Any data = 15;
+}
+
+message AssetFactoryState {
+  string description = 1;
+  uint32 limit = 2;
+  BigUint price = 3;
+  string template = 4;
+  repeated string allowed_spec_args = 5;
+  string asset_name = 6;
+  AssetAttributes attributes = 7;
+
+  uint32 num_created = 8;
+
+  // extra context that user
   google.protobuf.Any data = 15;
 }
