@@ -8,6 +8,8 @@ To build Elixir protobuf, we need to use a library to parse data from `.proto`
 and generate `.ex` files. We are using Elixir's [protobuf](https://github.com/tony612/protobuf-elixir).
 Please follow the readme to learn how to build.
 
+Please also download protoc-gen-goldorin in `https://github.com/ArcBlock/protobuf-elixir/releases/tag/v0.6.2`, `make rebuild-proto` requires it to build yaml for web.
+
 ## Protobuf
 
 The protobuf contains the protocol buffer definitions for forge.
