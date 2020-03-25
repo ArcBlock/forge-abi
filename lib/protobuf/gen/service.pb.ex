@@ -36,10 +36,6 @@ end
 defmodule ForgeAbi.FileRpc.Service do
   @moduledoc false
   use GRPC.Service, name: "forge_abi.FileRpc"
-
-  rpc :store_file, stream(ForgeAbi.RequestStoreFile), ForgeAbi.ResponseStoreFile
-  rpc :load_file, ForgeAbi.RequestLoadFile, stream(ForgeAbi.ResponseLoadFile)
-  rpc :pin_file, ForgeAbi.RequestPinFile, ForgeAbi.ResponsePinFile
 end
 
 defmodule ForgeAbi.FileRpc.Stub do
@@ -60,15 +56,6 @@ defmodule ForgeAbi.StateRpc.Service do
       stream(ForgeAbi.ResponseGetAssetState)
 
   rpc :get_forge_state, ForgeAbi.RequestGetForgeState, ForgeAbi.ResponseGetForgeState
-
-  rpc :get_protocol_state,
-      stream(ForgeAbi.RequestGetProtocolState),
-      stream(ForgeAbi.ResponseGetProtocolState)
-
-  rpc :get_stake_state,
-      stream(ForgeAbi.RequestGetStakeState),
-      stream(ForgeAbi.ResponseGetStakeState)
-
   rpc :get_swap_state, stream(ForgeAbi.RequestGetSwapState), stream(ForgeAbi.ResponseGetSwapState)
 
   rpc :get_delegate_state,

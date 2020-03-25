@@ -204,66 +204,6 @@ defmodule ForgeAbi.ResponseGetAssetState do
   field :state, 2, type: ForgeAbi.AssetState
 end
 
-defmodule ForgeAbi.RequestGetProtocolState do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          address: String.t(),
-          keys: [String.t()],
-          height: non_neg_integer
-        }
-  defstruct [:address, :keys, :height]
-
-  field :address, 1, type: :string
-  field :keys, 2, repeated: true, type: :string
-  field :height, 3, type: :uint64
-end
-
-defmodule ForgeAbi.ResponseGetProtocolState do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: ForgeAbi.StatusCode.t(),
-          state: ForgeAbi.ProtocolState.t() | nil
-        }
-  defstruct [:code, :state]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :state, 2, type: ForgeAbi.ProtocolState
-end
-
-defmodule ForgeAbi.RequestGetStakeState do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          address: String.t(),
-          keys: [String.t()],
-          height: non_neg_integer
-        }
-  defstruct [:address, :keys, :height]
-
-  field :address, 1, type: :string
-  field :keys, 2, repeated: true, type: :string
-  field :height, 3, type: :uint64
-end
-
-defmodule ForgeAbi.ResponseGetStakeState do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: ForgeAbi.StatusCode.t(),
-          state: ForgeAbi.StakeState.t() | nil
-        }
-  defstruct [:code, :state]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :state, 2, type: ForgeAbi.StakeState
-end
-
 defmodule ForgeAbi.RequestGetForgeState do
   @moduledoc false
   use Protobuf, syntax: :proto3
@@ -350,82 +290,6 @@ defmodule ForgeAbi.ResponseGetDelegateState do
 
   field :code, 1, type: ForgeAbi.StatusCode, enum: true
   field :state, 2, type: ForgeAbi.DelegateState
-end
-
-defmodule ForgeAbi.RequestStoreFile do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          chunk: binary
-        }
-  defstruct [:chunk]
-
-  field :chunk, 1, type: :bytes
-end
-
-defmodule ForgeAbi.ResponseStoreFile do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: ForgeAbi.StatusCode.t(),
-          hash: String.t()
-        }
-  defstruct [:code, :hash]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :hash, 2, type: :string
-end
-
-defmodule ForgeAbi.RequestLoadFile do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          hash: String.t()
-        }
-  defstruct [:hash]
-
-  field :hash, 1, type: :string
-end
-
-defmodule ForgeAbi.ResponseLoadFile do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: ForgeAbi.StatusCode.t(),
-          chunk: binary
-        }
-  defstruct [:code, :chunk]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
-  field :chunk, 2, type: :bytes
-end
-
-defmodule ForgeAbi.RequestPinFile do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          hash: String.t()
-        }
-  defstruct [:hash]
-
-  field :hash, 1, type: :string
-end
-
-defmodule ForgeAbi.ResponsePinFile do
-  @moduledoc false
-  use Protobuf, syntax: :proto3
-
-  @type t :: %__MODULE__{
-          code: ForgeAbi.StatusCode.t()
-        }
-  defstruct [:code]
-
-  field :code, 1, type: ForgeAbi.StatusCode, enum: true
 end
 
 defmodule ForgeAbi.RequestGetChainInfo do
@@ -604,18 +468,14 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :confirm, 5, type: ForgeAbi.Transaction, oneof: 0
   field :create_asset, 6, type: ForgeAbi.Transaction, oneof: 0
   field :exchange, 7, type: ForgeAbi.Transaction, oneof: 0
-  field :revoke, 8, type: ForgeAbi.Transaction, deprecated: true, oneof: 0
   field :begin_block, 16, type: AbciVendor.RequestBeginBlock, oneof: 0
   field :end_block, 17, type: AbciVendor.RequestEndBlock, oneof: 0
   field :declare, 19, type: ForgeAbi.Transaction, oneof: 0
   field :update_asset, 20, type: ForgeAbi.Transaction, oneof: 0
   field :consensus_upgrade, 21, type: ForgeAbi.Transaction, oneof: 0
-  field :declare_file, 22, type: ForgeAbi.Transaction, deprecated: true, oneof: 0
   field :sys_upgrade, 23, type: ForgeAbi.Transaction, oneof: 0
   field :stake, 24, type: ForgeAbi.Transaction, oneof: 0
   field :delegate, 25, type: ForgeAbi.Transaction, oneof: 0
-  field :activate_protocol, 26, type: ForgeAbi.Transaction, oneof: 0
-  field :deactivate_protocol, 27, type: ForgeAbi.Transaction, oneof: 0
   field :revoke_delegate, 28, type: ForgeAbi.Transaction, oneof: 0
   field :deposit_token, 29, type: ForgeAbi.Transaction, oneof: 0
   field :withdraw_token, 30, type: ForgeAbi.Transaction, oneof: 0
@@ -625,7 +485,6 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :revoke_swap, 34, type: ForgeAbi.Transaction, oneof: 0
   field :retrieve_swap, 35, type: ForgeAbi.Transaction, oneof: 0
   field :poke, 36, type: ForgeAbi.Transaction, oneof: 0
-  field :deploy_protocol, 37, type: ForgeAbi.Transaction, oneof: 0
   field :consume_asset, 38, type: ForgeAbi.Transaction, oneof: 0
   field :acquire_asset, 39, type: ForgeAbi.Transaction, oneof: 0
   field :upgrade_node, 40, type: ForgeAbi.Transaction, oneof: 0
@@ -634,8 +493,6 @@ defmodule ForgeAbi.ResponseSubscribe do
   field :account_state, 129, type: ForgeAbi.AccountState, oneof: 0
   field :asset_state, 130, type: ForgeAbi.AssetState, oneof: 0
   field :forge_state, 131, type: ForgeAbi.ForgeState, oneof: 0
-  field :stake_state, 132, type: ForgeAbi.StakeState, oneof: 0
-  field :protocol_state, 133, type: ForgeAbi.ProtocolState, oneof: 0
   field :delegate_state, 134, type: ForgeAbi.DelegateState, oneof: 0
   field :swap_state, 135, type: ForgeAbi.SwapState, oneof: 0
 end

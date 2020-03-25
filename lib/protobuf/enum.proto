@@ -174,18 +174,5 @@ enum StateType {
   state_asset = 1;
   state_channel = 2;
   state_forge = 3;
-  state_stake = 4;
-}
-
-enum StakeType {
-  stake_node = 0;
-  stake_user = 1;
-  stake_asset = 2;
-  stake_chain = 3;
-}
-
-enum ProtocolStatus {
-  running = 0;
-  paused = 1;
-  terminated = 2;
+  // state_stake = 4;
 }
