@@ -340,6 +340,34 @@ defmodule ForgeAbi.UpgradeNodeTx do
   field :override, 3, type: :bool
 end
 
+defmodule ForgeAbi.ActivateProtocolTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          data: Google.Protobuf.Any.t() | nil
+        }
+  defstruct [:address, :data]
+
+  field :address, 1, type: :string
+  field :data, 15, type: Google.Protobuf.Any
+end
+
+defmodule ForgeAbi.DeactivateProtocolTx do
+  @moduledoc false
+  use Protobuf, syntax: :proto3
+
+  @type t :: %__MODULE__{
+          address: String.t(),
+          data: Google.Protobuf.Any.t() | nil
+        }
+  defstruct [:address, :data]
+
+  field :address, 1, type: :string
+  field :data, 15, type: Google.Protobuf.Any
+end
+
 defmodule ForgeAbi.PokeTx do
   @moduledoc false
   use Protobuf, syntax: :proto3

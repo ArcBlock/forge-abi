@@ -225,6 +225,20 @@ message UpgradeNodeTx {
   bool override = 3;
 }
 
+message ActivateProtocolTx {
+  // Address of the protocol that needs to be activate
+  string address = 1;
+
+  google.protobuf.Any data = 15;
+}
+
+message DeactivateProtocolTx {
+  // Address of the protocol that needs to deactivate
+  string address = 1;
+
+  google.protobuf.Any data = 15;
+}
+
 // misc
 message PokeTx {
   // type url: fg:x:poke
