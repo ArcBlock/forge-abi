@@ -242,8 +242,8 @@ message ResponseSubscribe {
     Transaction sys_upgrade = 23;
     Transaction stake = 24;
     Transaction delegate = 25;
-    Transaction activate_protocol = 26;
-    Transaction deactivate_protocol = 27;
+    Transaction activate_protocol = 26 [ deprecated = true ];
+    Transaction deactivate_protocol = 27 [ deprecated = true ];
     Transaction revoke_delegate = 28;
     Transaction deposit_token = 29;
     Transaction withdraw_token = 30;
