@@ -2,7 +2,8 @@ TOP_DIR=.
 VERSION=$(strip $(shell cat version))
 BUILD_DIR=$(TOP_DIR)/_build
 PROTO_PATH=$(TOP_DIR)/lib/protobuf
-GRAPHQL_PATH=$(TOP_DIR)/priv/schema
+FORGE_WEB_DIR=../forge-web
+GRAPHQL_PATH=$(FORGE_WEB_DIR)/priv/schema/gen
 
 
 travis-init: dep
@@ -55,8 +56,10 @@ gen-error-code-doc: gen-error-code-files
 	@cp priv/error.md ../forge-docs/src/error_codes/error.md
 
 rebuild-proto: prepare-vendor-proto
-	@protoc  -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,trace_type,tx,type}.proto
+	@protoc -I ./vendors/ -I $(PROTO_PATH)/ --elixir_out=plugins=grpc:$(PROTO_PATH)/gen $(PROTO_PATH)/{enum,rpc,service,state,trace_type,tx,type}.proto
 	@echo "New protobuf files for elixir created."
+	@protoc -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH) ./vendors/vendor.proto
+	@protoc -I ./vendors/ -I $(PROTO_PATH)/ --goldorin_out=plugins=grpc:$(GRAPHQL_PATH) $(PROTO_PATH)/{enum,type,state,tx,rpc,trace_type}.proto
 
 rebuild-proto-js: prepare-vendor-proto-js
 	# @npm install -g grpc-tools
