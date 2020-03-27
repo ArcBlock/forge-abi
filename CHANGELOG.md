@@ -1,3 +1,10 @@
+## 1.21.1 (March 27, 2020)
+  - add activate / deactivate back
+  - rollback protocol status
+  - remove unused proto
+  - udpate doc
+  - support rebuild web yaml
+
 ## 1.21.0 (March 20, 2020)
   - move tx proto
 
