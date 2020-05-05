@@ -27,3 +27,4 @@ vendors/vendor.proto
 .tool-versions
 gen_js
 /priv/
+.vscode

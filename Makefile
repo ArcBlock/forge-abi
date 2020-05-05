@@ -88,6 +88,22 @@ prepare-vendor-proto:
 	@curl --silent https://raw.githubusercontent.com/ArcBlock/ex_abci_proto/master/lib/protos/vendor.proto > ./vendors/vendor.proto
 	@echo "Vendor protobuf file fetched!"
 
+build-schema: prepare-vendor-proto
+	@echo "Rebuilding graphql schema from protobuf..."
+	@cp lib/protobuf/service.proto lib/protobuf/service.proto.bak
+	@sed -i -E "s/\(stream/\(/g" lib/protobuf/service.proto
+	@protoc --gql_out=paths=source_relative:./lib/protobuf/ -I=./vendors/ -I=./lib/protobuf/ ./lib/protobuf/service.proto
+	@mv lib/protobuf/service.proto.bak lib/protobuf/service.proto
+	@mv lib/protobuf/service.pb.graphqls lib/protobuf/gen/schema.graphqls
+	@sed -i -E "s/\(in:/\(input:/g" lib/protobuf/gen/schema.graphqls
+	@sed -i -E "s/chainRpc([A-Z])/\L\1\E/g" lib/protobuf/gen/schema.graphqls
+	@sed -i -E "s/statsRpc([A-Z])/\L\1\E/g" lib/protobuf/gen/schema.graphqls
+	@sed -i -E "s/stateRpc([A-Z])/\L\1\E/g" lib/protobuf/gen/schema.graphqls
+	@sed -i -E "s/eventRpc([A-Z])/\L\1\E/g" lib/protobuf/gen/schema.graphqls
+	@sed -i -E "s/walletRpc([A-Z])/\L\1\E/g" lib/protobuf/gen/schema.graphqls
+	@sed -i -E "s/\(input:\s+/\(/g" lib/protobuf/gen/schema.graphqls
+	@echo "YOU MUST EDIT THE GRAPHQL SCHEMA FILE MANNUALLY!!!"
+
 include .makefiles/*.mk
 
 .PHONY: build init travis-init install dep test dialyzer doc precommit travis run
